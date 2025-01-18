@@ -391,8 +391,8 @@ pub fn MatrixDbl::view(
         num > 0 &&
         start >= 0 &&
         (
-          (view_mode == ViewMode::SubRow && num < self.row) ||
-          (view_mode == ViewMode::SubCol && num < self.col)
+          (view_mode == ViewMode::SubRow && num < self.col) ||
+          (view_mode == ViewMode::SubCol && num < self.row)
         )
       ) ||
       (
