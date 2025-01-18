@@ -1,5 +1,7 @@
 package kcn-judu/calculus-numerical/lib/matrix
 
+alias @kcn-judu/calculus-numerical/lib/vector as @vector
+
 // Values
 
 // Types and methods
@@ -15,6 +17,8 @@ impl MatrixDbl {
   add_diagonal(Self, Double) -> Self
   add_diagonal_inplace(Self, Double) -> Unit
   at(Self, Int, Int) -> Double
+  col_vec(Self, Int) -> @vector.VectorDbl
+  diagonal_vec(Self) -> @vector.VectorDbl
   div_elements(Self, Self) -> Self
   div_elements_inplace(Self, Self) -> Unit
   filled_matrix(Int, Int, Double) -> Self
@@ -24,13 +28,40 @@ impl MatrixDbl {
   mul_elements_inplace(Self, Self) -> Unit
   new(Int, Int, stride~ : Int = ..) -> Self
   op_add(Self, Self) -> Self
+  op_as_view(Self, Int, ViewMode) -> MatrixViewDbl
   op_mul(Self, Self) -> Self
   op_sub(Self, Self) -> Self
+  row_vec(Self, Int) -> @vector.VectorDbl
   scale(Self, Double) -> Self
   scale_inplace(Self, Double) -> Unit
+  subcol_vec(Self, Int, Int, Int) -> @vector.VectorDbl
+  subdiagonal_vec(Self) -> @vector.VectorDbl
+  subrow_vec(Self, Int, Int, Int) -> @vector.VectorDbl
+  superdiagonal_vec(Self) -> @vector.VectorDbl
+  view(Self, Int, start~ : Int = .., num~ : Int = .., ViewMode) -> MatrixViewDbl
   zero_matrix(Int, Int) -> Self
 }
 impl Show for MatrixDbl
+
+pub(all) struct MatrixViewDbl {
+  matrix : MatrixDbl
+  index : Int
+  start : Int
+  num : Int
+  view_mode : ViewMode
+}
+
+pub enum ViewMode {
+  Row
+  Col
+  Diagonal
+  SubDiagonal
+  SuperDiagonal
+  SubRow
+  SubCol
+}
+impl Eq for ViewMode
+impl Show for ViewMode
 
 // Type aliases
 

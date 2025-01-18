@@ -1,1 +1,6 @@
-{}
+{
+	"import": [
+    "kcn-judu/calculus-numerical/lib/vector",
+    "kcn-judu/calculus-numerical/lib/internal"
+  ]
+}

@@ -1,10 +1,33 @@
 ///|
+/// Represents a matrix of double-precision floating-point numbers with optimized
+/// stride-based memory layout.
+///
+/// Fields:
+///
+/// * `data` : The array storing matrix elements in row-major order.
+/// * `col` : Number of columns in the matrix.
+/// * `row` : Number of rows in the matrix.
+/// * `stride` : The distance between the start of consecutive rows in memory.
+/// Usually equals to the number of columns but can be larger to optimize memory
+/// alignment and operations.
+///
+/// Example:
+///
+/// ```moonbit
+/// test "MatrixDbl" {
+///   let m = MatrixDbl::new(2, 3) // Creates a 2x3 matrix
+///   inspect!(m.row, content="2")
+///   inspect!(m.col, content="3")
+/// }
+/// ```
 pub(all) struct MatrixDbl {
   data : Array[Double]
   col : Int
   row : Int
-  mut stride : Int
+  stride : Int
 } derive(Show)
+
+//oper
 
 ///|
 pub fn MatrixDbl::new(row : Int, col : Int, stride~ : Int = col) -> MatrixDbl {
@@ -19,28 +42,6 @@ pub fn MatrixDbl::at(self : MatrixDbl, row : Int, col : Int) -> Double {
   let index = row * self.stride + col
   guard index < self.data.length()
   self.data[index]
-}
-
-///|
-pub fn MatrixDbl::filled_matrix(
-  row : Int,
-  col : Int,
-  num : Double
-) -> MatrixDbl {
-  let stride = col
-  let data : Array[Double] = (fn() -> Array[Double] {
-    let filled_matrix = []
-    for i = 0; i < row * col; i = i + 1 {
-      filled_matrix.push(num)
-    }
-    filled_matrix
-  })()
-  { data, col, row, stride }
-}
-
-///|
-pub fn MatrixDbl::zero_matrix(row : Int, col : Int) -> MatrixDbl {
-  MatrixDbl::filled_matrix(row, col, 0.0)
 }
 
 ///|
@@ -196,7 +197,7 @@ fn MatrixDbl::std_mul(self : MatrixDbl, other : MatrixDbl) -> MatrixDbl {
 }
 
 ///|
-pub fn op_add(self : MatrixDbl, other : MatrixDbl) -> MatrixDbl {
+pub fn MatrixDbl::op_add(self : MatrixDbl, other : MatrixDbl) -> MatrixDbl {
   guard self.col == other.col && self.row == other.row
   let stride_self = self.stride
   let stride_other = other.stride
@@ -212,7 +213,7 @@ pub fn op_add(self : MatrixDbl, other : MatrixDbl) -> MatrixDbl {
 }
 
 ///|
-pub fn op_sub(self : MatrixDbl, other : MatrixDbl) -> MatrixDbl {
+pub fn MatrixDbl::op_sub(self : MatrixDbl, other : MatrixDbl) -> MatrixDbl {
   guard self.col == other.col && self.row == other.row
   let stride_self = self.stride
   let stride_other = other.stride
@@ -228,7 +229,182 @@ pub fn op_sub(self : MatrixDbl, other : MatrixDbl) -> MatrixDbl {
 }
 
 ///|
-pub fn op_mul(self : MatrixDbl, other : MatrixDbl) -> MatrixDbl {
+pub fn MatrixDbl::op_mul(self : MatrixDbl, other : MatrixDbl) -> MatrixDbl {
   guard self.col == other.row
   MatrixDbl::std_mul(self, other)
+}
+
+//init
+
+///|
+pub fn MatrixDbl::filled_matrix(
+  row : Int,
+  col : Int,
+  num : Double
+) -> MatrixDbl {
+  let stride = col
+  let data : Array[Double] = (fn() -> Array[Double] {
+    let filled_matrix = []
+    for i = 0; i < row * col; i = i + 1 {
+      filled_matrix.push(num)
+    }
+    filled_matrix
+  })()
+  { data, col, row, stride }
+}
+
+///|
+pub fn MatrixDbl::zero_matrix(row : Int, col : Int) -> MatrixDbl {
+  MatrixDbl::filled_matrix(row, col, 0.0)
+}
+
+//vectorize
+///|
+pub fn MatrixDbl::row_vec(self : MatrixDbl, row : Int) -> @vector.VectorDbl {
+  guard row < self.row && row >= 0
+  let size_vec = self.col
+  let vec = @vector.VectorDbl::new(size_vec)
+  for i = 0; i < size_vec; i = i + 1 {
+    vec.data.push(self.data[row * self.stride + i])
+  }
+  vec
+}
+
+///|
+pub fn MatrixDbl::col_vec(self : MatrixDbl, col : Int) -> @vector.VectorDbl {
+  guard col < self.col && col >= 0
+  let size_vec = self.row
+  let vec = @vector.VectorDbl::new(size_vec)
+  for i = 0; i < size_vec; i = i + 1 {
+    vec.data.push(self.data[i * self.stride + col])
+  }
+  vec
+}
+
+///|
+pub fn MatrixDbl::diagonal_vec(self : MatrixDbl) -> @vector.VectorDbl {
+  let short_side = @internal.min(self.row, self.col)
+  let vec = @vector.VectorDbl::new(short_side)
+  for i = 0; i < short_side; i = i + 1 {
+    vec.data.push(self.data[i * self.stride + i])
+  }
+  vec
+}
+
+///|
+pub fn MatrixDbl::subdiagonal_vec(self : MatrixDbl) -> @vector.VectorDbl {
+  let short_side = @internal.min(self.row, self.col)
+  let vec = @vector.VectorDbl::new(short_side - 1)
+  for i = 0; i < short_side - 1; i = i + 1 {
+    vec.data.push(self.data[(i + 1) * self.stride + i])
+  }
+  vec
+}
+
+///|
+pub fn MatrixDbl::superdiagonal_vec(self : MatrixDbl) -> @vector.VectorDbl {
+  let short_side = @internal.min(self.row, self.col)
+  let vec = @vector.VectorDbl::new(short_side - 1)
+  for i = 0; i < short_side - 1; i = i + 1 {
+    vec.data.push(self.data[i * self.stride + (i + 1)])
+  }
+  vec
+}
+
+///|
+pub fn MatrixDbl::subrow_vec(
+  self : MatrixDbl,
+  row : Int,
+  start : Int,
+  num : Int
+) -> @vector.VectorDbl {
+  guard row < self.row && row >= 0
+  guard start >= 0 && num > 0 && start + num <= self.col
+  let vec = @vector.VectorDbl::new(num)
+  for i = 0; i < num; i = i + 1 {
+    vec.data.push(self.data[row * self.stride + start + i])
+  }
+  vec
+}
+
+///|
+pub fn MatrixDbl::subcol_vec(
+  self : MatrixDbl,
+  col : Int,
+  start : Int,
+  num : Int
+) -> @vector.VectorDbl {
+  guard col < self.col && col >= 0
+  guard start >= 0 && num > 0 && start + num <= self.row
+  let vec = @vector.VectorDbl::new(num)
+  for i = 0; i < num; i = i + 1 {
+    vec.data.push(self.data[(start + i) * self.stride + col])
+  }
+  vec
+}
+
+//view
+
+///|
+pub enum ViewMode {
+  Row
+  Col
+  Diagonal
+  SubDiagonal
+  SuperDiagonal
+  SubRow
+  SubCol
+} derive(Show, Eq)
+
+///|
+pub(all) struct MatrixViewDbl {
+  matrix : MatrixDbl
+  index : Int
+  start : Int
+  num : Int
+  view_mode : ViewMode
+}
+
+///|
+pub fn MatrixDbl::op_as_view(
+  self : MatrixDbl,
+  index : Int,
+  view_mode : ViewMode
+) -> MatrixViewDbl {
+  guard index >= 0 &&
+    view_mode != ViewMode::SubRow &&
+    view_mode != ViewMode::SubCol
+  MatrixViewDbl::{ matrix: self, index, start: 0, num: 0, view_mode }
+}
+
+///|
+pub fn MatrixDbl::view(
+  self : MatrixDbl,
+  index : Int,
+  start~ : Int = 0,
+  num~ : Int = 0,
+  view_mode : ViewMode
+) -> MatrixViewDbl {
+  guard index >= 0 &&
+    (
+      (
+        num > 0 &&
+        start >= 0 &&
+        (
+          (view_mode == ViewMode::SubRow && num < self.row) ||
+          (view_mode == ViewMode::SubCol && num < self.col)
+        )
+      ) ||
+      (
+        num == 0 &&
+        (
+          view_mode == ViewMode::Row ||
+          view_mode == ViewMode::Col ||
+          view_mode == ViewMode::Diagonal ||
+          view_mode == ViewMode::SubDiagonal ||
+          view_mode == ViewMode::SuperDiagonal
+        )
+      )
+    )
+  MatrixViewDbl::{ matrix: self, index, start, num, view_mode }
 }
