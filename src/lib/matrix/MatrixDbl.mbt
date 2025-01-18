@@ -368,43 +368,45 @@ pub(all) struct MatrixViewDbl {
 ///|
 pub fn MatrixDbl::op_as_view(
   self : MatrixDbl,
-  index : Int,
+  index~ : Int = 0,
   view_mode : ViewMode
 ) -> MatrixViewDbl {
-  guard index >= 0 &&
-    view_mode != ViewMode::SubRow &&
-    view_mode != ViewMode::SubCol
+  guard view_mode == ViewMode::SuperDiagonal ||
+    view_mode == ViewMode::SubDiagonal ||
+    view_mode == ViewMode::Diagonal ||
+    (
+      index >= 0 &&
+      view_mode == ViewMode::Row &&
+      view_mode == ViewMode::Col
+    )
   MatrixViewDbl::{ matrix: self, index, start: 0, num: 0, view_mode }
 }
 
 ///|
 pub fn MatrixDbl::view(
   self : MatrixDbl,
-  index : Int,
+  index~ : Int = 0,
   start~ : Int = 0,
   num~ : Int = 0,
   view_mode : ViewMode
 ) -> MatrixViewDbl {
-  guard index >= 0 &&
-    (
+  guard (
+      index >= 0 &&
       (
-        num > 0 &&
-        start >= 0 &&
         (
-          (view_mode == ViewMode::SubRow && num < self.col) ||
-          (view_mode == ViewMode::SubCol && num < self.row)
-        )
-      ) ||
-      (
-        num == 0 &&
-        (
-          view_mode == ViewMode::Row ||
-          view_mode == ViewMode::Col ||
-          view_mode == ViewMode::Diagonal ||
-          view_mode == ViewMode::SubDiagonal ||
-          view_mode == ViewMode::SuperDiagonal
-        )
+          num > 0 &&
+          start >= 0 &&
+          (
+            (view_mode == ViewMode::SubRow && num < self.col) ||
+            (view_mode == ViewMode::SubCol && num < self.row)
+          )
+        ) ||
+        view_mode == ViewMode::Row ||
+        view_mode == ViewMode::Col
       )
-    )
+    ) ||
+    view_mode == ViewMode::Diagonal ||
+    view_mode == ViewMode::SubDiagonal ||
+    view_mode == ViewMode::SuperDiagonal
   MatrixViewDbl::{ matrix: self, index, start, num, view_mode }
 }
