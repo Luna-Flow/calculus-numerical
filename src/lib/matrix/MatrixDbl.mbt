@@ -376,7 +376,7 @@ pub fn MatrixDbl::op_as_view(
     view_mode == ViewMode::Diagonal ||
     (
       index >= 0 &&
-      view_mode == ViewMode::Row &&
+      view_mode == ViewMode::Row ||
       view_mode == ViewMode::Col
     )
   MatrixViewDbl::{ matrix: self, index, start: 0, num: 0, view_mode }
