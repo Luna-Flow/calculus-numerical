@@ -33,7 +33,7 @@ pub(all) enum Integer {
   IntegerInt(Int)
   IntegerInt64(Int64)
   Integer(BigInt)
-}derive(Show)
+} derive(Show)
 
 ///|
 pub let integer_zero : Integer = IntegerInt(0)

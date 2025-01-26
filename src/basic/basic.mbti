@@ -69,6 +69,7 @@ pub(all) enum Integer {
   IntegerInt64(Int64)
   Integer(BigInt)
 }
+impl Show for Integer
 
 // Type aliases
 pub typealias Func_Math = (Double) -> Double
