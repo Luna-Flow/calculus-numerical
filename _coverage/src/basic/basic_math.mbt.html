@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>basic_math.mbt &mdash; </title>
+    <meta name="description" content="50.00% coverage in src/basic/basic_math.mbt">
+    <link rel="stylesheet" href="../../coverage.css"/>
+    <script src="../../highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </head>
+  <body>
+    <div id="header">
+      <h1>
+        <a href="../../index.html">
+          <span class="dirname">src/basic/</span>basic_math.mbt
+        </a>
+      </h1>
+      <h2>50.00%</h2>
+    </div>
+    <div id="navbar">
+      <span class="unvisited" style="bottom:33.33%"></span>
+      <span class="unvisited" style="bottom:25.00%"></span>
+      <span class="unvisited" style="bottom:24.31%"></span>
+      <span class="unvisited" style="bottom:23.61%"></span>
+      <span class="unvisited" style="bottom:22.92%"></span>
+      <span class="unvisited" style="bottom:22.22%"></span>
+      <span class="unvisited" style="bottom:21.53%"></span>
+      <span class="unvisited" style="bottom:20.83%"></span>
+      <span class="unvisited" style="bottom:18.75%"></span>
+      <span class="unvisited" style="bottom:17.36%"></span>
+      <span class="unvisited" style="bottom:16.67%"></span>
+      <span class="unvisited" style="bottom:14.58%"></span>
+      <span class="unvisited" style="bottom:11.81%"></span>
+      <span class="unvisited" style="bottom:11.11%"></span>
+      <span class="unvisited" style="bottom:10.42%"></span>
+      <span class="unvisited" style="bottom:9.72%"></span>
+      <span class="unvisited" style="bottom:9.03%"></span>
+      <span class="unvisited" style="bottom:8.33%"></span>
+      <span class="unvisited" style="bottom:7.64%"></span>
+      <span class="unvisited" style="bottom:6.94%"></span>
+      <span class="unvisited" style="bottom:4.86%"></span>
+    </div>
+    <div id="report">
+      <div id="lines-layer">
+        <pre>
+<a id="L1"></a><span > </span>
+<a id="L2"></a><span > </span>
+<a id="L3"></a><span > </span>
+<a id="L4"></a><span > </span>
+<a id="L5"></a><span > </span>
+<a id="L6"></a><span > </span>
+<a id="L7"></a><span > </span>
+<a id="L8"></a><span > </span>
+<a id="L9"></a><span > </span>
+<a id="L10"></a><span > </span>
+<a id="L11"></a><span > </span>
+<a id="L12"></a><span > </span>
+<a id="L13"></a><span > </span>
+<a id="L14"></a><span > </span>
+<a id="L15"></a><span > </span>
+<a id="L16"></a><span > </span>
+<a id="L17"></a><span > </span>
+<a id="L18"></a><span > </span>
+<a id="L19"></a><span > </span>
+<a id="L20"></a><span > </span>
+<a id="L21"></a><span > </span>
+<a id="L22"></a><span > </span>
+<a id="L23"></a><span > </span>
+<a id="L24"></a><span > </span>
+<a id="L25"></a><span class="visited"> </span>
+<a id="L26"></a><span class="visited"> </span>
+<a id="L27"></a><span class="visited"> </span>
+<a id="L28"></a><span class="visited"> </span>
+<a id="L29"></a><span > </span>
+<a id="L30"></a><span > </span>
+<a id="L31"></a><span class="visited"> </span>
+<a id="L32"></a><span class="visited"> </span>
+<a id="L33"></a><span > </span>
+<a id="L34"></a><span > </span>
+<a id="L35"></a><span > </span>
+<a id="L36"></a><span > </span>
+<a id="L37"></a><span > </span>
+<a id="L38"></a><span > </span>
+<a id="L39"></a><span > </span>
+<a id="L40"></a><span > </span>
+<a id="L41"></a><span > </span>
+<a id="L42"></a><span > </span>
+<a id="L43"></a><span > </span>
+<a id="L44"></a><span > </span>
+<a id="L45"></a><span > </span>
+<a id="L46"></a><span > </span>
+<a id="L47"></a><span > </span>
+<a id="L48"></a><span > </span>
+<a id="L49"></a><span > </span>
+<a id="L50"></a><span > </span>
+<a id="L51"></a><span > </span>
+<a id="L52"></a><span > </span>
+<a id="L53"></a><span > </span>
+<a id="L54"></a><span > </span>
+<a id="L55"></a><span > </span>
+<a id="L56"></a><span > </span>
+<a id="L57"></a><span > </span>
+<a id="L58"></a><span > </span>
+<a id="L59"></a><span > </span>
+<a id="L60"></a><span class="visited"> </span>
+<a id="L61"></a><span > </span>
+<a id="L62"></a><span > </span>
+<a id="L63"></a><span > </span>
+<a id="L64"></a><span > </span>
+<a id="L65"></a><span > </span>
+<a id="L66"></a><span > </span>
+<a id="L67"></a><span > </span>
+<a id="L68"></a><span > </span>
+<a id="L69"></a><span > </span>
+<a id="L70"></a><span > </span>
+<a id="L71"></a><span > </span>
+<a id="L72"></a><span > </span>
+<a id="L73"></a><span > </span>
+<a id="L74"></a><span > </span>
+<a id="L75"></a><span > </span>
+<a id="L76"></a><span > </span>
+<a id="L77"></a><span > </span>
+<a id="L78"></a><span > </span>
+<a id="L79"></a><span > </span>
+<a id="L80"></a><span > </span>
+<a id="L81"></a><span > </span>
+<a id="L82"></a><span > </span>
+<a id="L83"></a><span > </span>
+<a id="L84"></a><span > </span>
+<a id="L85"></a><span > </span>
+<a id="L86"></a><span > </span>
+<a id="L87"></a><span > </span>
+<a id="L88"></a><span class="visited"> </span>
+<a id="L89"></a><span > </span>
+<a id="L90"></a><span class="visited"> </span>
+<a id="L91"></a><span class="visited"> </span>
+<a id="L92"></a><span class="visited"> </span>
+<a id="L93"></a><span class="visited"> </span>
+<a id="L94"></a><span class="visited"> </span>
+<a id="L95"></a><span class="visited"> </span>
+<a id="L96"></a><span class="unvisited"> </span>
+<a id="L97"></a><span > </span>
+<a id="L98"></a><span class="visited"> </span>
+<a id="L99"></a><span > </span>
+<a id="L100"></a><span class="visited"> </span>
+<a id="L101"></a><span class="visited"> </span>
+<a id="L102"></a><span > </span>
+<a id="L103"></a><span > </span>
+<a id="L104"></a><span class="visited"> </span>
+<a id="L105"></a><span > </span>
+<a id="L106"></a><span > </span>
+<a id="L107"></a><span > </span>
+<a id="L108"></a><span class="unvisited"> </span>
+<a id="L109"></a><span class="unvisited"> </span>
+<a id="L110"></a><span class="unvisited"> </span>
+<a id="L111"></a><span class="unvisited"> </span>
+<a id="L112"></a><span class="unvisited"> </span>
+<a id="L113"></a><span class="unvisited"> </span>
+<a id="L114"></a><span class="unvisited"> </span>
+<a id="L115"></a><span > </span>
+<a id="L116"></a><span > </span>
+<a id="L117"></a><span class="unvisited"> </span>
+<a id="L118"></a><span > </span>
+<a id="L119"></a><span class="unvisited"> </span>
+<a id="L120"></a><span class="unvisited"> </span>
+<a id="L121"></a><span > </span>
+<a id="L122"></a><span > </span>
+<a id="L123"></a><span class="unvisited"> </span>
+<a id="L124"></a><span > </span>
+<a id="L125"></a><span > </span>
+<a id="L126"></a><span > </span>
+<a id="L127"></a><span class="unvisited"> </span>
+<a id="L128"></a><span class="unvisited"> </span>
+<a id="L129"></a><span class="unvisited"> </span>
+<a id="L130"></a><span class="unvisited"> </span>
+<a id="L131"></a><span class="unvisited"> </span>
+<a id="L132"></a><span class="unvisited"> </span>
+<a id="L133"></a><span class="unvisited"> </span>
+<a id="L134"></a><span class="unvisited"> </span>
+<a id="L135"></a><span > </span>
+<a id="L136"></a><span > </span>
+<a id="L137"></a><span class="unvisited"> </span>
+<a id="L138"></a><span > </span>
+<a id="L139"></a><span > </span>
+<a id="L140"></a><span > </span>
+<a id="L141"></a><span > </span>
+<a id="L142"></a><span > </span>
+<a id="L143"></a><span > </span>
+<a id="L144"></a><span > </span>
+</pre>
+      </div>
+      <div id="text-layer">
+        <pre id="line-numbers">
+<a href="#L1">  1</a>
+<a href="#L2">  2</a>
+<a href="#L3">  3</a>
+<a href="#L4">  4</a>
+<a href="#L5">  5</a>
+<a href="#L6">  6</a>
+<a href="#L7">  7</a>
+<a href="#L8">  8</a>
+<a href="#L9">  9</a>
+<a href="#L10"> 10</a>
+<a href="#L11"> 11</a>
+<a href="#L12"> 12</a>
+<a href="#L13"> 13</a>
+<a href="#L14"> 14</a>
+<a href="#L15"> 15</a>
+<a href="#L16"> 16</a>
+<a href="#L17"> 17</a>
+<a href="#L18"> 18</a>
+<a href="#L19"> 19</a>
+<a href="#L20"> 20</a>
+<a href="#L21"> 21</a>
+<a href="#L22"> 22</a>
+<a href="#L23"> 23</a>
+<a href="#L24"> 24</a>
+<a href="#L25"> 25</a>
+<a href="#L26"> 26</a>
+<a href="#L27"> 27</a>
+<a href="#L28"> 28</a>
+<a href="#L29"> 29</a>
+<a href="#L30"> 30</a>
+<a href="#L31"> 31</a>
+<a href="#L32"> 32</a>
+<a href="#L33"> 33</a>
+<a href="#L34"> 34</a>
+<a href="#L35"> 35</a>
+<a href="#L36"> 36</a>
+<a href="#L37"> 37</a>
+<a href="#L38"> 38</a>
+<a href="#L39"> 39</a>
+<a href="#L40"> 40</a>
+<a href="#L41"> 41</a>
+<a href="#L42"> 42</a>
+<a href="#L43"> 43</a>
+<a href="#L44"> 44</a>
+<a href="#L45"> 45</a>
+<a href="#L46"> 46</a>
+<a href="#L47"> 47</a>
+<a href="#L48"> 48</a>
+<a href="#L49"> 49</a>
+<a href="#L50"> 50</a>
+<a href="#L51"> 51</a>
+<a href="#L52"> 52</a>
+<a href="#L53"> 53</a>
+<a href="#L54"> 54</a>
+<a href="#L55"> 55</a>
+<a href="#L56"> 56</a>
+<a href="#L57"> 57</a>
+<a href="#L58"> 58</a>
+<a href="#L59"> 59</a>
+<a href="#L60"> 60</a>
+<a href="#L61"> 61</a>
+<a href="#L62"> 62</a>
+<a href="#L63"> 63</a>
+<a href="#L64"> 64</a>
+<a href="#L65"> 65</a>
+<a href="#L66"> 66</a>
+<a href="#L67"> 67</a>
+<a href="#L68"> 68</a>
+<a href="#L69"> 69</a>
+<a href="#L70"> 70</a>
+<a href="#L71"> 71</a>
+<a href="#L72"> 72</a>
+<a href="#L73"> 73</a>
+<a href="#L74"> 74</a>
+<a href="#L75"> 75</a>
+<a href="#L76"> 76</a>
+<a href="#L77"> 77</a>
+<a href="#L78"> 78</a>
+<a href="#L79"> 79</a>
+<a href="#L80"> 80</a>
+<a href="#L81"> 81</a>
+<a href="#L82"> 82</a>
+<a href="#L83"> 83</a>
+<a href="#L84"> 84</a>
+<a href="#L85"> 85</a>
+<a href="#L86"> 86</a>
+<a href="#L87"> 87</a>
+<a href="#L88"> 88</a>
+<a href="#L89"> 89</a>
+<a href="#L90"> 90</a>
+<a href="#L91"> 91</a>
+<a href="#L92"> 92</a>
+<a href="#L93"> 93</a>
+<a href="#L94"> 94</a>
+<a href="#L95"> 95</a>
+<a href="#L96"> 96</a>
+<a href="#L97"> 97</a>
+<a href="#L98"> 98</a>
+<a href="#L99"> 99</a>
+<a href="#L100">100</a>
+<a href="#L101">101</a>
+<a href="#L102">102</a>
+<a href="#L103">103</a>
+<a href="#L104">104</a>
+<a href="#L105">105</a>
+<a href="#L106">106</a>
+<a href="#L107">107</a>
+<a href="#L108">108</a>
+<a href="#L109">109</a>
+<a href="#L110">110</a>
+<a href="#L111">111</a>
+<a href="#L112">112</a>
+<a href="#L113">113</a>
+<a href="#L114">114</a>
+<a href="#L115">115</a>
+<a href="#L116">116</a>
+<a href="#L117">117</a>
+<a href="#L118">118</a>
+<a href="#L119">119</a>
+<a href="#L120">120</a>
+<a href="#L121">121</a>
+<a href="#L122">122</a>
+<a href="#L123">123</a>
+<a href="#L124">124</a>
+<a href="#L125">125</a>
+<a href="#L126">126</a>
+<a href="#L127">127</a>
+<a href="#L128">128</a>
+<a href="#L129">129</a>
+<a href="#L130">130</a>
+<a href="#L131">131</a>
+<a href="#L132">132</a>
+<a href="#L133">133</a>
+<a href="#L134">134</a>
+<a href="#L135">135</a>
+<a href="#L136">136</a>
+<a href="#L137">137</a>
+<a href="#L138">138</a>
+<a href="#L139">139</a>
+<a href="#L140">140</a>
+<a href="#L141">141</a>
+<a href="#L142">142</a>
+<a href="#L143">143</a>
+<a href="#L144">144</a>
+</pre>
+<pre><code class="ocaml">///|
+/// Calculates the square root of a double-precision floating-point number using
+/// Newton's method.
+/// The implementation uses an iterative approach to approximate the square root
+/// with high precision.
+///
+/// Parameters:
+///
+/// * `x` : A double-precision floating-point number whose square root is to be
+/// calculated.
+///
+/// Returns the square root of the input number. Returns `NaN` for negative
+/// inputs, `Infinity` for infinite inputs, and the input itself for 0.0 and 1.0.
+///
+/// Example:
+///
+/// ```moonbit
+/// test "sqrt" {
+///   inspect!(sqrt(16.0), content="4.0")
+///   inspect!(sqrt(0.0), content="0.0")
+///   inspect!(sqrt(-1.0), content="NaN")
+/// }
+/// ```
+pub fn sqrt(x : Double) -&gt; Double {
+  <span data-count="80">g</span>uard x &gt;= 0.0 else { <span data-count="16">@</span>double.not_a_number }
+  <span data-count="64">g</span>uard x != @double.infinity else { <span data-count="16">@</span>double.infinity }
+  <span data-count="48">g</span>uard x != 0.0 &amp;&amp; x != 1.0 else { <span data-count="16">x</span> }
+  <span data-count="32">l</span>et mut guess = x / 2.0
+  let mut diff = 1.0
+  let epsilon = 1.0e-7
+  while <span data-count="168">d</span>iff &gt; epsilon {
+    <span data-count="136">l</span>et new_guess = (guess + x / guess) / 2.0
+    diff = (guess - new_guess).abs()
+    guess = new_guess
+  }
+  guess
+}
+
+///|
+/// Calculates the length of the hypotenuse of a right triangle given its two
+/// sides using the Pythagorean theorem. Uses a numerically stable algorithm to
+/// avoid overflow or underflow.
+///
+/// Parameters:
+///
+/// * `x` : The length of the first side of the right triangle.
+/// * `y` : The length of the second side of the right triangle.
+///
+/// Returns the length of the hypotenuse, which is equal to `sqrt(x^2 + y^2)`.
+///
+/// Example:
+///
+/// ```moonbit
+/// test "hypot" {
+///   inspect!(hypot(3.0, 4.0), content="5.0")
+///   inspect!(hypot(1.0, 1.0), content="1.4142135623730951")
+/// }
+/// ```
+pub fn hypot(x : Double, y : Double) -&gt; Double {
+  <span data-count="24">s</span>qrt(x * x + y * y)
+}
+
+///|
+/// Computes the result of raising a floating-point base to an integer exponent
+/// using an efficient divide-and-conquer algorithm. Handles positive, negative,
+/// and zero exponents correctly, including special cases for minimum integer
+/// values.
+///
+/// Parameters:
+///
+/// * `base` : The floating-point number to be raised to a power.
+/// * `exp` : The integer exponent, which can be a regular integer (`Int`), a
+/// 64-bit integer (`Int64`), or an arbitrary-precision integer (`BigInt`).
+///
+/// Returns the result of `base` raised to the power of `exp`. Returns 1.0 when
+/// `exp` is 0, and 1.0/result when `exp` is negative.
+///
+/// Example:
+///
+/// ```moonbit
+/// test "pow_integer_exp" {
+///   inspect!(pow_integer_exp(2.0, IntegerInt(3)), content="8.0")
+///   inspect!(pow_integer_exp(2.0, IntegerInt(-2)), content="0.25")
+///   inspect!(pow_integer_exp(2.0, IntegerInt(0)), content="1.0")
+/// }
+/// ```
+pub fn pow_integer_exp(base : Double, exp : Integer) -&gt; Double {
+  <span data-count="48">m</span>atch exp {
+    IntegerInt(exp_int) =&gt;
+      <span data-count="48">i</span>f exp_int == 0 {
+        <span data-count="8">1</span>.0
+      } else <span data-count="40">i</span>f exp_int == 1 {
+        <span data-count="16">b</span>ase
+      } else <span data-count="24">i</span>f exp_int &lt; 0 {
+        <span data-count="8">i</span>f exp_int == @int.min_value {
+          <span data-count="0">1</span>.0 / pow_integer_exp(base, (-Int::to_int64(exp_int)).to_integer())
+        } else {
+          <span data-count="8">1</span>.0 / pow_integer_exp(base, (-exp_int).to_integer())
+        }
+      } else <span data-count="16">i</span>f exp_int % 2 == 0 {
+        <span data-count="8">l</span>et half_pow = pow_integer_exp(base, IntegerInt(exp_int / 2))
+        half_pow * half_pow
+      } else {
+        <span data-count="8">l</span>et half_pow = pow_integer_exp(base, IntegerInt((exp_int - 1) / 2))
+        half_pow * half_pow * base
+      }
+    IntegerInt64(exp_int64) =&gt;
+      <span data-count="0">i</span>f exp_int64 == 0 {
+        <span data-count="0">1</span>.0
+      } else <span data-count="0">i</span>f exp_int64 == 1 {
+        <span data-count="0">b</span>ase
+      } else <span data-count="0">i</span>f exp_int64 &lt; 0 {
+        <span data-count="0">i</span>f exp_int64 == @int64.min_value {
+          <span data-count="0">1</span>.0 /
+          pow_integer_exp(base, (-BigInt::from_int64(exp_int64)).to_integer())
+        } else {
+          <span data-count="0">1</span>.0 / pow_integer_exp(base, (-exp_int64).to_integer())
+        }
+      } else <span data-count="0">i</span>f exp_int64 % 2 == 0 {
+        <span data-count="0">l</span>et half_pow = pow_integer_exp(base, (exp_int64 / 2).to_integer())
+        half_pow * half_pow
+      } else {
+        <span data-count="0">l</span>et half_pow = pow_integer_exp(base, ((exp_int64 - 1) / 2).to_integer())
+        half_pow * half_pow * base
+      }
+    Integer(exp_big_int) =&gt;
+      <span data-count="0">i</span>f exp_big_int == 0 {
+        <span data-count="0">1</span>.0
+      } else <span data-count="0">i</span>f exp_big_int == 1 {
+        <span data-count="0">b</span>ase
+      } else <span data-count="0">i</span>f exp_big_int &lt; 0 {
+        <span data-count="0">1</span>.0 / pow_integer_exp(base, (-exp_big_int).to_integer())
+      } else <span data-count="0">i</span>f exp_big_int % 2 == 0 {
+        <span data-count="0">l</span>et half_pow = pow_integer_exp(base, (exp_big_int / 2).to_integer())
+        half_pow * half_pow
+      } else {
+        <span data-count="0">l</span>et half_pow = pow_integer_exp(
+          base,
+          ((exp_big_int - 1) / 2).to_integer(),
+        )
+        half_pow * half_pow * base
+      }
+  }
+}
+</code></pre>
+      </div>
+    </div>
+    <script src="../../coverage.js"></script>
+  </body>
+</html>
