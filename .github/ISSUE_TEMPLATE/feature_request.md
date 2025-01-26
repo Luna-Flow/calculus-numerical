@@ -1,7 +1,7 @@
 ---
 name: Feature Request
 about: Help users clearly outline their feature requests
-title: 'Feat Needed: Briefly describe the feature you're requesting.'
+title: 'Feat Needed: Briefly describe the feature you''re requesting.'
 labels: enhancement
 assignees: ''
 
