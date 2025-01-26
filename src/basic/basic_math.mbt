@@ -27,7 +27,7 @@ pub fn sqrt(x : Double) -> Double {
   guard x != 0.0 && x != 1.0 else { x }
   let mut guess = x / 2.0
   let mut diff = 1.0
-  let epsilon = 0.0000001
+  let epsilon = 1.0e-7
   while diff > epsilon {
     let new_guess = (guess + x / guess) / 2.0
     diff = (guess - new_guess).abs()
