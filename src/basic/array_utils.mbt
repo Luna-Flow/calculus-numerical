@@ -133,4 +133,3 @@ pub fn find[T : Eq](array : Array[T], value : T) -> Int? {
   }
   None
 }
-
