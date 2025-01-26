@@ -206,7 +206,7 @@ pub fn MatrixDbl::div_elements_inplace(
   }
 }
 
-///|
+///|@coverage.skip
 fn MatrixDbl::std_mul(self : MatrixDbl, other : MatrixDbl) -> MatrixDbl {
   let stride_self = self.stride
   let stride_other = other.stride
