@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8"/>
     <title>basic_math.mbt &mdash; </title>
-    <meta name="description" content="50.00% coverage in src/basic/basic_math.mbt">
+    <meta name="description" content="100.00% coverage in src/basic/basic_math.mbt">
     <link rel="stylesheet" href="../../coverage.css"/>
     <script src="../../highlight.pack.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
@@ -15,30 +15,9 @@
           <span class="dirname">src/basic/</span>basic_math.mbt
         </a>
       </h1>
-      <h2>50.00%</h2>
+      <h2>100.00%</h2>
     </div>
     <div id="navbar">
-      <span class="unvisited" style="bottom:33.33%"></span>
-      <span class="unvisited" style="bottom:25.00%"></span>
-      <span class="unvisited" style="bottom:24.31%"></span>
-      <span class="unvisited" style="bottom:23.61%"></span>
-      <span class="unvisited" style="bottom:22.92%"></span>
-      <span class="unvisited" style="bottom:22.22%"></span>
-      <span class="unvisited" style="bottom:21.53%"></span>
-      <span class="unvisited" style="bottom:20.83%"></span>
-      <span class="unvisited" style="bottom:18.75%"></span>
-      <span class="unvisited" style="bottom:17.36%"></span>
-      <span class="unvisited" style="bottom:16.67%"></span>
-      <span class="unvisited" style="bottom:14.58%"></span>
-      <span class="unvisited" style="bottom:11.81%"></span>
-      <span class="unvisited" style="bottom:11.11%"></span>
-      <span class="unvisited" style="bottom:10.42%"></span>
-      <span class="unvisited" style="bottom:9.72%"></span>
-      <span class="unvisited" style="bottom:9.03%"></span>
-      <span class="unvisited" style="bottom:8.33%"></span>
-      <span class="unvisited" style="bottom:7.64%"></span>
-      <span class="unvisited" style="bottom:6.94%"></span>
-      <span class="unvisited" style="bottom:4.86%"></span>
     </div>
     <div id="report">
       <div id="lines-layer">
@@ -138,7 +117,7 @@
 <a id="L93"></a><span class="visited"> </span>
 <a id="L94"></a><span class="visited"> </span>
 <a id="L95"></a><span class="visited"> </span>
-<a id="L96"></a><span class="unvisited"> </span>
+<a id="L96"></a><span class="visited"> </span>
 <a id="L97"></a><span > </span>
 <a id="L98"></a><span class="visited"> </span>
 <a id="L99"></a><span > </span>
@@ -150,36 +129,36 @@
 <a id="L105"></a><span > </span>
 <a id="L106"></a><span > </span>
 <a id="L107"></a><span > </span>
-<a id="L108"></a><span class="unvisited"> </span>
-<a id="L109"></a><span class="unvisited"> </span>
-<a id="L110"></a><span class="unvisited"> </span>
-<a id="L111"></a><span class="unvisited"> </span>
-<a id="L112"></a><span class="unvisited"> </span>
-<a id="L113"></a><span class="unvisited"> </span>
-<a id="L114"></a><span class="unvisited"> </span>
+<a id="L108"></a><span class="visited"> </span>
+<a id="L109"></a><span class="visited"> </span>
+<a id="L110"></a><span class="visited"> </span>
+<a id="L111"></a><span class="visited"> </span>
+<a id="L112"></a><span class="visited"> </span>
+<a id="L113"></a><span class="visited"> </span>
+<a id="L114"></a><span class="visited"> </span>
 <a id="L115"></a><span > </span>
 <a id="L116"></a><span > </span>
-<a id="L117"></a><span class="unvisited"> </span>
+<a id="L117"></a><span class="visited"> </span>
 <a id="L118"></a><span > </span>
-<a id="L119"></a><span class="unvisited"> </span>
-<a id="L120"></a><span class="unvisited"> </span>
+<a id="L119"></a><span class="visited"> </span>
+<a id="L120"></a><span class="visited"> </span>
 <a id="L121"></a><span > </span>
 <a id="L122"></a><span > </span>
-<a id="L123"></a><span class="unvisited"> </span>
+<a id="L123"></a><span class="visited"> </span>
 <a id="L124"></a><span > </span>
 <a id="L125"></a><span > </span>
 <a id="L126"></a><span > </span>
-<a id="L127"></a><span class="unvisited"> </span>
-<a id="L128"></a><span class="unvisited"> </span>
-<a id="L129"></a><span class="unvisited"> </span>
-<a id="L130"></a><span class="unvisited"> </span>
-<a id="L131"></a><span class="unvisited"> </span>
-<a id="L132"></a><span class="unvisited"> </span>
-<a id="L133"></a><span class="unvisited"> </span>
-<a id="L134"></a><span class="unvisited"> </span>
+<a id="L127"></a><span class="visited"> </span>
+<a id="L128"></a><span class="visited"> </span>
+<a id="L129"></a><span class="visited"> </span>
+<a id="L130"></a><span class="visited"> </span>
+<a id="L131"></a><span class="visited"> </span>
+<a id="L132"></a><span class="visited"> </span>
+<a id="L133"></a><span class="visited"> </span>
+<a id="L134"></a><span class="visited"> </span>
 <a id="L135"></a><span > </span>
 <a id="L136"></a><span > </span>
-<a id="L137"></a><span class="unvisited"> </span>
+<a id="L137"></a><span class="visited"> </span>
 <a id="L138"></a><span > </span>
 <a id="L139"></a><span > </span>
 <a id="L140"></a><span > </span>
@@ -360,14 +339,14 @@
 /// }
 /// ```
 pub fn sqrt(x : Double) -&gt; Double {
-  <span data-count="80">g</span>uard x &gt;= 0.0 else { <span data-count="16">@</span>double.not_a_number }
-  <span data-count="64">g</span>uard x != @double.infinity else { <span data-count="16">@</span>double.infinity }
-  <span data-count="48">g</span>uard x != 0.0 &amp;&amp; x != 1.0 else { <span data-count="16">x</span> }
-  <span data-count="32">l</span>et mut guess = x / 2.0
+  <span data-count="140">g</span>uard x &gt;= 0.0 else { <span data-count="28">@</span>double.not_a_number }
+  <span data-count="112">g</span>uard x != @double.infinity else { <span data-count="28">@</span>double.infinity }
+  <span data-count="84">g</span>uard x != 0.0 &amp;&amp; x != 1.0 else { <span data-count="28">x</span> }
+  <span data-count="56">l</span>et mut guess = x / 2.0
   let mut diff = 1.0
   let epsilon = 1.0e-7
-  while <span data-count="168">d</span>iff &gt; epsilon {
-    <span data-count="136">l</span>et new_guess = (guess + x / guess) / 2.0
+  while <span data-count="294">d</span>iff &gt; epsilon {
+    <span data-count="238">l</span>et new_guess = (guess + x / guess) / 2.0
     diff = (guess - new_guess).abs()
     guess = new_guess
   }
@@ -395,7 +374,7 @@ pub fn sqrt(x : Double) -&gt; Double {
 /// }
 /// ```
 pub fn hypot(x : Double, y : Double) -&gt; Double {
-  <span data-count="24">s</span>qrt(x * x + y * y)
+  <span data-count="42">s</span>qrt(x * x + y * y)
 }
 
 ///|
@@ -423,56 +402,56 @@ pub fn hypot(x : Double, y : Double) -&gt; Double {
 /// }
 /// ```
 pub fn pow_integer_exp(base : Double, exp : Integer) -&gt; Double {
-  <span data-count="48">m</span>atch exp {
+  <span data-count="586">m</span>atch exp {
     IntegerInt(exp_int) =&gt;
-      <span data-count="48">i</span>f exp_int == 0 {
-        <span data-count="8">1</span>.0
-      } else <span data-count="40">i</span>f exp_int == 1 {
-        <span data-count="16">b</span>ase
-      } else <span data-count="24">i</span>f exp_int &lt; 0 {
-        <span data-count="8">i</span>f exp_int == @int.min_value {
-          <span data-count="0">1</span>.0 / pow_integer_exp(base, (-Int::to_int64(exp_int)).to_integer())
+      <span data-count="421">i</span>f exp_int == 0 {
+        <span data-count="14">1</span>.0
+      } else <span data-count="407">i</span>f exp_int == 1 {
+        <span data-count="53">b</span>ase
+      } else <span data-count="354">i</span>f exp_int &lt; 0 {
+        <span data-count="20">i</span>f exp_int == @int.min_value {
+          <span data-count="6">1</span>.0 / pow_integer_exp(base, (-Int::to_int64(exp_int)).to_integer())
         } else {
-          <span data-count="8">1</span>.0 / pow_integer_exp(base, (-exp_int).to_integer())
+          <span data-count="14">1</span>.0 / pow_integer_exp(base, (-exp_int).to_integer())
         }
-      } else <span data-count="16">i</span>f exp_int % 2 == 0 {
-        <span data-count="8">l</span>et half_pow = pow_integer_exp(base, IntegerInt(exp_int / 2))
+      } else <span data-count="334">i</span>f exp_int % 2 == 0 {
+        <span data-count="320">l</span>et half_pow = pow_integer_exp(base, IntegerInt(exp_int / 2))
         half_pow * half_pow
       } else {
-        <span data-count="8">l</span>et half_pow = pow_integer_exp(base, IntegerInt((exp_int - 1) / 2))
+        <span data-count="14">l</span>et half_pow = pow_integer_exp(base, IntegerInt((exp_int - 1) / 2))
         half_pow * half_pow * base
       }
     IntegerInt64(exp_int64) =&gt;
-      <span data-count="0">i</span>f exp_int64 == 0 {
-        <span data-count="0">1</span>.0
-      } else <span data-count="0">i</span>f exp_int64 == 1 {
-        <span data-count="0">b</span>ase
-      } else <span data-count="0">i</span>f exp_int64 &lt; 0 {
-        <span data-count="0">i</span>f exp_int64 == @int64.min_value {
-          <span data-count="0">1</span>.0 /
+      <span data-count="153">i</span>f exp_int64 == 0 {
+        <span data-count="4">1</span>.0
+      } else <span data-count="149">i</span>f exp_int64 == 1 {
+        <span data-count="3">b</span>ase
+      } else <span data-count="146">i</span>f exp_int64 &lt; 0 {
+        <span data-count="8">i</span>f exp_int64 == @int64.min_value {
+          <span data-count="4">1</span>.0 /
           pow_integer_exp(base, (-BigInt::from_int64(exp_int64)).to_integer())
         } else {
-          <span data-count="0">1</span>.0 / pow_integer_exp(base, (-exp_int64).to_integer())
+          <span data-count="4">1</span>.0 / pow_integer_exp(base, (-exp_int64).to_integer())
         }
-      } else <span data-count="0">i</span>f exp_int64 % 2 == 0 {
-        <span data-count="0">l</span>et half_pow = pow_integer_exp(base, (exp_int64 / 2).to_integer())
+      } else <span data-count="138">i</span>f exp_int64 % 2 == 0 {
+        <span data-count="134">l</span>et half_pow = pow_integer_exp(base, (exp_int64 / 2).to_integer())
         half_pow * half_pow
       } else {
-        <span data-count="0">l</span>et half_pow = pow_integer_exp(base, ((exp_int64 - 1) / 2).to_integer())
+        <span data-count="4">l</span>et half_pow = pow_integer_exp(base, ((exp_int64 - 1) / 2).to_integer())
         half_pow * half_pow * base
       }
     Integer(exp_big_int) =&gt;
-      <span data-count="0">i</span>f exp_big_int == 0 {
-        <span data-count="0">1</span>.0
-      } else <span data-count="0">i</span>f exp_big_int == 1 {
-        <span data-count="0">b</span>ase
-      } else <span data-count="0">i</span>f exp_big_int &lt; 0 {
-        <span data-count="0">1</span>.0 / pow_integer_exp(base, (-exp_big_int).to_integer())
-      } else <span data-count="0">i</span>f exp_big_int % 2 == 0 {
-        <span data-count="0">l</span>et half_pow = pow_integer_exp(base, (exp_big_int / 2).to_integer())
+      <span data-count="12">i</span>f exp_big_int == 0 {
+        <span data-count="2">1</span>.0
+      } else <span data-count="10">i</span>f exp_big_int == 1 {
+        <span data-count="2">b</span>ase
+      } else <span data-count="8">i</span>f exp_big_int &lt; 0 {
+        <span data-count="2">1</span>.0 / pow_integer_exp(base, (-exp_big_int).to_integer())
+      } else <span data-count="6">i</span>f exp_big_int % 2 == 0 {
+        <span data-count="4">l</span>et half_pow = pow_integer_exp(base, (exp_big_int / 2).to_integer())
         half_pow * half_pow
       } else {
-        <span data-count="0">l</span>et half_pow = pow_integer_exp(
+        <span data-count="2">l</span>et half_pow = pow_integer_exp(
           base,
           ((exp_big_int - 1) / 2).to_integer(),
         )

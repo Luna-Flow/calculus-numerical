@@ -319,7 +319,7 @@
 /// }
 /// ```
 pub fn arr_sum_dbl(arr : Array[Double]) -&gt; Double {
-  <span data-count="16">l</span>et mut sum = 0.0
+  <span data-count="28">l</span>et mut sum = 0.0
   for x in arr {
     sum = sum + x
   }
@@ -347,9 +347,9 @@ pub fn arr_sum_dbl(arr : Array[Double]) -&gt; Double {
 /// }
 /// ```
 pub fn zero_arr_dbl(n : Int) -&gt; Array[Double] {
-  <span data-count="8">l</span>et arr = []
-  for i = 0; <span data-count="32">i</span> &lt; n; i = <span data-count="24">i</span> + 1 {
-    <span data-count="24">a</span>rr.push(0.0)
+  <span data-count="14">l</span>et arr = []
+  for i = 0; <span data-count="56">i</span> &lt; n; i = <span data-count="42">i</span> + 1 {
+    <span data-count="42">a</span>rr.push(0.0)
   }
   arr
 }
@@ -371,9 +371,9 @@ pub fn zero_arr_dbl(n : Int) -&gt; Array[Double] {
 /// }
 /// ```
 pub fn reverse[T](array : Array[T]) -&gt; Array[T] {
-  <span data-count="16">l</span>et result = []
-  for i = array.length() - 1; <span data-count="56">i</span> &gt;= 0; i = <span data-count="40">i</span> - 1 {
-    <span data-count="40">r</span>esult.push(array[i])
+  <span data-count="28">l</span>et result = []
+  for i = array.length() - 1; <span data-count="98">i</span> &gt;= 0; i = <span data-count="70">i</span> - 1 {
+    <span data-count="70">r</span>esult.push(array[i])
   }
   result
 }
@@ -398,10 +398,10 @@ pub fn reverse[T](array : Array[T]) -&gt; Array[T] {
 /// }
 /// ```
 pub fn reverse_inplace[T](arr : Array[T]) -&gt; Unit {
-  <span data-count="16">l</span>et mut left = 0
+  <span data-count="28">l</span>et mut left = 0
   let mut right = arr.length() - 1
-  while <span data-count="32">l</span>eft &lt; right {
-    <span data-count="16">a</span>rr.swap(left, right)
+  while <span data-count="56">l</span>eft &lt; right {
+    <span data-count="28">a</span>rr.swap(left, right)
     left = left + 1
     right = right - 1
   }
@@ -425,9 +425,9 @@ pub fn reverse_inplace[T](arr : Array[T]) -&gt; Unit {
 /// }
 /// ```
 pub fn find[T : Eq](array : Array[T], value : T) -&gt; Int? {
-  <span data-count="16">f</span>or i = 0; <span data-count="64">i</span> &lt; array.length(); i = <span data-count="48">i</span> + 1 {
-    <span data-count="56">i</span>f array[i] == value {
-      <span data-count="8">r</span>eturn Some(i)
+  <span data-count="28">f</span>or i = 0; <span data-count="112">i</span> &lt; array.length(); i = <span data-count="84">i</span> + 1 {
+    <span data-count="98">i</span>f array[i] == value {
+      <span data-count="14">r</span>eturn Some(i)
     }
   }
   None

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8"/>
     <title>integral.mbt &mdash; </title>
-    <meta name="description" content="7.69% coverage in src/basic/integral.mbt">
+    <meta name="description" content="100.00% coverage in src/basic/integral.mbt">
     <link rel="stylesheet" href="../../coverage.css"/>
     <script src="../../highlight.pack.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
@@ -15,21 +15,9 @@
           <span class="dirname">src/basic/</span>integral.mbt
         </a>
       </h1>
-      <h2>7.69%</h2>
+      <h2>100.00%</h2>
     </div>
     <div id="navbar">
-      <span class="unvisited" style="bottom:35.66%"></span>
-      <span class="unvisited" style="bottom:34.88%"></span>
-      <span class="unvisited" style="bottom:33.33%"></span>
-      <span class="unvisited" style="bottom:8.53%"></span>
-      <span class="unvisited" style="bottom:7.75%"></span>
-      <span class="unvisited" style="bottom:6.98%"></span>
-      <span class="unvisited" style="bottom:6.20%"></span>
-      <span class="unvisited" style="bottom:5.43%"></span>
-      <span class="unvisited" style="bottom:4.65%"></span>
-      <span class="unvisited" style="bottom:3.88%"></span>
-      <span class="unvisited" style="bottom:3.10%"></span>
-      <span class="unvisited" style="bottom:1.55%"></span>
     </div>
     <div id="report">
       <div id="lines-layer">
@@ -116,10 +104,10 @@
 <a id="L80"></a><span > </span>
 <a id="L81"></a><span > </span>
 <a id="L82"></a><span > </span>
-<a id="L83"></a><span class="unvisited"> </span>
-<a id="L84"></a><span class="unvisited"> </span>
+<a id="L83"></a><span class="visited"> </span>
+<a id="L84"></a><span class="visited"> </span>
 <a id="L85"></a><span > </span>
-<a id="L86"></a><span class="unvisited"> </span>
+<a id="L86"></a><span class="visited"> </span>
 <a id="L87"></a><span > </span>
 <a id="L88"></a><span > </span>
 <a id="L89"></a><span > </span>
@@ -151,16 +139,16 @@
 <a id="L115"></a><span > </span>
 <a id="L116"></a><span > </span>
 <a id="L117"></a><span > </span>
-<a id="L118"></a><span class="unvisited"> </span>
-<a id="L119"></a><span class="unvisited"> </span>
-<a id="L120"></a><span class="unvisited"> </span>
-<a id="L121"></a><span class="unvisited"> </span>
-<a id="L122"></a><span class="unvisited"> </span>
-<a id="L123"></a><span class="unvisited"> </span>
-<a id="L124"></a><span class="unvisited"> </span>
-<a id="L125"></a><span class="unvisited"> </span>
+<a id="L118"></a><span class="visited"> </span>
+<a id="L119"></a><span class="visited"> </span>
+<a id="L120"></a><span class="visited"> </span>
+<a id="L121"></a><span class="visited"> </span>
+<a id="L122"></a><span class="visited"> </span>
+<a id="L123"></a><span class="visited"> </span>
+<a id="L124"></a><span class="visited"> </span>
+<a id="L125"></a><span class="visited"> </span>
 <a id="L126"></a><span > </span>
-<a id="L127"></a><span class="unvisited"> </span>
+<a id="L127"></a><span class="visited"> </span>
 <a id="L128"></a><span > </span>
 <a id="L129"></a><span > </span>
 </pre>
@@ -349,7 +337,7 @@ pub(open) trait Integral: Eq + Compare + Show {
 ///   inspect!(Integral::to_integer(x), content="IntegerInt(42)")
 /// }
 /// ```
-pub impl Integral for Int with to_integer(self) { <span data-count="16">I</span>ntegerInt(self) }
+pub impl Integral for Int with to_integer(self) { <span data-count="28">I</span>ntegerInt(self) }
 
 ///|
 /// Implements the `Integral` trait for the 64-bit integer type `Int64`,
@@ -379,10 +367,10 @@ pub impl Integral for Int with to_integer(self) { <span data-count="16">I</span>
 /// }
 /// ```
 pub impl Integral for Int64 with to_integer(self) {
-  <span data-count="0">i</span>f self &gt;= @int.min_value.to_int64() &amp;&amp; self &lt;= @int.max_value.to_int64() {
-    <span data-count="0">I</span>ntegerInt(self.to_int())
+  <span data-count="148">i</span>f self &gt;= @int.min_value.to_int64() &amp;&amp; self &lt;= @int.max_value.to_int64() {
+    <span data-count="18">I</span>ntegerInt(self.to_int())
   } else {
-    <span data-count="0">I</span>ntegerInt64(self)
+    <span data-count="130">I</span>ntegerInt64(self)
   }
 }
 
@@ -414,16 +402,16 @@ pub impl Integral for Int64 with to_integer(self) {
 /// }
 /// ```
 pub impl Integral for BigInt with to_integer(self) {
-  <span data-count="0">i</span>f self.is_zero() {
-    <span data-count="0">i</span>nteger_zero
-  } else <span data-count="0">i</span>f self == 1 {
-    <span data-count="0">i</span>nteger_one
-  } else <span data-count="0">i</span>f self &lt;= 2147483647N &amp;&amp; self &gt;= -2147483648N {
-    <span data-count="0">I</span>ntegerInt(self.to_int())
-  } else <span data-count="0">i</span>f self &lt;= 9223372036854775807N &amp;&amp; self &gt;= -9223372036854775808N {
-    <span data-count="0">I</span>ntegerInt64(self.to_int64())
+  <span data-count="13">i</span>f self.is_zero() {
+    <span data-count="1">i</span>nteger_zero
+  } else <span data-count="12">i</span>f self == 1 {
+    <span data-count="2">i</span>nteger_one
+  } else <span data-count="10">i</span>f self &lt;= 2147483647N &amp;&amp; self &gt;= -2147483648N {
+    <span data-count="2">I</span>ntegerInt(self.to_int())
+  } else <span data-count="8">i</span>f self &lt;= 9223372036854775807N &amp;&amp; self &gt;= -9223372036854775808N {
+    <span data-count="4">I</span>ntegerInt64(self.to_int64())
   } else {
-    <span data-count="0">I</span>nteger(self)
+    <span data-count="4">I</span>nteger(self)
   }
 }
 </code></pre>
