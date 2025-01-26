@@ -125,7 +125,7 @@ pub fn reverse_inplace[T](arr : Array[T]) -> Unit {
 ///   inspect!(find(arr, 5), content="-1")
 /// }
 /// ```
-pub fn find[T : Compare](array : Array[T], value : T) -> Int? {
+pub fn find[T : Eq](array : Array[T], value : T) -> Int? {
   for i = 0; i < array.length(); i = i + 1 {
     if array[i] == value {
       return Some(i)
@@ -134,27 +134,3 @@ pub fn find[T : Compare](array : Array[T], value : T) -> Int? {
   None
 }
 
-///|
-/// Checks if an array contains a specific value.
-///
-/// Parameters:
-/// * `array` : An array of any type.
-/// * `value` : The value to search for.
-///
-/// Returns `true` if the value is found, otherwise `false`.
-///
-/// Example:
-/// ```moonbit
-/// test "contains" {
-///   let arr = [1, 2, 3, 4]
-///   inspect!(contains(arr, 3), content="true")
-///   inspect!(contains(arr, 5), content="false")
-/// }
-/// ```
-pub fn contains[T : Compare](array : Array[T], value : T) -> Bool {
-  let res = find(array, value)
-  match res {
-    Some(_) => true
-    None => false
-  }
-}
