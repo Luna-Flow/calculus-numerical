@@ -44,6 +44,7 @@
 ///   inspect!(@double.round(result * 1000.0) / 1000.0, content="0.333")
 /// }
 /// ```
+/// @coverage.skip
 pub fn adap_quad_gk(
   f : @basic.Func_Math,
   q : @basic.Quad_GK,

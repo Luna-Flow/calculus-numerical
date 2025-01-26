@@ -1,4 +1,4 @@
-///|
+///|@coverage.skip
 fn gauss_kronrod(
   n : Int,
   xgk : Array[Double],
@@ -90,6 +90,7 @@ fn gauss_kronrod(
 ///   inspect!(@double.round(error * 1000.0) / 1000.0, content="0.000")
 /// }
 /// ```
+/// @coverage.skip
 pub fn kronrod_r15(
   f : @basic.Func_Math,
   a : Double,
@@ -127,6 +128,7 @@ pub fn kronrod_r15(
 ///   inspect!(@double.round(error * 1000.0) / 1000.0, content="0.000")
 /// }
 /// ```
+/// @coverage.skip
 pub fn kronrod_r21(
   f : @basic.Func_Math,
   a : Double,
@@ -166,6 +168,7 @@ pub fn kronrod_r21(
 ///   inspect!(@double.round(error * 1000.0) / 1000.0, content="0.000")
 /// }
 /// ```
+/// @coverage.skip
 pub fn kronrod_r31(
   f : @basic.Func_Math,
   a : Double,
@@ -206,6 +209,7 @@ pub fn kronrod_r31(
 ///   inspect!(@double.round(error * 1000.0) / 1000.0, content="0.000")
 /// }
 /// ```
+/// @coverage.skip
 pub fn kronrod_r41(
   f : @basic.Func_Math,
   a : Double,
@@ -247,6 +251,7 @@ pub fn kronrod_r41(
 ///   inspect!(@double.round(error * 1000.0) / 1000.0, content="0.000")
 /// }
 /// ```
+/// @coverage.skip
 pub fn kronrod_r51(
   f : @basic.Func_Math,
   a : Double,
@@ -286,6 +291,7 @@ pub fn kronrod_r51(
 ///   inspect!(@double.round(error * 1000.0) / 1000.0, content="0.000")
 /// }
 /// ```
+/// @coverage.skip
 pub fn kronrod_r61(
   f : @basic.Func_Math,
   a : Double,

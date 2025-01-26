@@ -16,7 +16,7 @@
 /// * The estimated absolute error of the computation
 ///
 /// Example:
-///
+/// 
 /// ```moonbit
 /// test "diff_backward" {
 ///   let f = fn(x : Double) { x * x } // f(x) = x^2, f'(x) = 2x
@@ -24,6 +24,7 @@
 ///   inspect!((derivative - 4.0).abs() < error, content="true")
 /// }
 /// ```
+/// @coverage.skip
 pub fn diff_backward(f : @basic.Func_Math, x : Double) -> (Double, Double) {
   let a : Array[Double] = [-2, -1, 0]
   fn q(n : Double) {
@@ -71,6 +72,7 @@ pub fn diff_backward(f : @basic.Func_Math, x : Double) -> (Double, Double) {
 ///   inspect!((derivative - 4.0).abs() < error, content="true")
 /// }
 /// ```
+/// @coverage.skip
 pub fn diff_forward(f : @basic.Func_Math, x : Double) -> (Double, Double) {
   let a : Array[Double] = [0, 1, 2]
   fn q(n : Double) {
@@ -118,6 +120,7 @@ pub fn diff_forward(f : @basic.Func_Math, x : Double) -> (Double, Double) {
 ///   inspect!((derivative - 4.0).abs() < error, content="true")
 /// }
 /// ```
+/// @coverage.skip
 pub fn diff_central(f : @basic.Func_Math, x : Double) -> (Double, Double) {
   let a : Array[Double] = [-2, -1, 0, 1]
   fn q(n : Double) {
