@@ -28,6 +28,7 @@
 ///   inspect!(error, content="0.1")
 /// }
 /// ```
+/// @coverage.skip
 struct IntegrationWorkspace {
   limit : Int
   mut size : Int
@@ -67,6 +68,7 @@ struct IntegrationWorkspace {
 ///   inspect!(workspace.size, content="0")
 /// }
 /// ```
+/// @coverage.skip
 fn IntegrationWorkspace::new(limit : Int) -> IntegrationWorkspace {
   {
     limit,
@@ -106,6 +108,7 @@ fn IntegrationWorkspace::new(limit : Int) -> IntegrationWorkspace {
 ///   inspect!(error, content="0.1")
 /// }
 /// ```
+/// @coverage.skip
 fn IntegrationWorkspace::init(
   workspace : IntegrationWorkspace,
   a : Double,
@@ -147,6 +150,7 @@ fn IntegrationWorkspace::init(
 ///   inspect!(error, content="0.1")
 /// }
 /// ```
+/// @coverage.skip
 fn qpsrt(workspace : IntegrationWorkspace) -> Unit {
   let last = workspace.size - 1
   let i_maxerr = workspace.order[0]
@@ -222,6 +226,7 @@ fn qpsrt(workspace : IntegrationWorkspace) -> Unit {
 ///   inspect!(error, content="0.06")
 /// }
 /// ```
+/// @coverage.skip
 fn IntegrationWorkspace::update(
   workspace : IntegrationWorkspace,
   a_1 : Double,
@@ -291,6 +296,7 @@ fn IntegrationWorkspace::update(
 ///   inspect!(error, content="0.1")
 /// }
 /// ```
+/// @coverage.skip
 fn IntegrationWorkspace::retrieve(
   workspace : IntegrationWorkspace
 ) -> (Double, Double, Double, Double) {

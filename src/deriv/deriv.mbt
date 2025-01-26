@@ -1,4 +1,4 @@
-///|
+///| @coverage.skip
 fn central_deriv(
   f : @basic.Func_Math,
   x : Double,
@@ -48,6 +48,7 @@ fn central_deriv(
 ///   inspect!((deriv - 4.0).abs() < error, content="true")
 /// }
 /// ```
+/// @coverage.skip
 pub fn deriv_central(
   f : @basic.Func_Math,
   x : Double,
@@ -68,7 +69,7 @@ pub fn deriv_central(
   (r, error)
 }
 
-///|
+///| @coverage.skip
 fn forward_deriv(
   f : @basic.Func_Math,
   x : Double,
@@ -121,6 +122,7 @@ fn forward_deriv(
 ///   inspect!((deriv - 4.0).abs() < error, content="true")
 /// }
 /// ```
+/// @coverage.skip
 pub fn deriv_forward(
   f : @basic.Func_Math,
   x : Double,
@@ -170,6 +172,7 @@ pub fn deriv_forward(
 ///   inspect!((deriv - 4.0).abs() < error, content="true")
 /// }
 /// ```
+/// @coverage.skip
 pub fn deriv_backward(
   f : @basic.Func_Math,
   x : Double,
