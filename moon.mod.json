@@ -1,10 +1,10 @@
 {
 	"name": "KCN-judu/calculus-numerical",
-	"version": "0.2.1-alpha-1",
+	"version": "0.2.1-alpha-2",
 	"readme": "README.md",
 	"repository": "https://github.com/moonbit-community/calculus-numerical",
 	"license": "MIT",
-	"keywords": ["calculus", "numeric"],
+	"keywords": ["calculus", "numerical-methods", "math"],
 	"description": "A numerical calculus library",
 	"source": "src"
 }
