@@ -5,9 +5,7 @@ fn arr_sum_dbl(Array[Double]) -> Double
 
 fn clamp[T : Compare](T, T, T) -> T
 
-fn contains[T : Compare](Array[T], T) -> Bool
-
-fn find[T : Compare](Array[T], T) -> Int?
+fn find[T : Eq](Array[T], T) -> Int?
 
 fn hypot(Double, Double) -> Double
 
