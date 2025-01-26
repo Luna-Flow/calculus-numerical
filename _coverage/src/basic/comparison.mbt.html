@@ -278,10 +278,10 @@
 /// }
 /// ```
 pub fn max[T : Compare](a : T, b : T) -&gt; T {
-  <span data-count="24">i</span>f a &gt; b {
-    <span data-count="8">a</span>
+  <span data-count="42">i</span>f a &gt; b {
+    <span data-count="14">a</span>
   } else {
-    <span data-count="16">b</span>
+    <span data-count="28">b</span>
   }
 }
 
@@ -306,10 +306,10 @@ pub fn max[T : Compare](a : T, b : T) -&gt; T {
 /// }
 /// ```
 pub fn min[T : Compare](a : T, b : T) -&gt; T {
-  <span data-count="24">i</span>f a &lt; b {
-    <span data-count="16">a</span>
+  <span data-count="42">i</span>f a &lt; b {
+    <span data-count="28">a</span>
   } else {
-    <span data-count="8">b</span>
+    <span data-count="14">b</span>
   }
 }
 
@@ -339,12 +339,12 @@ pub fn min[T : Compare](a : T, b : T) -&gt; T {
 /// }
 /// ```
 pub fn clamp[T : Compare](value : T, min : T, max : T) -&gt; T {
-  <span data-count="32">i</span>f value &lt; min {
-    <span data-count="16">m</span>in
-  } else <span data-count="16">i</span>f value &gt; max {
-    <span data-count="8">m</span>ax
+  <span data-count="56">i</span>f value &lt; min {
+    <span data-count="28">m</span>in
+  } else <span data-count="28">i</span>f value &gt; max {
+    <span data-count="14">m</span>ax
   } else {
-    <span data-count="8">v</span>alue
+    <span data-count="14">v</span>alue
   }
 }
 
@@ -370,7 +370,7 @@ pub fn clamp[T : Compare](value : T, min : T, max : T) -&gt; T {
 /// }
 /// ```
 pub fn is_between[T : Compare](value : T, min : T, max : T) -&gt; Bool {
-  <span data-count="24">v</span>alue &gt;= min &amp;&amp; value &lt;= max
+  <span data-count="42">v</span>alue &gt;= min &amp;&amp; value &lt;= max
 }
 </code></pre>
       </div>
