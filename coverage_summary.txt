@@ -15,5 +15,5 @@ src/integration/integration_workspace.mbt: 0/0
 src/integration/utils.mbt: 0/7
 src/internal/const.mbt: 0/0
 src/matrix/matrix_dbl.mbt: 159/194
-src/vector/vector_dbl.mbt: 2/119
-Total: 245/458
+src/vector/vector_dbl.mbt: 119/119
+Total: 362/458

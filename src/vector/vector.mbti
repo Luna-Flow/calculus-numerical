@@ -46,6 +46,7 @@ impl VectorDbl {
   zero_vector(Int) -> Self
 }
 impl Eq for VectorDbl
+impl Show for VectorDbl
 
 // Type aliases
 

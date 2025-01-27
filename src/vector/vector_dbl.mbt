@@ -27,7 +27,7 @@ pub(all) struct VectorDbl {
   data : Array[Double]
   size : Int
   mut stride : Int
-}
+} derive(Show)
 
 //oper
 
@@ -71,18 +71,18 @@ pub fn VectorDbl::add_constant_inplace(
 ///|
 pub fn VectorDbl::ax_plus_by(
   self : VectorDbl,
-  x : VectorDbl,
+  y : VectorDbl,
   a : Double,
   b : Double
 ) -> VectorDbl {
   let n = self.size
-  guard n == x.size
+  guard n == y.size
   let stride_self = self.stride
-  let stride_x = x.stride
+  let stride_y = y.stride
   let vector_ax_plus_by = VectorDbl::new(n)
   for i = 0; i < n; i = i + 1 {
     vector_ax_plus_by.data.push(
-      a * self.data[i * stride_self] + b * x.data[i * stride_x],
+      a * self.data[i * stride_self] + b * y.data[i * stride_y],
     )
   }
   vector_ax_plus_by
@@ -91,17 +91,17 @@ pub fn VectorDbl::ax_plus_by(
 ///|
 pub fn VectorDbl::ax_plus_by_inplace(
   self : VectorDbl,
-  x : VectorDbl,
+  y : VectorDbl,
   a : Double,
   b : Double
 ) -> Unit {
   let n = self.size
-  guard n == x.size
+  guard n == y.size
   let stride_self = self.stride
-  let stride_x = x.stride
+  let stride_y = y.stride
   for i = 0; i < n; i = i + 1 {
     self.data[i * stride_self] = a * self.data[i * stride_self] +
-      b * x.data[i * stride_x]
+      b * y.data[i * stride_y]
   }
 }
 
