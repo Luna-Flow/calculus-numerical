@@ -1,3 +1,4 @@
+///|
 test "Integer" {
   let a : Integer = IntegerInt(42)
   let b : Integer = IntegerInt64(9223372036854775807L)

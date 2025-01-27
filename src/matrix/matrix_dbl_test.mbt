@@ -1,13 +1,16 @@
+///|
 test "new" {
   let m = MatrixDbl::new(2, 3)
   inspect!(m, content="{data: [], col: 3, row: 2, stride: 3}")
 }
 
+///|
 test "at" {
   let m = MatrixDbl::zero_matrix(2, 3)
   assert_eq!(m.at(0, 0), 0.0)
 }
 
+///|
 test "map & map_inplace" {
   let f = fn(x : Double) -> Double { x + 1.0 }
   let m = MatrixDbl::zero_matrix(2, 3)
@@ -17,6 +20,7 @@ test "map & map_inplace" {
   assert_eq!(m.data, [1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
 }
 
+///|
 test "scale & scale_inplace" {
   let m = MatrixDbl::filled_matrix(2, 3, 1.0)
   let m2 = m.scale(2.0)
@@ -25,6 +29,7 @@ test "scale & scale_inplace" {
   assert_eq!(m.data, [2.0, 2.0, 2.0, 2.0, 2.0, 2.0])
 }
 
+///|
 test "add_constant & add_constant_inplace" {
   let m = MatrixDbl::filled_matrix(2, 3, 1.0)
   let m2 = m.add_constant(2.0)
@@ -33,6 +38,7 @@ test "add_constant & add_constant_inplace" {
   assert_eq!(m.data, [3.0, 3.0, 3.0, 3.0, 3.0, 3.0])
 }
 
+///|
 test "add_diagonal & add_diagonal_inplace" {
   let m = MatrixDbl::zero_matrix(2, 2)
   let m2 = m.add_diagonal(2.0)
@@ -41,6 +47,7 @@ test "add_diagonal & add_diagonal_inplace" {
   assert_eq!(m.data, [2.0, 0.0, 0.0, 2.0])
 }
 
+///|
 test "scale_col_inplace & scale_row_inplace" {
   let m = MatrixDbl::filled_matrix(3, 3, 1.0)
   let v = @vector.VectorDbl::new(3)
@@ -53,6 +60,7 @@ test "scale_col_inplace & scale_row_inplace" {
   assert_eq!(m.data, [1.0, 2.0, 3.0, 2.0, 4.0, 6.0, 3.0, 6.0, 9.0])
 }
 
+///|
 test "mul_elements&mul_elements_inplace" {
   let m1 = MatrixDbl::filled_matrix(2, 3, 1.0)
   let m2 = MatrixDbl::filled_matrix(2, 3, 2.0)
@@ -62,6 +70,7 @@ test "mul_elements&mul_elements_inplace" {
   assert_eq!(m3.data, [2.0, 2.0, 2.0, 2.0, 2.0, 2.0])
 }
 
+///|
 test "div_elements&div_elements_inplace" {
   let m1 = MatrixDbl::filled_matrix(2, 3, 2.0)
   let m2 = MatrixDbl::filled_matrix(2, 3, 1.0)
@@ -71,6 +80,7 @@ test "div_elements&div_elements_inplace" {
   assert_eq!(m3.data, [2.0, 2.0, 2.0, 2.0, 2.0, 2.0])
 }
 
+///|
 test "op_add" {
   let m1 = MatrixDbl::filled_matrix(2, 3, 1.0)
   let m2 = MatrixDbl::filled_matrix(2, 3, 2.0)
@@ -78,6 +88,7 @@ test "op_add" {
   assert_eq!(m3.data, [3.0, 3.0, 3.0, 3.0, 3.0, 3.0])
 }
 
+///|
 test "op_sub" {
   let m1 = MatrixDbl::filled_matrix(2, 3, 1.0)
   let m2 = MatrixDbl::filled_matrix(2, 3, 2.0)
@@ -85,6 +96,7 @@ test "op_sub" {
   assert_eq!(m3.data, [-1.0, -1.0, -1.0, -1.0, -1.0, -1.0])
 }
 
+///|
 test "op_mul" {
   let m1 = MatrixDbl::filled_matrix(2, 3, 1.0)
   let m2 = MatrixDbl::filled_matrix(3, 2, 2.0)
@@ -92,6 +104,7 @@ test "op_mul" {
   assert_eq!(m3.data, [6.0, 6.0, 6.0, 6.0])
 }
 
+///|
 test "op_eq" {
   let m1 = MatrixDbl::filled_matrix(2, 3, 1.0)
   let m2 = MatrixDbl::filled_matrix(2, 3, 1.0)
@@ -104,6 +117,7 @@ test "op_eq" {
   assert_eq!(m1 == m5, false)
 }
 
+///|
 test "is_null" {
   let m = MatrixDbl::zero_matrix(2, 3)
   assert_eq!(m.is_null(), true)
@@ -111,6 +125,7 @@ test "is_null" {
   assert_eq!(m.is_null(), false)
 }
 
+///|
 test "is_pos" {
   let m1 = MatrixDbl::zero_matrix(2, 3)
   assert_eq!(m1.is_pos(), false)
@@ -120,6 +135,7 @@ test "is_pos" {
   assert_eq!(m3.is_pos(), true)
 }
 
+///|
 test "is_neg" {
   let m1 = MatrixDbl::zero_matrix(2, 3)
   assert_eq!(m1.is_neg(), false)
@@ -129,6 +145,7 @@ test "is_neg" {
   assert_eq!(m3.is_neg(), false)
 }
 
+///|
 test "is_non_neg" {
   let m1 = MatrixDbl::zero_matrix(2, 3)
   assert_eq!(m1.is_non_neg(), true)
@@ -138,6 +155,7 @@ test "is_non_neg" {
   assert_eq!(m3.is_non_neg(), true)
 }
 
+///|
 test "norm_1" {
   let m = MatrixDbl::filled_matrix(2, 3, 1.0)
   assert_eq!(m.norm_1(), 2.0)
@@ -145,18 +163,21 @@ test "norm_1" {
   assert_eq!(m.norm_1(), 3.0)
 }
 
+///|
 test "row_vec" {
   let m = MatrixDbl::filled_matrix(2, 3, 1.0)
   let v = m.row_vec(1)
   assert_eq!(v.data, [1.0, 1.0, 1.0])
 }
 
+///|
 test "col_vec" {
   let m = MatrixDbl::filled_matrix(2, 3, 1.0)
   let v = m.col_vec(1)
   assert_eq!(v.data, [1.0, 1.0])
 }
 
+///|
 test "diagonal & subdiag & superdiag" {
   let m = MatrixDbl::filled_matrix(3, 3, 1.0)
   let v1 = m.diagonal_vec()
@@ -167,6 +188,7 @@ test "diagonal & subdiag & superdiag" {
   assert_eq!(v3.data, [1.0, 1.0])
 }
 
+///|
 test "subrow & col_vec" {
   let m = MatrixDbl::filled_matrix(3, 3, 1.0)
   let v1 = m.subrow_vec(1, 0, 2)
