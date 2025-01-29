@@ -1,9 +1,9 @@
 {
   "name": "KCN-judu/calculus-numerical",
-  "version": "0.2.1-alpha-2",
+  "version": "0.2.1-alpha-3",
   "deps": {
     "KCN-judu/linear-algebra": "0.0.1-alpha-2",
-    "Kaida-Amethyst/moonbit-math": "0.1.13",
+    "Kaida-Amethyst/math": "0.1.13",
     "KCN-judu/luna-utils": "0.0.1-alpha-2"
   },
   "readme": "README.md",
