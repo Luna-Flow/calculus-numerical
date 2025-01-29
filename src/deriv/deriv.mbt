@@ -12,7 +12,7 @@ fn central_deriv(
   let r5 = 4.0 / 3.0 * (fph - fmh) - 1.0 / 3.0 * r3
   let e3 = (fp1.abs() + fm1.abs()) * @internal.machine_dbl_epsilon
   let e5 = 2.0 * (fph.abs() + fmh.abs()) * @internal.machine_dbl_epsilon + e3
-  let dy = @basic.max((r3 / h).abs(), (r5 / h).abs()) *
+  let dy = @luna_utils.max((r3 / h).abs(), (r5 / h).abs()) *
     (x.abs() / h) *
     @internal.machine_dbl_epsilon
   (r5 / h, ((r5 - r3) / h).abs(), (e5 / h).abs() + dy)
@@ -84,9 +84,9 @@ fn forward_deriv(
   let abs_eval = fn_eval.map(@double.abs)
   let e4 = 2.0 *
     20.67 *
-    @basic.arr_sum_dbl(abs_eval) *
+    @luna_utils.arr_sum_dbl(abs_eval) *
     @internal.machine_dbl_epsilon
-  let dy = @basic.max((r2 / h).abs(), (r4 / h).abs()) *
+  let dy = @luna_utils.max((r2 / h).abs(), (r4 / h).abs()) *
     (x / h).abs() *
     @internal.machine_dbl_epsilon
   (r4 / h, ((r4 - r2) / h).abs(), (e4 / h).abs() + dy)
@@ -132,7 +132,7 @@ pub fn deriv_forward(
   let mut r = r_0
   let mut error = round + trunc
   if round < trunc && round > 0 && trunc > 0 {
-    let h_opt = h * @basic.sqrt(round / trunc)
+    let h_opt = h * @luna_math.sqrt(round / trunc)
     let (r_opt, round_opt, trunc_opt) = forward_deriv(f, x, h_opt)
     let error_opt = round_opt + trunc_opt
     if error_opt < error && (r_opt - r_0).abs() < 4.0 * error {

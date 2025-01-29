@@ -1,6 +1,4 @@
-src/basic/array_utils.mbt: 17/17
-src/basic/basic_math.mbt: 42/42
-src/basic/comparison.mbt: 12/12
+src/basic/basic_math.mbt: 33/33
 src/basic/const.mbt: 0/0
 src/basic/define.mbt: 0/0
 src/basic/integer.mbt: 0/0
@@ -14,4 +12,4 @@ src/integration/gauss_kronrod.mbt: 0/0
 src/integration/integration_workspace.mbt: 0/0
 src/integration/utils.mbt: 0/7
 src/internal/const.mbt: 0/0
-Total: 84/145
+Total: 46/107

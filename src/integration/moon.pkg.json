@@ -1,6 +1,14 @@
 {
   "import": [
     "KCN-judu/calculus-numerical/internal",
-    "KCN-judu/calculus-numerical/basic"
+    "KCN-judu/calculus-numerical/basic",
+    {
+      "path": "KCN-judu/luna-utils",
+      "alias": "luna_utils"
+    },
+    {
+			"path": "Kaida-Amethyst/math",
+			"alias": "luna_math"
+		}
   ]
 }

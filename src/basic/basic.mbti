@@ -1,19 +1,11 @@
 package KCN-judu/calculus-numerical/basic
 
 // Values
-fn arr_sum_dbl(Array[Double]) -> Double
-
-fn clamp[T : Compare](T, T, T) -> T
-
-fn find[T : Eq](Array[T], T) -> Int?
-
 fn hypot(Double, Double) -> Double
 
 let integer_one : Integer
 
 let integer_zero : Integer
-
-fn is_between[T : Compare](T, T, T) -> Bool
 
 let math_1_pi : Double
 
@@ -49,19 +41,7 @@ let math_sqrt_3 : Double
 
 let math_sqrt_pi : Double
 
-fn max[T : Compare](T, T) -> T
-
-fn min[T : Compare](T, T) -> T
-
 fn pow_integer_exp(Double, Integer) -> Double
-
-fn reverse[T](Array[T]) -> Array[T]
-
-fn reverse_inplace[T](Array[T]) -> Unit
-
-fn sqrt(Double) -> Double
-
-fn zero_arr_dbl(Int) -> Array[Double]
 
 // Types and methods
 pub(all) enum Integer {

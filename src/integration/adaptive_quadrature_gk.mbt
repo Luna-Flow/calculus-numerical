@@ -64,7 +64,7 @@ pub fn adap_quad_gk(
   } else {
     let (result_0, resabs_0, resasc_0, abserr_0) = q(f, a, b)
     IntegrationWorkspace::init(workspace, a, b, result_0, abserr_0)
-    let mut tolerance = @basic.max(epsabs, epsrel * result_0.abs())
+    let mut tolerance = @luna_utils.max(epsabs, epsrel * result_0.abs())
     let round_off = 50.0 * @internal.machine_dbl_epsilon * resabs_0
     if abserr_0 <= round_off && abserr_0 > tolerance {
       result = result_0
@@ -106,7 +106,7 @@ pub fn adap_quad_gk(
           roundoff_type_2 = roundoff_type_2 + 1
         }
       }
-      tolerance = @basic.max(epsabs, epsrel * area.abs())
+      tolerance = @luna_utils.max(epsabs, epsrel * area.abs())
       if errsum > tolerance {
         if roundoff_type_1 >= 6 || roundoff_type_2 >= 20 {
           error_type = 2
@@ -120,7 +120,7 @@ pub fn adap_quad_gk(
       )
       iteration = iteration + 1
     }
-    result = @basic.arr_sum_dbl(workspace.r_list)
+    result = @luna_utils.arr_sum_dbl(workspace.r_list)
     abserr = errsum
     if errsum <= tolerance {
       err_code = "OK"

@@ -1,15 +1,4 @@
 ///|
-test "sqrt" {
-  assert_true!(sqrt(4.0) - 2.0 < 1.0e-7)
-  assert_true!(sqrt(0.0) < 1.0e-7)
-  assert_true!(sqrt(1.0) - 1.0 < 1.0e-7)
-  assert_true!(sqrt(2.0) - 1.4142135623730951 < 1.0e-7)
-  inspect!(sqrt(@double.infinity), content="Infinity")
-  inspect!(sqrt(@double.neg_infinity), content="NaN")
-  inspect!(sqrt(-1.0), content="NaN")
-}
-
-///|
 test "hypot" {
   assert_true!(hypot(3.0, 4.0) - 5.0 < 1.0e-7)
   assert_true!(hypot(1.0, 1.0) - 1.4142135623730951 < 1.0e-7)
