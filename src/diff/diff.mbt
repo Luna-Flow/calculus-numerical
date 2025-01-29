@@ -38,11 +38,11 @@ pub fn diff_backward(f : @basic.Func_Math, x : Double) -> (Double, Double) {
       d[i] = (d[i + 1] - d[i]) / (a[i + k] - a[i])
     }
   }
-  let mut a2 = @basic.arr_sum_dbl(d).abs()
+  let mut a2 = @luna_utils.arr_sum_dbl(d).abs()
   let c = 100.0 * @internal.machine_sqrt_dbl_epsilon
-  a2 = @basic.max(a2, c)
-  let mut h = @basic.sqrt(@internal.machine_sqrt_dbl_epsilon * 0.5 / a2)
-  h = @basic.min(h, c)
+  a2 = @luna_utils.max(a2, c)
+  let mut h = @luna_math.sqrt(@internal.machine_sqrt_dbl_epsilon * 0.5 / a2)
+  h = @luna_utils.min(h, c)
   ((f(x) - f(x - h)) / h, (10.0 * a2 * h).abs())
 }
 
@@ -86,11 +86,11 @@ pub fn diff_forward(f : @basic.Func_Math, x : Double) -> (Double, Double) {
       d[i] = (d[i + 1] - d[i]) / (a[i + k] - a[i])
     }
   }
-  let mut a2 = @basic.arr_sum_dbl(d).abs()
+  let mut a2 = @luna_utils.arr_sum_dbl(d).abs()
   let c = 100.0 * @internal.machine_sqrt_dbl_epsilon
-  a2 = @basic.max(a2, c)
-  let mut h = @basic.sqrt(@internal.machine_sqrt_dbl_epsilon * 0.5 / a2)
-  h = @basic.min(h, c)
+  a2 = @luna_utils.max(a2, c)
+  let mut h = @luna_math.sqrt(@internal.machine_sqrt_dbl_epsilon * 0.5 / a2)
+  h = @luna_utils.min(h, c)
   ((f(x + h) - f(x)) / h, @double.abs(10.0 * a2 * h))
 }
 
@@ -134,10 +134,10 @@ pub fn diff_central(f : @basic.Func_Math, x : Double) -> (Double, Double) {
       d[i] = (d[i + 1] - d[i]) / (a[i + k] - a[i])
     }
   }
-  let mut a3 = @basic.arr_sum_dbl(d).abs()
+  let mut a3 = @luna_utils.arr_sum_dbl(d).abs()
   let c = 100.0 * @internal.machine_sqrt_dbl_epsilon
-  a3 = @basic.max(a3, c)
+  a3 = @luna_utils.max(a3, c)
   let mut h = (@internal.machine_sqrt_dbl_epsilon * 0.5 / a3).pow(1.0 / 3.0)
-  h = @basic.min(h, c)
+  h = @luna_utils.min(h, c)
   ((f(x + h) - f(x - h)) * 0.5 / h, (100.0 * a3 * h * h).abs())
 }
