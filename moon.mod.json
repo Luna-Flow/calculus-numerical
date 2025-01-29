@@ -2,9 +2,9 @@
   "name": "KCN-judu/calculus-numerical",
   "version": "0.2.1-alpha-2",
   "deps": {
-    "KCN-judu/linear-algebra": "0.0.1-alpha-1",
-    "Kaida-Amethyst/math": "0.1.13",
-    "KCN-judu/luna-utils": "0.0.1-alpha-1"
+    "KCN-judu/linear-algebra": "0.0.1-alpha-2",
+    "Kaida-Amethyst/moonbit-math": "0.1.13",
+    "KCN-judu/luna-utils": "0.0.1-alpha-2"
   },
   "readme": "README.md",
   "repository": "https://github.com/moonbit-community/calculus-numerical",
@@ -14,6 +14,6 @@
     "numerical-methods",
     "math"
   ],
-  "description": "A numerical calculus library",
+  "description": "A numerical calculus library, a part of LunaFlow.",
   "source": "src"
 }
