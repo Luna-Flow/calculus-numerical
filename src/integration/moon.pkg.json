@@ -7,7 +7,7 @@
       "alias": "luna_utils"
     },
     {
-			"path": "Kaida-Amethyst/math",
+			"path": "Kaida-Amethyst/moonbit-math",
 			"alias": "luna_math"
 		}
   ]
