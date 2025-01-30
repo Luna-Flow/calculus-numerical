@@ -137,7 +137,10 @@ pub fn diff_central(f : @basic.Func_Math, x : Double) -> (Double, Double) {
   let mut a3 = @luna_utils.arr_sum_dbl(d).abs()
   let c = 100.0 * @internal.machine_sqrt_dbl_epsilon
   a3 = @luna_utils.max(a3, c)
-  let mut h = (@internal.machine_sqrt_dbl_epsilon * 0.5 / a3).pow(1.0 / 3.0)
+  let mut h = @luna_math.pow(
+    @internal.machine_sqrt_dbl_epsilon * 0.5 / a3,
+    1.0 / 3.0,
+  )
   h = @luna_utils.min(h, c)
   ((f(x + h) - f(x - h)) * 0.5 / h, (100.0 * a3 * h * h).abs())
 }
