@@ -58,7 +58,7 @@ pub fn deriv_central(
   let mut error = round + trunc
   let mut r = r_0
   if round < trunc && round > 0 && trunc > 0 {
-    let h_opt = h * (round / (2.0 * trunc)).pow(1.0 / 3.0)
+    let h_opt = @luna_math.pow(h * (round / (2.0 * trunc)), 1.0 / 3.0)
     let (r_opt, round_opt, trunc_opt) = central_deriv(f, x, h_opt)
     let error_opt = round_opt + trunc_opt
     if error_opt < error && (r_opt - r_0).abs() < 4.0 * error {

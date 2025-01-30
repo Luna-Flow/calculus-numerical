@@ -99,7 +99,7 @@ pub fn adap_quad_gk(
       area = area + (area_12 - r_i)
       if resasc_1 != error_1 && resasc_2 != error_2 {
         let delta = r_i - area_2
-        if delta.abs() <= 0.00001 * area_12.abs() && error_12 >= 0.99 * e_i {
+        if delta.abs() <= 1.0e-5 * area_12.abs() && error_12 >= 0.99 * e_i {
           roundoff_type_1 = roundoff_type_1 + 1
         }
         if iteration >= 10 && error_12 > e_i {
