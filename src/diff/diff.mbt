@@ -1,8 +1,6 @@
 ///|
 /// Computes the numerical derivative of a function at a given point using
-/// backward difference method with adaptive step size. This implementation is
-/// based on the GNU Scientific Library's differentiation module, providing a
-/// balance between accuracy and numerical stability.
+/// backward difference method with adaptive step size. 
 ///
 /// Parameters:
 ///
@@ -26,31 +24,47 @@
 /// ```
 /// @coverage.skip
 pub fn diff_backward(f : @basic.Func_Math, x : Double) -> (Double, Double) {
-  let a : Array[Double] = [-2, -1, 0]
-  fn q(n : Double) {
+  // Define backward difference offsets
+  let shifted_points : Array[Double] = [-2, -1, 0]
+
+  // Function to compute perturbed x values
+  fn perturb_x(n : Double) {
     n * @internal.machine_dbl_epsilon + x
   }
 
-  a.map_inplace(q)
-  let d = a.map(f)
+  shifted_points.map_inplace(perturb_x)
+
+  // Evaluate function at perturbed points
+  let function_values = shifted_points.map(f)
+
+  // Compute divided differences using Neville’s recursion
   for k = 1; k < 4; k = k + 1 {
     for i = 0; i < 3 - k; i = i + 1 {
-      d[i] = (d[i + 1] - d[i]) / (a[i + k] - a[i])
+      function_values[i] = (function_values[i + 1] - function_values[i]) /
+        (shifted_points[i + k] - shifted_points[i])
     }
   }
-  let mut a2 = @luna_utils.arr_sum_dbl(d).abs()
-  let c = 100.0 * @internal.machine_sqrt_dbl_epsilon
-  a2 = @luna_utils.max(a2, c)
-  let mut h = @luna_math.sqrt(@internal.machine_sqrt_dbl_epsilon * 0.5 / a2)
-  h = @luna_utils.min(h, c)
-  ((f(x) - f(x - h)) / h, (10.0 * a2 * h).abs())
+
+  // Estimate the range of the derivative
+  let mut deriv_estimate = @luna_utils.arr_sum_dbl(function_values).abs()
+  let error_threshold = 100.0 * @internal.machine_sqrt_dbl_epsilon
+  deriv_estimate = @luna_utils.max(deriv_estimate, error_threshold)
+
+  // Compute optimal step size h
+  let mut optimal_h = @luna_math.sqrt(
+    @internal.machine_sqrt_dbl_epsilon * 0.5 / deriv_estimate,
+  )
+  optimal_h = @luna_utils.min(optimal_h, error_threshold)
+
+  // Compute derivative and estimated error
+  let derivative = (f(x) - f(x - optimal_h)) / optimal_h
+  let estimated_error = (10.0 * deriv_estimate * optimal_h).abs()
+  (derivative, estimated_error)
 }
 
 ///|
 /// Computes the numerical derivative of a function at a given point using
-/// forward difference method with adaptive step size. This implementation is
-/// based on the GNU Scientific Library's differentiation module, providing a
-/// balance between accuracy and numerical stability.
+/// forward difference method with adaptive step size. 
 ///
 /// Parameters:
 ///
@@ -73,32 +87,55 @@ pub fn diff_backward(f : @basic.Func_Math, x : Double) -> (Double, Double) {
 /// }
 /// ```
 /// @coverage.skip
-pub fn diff_forward(f : @basic.Func_Math, x : Double) -> (Double, Double) {
-  let a : Array[Double] = [0, 1, 2]
-  fn q(n : Double) {
-    n * @internal.machine_dbl_epsilon + x
+pub fn forward_difference_derivative(
+  f : @basic.Func_Math,
+  x : Double
+) -> (Double, Double) {
+  // Define perturbation steps for forward difference calculation
+  let perturbation_steps : Array[Double] = [0, 1, 2]
+
+  // Perturb the input x by small multiples of machine epsilon
+  fn perturb_x(perturb : Double) {
+    perturb * @internal.machine_dbl_epsilon + x
   }
 
-  a.map_inplace(q)
-  let d = a.map(f)
-  for k = 1; k < 4; k = k + 1 {
-    for i = 0; i < 3 - k; i = i + 1 {
-      d[i] = (d[i + 1] - d[i]) / (a[i + k] - a[i])
+  // Apply the perturbation to all steps in the array
+  perturbation_steps.map_inplace(perturb_x)
+
+  // Compute the function values at the perturbed steps
+  let function_values = perturbation_steps.map(f)
+
+  // Apply finite difference formulas to approximate the derivative
+  for step_size = 1; step_size < 4; step_size = step_size + 1 {
+    for i = 0; i < 3 - step_size; i = i + 1 {
+      function_values[i] = (function_values[i + 1] - function_values[i]) /
+        (perturbation_steps[i + step_size] - perturbation_steps[i])
     }
   }
-  let mut a2 = @luna_utils.arr_sum_dbl(d).abs()
-  let c = 100.0 * @internal.machine_sqrt_dbl_epsilon
-  a2 = @luna_utils.max(a2, c)
-  let mut h = @luna_math.sqrt(@internal.machine_sqrt_dbl_epsilon * 0.5 / a2)
-  h = @luna_utils.min(h, c)
-  ((f(x + h) - f(x)) / h, @double.abs(10.0 * a2 * h))
+
+  // Calculate the magnitude of the accumulated finite differences
+  let mut absolute_sum = @luna_utils.arr_sum_dbl(function_values).abs()
+
+  // Use a constant threshold to control the error propagation
+  let error_threshold = 100.0 * @internal.machine_sqrt_dbl_epsilon
+  absolute_sum = @luna_utils.max(absolute_sum, error_threshold)
+
+  // Determine the step size for numerical differentiation
+  let optimal_step_size = @luna_math.sqrt(
+    @internal.machine_sqrt_dbl_epsilon * 0.5 / absolute_sum,
+  )
+  let final_step_size = @luna_utils.min(optimal_step_size, error_threshold)
+
+  // Calculate the forward difference derivative and error estimate
+  (
+    (f(x + final_step_size) - f(x)) / final_step_size,
+    @double.abs(10.0 * absolute_sum * final_step_size),
+  )
 }
 
 ///|
 /// Computes the numerical derivative of a function at a given point using
-/// central difference method with adaptive step size. This implementation is
-/// based on the GNU Scientific Library's differentiation module, providing
-/// higher accuracy compared to forward and backward difference methods.
+/// central difference method with adaptive step size. 
 ///
 /// Parameters:
 ///
@@ -121,26 +158,51 @@ pub fn diff_forward(f : @basic.Func_Math, x : Double) -> (Double, Double) {
 /// }
 /// ```
 /// @coverage.skip
-pub fn diff_central(f : @basic.Func_Math, x : Double) -> (Double, Double) {
-  let a : Array[Double] = [-2, -1, 0, 1]
-  fn q(n : Double) {
-    n * @internal.machine_dbl_epsilon + x
+pub fn central_difference_derivative(
+  f : @basic.Func_Math,
+  x : Double
+) -> (Double, Double) {
+  // Define perturbation steps for central difference calculation
+  let perturbation_steps : Array[Double] = [-2, -1, 0, 1]
+
+  // Perturb the input x by small multiples of machine epsilon
+  fn perturb_x(perturb : Double) {
+    perturb * @internal.machine_dbl_epsilon + x
   }
 
-  a.map_inplace(q)
-  let d = a.map(f)
-  for k = 1; k < 5; k = k + 1 {
-    for i = 0; i < 4 - k; i = i + 1 {
-      d[i] = (d[i + 1] - d[i]) / (a[i + k] - a[i])
+  // Apply the perturbation to all steps in the array
+  perturbation_steps.map_inplace(perturb_x)
+
+  // Compute the function values at the perturbed steps
+  let function_values = perturbation_steps.map(f)
+
+  // Apply finite difference formulas to approximate the derivative
+  for step_size = 1; step_size < 5; step_size = step_size + 1 {
+    for i = 0; i < 4 - step_size; i = i + 1 {
+      function_values[i] = (function_values[i + 1] - function_values[i]) /
+        (perturbation_steps[i + step_size] - perturbation_steps[i])
     }
   }
-  let mut a3 = @luna_utils.arr_sum_dbl(d).abs()
-  let c = 100.0 * @internal.machine_sqrt_dbl_epsilon
-  a3 = @luna_utils.max(a3, c)
-  let mut h = @luna_math.pow(
-    @internal.machine_sqrt_dbl_epsilon * 0.5 / a3,
+
+  // Calculate the magnitude of the accumulated finite differences
+  let mut absolute_sum = @luna_utils.arr_sum_dbl(function_values).abs()
+
+  // Use a constant threshold to control the error propagation
+  let error_threshold = 100.0 * @internal.machine_sqrt_dbl_epsilon
+  absolute_sum = @luna_utils.max(absolute_sum, error_threshold)
+
+  // Determine the optimal step size for central difference method
+  let optimal_step_size = @luna_math.pow(
+    @internal.machine_sqrt_dbl_epsilon * 0.5 / absolute_sum,
     1.0 / 3.0,
   )
-  h = @luna_utils.min(h, c)
-  ((f(x + h) - f(x - h)) * 0.5 / h, (100.0 * a3 * h * h).abs())
+
+  // Control the step size with the error threshold
+  let final_step_size = @luna_utils.min(optimal_step_size, error_threshold)
+
+  // Calculate the central difference derivative and the error estimate
+  (
+    (f(x + final_step_size) - f(x - final_step_size)) * 0.5 / final_step_size,
+    (100.0 * absolute_sum * final_step_size * final_step_size).abs(),
+  )
 }
