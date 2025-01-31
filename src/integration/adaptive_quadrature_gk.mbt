@@ -54,89 +54,99 @@ pub fn adap_quad_gk(
   epsrel : Double,
   limit : Int
 ) -> Result[(Double, Double, String), String] {
-  let mut iteration : Int = 0
-  let mut result : Double = 0
-  let mut abserr : Double = 0
-  let mut err_code : String = ""
+  let mut iteration_count : Int = 0
+  let mut integral_result : Double = 0
+  let mut absolute_error : Double = 0
+  let mut error_code : String = ""
   let workspace = IntegrationWorkspace::new(limit)
   if epsabs <= 0 && (epsrel < @internal.machine_dbl_epsilon || epsrel < 0.5e-28) {
-    err_code = "E_BAD_TOL"
+    error_code = "E_BAD_TOL"
   } else {
-    let (result_0, resabs_0, resasc_0, abserr_0) = q(f, a, b)
-    IntegrationWorkspace::init(workspace, a, b, result_0, abserr_0)
-    let mut tolerance = @luna_utils.max(epsabs, epsrel * result_0.abs())
-    let round_off = 50.0 * @internal.machine_dbl_epsilon * resabs_0
-    if abserr_0 <= round_off && abserr_0 > tolerance {
-      result = result_0
-      abserr = abserr_0
-      err_code = "E_ROUND"
-    } else if (abserr_0 <= tolerance && abserr_0 != resasc_0) || abserr_0 == 0.0 {
-      result = result_0
-      abserr = abserr_0
-      err_code = "OK"
+    let (initial_result, initial_abs_error, initial_resasc, initial_error) = q(
+      f, a, b,
+    )
+    IntegrationWorkspace::init(workspace, a, b, initial_result, initial_error)
+    let mut tolerance = @luna_utils.max(epsabs, epsrel * initial_result.abs())
+    let roundoff_threshold = 50.0 *
+      @internal.machine_dbl_epsilon *
+      initial_abs_error
+    if initial_error <= roundoff_threshold && initial_error > tolerance {
+      integral_result = initial_result
+      absolute_error = initial_error
+      error_code = "E_ROUND"
+    } else if (initial_error <= tolerance && initial_error != initial_resasc) ||
+      initial_error == 0.0 {
+      integral_result = initial_result
+      absolute_error = initial_error
+      error_code = "OK"
     } else if limit == 1 {
-      result = result_0
-      abserr = abserr_0
-      err_code = "E_MAX_ITER"
+      integral_result = initial_result
+      absolute_error = initial_error
+      error_code = "E_MAX_ITER"
     }
-    let mut area = result_0
-    let mut errsum = abserr_0
-    iteration = 1
+    let mut total_area = initial_result
+    let mut total_error = initial_error
+    iteration_count = 1
     let mut error_type = 0
-    let mut roundoff_type_1 = 0
-    let mut roundoff_type_2 = 0
-    while iteration < limit && error_type == 0 && errsum > tolerance {
-      let (a_i, b_i, r_i, e_i) = IntegrationWorkspace::retrieve(workspace)
-      let a_1 = a_i
-      let b_1 = 0.5 * (a_i + b_i)
-      let a_2 = b_1
-      let b_2 = b_i
-      let (area_1, _, resasc_1, error_1) = q(f, a_1, b_1)
-      let (area_2, _, resasc_2, error_2) = q(f, a_2, b_2)
-      let area_12 = area_1 + area_2
-      let error_12 = error_1 + error_2
-      errsum = errsum + (error_12 - e_i)
-      area = area + (area_12 - r_i)
-      if resasc_1 != error_1 && resasc_2 != error_2 {
-        let delta = r_i - area_2
-        if delta.abs() <= 1.0e-5 * area_12.abs() && error_12 >= 0.99 * e_i {
-          roundoff_type_1 = roundoff_type_1 + 1
+    let mut roundoff_count_1 = 0
+    let mut roundoff_count_2 = 0
+    while iteration_count < limit && error_type == 0 && total_error > tolerance {
+      let (prev_lower_bound, prev_upper_bound, prev_area, prev_error) = IntegrationWorkspace::retrieve(
+        workspace,
+      )
+      let mid_point = 0.5 * (prev_lower_bound + prev_upper_bound)
+      let (area_left, _, left_resasc, left_error) = q(
+        f, prev_lower_bound, mid_point,
+      )
+      let (area_right, _, right_resasc, right_error) = q(
+        f, mid_point, prev_upper_bound,
+      )
+      let combined_area = area_left + area_right
+      let combined_error = left_error + right_error
+      total_error = total_error + (combined_error - prev_error)
+      total_area = total_area + (combined_area - prev_area)
+      if left_resasc != left_error && right_resasc != right_error {
+        let delta = prev_area - area_right
+        if delta.abs() <= 1.0e-5 * combined_area.abs() &&
+          combined_error >= 0.99 * prev_error {
+          roundoff_count_1 = roundoff_count_1 + 1
         }
-        if iteration >= 10 && error_12 > e_i {
-          roundoff_type_2 = roundoff_type_2 + 1
+        if iteration_count >= 10 && combined_error > prev_error {
+          roundoff_count_2 = roundoff_count_2 + 1
         }
       }
-      tolerance = @luna_utils.max(epsabs, epsrel * area.abs())
-      if errsum > tolerance {
-        if roundoff_type_1 >= 6 || roundoff_type_2 >= 20 {
+      tolerance = @luna_utils.max(epsabs, epsrel * total_area.abs())
+      if total_error > tolerance {
+        if roundoff_count_1 >= 6 || roundoff_count_2 >= 20 {
           error_type = 2
         }
-        if subinterval_check(a_1, a_2, b_2) {
+        if subinterval_check(prev_lower_bound, mid_point, prev_upper_bound) {
           error_type = 3
         }
       }
       IntegrationWorkspace::update(
-        workspace, a_1, b_1, area_1, error_1, a_2, b_2, area_2, error_2,
+        workspace, prev_lower_bound, mid_point, area_left, left_error, mid_point,
+        prev_upper_bound, area_right, right_error,
       )
-      iteration = iteration + 1
+      iteration_count = iteration_count + 1
     }
-    result = @luna_utils.arr_sum_dbl(workspace.r_list)
-    abserr = errsum
-    if errsum <= tolerance {
-      err_code = "OK"
+    integral_result = @luna_utils.arr_sum_dbl(workspace.r_list)
+    absolute_error = total_error
+    if total_error <= tolerance {
+      error_code = "OK"
     } else if error_type == 2 {
-      err_code = "E_ROUND"
+      error_code = "E_ROUND"
     } else if error_type == 3 {
-      err_code = "E_SINGULARITY"
-    } else if iteration == limit {
-      err_code = "E_MAX_ITER"
+      error_code = "E_SINGULARITY"
+    } else if iteration_count == limit {
+      error_code = "E_MAX_ITER"
     } else {
-      err_code = "E_FAILED"
+      error_code = "E_FAILED"
     }
   }
-  if err_code == "E_FAILED" || err_code == "E_BAD_TOL" {
-    Err(err_code)
+  if error_code == "E_FAILED" || error_code == "E_BAD_TOL" {
+    Err(error_code)
   } else {
-    Ok((result, abserr, err_code))
+    Ok((integral_result, absolute_error, error_code))
   }
 }

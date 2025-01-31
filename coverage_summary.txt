@@ -10,6 +10,7 @@ src/integration/adaptive_quadrature_gk.mbt: 0/0
 src/integration/const.mbt: 0/0
 src/integration/gauss_kronrod.mbt: 0/0
 src/integration/integration_workspace.mbt: 0/0
+src/integration/none_adaptive_quadrature_gk.mbt: 0/0
 src/integration/utils.mbt: 0/7
 src/internal/const.mbt: 0/0
 Total: 46/107

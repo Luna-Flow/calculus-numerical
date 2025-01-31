@@ -4,18 +4,30 @@ fn central_deriv(
   x : Double,
   h : Double
 ) -> (Double, Double, Double) {
-  let fm1 = f(x - h)
-  let fp1 = f(x + h)
-  let fmh = f(x - 0.5 * h)
-  let fph = f(x + 0.5 * h)
-  let r3 = 0.5 * (fp1 - fm1)
-  let r5 = 4.0 / 3.0 * (fph - fmh) - 1.0 / 3.0 * r3
-  let e3 = (fp1.abs() + fm1.abs()) * @internal.machine_dbl_epsilon
-  let e5 = 2.0 * (fph.abs() + fmh.abs()) * @internal.machine_dbl_epsilon + e3
-  let dy = @luna_utils.max((r3 / h).abs(), (r5 / h).abs()) *
+  let f_x_minus_h = f(x - h)
+  let f_x_plus_h = f(x + h)
+  let f_x_minus_half_h = f(x - 0.5 * h)
+  let f_x_plus_half_h = f(x + 0.5 * h)
+  let central_diff_1st_order = 0.5 * (f_x_plus_h - f_x_minus_h)
+  let central_diff_2nd_order = 4.0 / 3.0 * (f_x_plus_half_h - f_x_minus_half_h) -
+    1.0 / 3.0 * central_diff_1st_order
+  let error_1st_order = (f_x_plus_h.abs() + f_x_minus_h.abs()) *
+    @internal.machine_dbl_epsilon
+  let error_2nd_order = 2.0 *
+    (f_x_plus_half_h.abs() + f_x_minus_half_h.abs()) *
+    @internal.machine_dbl_epsilon +
+    error_1st_order
+  let estimated_roundoff_error = @luna_utils.max(
+      (central_diff_1st_order / h).abs(),
+      (central_diff_2nd_order / h).abs(),
+    ) *
     (x.abs() / h) *
     @internal.machine_dbl_epsilon
-  (r5 / h, ((r5 - r3) / h).abs(), (e5 / h).abs() + dy)
+  (
+    central_diff_2nd_order / h,
+    ((central_diff_2nd_order - central_diff_1st_order) / h).abs(),
+    (error_2nd_order / h).abs() + estimated_roundoff_error,
+  )
 }
 
 ///|
@@ -54,19 +66,29 @@ pub fn deriv_central(
   x : Double,
   h : Double
 ) -> (Double, Double) {
-  let (r_0, round, trunc) = central_deriv(f, x, h)
-  let mut error = round + trunc
-  let mut r = r_0
-  if round < trunc && round > 0 && trunc > 0 {
-    let h_opt = @luna_math.pow(h * (round / (2.0 * trunc)), 1.0 / 3.0)
-    let (r_opt, round_opt, trunc_opt) = central_deriv(f, x, h_opt)
-    let error_opt = round_opt + trunc_opt
-    if error_opt < error && (r_opt - r_0).abs() < 4.0 * error {
-      r = r_opt
-      error = error_opt
+  let (initial_derivative, roundoff_error, truncation_error) = central_deriv(
+    f, x, h,
+  )
+  let mut total_error = roundoff_error + truncation_error
+  let mut derivative = initial_derivative
+  if roundoff_error < truncation_error &&
+    roundoff_error > 0 &&
+    truncation_error > 0 {
+    let optimal_h = @luna_math.pow(
+      h * (roundoff_error / (2.0 * truncation_error)),
+      1.0 / 3.0,
+    )
+    let (optimal_derivative, optimal_roundoff_error, optimal_truncation_error) = central_deriv(
+      f, x, optimal_h,
+    )
+    let optimal_total_error = optimal_roundoff_error + optimal_truncation_error
+    if optimal_total_error < total_error &&
+      (optimal_derivative - initial_derivative).abs() < 4.0 * total_error {
+      derivative = optimal_derivative
+      total_error = optimal_total_error
     }
   }
-  (r, error)
+  (derivative, total_error)
 }
 
 ///| @coverage.skip
@@ -75,21 +97,30 @@ fn forward_deriv(
   x : Double,
   h : Double
 ) -> (Double, Double, Double) {
-  let fn_eval = [x + h * 0.25, x + h * 0.5, x + h * 0.75, x + h]
-  fn_eval.map_inplace(f)
-  let r2 = 2.0 * (fn_eval[3] - fn_eval[1])
-  let r4 = 22.0 / 3.0 * (fn_eval[3] - fn_eval[2]) -
-    62.0 / 3.0 * (fn_eval[2] - fn_eval[1]) +
-    52.0 / 3.0 * (fn_eval[1] - fn_eval[0])
-  let abs_eval = fn_eval.map(@double.abs)
-  let e4 = 2.0 *
+  let function_values = [x + h * 0.25, x + h * 0.5, x + h * 0.75, x + h]
+  function_values.map_inplace(f)
+  let forward_diff_1st_order = 2.0 * (function_values[3] - function_values[1])
+  let forward_diff_2nd_order = 22.0 /
+    3.0 *
+    (function_values[3] - function_values[2]) -
+    62.0 / 3.0 * (function_values[2] - function_values[1]) +
+    52.0 / 3.0 * (function_values[1] - function_values[0])
+  let abs_function_values = function_values.map(@double.abs)
+  let error_2nd_order = 2.0 *
     20.67 *
-    @luna_utils.arr_sum_dbl(abs_eval) *
+    @luna_utils.arr_sum_dbl(abs_function_values) *
     @internal.machine_dbl_epsilon
-  let dy = @luna_utils.max((r2 / h).abs(), (r4 / h).abs()) *
+  let estimated_roundoff_error = @luna_utils.max(
+      (forward_diff_1st_order / h).abs(),
+      (forward_diff_2nd_order / h).abs(),
+    ) *
     (x / h).abs() *
     @internal.machine_dbl_epsilon
-  (r4 / h, ((r4 - r2) / h).abs(), (e4 / h).abs() + dy)
+  (
+    forward_diff_2nd_order / h,
+    ((forward_diff_2nd_order - forward_diff_1st_order) / h).abs(),
+    (error_2nd_order / h).abs() + estimated_roundoff_error,
+  )
 }
 
 ///|
@@ -128,19 +159,26 @@ pub fn deriv_forward(
   x : Double,
   h : Double
 ) -> (Double, Double) {
-  let (r_0, round, trunc) = forward_deriv(f, x, h)
-  let mut r = r_0
-  let mut error = round + trunc
-  if round < trunc && round > 0 && trunc > 0 {
-    let h_opt = h * @luna_math.sqrt(round / trunc)
-    let (r_opt, round_opt, trunc_opt) = forward_deriv(f, x, h_opt)
-    let error_opt = round_opt + trunc_opt
-    if error_opt < error && (r_opt - r_0).abs() < 4.0 * error {
-      r = r_opt
-      error = error_opt
+  let (initial_derivative, roundoff_error, truncation_error) = forward_deriv(
+    f, x, h,
+  )
+  let mut derivative = initial_derivative
+  let mut total_error = roundoff_error + truncation_error
+  if roundoff_error < truncation_error &&
+    roundoff_error > 0 &&
+    truncation_error > 0 {
+    let optimal_h = h * @luna_math.sqrt(roundoff_error / truncation_error)
+    let (optimal_derivative, optimal_roundoff_error, optimal_truncation_error) = forward_deriv(
+      f, x, optimal_h,
+    )
+    let optimal_total_error = optimal_roundoff_error + optimal_truncation_error
+    if optimal_total_error < total_error &&
+      (optimal_derivative - initial_derivative).abs() < 4.0 * total_error {
+      derivative = optimal_derivative
+      total_error = optimal_total_error
     }
   }
-  (r, error)
+  (derivative, total_error)
 }
 
 ///|
