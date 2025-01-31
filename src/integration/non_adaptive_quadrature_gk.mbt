@@ -1,5 +1,5 @@
 ///|@coverage.skip
-pub fn none_adap_quad_gk(
+pub fn non_adap_quad_gk(
   f : @basic.Func_Math,
   a : Double,
   b : Double,
