@@ -1,4 +1,31 @@
-///|@coverage.skip
+///|
+/// Performs non-adaptive Gauss-Kronrod quadrature integration on a given
+/// function over a specified interval. Uses three levels of Gauss-Kronrod rules
+/// (21, 43, and 87 points) to achieve the desired accuracy. Unlike adaptive
+/// quadrature, this method does not subdivide the integration interval.
+///
+/// Parameters:
+///
+/// * `integrand` : The function to be integrated. Takes a `Double` and returns a
+/// `Double`.
+/// * `lower_bound` : The lower bound of the integration interval.
+/// * `upper_bound` : The upper bound of the integration interval.
+/// * `absolute_tolerance` : The absolute error tolerance. Must be positive.
+/// * `relative_tolerance` : The relative error tolerance. Must be greater than
+/// machine epsilon.
+///
+/// Returns a `Result` containing either:
+///
+/// * `Ok((result, error, points))` where:
+///  * `result` is the approximated value of the integral
+///  * `error` is the estimated absolute error
+///  * `points` is the number of Gauss-Kronrod points used (21, 43, or 87)
+/// * `Err("E_BAD_TOL")` if the tolerance parameters are invalid
+/// * `Err("E_FAILED")` if the integration fails to achieve the requested
+/// accuracy with all available quadrature rules
+///
+///
+/// @coverage.skip
 pub fn non_adap_quad_gk(
   f : @basic.Func_Math,
   a : Double,
