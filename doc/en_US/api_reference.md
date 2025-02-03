@@ -121,43 +121,7 @@ $$
 <br>
 
 ### Functions
-
-#### Array Utility Functions
-##### General Functions
-**`reverse[T](array : Array[T]) -> Array[T]`**:
-- Returns a new array with the same elements as the input array, but with the order reversed.
-
-<br>
-
-**`reverse_inplace[T](array : Array[T]) -> Array[T]`**:
-
-- Reverses the order of the elements in the input array in place.
-
-<br>
-
-**`find[T : Eq](array : Array[T], value : T) -> Int?`**:
-- Returns the index of the first element equal to `value` in the array, in the form of `Some(index)`. If no such element exists, returns `None`.
-
-<br>
-
-##### `Array[Double]` Functions
-
-**`arr_sum_dbl(arr : Array[Double]) -> Double`**:
-- Returns the sum of all elements in the array.
-
-<br>
-
-**`zero_arr_dbl(n : Int) -> Array[Double]`**:
-- Returns an array of length `n`, filled with zeros, of type `Double`.
-
-<br>
-
 #### Basic Mathematical Functions
-
-**`sqrt(x : Double) -> Double`**:
-- Computes the square root of `x` using Newton's method with a precision of `1e-7`.
-
-<br>
 
 **`hypot(x : Double, y : Double) -> Double`**:
 - Returns the Euclidean norm of `x` and `y`.
@@ -166,25 +130,3 @@ $$
 
 **`pow_integer_exp(base : Double, exp : Integer) -> Double`**:
 - Computes `base` raised to the power of any integer exponent using fast exponentiation.
-
-#### Comparison Functions
-
-**`max[T : Compare](a : T, b : T) -> T`**:
-- Returns the larger of `a` and `b`.
-
-<br>
-
-**`min[T : Compare](a : T, b : T) -> T`**:
-- Returns the smaller of `a` and `b`.
-
-<br>
-
-**`clamp[T : Compare](value : T, min : T, max : T) -> T`**:
-- Returns `value`. If it is outside the range defined by `min` and `max`, it will be clamped to the nearest boundary (either `min` or `max`).
-
-<br>
-
-**`is_between[T : Compare](value : T, min : T, max : T) -> Bool`**:
-- Checks if `value` is between `min` and `max`.
-
-<br>

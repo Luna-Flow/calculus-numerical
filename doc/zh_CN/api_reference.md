@@ -122,45 +122,7 @@ $$
 <br>
 
 ### 函数
-
-#### 数组工具函数
-##### 通用函数
-**`reverse[T](array : Array[T]) -> Array[T]`**:
-- 返回一个新数组，其元素与输入数组相同，但顺序相反。
-
-<br>
-
-**`reverse_inplace[T](array : Array[T]) -> Array[T]`**:
-
-- 将输入数组的元素顺序反转。
-  
-
-<br>
-
-**`find[T : Eq](array : Array[T], value : T) -> Int?`**:
-- 以`Some(index)`形式返回数组中第一个等于`value`的元素的索引，如果不存在则返回`None`。
-  
-
-<br>
-
-##### `Array[Double]`函数
-
-**`arr_sum_dbl(arr : Array[Double]) -> Double`**:
-- 返回数组中所有元素的和。
-
-<br>
-
-**`zero_arr_dbl(n : Int) -> Array[Double]`**:
-- 返回一个零填充的长度为`n`的双精度浮点数组。
-
-<br>
-
 #### 基本数学函数
-
-**`sqrt(x : Double) -> Double`**:
-- 使用牛顿法计算`x`的平方根，精度为`1e-7`。
-
-<br>
 
 **`hypot(x : Double, y : Double) -> Double`**:
 - 返回`x`和`y`的欧几里得范数。
@@ -169,25 +131,3 @@ $$
 
 **`pow_integer_exp(base : Double, exp : Integer) -> Double`**:
 - 使用快速幂运算计算`base`的任意整数类型指数的幂。
-
-#### 比较函数
-
-**`max[T : Compare](a : T, b : T) -> T`**:
-- 返回a和b中的最大值。
-
-<br>
-
-**`min[T : Compare](a : T, b : T) -> T`**:
-- 返回a和b中的最小值。
-
-<br>
-
-**`clamp[T : Compare](value : T, min : T, max : T) -> T`**:
-- 返回`value`，如果其超出`min`和`max`区间范围，会将其限制在该区间内，超出部分被重置为相应的区间端点。 
-
-<br>
-
-**`is_between[T : Compare](value : T, min : T, max : T) -> Bool`**:
-- 检查`value`是否在`min`和`max`之间。
-
-<br>
