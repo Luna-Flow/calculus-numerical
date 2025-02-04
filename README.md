@@ -21,7 +21,7 @@ __*Starting from the first official beta release, the completeness of the Englis
 
 <br>
 
-# Project Progress
+# Feat List
 
 **[LATEST]** 25.01.20: Defined the `Complex` struct and implemented some basic functions.
 
