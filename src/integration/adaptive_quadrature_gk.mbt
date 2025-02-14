@@ -1,49 +1,44 @@
 ///|
-/// Performs adaptive Gauss-Kronrod quadrature integration on a given function
-/// over a specified interval. Recursively subdivides the interval until the
-/// desired accuracy is achieved or certain error conditions are met.
+/// Performs adaptive quadrature integration using Gauss-Kronrod quadrature
+/// rules. Adaptively subdivides the integration interval to achieve the
+/// requested accuracy, handling difficult integrands by focusing computational
+/// effort where needed.
 ///
 /// Parameters:
 ///
 /// * `integrand` : The function to be integrated. Takes a `Double` and returns a
 /// `Double`.
 /// * `quadrature` : The Gauss-Kronrod quadrature rule to be used for
-/// integration. Can be one of `kronrod_r15`, `kronrod_r21`, `kronrod_r31`,
-/// `kronrod_r41`, `kronrod_r51`, or `kronrod_r61`.
+/// integration. Can be any of the predefined rules (15, 21, 31, 41, 51, or 61
+/// points).
 /// * `lower_bound` : The lower bound of the integration interval.
 /// * `upper_bound` : The upper bound of the integration interval.
 /// * `absolute_tolerance` : The absolute error tolerance. Must be positive.
 /// * `relative_tolerance` : The relative error tolerance. Must be greater than
 /// machine epsilon.
-/// * `max_intervals` : Maximum number of subintervals allowed in the subdivision
-/// process.
+/// * `subdivision_limit` : The maximum number of subintervals allowed in the
+/// subdivision process.
 ///
 /// Returns a `Result` containing either:
 ///
 /// * `Ok((result, error, status))` where:
 ///  * `result` is the approximated value of the integral
 ///  * `error` is the estimated absolute error
-///  * `status` is one of:
-///  * `"OK"`: Integration successful
-///  * `"E_ROUND"`: Roundoff error detected
-///  * `"E_SINGULARITY"`: Possible singularity or highly oscillatory integrand
-///  * `"E_MAX_ITER"`: Maximum number of subdivisions reached
-/// * `Err(error_message)` where `error_message` is one of:
-///  * `"E_BAD_TOL"`: Invalid tolerance parameters
-///  * `"E_FAILED"`: Integration failed to converge
+///  * `status` is an error code indicating the success or failure mode
+/// * `Err(error_code)` if the integration fails due to invalid tolerance
+/// parameters
 ///
 /// Example:
 ///
 /// ```moonbit
 /// test "adap_quad_gk" {
-///   // Integrate x^2 from 0 to 1
 ///   let f = fn(x : Double) -> Double { x * x }
-///   let (result, _, _) = adap_quad_gk(
-///     f, kronrod_r15, 0.0, 1.0, 1.0e-10, 1.0e-10, 100,
-///   ).unwrap()
+///   let (result, error, status) = adap_quad_gk(f, kronrod_r21, 0.0, 1.0, 1e-10, 1e-10, 100).unwrap()
 ///   inspect!(@double.round(result * 1000.0) / 1000.0, content="0.333")
+///   inspect!(status, content="OK")
 /// }
 /// ```
+///
 /// @coverage.skip
 pub fn adap_quad_gk(
   f : @basic.Func_Math,
@@ -53,36 +48,36 @@ pub fn adap_quad_gk(
   epsabs : Double,
   epsrel : Double,
   limit : Int
-) -> Result[(Double, Double, String), String] {
+) -> Result[(Double, Double, ErrCode), ErrCode] {
   let mut iteration_count : Int = 0
   let mut integral_result : Double = 0
   let mut absolute_error : Double = 0
-  let mut error_code : String = ""
+  let mut error_code : ErrCode = E_FAILED
   let workspace = IntegrationWorkspace::new(limit)
   if epsabs <= 0 && (epsrel < @internal.machine_dbl_epsilon || epsrel < 0.5e-28) {
-    error_code = "E_BAD_TOL"
+    return Err(E_BAD_TOL)
   } else {
     let (initial_result, initial_abs_error, initial_resasc, initial_error) = q(
       f, a, b,
     )
     IntegrationWorkspace::init(workspace, a, b, initial_result, initial_error)
-    let mut tolerance = @luna_utils.max(epsabs, epsrel * initial_result.abs())
+    let mut tolerance = @math.maximum(epsabs, epsrel * initial_result.abs())
     let roundoff_threshold = 50.0 *
       @internal.machine_dbl_epsilon *
       initial_abs_error
     if initial_error <= roundoff_threshold && initial_error > tolerance {
       integral_result = initial_result
       absolute_error = initial_error
-      error_code = "E_ROUND"
+      return Err(E_ROUND)
     } else if (initial_error <= tolerance && initial_error != initial_resasc) ||
       initial_error == 0.0 {
       integral_result = initial_result
       absolute_error = initial_error
-      error_code = "OK"
+      return Ok((integral_result, absolute_error, OK))
     } else if limit == 1 {
       integral_result = initial_result
       absolute_error = initial_error
-      error_code = "E_MAX_ITER"
+      return Err(E_MAX_ITER)
     }
     let mut total_area = initial_result
     let mut total_error = initial_error
@@ -115,13 +110,15 @@ pub fn adap_quad_gk(
           roundoff_count_2 = roundoff_count_2 + 1
         }
       }
-      tolerance = @luna_utils.max(epsabs, epsrel * total_area.abs())
+      tolerance = @math.maximum(epsabs, epsrel * total_area.abs())
       if total_error > tolerance {
         if roundoff_count_1 >= 6 || roundoff_count_2 >= 20 {
           error_type = 2
+          error_code = E_ROUND
         }
         if subinterval_check(prev_lower_bound, mid_point, prev_upper_bound) {
           error_type = 3
+          error_code = E_SINGULARITY
         }
       }
       IntegrationWorkspace::update(
@@ -130,21 +127,15 @@ pub fn adap_quad_gk(
       )
       iteration_count = iteration_count + 1
     }
-    integral_result = @luna_utils.arr_sum_dbl(workspace.r_list)
+    integral_result = @luna_utils.arr_sum(workspace.r_list)
     absolute_error = total_error
     if total_error <= tolerance {
-      error_code = "OK"
-    } else if error_type == 2 {
-      error_code = "E_ROUND"
-    } else if error_type == 3 {
-      error_code = "E_SINGULARITY"
+      error_code = OK
     } else if iteration_count == limit {
-      error_code = "E_MAX_ITER"
-    } else {
-      error_code = "E_FAILED"
+      error_code = E_MAX_ITER
     }
   }
-  if error_code == "E_FAILED" || error_code == "E_BAD_TOL" {
+  if error_code != OK {
     Err(error_code)
   } else {
     Ok((integral_result, absolute_error, error_code))

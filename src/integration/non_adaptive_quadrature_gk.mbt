@@ -32,7 +32,7 @@ pub fn non_adap_quad_gk(
   b : Double,
   epsabs : Double,
   epsrel : Double
-) -> Result[(Double, Double, Int), String] {
+) -> Result[(Double, Double, Int), ErrCode] {
   let half_interval = 0.5 * (b - a)
   let center = 0.5 * (a + b)
   let center_value = f(center)
@@ -40,7 +40,7 @@ pub fn non_adap_quad_gk(
   let func_values = []
   if epsabs <= 0 &&
     (epsrel < 50.0 * @internal.machine_dbl_epsilon || epsrel < 0.5e-28) {
-    return Err("E_BAD_TOL")
+    return Err(E_BAD_TOL)
   }
   let get_abscissa = fn(sample_point : Double) -> Double {
     half_interval * sample_point
@@ -143,5 +143,5 @@ pub fn non_adap_quad_gk(
   if error < epsabs || error < epsrel * integral_result.abs() {
     return Ok((integral_result, error, 87))
   }
-  Err("E_FAILED")
+  Err(E_FAILED)
 }

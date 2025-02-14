@@ -1,4 +1,5 @@
 moon fmt
+moon clean
 moon check
 moon info
 moon coverage clean

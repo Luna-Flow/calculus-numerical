@@ -16,8 +16,8 @@ fn gauss_kronrod(
   let mut result_kronrod = f_center * wgk[n - 1]
   let mut result_abs = result_kronrod.abs()
   let mut result_asc : Double = 0
-  let fv1 : Array[Double] = @luna_utils.zero_arr_dbl(n)
-  let fv2 : Array[Double] = @luna_utils.zero_arr_dbl(n)
+  let fv1 : Array[Double] = @luna_utils.zero_arr(n)
+  let fv2 : Array[Double] = @luna_utils.zero_arr(n)
   if n % 2 == 0 {
     result_gauss = f_center * wg[n / 2 - 1]
   }

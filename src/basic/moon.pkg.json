@@ -1,8 +1,1 @@
-{
-	"import": [
-		{
-			"path": "Kaida-Amethyst/math",
-			"alias": "luna_math"
-		}
-	]
-}
+{}
