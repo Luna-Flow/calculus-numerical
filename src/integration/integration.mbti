@@ -1,7 +1,7 @@
 package KCN-judu/calculus-numerical/integration
 
 // Values
-fn adap_quad_gk((Double) -> Double, ((Double) -> Double, Double, Double) -> (Double, Double, Double, Double), Double, Double, Double, Double, Int) -> Result[(Double, Double, String), String]
+fn adap_quad_gk((Double) -> Double, ((Double) -> Double, Double, Double) -> (Double, Double, Double, Double), Double, Double, Double, Double, Int) -> Result[(Double, Double, ErrCode), ErrCode]
 
 fn kronrod_r15((Double) -> Double, Double, Double) -> (Double, Double, Double, Double)
 
@@ -15,11 +15,14 @@ fn kronrod_r51((Double) -> Double, Double, Double) -> (Double, Double, Double, D
 
 fn kronrod_r61((Double) -> Double, Double, Double) -> (Double, Double, Double, Double)
 
-fn non_adap_quad_gk((Double) -> Double, Double, Double, Double, Double) -> Result[(Double, Double, Int), String]
+fn non_adap_quad_gk((Double) -> Double, Double, Double, Double, Double) -> Result[(Double, Double, Int), ErrCode]
 
 fn rescale_error(Double, Double, Double) -> Double
 
 // Types and methods
+type ErrCode
+impl Eq for ErrCode
+
 type IntegrationWorkspace
 
 // Type aliases
