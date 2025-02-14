@@ -1,8 +1,6 @@
 package KCN-judu/calculus-numerical/basic
 
 // Values
-fn hypot(Double, Double) -> Double
-
 let integer_one : Integer
 
 let integer_zero : Integer

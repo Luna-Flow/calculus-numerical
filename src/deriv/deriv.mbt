@@ -17,7 +17,7 @@ fn central_deriv(
     (f_x_plus_half_h.abs() + f_x_minus_half_h.abs()) *
     @internal.machine_dbl_epsilon +
     error_1st_order
-  let estimated_roundoff_error = @luna_utils.max(
+  let estimated_roundoff_error = @math.maximum(
       (central_diff_1st_order / h).abs(),
       (central_diff_2nd_order / h).abs(),
     ) *
@@ -108,9 +108,9 @@ fn forward_deriv(
   let abs_function_values = function_values.map(@double.abs)
   let error_2nd_order = 2.0 *
     20.67 *
-    @luna_utils.arr_sum_dbl(abs_function_values) *
+    @luna_utils.arr_sum(abs_function_values) *
     @internal.machine_dbl_epsilon
-  let estimated_roundoff_error = @luna_utils.max(
+  let estimated_roundoff_error = @math.maximum(
       (forward_diff_1st_order / h).abs(),
       (forward_diff_2nd_order / h).abs(),
     ) *

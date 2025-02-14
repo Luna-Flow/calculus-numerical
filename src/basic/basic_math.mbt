@@ -1,28 +1,4 @@
 ///|
-/// Calculates the length of the hypotenuse of a right triangle given its two
-/// sides using the Pythagorean theorem. Uses a numerically stable algorithm to
-/// avoid overflow or underflow.
-///
-/// Parameters:
-///
-/// * `x` : The length of the first side of the right triangle.
-/// * `y` : The length of the second side of the right triangle.
-///
-/// Returns the length of the hypotenuse, which is equal to `sqrt(x^2 + y^2)`.
-///
-/// Example:
-///
-/// ```moonbit
-/// test "hypot" {
-///   inspect!(hypot(3.0, 4.0), content="5.0")
-///   inspect!(hypot(1.0, 1.0), content="1.4142135623730951")
-/// }
-/// ```
-pub fn hypot(x : Double, y : Double) -> Double {
-  @luna_math.sqrt(x * x + y * y)
-}
-
-///|
 /// Computes the result of raising a floating-point base to an integer exponent
 /// using an efficient divide-and-conquer algorithm. Handles positive, negative,
 /// and zero exponents correctly, including special cases for minimum integer

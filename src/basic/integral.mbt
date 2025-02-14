@@ -50,7 +50,9 @@ pub(open) trait Integral: Eq + Compare + Show {
 ///   inspect!(Integral::to_integer(x), content="IntegerInt(42)")
 /// }
 /// ```
-pub impl Integral for Int with to_integer(self) { IntegerInt(self) }
+pub impl Integral for Int with to_integer(self) {
+  IntegerInt(self)
+}
 
 ///|
 /// Implements the `Integral` trait for the 64-bit integer type `Int64`,
