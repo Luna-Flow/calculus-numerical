@@ -1,10 +1,6 @@
 package KCN-judu/calculus-numerical/basic
 
 // Values
-let integer_one : Integer
-
-let integer_zero : Integer
-
 let math_1_pi : Double
 
 let math_2_pi : Double
@@ -39,15 +35,7 @@ let math_sqrt_3 : Double
 
 let math_sqrt_pi : Double
 
-fn pow_integer_exp(Double, Integer) -> Double
-
 // Types and methods
-pub(all) enum Integer {
-  IntegerInt(Int)
-  IntegerInt64(Int64)
-  Integer(BigInt)
-}
-impl Show for Integer
 
 // Type aliases
 pub typealias Func_Math = (Double) -> Double
@@ -55,10 +43,4 @@ pub typealias Func_Math = (Double) -> Double
 pub typealias Quad_GK = ((Double) -> Double, Double, Double) -> (Double, Double, Double, Double)
 
 // Traits
-pub(open) trait Integral : Eq + Compare + Show {
-  to_integer(Self) -> Integer
-}
-impl Integral for Int
-impl Integral for Int64
-impl Integral for BigInt
 
