@@ -87,10 +87,7 @@ pub fn diff_backward(f : @basic.Func_Math, x : Double) -> (Double, Double) {
 /// }
 /// ```
 /// @coverage.skip
-pub fn forward_difference_derivative(
-  f : @basic.Func_Math,
-  x : Double
-) -> (Double, Double) {
+pub fn diff_forward(f : @basic.Func_Math, x : Double) -> (Double, Double) {
   // Define perturbation steps for forward difference calculation
   let perturbation_steps : Array[Double] = [0, 1, 2]
 
@@ -158,10 +155,7 @@ pub fn forward_difference_derivative(
 /// }
 /// ```
 /// @coverage.skip
-pub fn central_difference_derivative(
-  f : @basic.Func_Math,
-  x : Double
-) -> (Double, Double) {
+pub fn diff_central(f : @basic.Func_Math, x : Double) -> (Double, Double) {
   // Define perturbation steps for central difference calculation
   let perturbation_steps : Array[Double] = [-2, -1, 0, 1]
 

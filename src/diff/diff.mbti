@@ -1,11 +1,11 @@
 package KCN-judu/calculus-numerical/diff
 
 // Values
-fn central_difference_derivative((Double) -> Double, Double) -> (Double, Double)
-
 fn diff_backward((Double) -> Double, Double) -> (Double, Double)
 
-fn forward_difference_derivative((Double) -> Double, Double) -> (Double, Double)
+fn diff_central((Double) -> Double, Double) -> (Double, Double)
+
+fn diff_forward((Double) -> Double, Double) -> (Double, Double)
 
 // Types and methods
 
