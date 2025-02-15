@@ -1,6 +1,6 @@
 # TODO List
 
-**See the TODO.md in other languages here: [zh_CN](https://github.com/Luna-Flow/calculus-numerical/blob/main/doc/zh_CN/TODO.md) | [ja_JP](https://github.com/Luna-Flow/calculus-numerical/blob/main/doc/ja_JP/TODO.md)**
+
 
 ## Content 目录
 
