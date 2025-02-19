@@ -1,6 +1,6 @@
 # API Reference Manual
 
-## @KCN-judu/calculus-numerical/basic
+## @Luna-Flow/calculus-numerical/basic
 
 ### Type Aliases
 
@@ -16,7 +16,7 @@ Represents a Gauss-Kronrod numerical integration function, such as `@integration
 
 <br>
 
-## @KCN-judu/calculus-numerical/deriv
+## @Luna-Flow/calculus-numerical/deriv
 
 ### Derivation
 
@@ -132,7 +132,7 @@ test "deriv_backward" {
 
 <br>
 
-## @KCN-judu/calculus-numerical/diff
+## @Luna-Flow/calculus-numerical/diff
 
 ###  Differentiation
 
