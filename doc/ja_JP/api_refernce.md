@@ -1,6 +1,6 @@
 # API 参考手册
 
-## @KCN-judu/calculus-numerical/basic
+## @Luna-Flow/calculus-numerical/basic
 
 ### タイプエイリアス
 
@@ -16,7 +16,7 @@
 
 <br>
 
-## @KCN-judu/calculus-numerical/deriv
+## @Luna-Flow/calculus-numerical/deriv
 
 ### 微分係数
 
@@ -132,7 +132,7 @@ test "deriv_backward" {
 
 <br>
 
-## @KCN-judu/calculus-numerical/diff
+## @Luna-Flow/calculus-numerical/diff
 
 ### 微分
 
