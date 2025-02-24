@@ -131,7 +131,7 @@ pub fn adap_quad_gk(
     absolute_error = total_error
     if total_error <= tolerance {
       error_code = OK
-    } else if iteration_count == limit {
+    } else if iteration_count == limit && error_type == 0 {
       error_code = E_MAX_ITER
     }
   }
