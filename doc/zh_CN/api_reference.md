@@ -1,133 +1,160 @@
 # API 参考手册
-## @Luna-Flow/calculus-numerical/basic 基础
-### 常量
 
-**`math_e`**:  
-$$
-  e
-$$
+## @Luna-Flow/calculus-numerical/basic
 
-**`math_log_2_e`**:  
-$$
-  \log_2(e)
-$$
+### 类型别名
 
-**`math_log_10_e`**:  
-$$
-  \log_{10}(e)
-$$
+#### `Func_Math` : `(Double) -> Double`
 
-**`math_sqrt_2`**:    
-$$
-  \sqrt{2}
-$$
+表示单变量数学函数。
 
-**`math_sqrt_1_2`**:   
-$$
-  \sqrt{\frac{1}{2}}
-$$
+#### `Quad_GK` : `(Func_Math, Double, Double) -> (Double, Double, Double, Double)`
 
-**`math_sqrt_3`**:  
-$$
-  \sqrt{3}
-$$
+表示高斯-克朗罗德（Gauss-Kronrod）数值积分函数，例如 `@integration.kronrod_r15()`。
 
-**`math_pi`**:  
-$$
-  \pi
-$$
+---
 
-**`math_pi_2`**:  
-$$
-  \frac{\pi}{2}
-$$
+## @Luna-Flow/calculus-numerical/deriv
 
-**`math_pi_4`**:  
-$$
-  \frac{\pi}{4}
-$$
+### 求导方法
 
-**`math_sqrt_pi`**: 
-$$
-  \sqrt{\pi}
-$$
+#### `deriv_central` : `(f: Func_Math, x: Double, h: Double) -> (Double, Double)`
 
-**`math_2_sqrt_pi`**: 
-$$
-  \frac{2}{\sqrt{\pi}}
-$$
+**描述：**  
+使用**自适应中心差分法**计算函数 `f` 在点 `x` 处的导数，通过平衡截断误差和舍入误差提高精度。
 
-**`math_1_pi`**: 
-$$
-  \frac{1}{\pi}
-$$
+**参数：**
 
-**`math_2_pi`**: 
-$$
-  \frac{2}{\pi}
-$$
+- `f: Func_Math` — 输入 `Double` 类型值并返回 `Double` 的数学函数。
+- `x: Double` — 求导点的位置。
+- `h: Double` — 数值微分的初始步长，必要时会自动调整。
 
-**`math_ln_10`**:  
-$$
-  \ln(10)
-$$
+**返回值**  
+元组 `(Double, Double)`：
 
-**`math_ln_2`**: 
-$$
-  \ln(2)
-$$
+- 第一个值为 `x` 处的导数估计值。
+- 第二个值为总估计误差（包含截断误差和舍入误差）。
 
-**`math_ln_pi`**:    
-$$
-  \ln(\pi)
-$$
+**示例：**
 
-**`math_euler`**:  
-$$
-  \gamma = \lim_{n \to \infty} \left( \sum_{k=1}^n \frac{1}{k} - \ln(n) \right)
-$$
+```moonbit
+test "deriv_central" {
+  let f = fn(x : Double) { x * x } // f(x) = x², f'(x) = 2x
+  let (deriv, error) = deriv_central(f, 2.0, 0.1)
+  inspect!((deriv - 4.0).abs() < error, content="true")
+}
+```
 
-## 类型别名
+**注意事项：**
 
-**`Func_Math`**:`(Double) -> Double`
+- 方法**自动调整步长**以优化精度。
+- 对平滑函数效果良好，但在不连续点附近**精度可能下降**。
+- 相比简单的两点法，此方法显著降低了数值误差。
 
-- 用来表示数学上的一元函数
+---
 
-<br>
+#### `deriv_forward` : `(f: Func_Math, x: Double, h: Double) -> (Double, Double)`
 
-**`Quad_GK`**:`(Func_Math, Double, Double) -> (Double, Double, Double, Double,)`
+**描述：**  
+使用**自适应前向差分法**计算函数 `f` 在点 `x` 处的导数，通过优化步长最小化截断和舍入误差。
 
-- 用来表示Gauss-Kronrod数值积分函数，例如`@integration.kronrod_r15()`
+**参数：**
 
-<br>
+- `f: Func_Math` — 输入 `Double` 类型值并返回 `Double` 的数学函数。
+- `x: Double` — 求导点的位置。
+- `h: Double` — 数值微分的初始步长，必要时会自动调整。
 
+**返回值：**  
+元组 `(Double, Double)`：
 
-### 代数数据类型
-**`Integer`**:
-- __构造器__:
-  - `IntegerInt(Int)`: 从`Int`构造一个`Integer`对象。
-  - `IntegerInt64(Int64)`: 从`Int64`构造一个`Integer`对象。
-  - `Integer(BigInt)`: 从`BigInt`构造一个`Integer`对象。
-- __常量__:
-  - `integer_zero`: 0的`Integer`表示。
-  - `integer_one`: 1的`Integer`表示。
+- 第一个值为导数估计值。
+- 第二个值为总估计误差。
 
-<br>
+**示例：**
 
-### 特征接口
-**`Integral`**:
-- __方法__:
-  - `to_integer(self) -> Integer`: 将实现了`Integral`特征的类型转换为`Integer`类型，在这一转换过程中会根据数据大小自动收缩到不同的Integer构造器（未来可能会将shrink功能分离）。
+```moonbit
+test "deriv_forward" {
+  let f = fn(x : Double) { x * x } // f(x) = x², f'(x) = 2x
+  let (deriv, error) = deriv_forward(f, 2.0, 0.1)
+  inspect!((deriv - 4.0).abs() < error, content="true")
+}
+```
 
-<br>
+**注意事项：**
 
-### 函数
-#### 基本数学函数
+- 方法**自动优化步长**以提高精度。
+- 相比基础前向差分法，此方法**显著减少数值误差**。
+- 适用于边界点求导（此时中心差分法不可用）。
 
-**`hypot(x : Double, y : Double) -> Double`**:
-- 返回`x`和`y`的欧几里得范数。
+---
 
-<br>
+#### `deriv_backward` : `(f: Func_Math, x: Double, h: Double) -> (Double, Double)`
 
-**`pow_integer_exp(base : Double, exp : Integer) -> Double`**:
-- 使用快速幂运算计算`base`的任意整数类型指数的幂。
+**描述：**  
+使用**自适应后向差分法**计算函数 `f` 在点 `x` 处的导数，原理与前向差分法相同但步长为负。
+
+**参数：**
+
+- `f: Func_Math` — 输入 `Double` 类型值并返回 `Double` 的数学函数。
+- `x: Double` — 求导点的位置。
+- `h: Double` — 数值微分的初始步长，必要时会自动调整。
+
+**返回值：**  
+元组 `(Double, Double)`：
+
+- 第一个值为导数估计值。
+- 第二个值为总估计误差。
+
+**示例：**
+
+```moonbit
+test "deriv_backward" {
+  let f = fn(x : Double) { x * x } // f(x) = x², f'(x) = 2x
+  let (deriv, error) = deriv_backward(f, 2.0, 0.1)
+  inspect!((deriv - 4.0).abs() < error, content="true")
+}
+```
+
+**注意事项：**
+
+- 方法**自动优化步长**以提高精度。
+- 适用于数据集的**上边界附近求导**。
+- 与前向差分法共享相同的数值优势。
+
+---
+
+## @Luna-Flow/calculus-numerical/diff
+
+### 微分方法
+
+#### `diff_backward` : `(f : Func_Math, x : Double) -> (Double, Double)`
+
+**描述：**  
+使用自适应步长的后向差分法计算函数在给定点的数值导数。
+
+**参数：**
+
+- `f: Func_Math` — 输入 `Double` 类型值并返回 `Double` 的数学函数。
+- `x: Double` — 求导点的位置。
+
+**返回值：**  
+元组 `(Double, Double)`：
+
+- 第一个值为后向差分导数估计值。
+- 第二个值为计算的绝对误差估计值。
+
+**示例：**
+
+```moonbit
+test "diff_backward" {
+  let f = fn(x : Double) { x * x } // f(x) = x², f'(x) = 2x
+  let (derivative, error) = diff_backward(f, 2.0)
+  inspect!((derivative - 4.0).abs() < error, content="true")
+}
+```
+
+**注意事项：**
+
+- 方法使用三个后向点自适应计算导数。
+- 应用 Neville 递归法计算差分并估计误差。
+- 步长 `h` 过大可能降低精度，过小可能导致数值精度问题。

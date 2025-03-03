@@ -2,21 +2,21 @@
 
 [![img](https://img.shields.io/badge/Maintainer-KCN--judu-pink)](https://github.com/KCN-judu) [![img](https://img.shields.io/badge/License-MIT-blue)](https://github.com/moonbit-community/calculus-numerical/blob/main/LICENSE) ![img](https://img.shields.io/badge/State-active-success)
 
-# Contents
+## Contents
 
-- [Introduction](#Introduction)
-- [Feature List](#Feature-List)
-- [How to Contribute](#How-to-Contribute)
+- [Introduction](#introduction)
+- [Feature List](#feature-list)
+- [How to Contribute](#how-to-contribute)
 
-# Introduction
+## Introduction
 
 This is a numerical calculus library written in [**MoonBit**](https://www.moonbitlang.cn/), designed to fill the gap in the MoonBit ecosystem for scientific computing.
 
 The project will provide basic methods for numerical calculus solutions. For the integration part, multiple numerical solving methods will be available. Additionally, we will also support complex calculations such as Fourier transforms.
 
-__*Starting from the first official release, both English and Chinese documentation will be fully maintained. Japanese documentation may be added in future updates.*__
+**_Starting from the first official release, both English and Chinese documentation will be fully maintained. Japanese documentation may be added in future updates._**
 
-# Feature List
+## Feature List
 
 **[Latest]** 25.01.31: Non-adaptive integration implementation (using Gaussian quadrature and Kronrod extension)
 
@@ -24,7 +24,7 @@ __*Starting from the first official release, both English and Chinese documentat
 - **25.01.02**: Quadrature methods implementation (using Gaussian quadrature and Kronrod extension)
 - **24.12.30**: Derivatives and differential functionality implementation (using forward, backward, and central difference methods)
 
-# How to Contribute
+## How to Contribute
 
 We welcome contributions from the community, external developers, and individual enthusiasts! Whether you want to fix a bug, add a new feature, or improve the documentation, your participation is highly encouraged. To help you contribute smoothly, here are some simple steps:
 
