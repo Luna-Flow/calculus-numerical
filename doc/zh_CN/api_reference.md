@@ -8,6 +8,8 @@
 
 表示单变量数学函数。
 
+---
+
 #### `Quad_GK` : `(Func_Math, Double, Double) -> (Double, Double, Double, Double)`
 
 表示高斯-克朗罗德（Gauss-Kronrod）数值积分函数，例如 `@integration.kronrod_r15()`。
@@ -158,3 +160,5 @@ test "diff_backward" {
 - 方法使用三个后向点自适应计算导数。
 - 应用 Neville 递归法计算差分并估计误差。
 - 步长 `h` 过大可能降低精度，过小可能导致数值精度问题。
+
+---

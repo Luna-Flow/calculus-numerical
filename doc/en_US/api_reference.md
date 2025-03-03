@@ -8,9 +8,13 @@
 
 Represents a single-variable mathematical function.
 
+---
+
 #### `Quad_GK` : `(Func_Math, Double, Double) -> (Double, Double, Double, Double,)`
 
 Represents a Gauss-Kronrod numerical integration function, such as `@integration.kronrod_r15()`
+
+---
 
 ## @Luna-Flow/calculus-numerical/deriv
 
@@ -50,6 +54,8 @@ test "deriv_central" {
 - Works well for smooth functions but may be **less accurate near discontinuities**.
 - Compared to a simple 2-point method, this approach significantly reduces numerical errors.
 
+---
+
 #### `deriv_forward` : `(f: Func_Math, x: Double, h: Double) -> (Double, Double)`
 
 **Description:**
@@ -85,6 +91,8 @@ test "deriv_forward" {
 - Works well for smooth functions but may be **less accurate for functions with sharp changes or discontinuities**.
 - This method is especially useful when evaluating derivatives at boundaries where central differences are not feasible.
 
+---
+
 #### `deriv_backward` : `(f: Func_Math, x: Double, h: Double) -> (Double, Double)`
 
 **Description:**
@@ -117,6 +125,8 @@ test "deriv_backward" {
 - The method **automatically refines the step size** to optimize accuracy.
 - Suitable for cases where **backward differences** are preferred, such as differentiation near the upper boundary of a dataset.
 - Shares the same numerical advantages as `deriv_forward`, significantly reducing numerical errors compared to simple finite differences.
+
+---
 
 ## @Luna-Flow/calculus-numerical/diff
 
@@ -156,3 +166,5 @@ test "diff_backward" {
 - It applies Neville’s recursion to compute divided differences and estimate the derivative.
 - The method includes an error estimation based on the second-order divided difference.
 - If `h` is too large, accuracy may decrease; if too small, numerical precision issues may arise.
+
+---

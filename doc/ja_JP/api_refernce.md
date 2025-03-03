@@ -8,9 +8,13 @@
 
 単変数の数学関数を表現します。
 
+---
+
 #### `Quad_GK` : `(Func_Math, Double, Double) -> (Double, Double, Double, Double,)`
 
 `@integration.kronrod_r15()`のようなガウス・クロンロッド型数値積分関数を表現します。
+
+---
 
 ## @Luna-Flow/calculus-numerical/deriv
 
@@ -51,6 +55,8 @@ test "deriv_central" {
 - スムーズな関数には効果的ですが、不連続点近傍では__精度が低下する可能性__があります。
 - 簡単な2点法と比較して、このアプローチは数値誤差を大きく低減します。
 
+---
+
 #### `deriv_forward` : `(f: Func_Math, x: Double, h: Double) -> (Double, Double)`
 
 **説明：**
@@ -87,6 +93,8 @@ test "deriv_forward" {
 - スムーズな関数には効果的ですが、急変や不連続を有する関数では__精度が低下する可能性__があります。
 - 中央差分が適用できない境界で微分係数を評価する場合に特に役立ちます。
 
+---
+
 #### `deriv_backward` : `(f: Func_Math, x: Double, h: Double) -> (Double, Double)`
 
 **説明：**
@@ -121,6 +129,8 @@ test "deriv_backward" {
 - この方法は、精度を最適化するため、__自動的にステップサイズを調整__します。
 - データセットの上界近傍などで微分を行う場合、__後退差分法__が適していることがあります。
 - `deriv_forward`と同様の数値的な利点を持ち、単純な有限差分と比較して数値誤差を大幅に低減します。
+
+---
 
 ## @Luna-Flow/calculus-numerical/diff
 
@@ -160,3 +170,5 @@ test "diff_backward" {
 - 商差を計算し、微分係数の推定にネビルの再帰法を適用します。
 - 方法には、2階商差に基づく誤差推定が含まれています。
 - `h`が大きすぎると精度が低下する可能性があり、小さすぎると数値精度の問題が発生する可能性があります。
+
+---
