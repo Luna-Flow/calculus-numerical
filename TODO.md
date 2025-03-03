@@ -4,11 +4,8 @@
 
 ## Content 目录
 
-- [Documentation Writing](#Documentation-Writing)
-
-- [Feature Implementation](#Feature-implementation)
-
-<br>
+- [Documentation Writing](#documentation-writing)
+- [Feature Implementation](#feature-implementation)
 
 ## Documentation Writing
 
@@ -20,41 +17,35 @@ Therefore, we sincerely invite all developers to participate, especially those w
 
 Through joint effort, we believe that the project documentation will become a driving force for the growth of every contributor in the community, helping the project progress further in the future.
 
-<br>
-
 ## Feature Implementation
 
 This project primarily focuses on implementing numerical solutions for calculus. In the next few versions, the focus will shift primarily to integration. Therefore, only integration-related functions are listed below.
 
 Below is a table of function name components and their meanings:
 
-| **Component** |                         **Meaning**                          |
-| :-----------: | :----------------------------------------------------------: |
-|     `dbl`     | Double (e.g., doubly adaptive, indicating multiple levels of adaptation). |
+| **Component** |                                       **Meaning**                                       |
+| :-----------: | :-------------------------------------------------------------------------------------: |
+|     `dbl`     |        Double (e.g., doubly adaptive, indicating multiple levels of adaptation).        |
 |    `adap`     | Adaptive (dynamic adjustment of strategy, e.g., error control or interval subdivision). |
-|     `gen`     |   General-purpose (suitable for a wide range of problems).   |
-|     `osc`     | Oscillatory (handling functions with oscillatory behavior).  |
-|    `sing`     |   Singularities (handling functions with singular points).   |
-|     `wgt`     | Weighted (handling functions with specific weight functions). |
-|    `quad`     |             Quadrature (numerical integration).              |
-|     `cpv`     | Cauchy Principal Value (handling singularities or infinite intervals). |
-|   `fourier`   | Fourier (specific oscillatory properties, often related to Fourier transforms). |
-|     `gk`      |   Gauss-Kronrod (a specific numerical integration method).   |
-|   `simpson`   | Simpson’s rule (a numerical integration method with higher accuracy). |
-|    `trap`     |   Trapezoidal rule (a basic numerical integration method).   |
-
-<br>
+|     `gen`     |                General-purpose (suitable for a wide range of problems).                 |
+|     `osc`     |               Oscillatory (handling functions with oscillatory behavior).               |
+|    `sing`     |                Singularities (handling functions with singular points).                 |
+|     `wgt`     |              Weighted (handling functions with specific weight functions).              |
+|    `quad`     |                           Quadrature (numerical integration).                           |
+|     `cpv`     |         Cauchy Principal Value (handling singularities or infinite intervals).          |
+|   `fourier`   |     Fourier (specific oscillatory properties, often related to Fourier transforms).     |
+|     `gk`      |                Gauss-Kronrod (a specific numerical integration method).                 |
+|   `simpson`   |          Simpson’s rule (a numerical integration method with higher accuracy).          |
+|    `trap`     |                Trapezoidal rule (a basic numerical integration method).                 |
 
 Below is a table of functions that need to be implemented. The table includes the package each function belongs to, its name, purpose, and implementation difficulty, providing developers with a convenient reference to choose contribution goals based on their individual needs and abilities.
 
-|    Package     |      **Function**       |                         **Purpose**                          | **Difficulty** |
-| :------------: | :---------------------: | :----------------------------------------------------------: | :------------: |
-| `@integration` |       `quad_trap`       |             Trapezoidal method for integration.              |      Easy      |
-| `@integration` |     `quad_simpson`      |              Simpson's method for integration.               |     Medium     |
-| `@integration` | `adap_osc_wgt_quad_gk`  | Adaptive integration method for infinite intervals (e.g., integration over `[a, ∞)`). |      Hard      |
-| `@integration` |   `adap_sing_quad_gk`   | Adaptive integration method for functions with singularities over a given interval. |      Hard      |
-| `@integration` |   `dbl_adap_gen_quad`   | Doubly-adaptive general-purpose quadrature for handling most types of singularities |      Hard      |
-| `@integration` |   `adap_wgt_quad_cpv`   | Adaptive method for infinite interval integration, suitable for oscillatory functions. |      Hard      |
+|    Package     |      **Function**       |                                           **Purpose**                                            | **Difficulty** |
+| :------------: | :---------------------: | :----------------------------------------------------------------------------------------------: | :------------: |
+| `@integration` |       `quad_trap`       |                               Trapezoidal method for integration.                                |      Easy      |
+| `@integration` |     `quad_simpson`      |                                Simpson's method for integration.                                 |     Medium     |
+| `@integration` | `adap_osc_wgt_quad_gk`  |      Adaptive integration method for infinite intervals (e.g., integration over `[a, ∞)`).       |      Hard      |
+| `@integration` |   `adap_sing_quad_gk`   |       Adaptive integration method for functions with singularities over a given interval.        |      Hard      |
+| `@integration` |   `dbl_adap_gen_quad`   |       Doubly-adaptive general-purpose quadrature for handling most types of singularities        |      Hard      |
+| `@integration` |   `adap_wgt_quad_cpv`   |      Adaptive method for infinite interval integration, suitable for oscillatory functions.      |      Hard      |
 | `@integration` | `adap_wgt_quad_fourier` | Adaptive integration for infinite intervals, for functions with specific oscillatory properties. |      Hard      |
-
-<br>
