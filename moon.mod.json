@@ -4,7 +4,7 @@
   "deps": {
     "KCN-judu/linear-algebra": "0.0.1-alpha-3",
     "KCN-judu/luna-utils": "0.0.1-alpha-5",
-    "Kaida-Amethyst/math": "0.1.13"
+    "Kaida-Amethyst/math": "0.1.16"
   },
   "readme": "README.md",
   "repository": "https://github.com/Luna-Flow/calculus-numerical",
