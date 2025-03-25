@@ -56,7 +56,7 @@ pub fn non_adap_quad_gk(
   let mut result_abs = wg_21b[5] * center_value.abs()
   let mut result_10 = 0.0
   let mut result_21 = wg_21b[5] * center_value
-  for i = 0; i < 5; i = i + 1 {
+  for i in 0..<5 {
     let abscissa = get_abscissa(ng_c[i])
     let (left_value, right_value) = eval_pair(abscissa)
     let function_sum = left_value + right_value
@@ -67,7 +67,7 @@ pub fn non_adap_quad_gk(
     func_vals_left_10.push(left_value)
     func_vals_right_10.push(right_value)
   }
-  for i = 0; i < 5; i = i + 1 {
+  for i in 0..<5 {
     let abscissa = get_abscissa(ng_21[i])
     let (left_value, right_value) = eval_pair(abscissa)
     let function_sum = left_value + right_value
@@ -80,7 +80,7 @@ pub fn non_adap_quad_gk(
   result_abs = result_abs * abs_half_interval
   let mean_value = 0.5 * result_21
   result_asc = wg_21b[5] * (center_value - mean_value).abs()
-  for i = 0; i < 5; i = i + 1 {
+  for i in 0..<5 {
     result_asc = result_asc +
       wg_21a[i] *
       (
@@ -105,10 +105,10 @@ pub fn non_adap_quad_gk(
   }
   let mut result_43 = 0.0
   result_43 = wg_43b[11] * center_value
-  for i = 0; i < 10; i = i + 1 {
+  for i in 0..<10 {
     result_43 = result_43 + wg_43a[i] * func_values[i]
   }
-  for i = 0; i < 11; i = i + 1 {
+  for i in 0..<11 {
     let abscissa = get_abscissa(ng_43[i])
     let (left_value, right_value) = eval_pair(abscissa)
     let function_sum = left_value + right_value
@@ -125,10 +125,10 @@ pub fn non_adap_quad_gk(
     return Ok((integral_result, error, 43))
   }
   let mut result_87 = wg_87b[22] * center_value
-  for i = 0; i < 21; i = i + 1 {
+  for i in 0..<21 {
     result_87 = result_87 + wg_87a[i] * func_values[i]
   }
-  for i = 0; i < 22; i = i + 1 {
+  for i in 0..<22 {
     let abscissa = get_abscissa(ng_87[i])
     let (left_value, right_value) = eval_pair(abscissa)
     let function_sum = left_value + right_value

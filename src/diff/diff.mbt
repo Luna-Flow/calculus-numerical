@@ -38,8 +38,8 @@ pub fn diff_backward(f : Func_Math, x : Double) -> (Double, Double) {
   let function_values = shifted_points.map(f)
 
   // Compute divided differences using Neville’s recursion
-  for k = 1; k < 4; k = k + 1 {
-    for i = 0; i < 3 - k; i = i + 1 {
+  for k in 1..<4 {
+    for i in 0..<(3 - k) {
       function_values[i] = (function_values[i + 1] - function_values[i]) /
         (shifted_points[i + k] - shifted_points[i])
     }
@@ -103,8 +103,8 @@ pub fn diff_forward(f : Func_Math, x : Double) -> (Double, Double) {
   let function_values = perturbation_steps.map(f)
 
   // Apply finite difference formulas to approximate the derivative
-  for step_size = 1; step_size < 4; step_size = step_size + 1 {
-    for i = 0; i < 3 - step_size; i = i + 1 {
+  for step_size in 1..<4 {
+    for i in 0..<(3 - step_size) {
       function_values[i] = (function_values[i + 1] - function_values[i]) /
         (perturbation_steps[i + step_size] - perturbation_steps[i])
     }
@@ -171,8 +171,8 @@ pub fn diff_central(f : Func_Math, x : Double) -> (Double, Double) {
   let function_values = perturbation_steps.map(f)
 
   // Apply finite difference formulas to approximate the derivative
-  for step_size = 1; step_size < 5; step_size = step_size + 1 {
-    for i = 0; i < 4 - step_size; i = i + 1 {
+  for step_size in 1..<5 {
+    for i in 0..<(4 - step_size) {
       function_values[i] = (function_values[i + 1] - function_values[i]) /
         (perturbation_steps[i + step_size] - perturbation_steps[i])
     }

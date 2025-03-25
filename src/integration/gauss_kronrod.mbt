@@ -21,7 +21,7 @@ fn gauss_kronrod(
   if n % 2 == 0 {
     result_gauss = f_center * wg[n / 2 - 1]
   }
-  for i = 0; i < (n - 1) / 2; i = i + 1 {
+  for i in 0..<((n - 1) / 2) {
     let jtw = 2 * i + 1
     let abscissa = half_length * xgk[jtw]
     let fval1 = f(center - abscissa)
@@ -33,7 +33,7 @@ fn gauss_kronrod(
     result_kronrod = result_kronrod + wgk[jtw] * fsum
     result_abs = result_abs + wgk[jtw] * (fval1.abs() + fval2.abs())
   }
-  for i = 0; i < n / 2; i = i + 1 {
+  for i in 0..<(n / 2) {
     let jtwm1 = 2 * i
     let abscissa = half_length * xgk[jtwm1]
     let fval1 = f(center - abscissa)
@@ -45,7 +45,7 @@ fn gauss_kronrod(
   }
   let mean = result_kronrod * 0.5
   result_asc = wgk[n - 1] * (f_center - mean).abs()
-  for i = 0; i < n - 1; i = i + 1 {
+  for i in 0..<(n - 1) {
     result_asc = result_asc +
       wgk[i] * ((fv1[i] - mean).abs() + (fv2[i] - mean).abs())
   }
