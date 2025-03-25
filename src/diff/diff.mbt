@@ -23,7 +23,7 @@
 /// }
 /// ```
 /// @coverage.skip
-pub fn diff_backward(f : @basic.Func_Math, x : Double) -> (Double, Double) {
+pub fn diff_backward(f : Func_Math, x : Double) -> (Double, Double) {
   // Define backward difference offsets
   let shifted_points : Array[Double] = [-2, -1, 0]
 
@@ -46,15 +46,15 @@ pub fn diff_backward(f : @basic.Func_Math, x : Double) -> (Double, Double) {
   }
 
   // Estimate the range of the derivative
-  let mut deriv_estimate = @luna_utils.arr_sum(function_values).abs()
+  let mut deriv_estimate = arr_sum(function_values).abs()
   let error_threshold = 100.0 * @internal.machine_sqrt_dbl_epsilon
-  deriv_estimate = @math.maximum(deriv_estimate, error_threshold)
+  deriv_estimate = max(deriv_estimate, error_threshold)
 
   // Compute optimal step size h
-  let optimal_h = @luna_math.sqrt(
+  let optimal_h = sqrt(
     @internal.machine_sqrt_dbl_epsilon * 0.5 / deriv_estimate,
   )
-  let optimal_h = @math.minimum(optimal_h, error_threshold)
+  let optimal_h = min(optimal_h, error_threshold)
 
   // Compute derivative and estimated error
   let derivative = (f(x) - f(x - optimal_h)) / optimal_h
@@ -87,7 +87,7 @@ pub fn diff_backward(f : @basic.Func_Math, x : Double) -> (Double, Double) {
 /// }
 /// ```
 /// @coverage.skip
-pub fn diff_forward(f : @basic.Func_Math, x : Double) -> (Double, Double) {
+pub fn diff_forward(f : Func_Math, x : Double) -> (Double, Double) {
   // Define perturbation steps for forward difference calculation
   let perturbation_steps : Array[Double] = [0, 1, 2]
 
@@ -111,17 +111,17 @@ pub fn diff_forward(f : @basic.Func_Math, x : Double) -> (Double, Double) {
   }
 
   // Calculate the magnitude of the accumulated finite differences
-  let absolute_sum = @luna_utils.arr_sum(function_values).abs()
+  let absolute_sum = arr_sum(function_values).abs()
 
   // Use a constant threshold to control the error propagation
   let error_threshold = 100.0 * @internal.machine_sqrt_dbl_epsilon
-  let absolute_sum = @math.maximum(absolute_sum, error_threshold)
+  let absolute_sum = max(absolute_sum, error_threshold)
 
   // Determine the step size for numerical differentiation
-  let optimal_step_size = @luna_math.sqrt(
+  let optimal_step_size = sqrt(
     @internal.machine_sqrt_dbl_epsilon * 0.5 / absolute_sum,
   )
-  let final_step_size = @math.minimum(optimal_step_size, error_threshold)
+  let final_step_size = min(optimal_step_size, error_threshold)
 
   // Calculate the forward difference derivative and error estimate
   (
@@ -155,7 +155,7 @@ pub fn diff_forward(f : @basic.Func_Math, x : Double) -> (Double, Double) {
 /// }
 /// ```
 /// @coverage.skip
-pub fn diff_central(f : @basic.Func_Math, x : Double) -> (Double, Double) {
+pub fn diff_central(f : Func_Math, x : Double) -> (Double, Double) {
   // Define perturbation steps for central difference calculation
   let perturbation_steps : Array[Double] = [-2, -1, 0, 1]
 
@@ -179,20 +179,20 @@ pub fn diff_central(f : @basic.Func_Math, x : Double) -> (Double, Double) {
   }
 
   // Calculate the magnitude of the accumulated finite differences
-  let absolute_sum = @luna_utils.arr_sum(function_values).abs()
+  let absolute_sum = arr_sum(function_values).abs()
 
   // Use a constant threshold to control the error propagation
   let error_threshold = 100.0 * @internal.machine_sqrt_dbl_epsilon
-  let absolute_sum = @math.maximum(absolute_sum, error_threshold)
+  let absolute_sum = max(absolute_sum, error_threshold)
 
   // Determine the optimal step size for central difference method
-  let optimal_step_size = @luna_math.pow(
+  let optimal_step_size = pow(
     @internal.machine_sqrt_dbl_epsilon * 0.5 / absolute_sum,
     1.0 / 3.0,
   )
 
   // Control the step size with the error threshold
-  let final_step_size = @math.minimum(optimal_step_size, error_threshold)
+  let final_step_size = min(optimal_step_size, error_threshold)
 
   // Calculate the central difference derivative and the error estimate
   (

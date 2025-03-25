@@ -1,4 +1,4 @@
-package KCN-judu/calculus-numerical/internal
+package Luna-Flow/calculus-numerical/internal
 
 // Values
 let machine_dbl_epsilon : Double

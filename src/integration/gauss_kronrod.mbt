@@ -4,7 +4,7 @@ fn gauss_kronrod(
   xgk : Array[Double],
   wg : Array[Double],
   wgk : Array[Double],
-  f : @basic.Func_Math,
+  f : Func_Math,
   a : Double,
   b : Double
 ) -> (Double, Double, Double, Double) {
@@ -16,8 +16,8 @@ fn gauss_kronrod(
   let mut result_kronrod = f_center * wgk[n - 1]
   let mut result_abs = result_kronrod.abs()
   let mut result_asc : Double = 0
-  let fv1 : Array[Double] = @luna_utils.zero_arr(n)
-  let fv2 : Array[Double] = @luna_utils.zero_arr(n)
+  let fv1 : Array[Double] = zero_arr(n)
+  let fv2 : Array[Double] = zero_arr(n)
   if n % 2 == 0 {
     result_gauss = f_center * wg[n / 2 - 1]
   }
@@ -92,7 +92,7 @@ fn gauss_kronrod(
 /// ```
 /// @coverage.skip
 pub fn kronrod_r15(
-  f : @basic.Func_Math,
+  f : Func_Math,
   a : Double,
   b : Double
 ) -> (Double, Double, Double, Double) {
@@ -130,7 +130,7 @@ pub fn kronrod_r15(
 /// ```
 /// @coverage.skip
 pub fn kronrod_r21(
-  f : @basic.Func_Math,
+  f : Func_Math,
   a : Double,
   b : Double
 ) -> (Double, Double, Double, Double) {
@@ -170,7 +170,7 @@ pub fn kronrod_r21(
 /// ```
 /// @coverage.skip
 pub fn kronrod_r31(
-  f : @basic.Func_Math,
+  f : Func_Math,
   a : Double,
   b : Double
 ) -> (Double, Double, Double, Double) {
@@ -211,7 +211,7 @@ pub fn kronrod_r31(
 /// ```
 /// @coverage.skip
 pub fn kronrod_r41(
-  f : @basic.Func_Math,
+  f : Func_Math,
   a : Double,
   b : Double
 ) -> (Double, Double, Double, Double) {
@@ -253,7 +253,7 @@ pub fn kronrod_r41(
 /// ```
 /// @coverage.skip
 pub fn kronrod_r51(
-  f : @basic.Func_Math,
+  f : Func_Math,
   a : Double,
   b : Double
 ) -> (Double, Double, Double, Double) {
@@ -293,7 +293,7 @@ pub fn kronrod_r51(
 /// ```
 /// @coverage.skip
 pub fn kronrod_r61(
-  f : @basic.Func_Math,
+  f : Func_Math,
   a : Double,
   b : Double
 ) -> (Double, Double, Double, Double) {

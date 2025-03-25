@@ -27,7 +27,7 @@
 ///
 /// @coverage.skip
 pub fn non_adap_quad_gk(
-  f : @basic.Func_Math,
+  f : Func_Math,
   a : Double,
   b : Double,
   epsabs : Double,
