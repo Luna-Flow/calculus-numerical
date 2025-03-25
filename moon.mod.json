@@ -1,6 +1,6 @@
 {
   "name": "Luna-Flow/calculus-numerical",
-  "version": "0.2.1-alpha-6",
+  "version": "0.3.0-alpha-1",
   "deps": {
     "Kaida-Amethyst/math": "0.1.16",
     "Luna-Flow/luna-generic": "0.2.0-alpha-1",
