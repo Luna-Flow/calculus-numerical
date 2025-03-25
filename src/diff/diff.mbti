@@ -1,4 +1,4 @@
-package KCN-judu/calculus-numerical/diff
+package Luna-Flow/calculus-numerical/diff
 
 // Values
 fn diff_backward((Double) -> Double, Double) -> (Double, Double)

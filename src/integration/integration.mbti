@@ -1,7 +1,13 @@
-package KCN-judu/calculus-numerical/integration
+package Luna-Flow/calculus-numerical/integration
 
 // Values
 fn adap_quad_gk((Double) -> Double, ((Double) -> Double, Double, Double) -> (Double, Double, Double, Double), Double, Double, Double, Double, Int) -> Result[(Double, Double, ErrCode), ErrCode]
+
+fn deriv_backward((Double) -> Double, Double, Double) -> (Double, Double)
+
+fn deriv_central((Double) -> Double, Double, Double) -> (Double, Double)
+
+fn deriv_forward((Double) -> Double, Double, Double) -> (Double, Double)
 
 fn kronrod_r15((Double) -> Double, Double, Double) -> (Double, Double, Double, Double)
 
@@ -22,8 +28,6 @@ fn rescale_error(Double, Double, Double) -> Double
 // Types and methods
 type ErrCode
 impl Eq for ErrCode
-
-type IntegrationWorkspace
 
 // Type aliases
 

@@ -1,4 +1,4 @@
-package KCN-judu/calculus-numerical/deriv
+package Luna-Flow/calculus-numerical/deriv
 
 // Values
 fn deriv_backward((Double) -> Double, Double, Double) -> (Double, Double)

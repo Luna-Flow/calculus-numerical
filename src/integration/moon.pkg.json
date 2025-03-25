@@ -1,14 +1,15 @@
 {
   "import": [
-    "Luna-Flow/calculus-numerical/internal",
-    "Luna-Flow/calculus-numerical/basic",
-    {
-      "path": "KCN-judu/luna-utils",
-      "alias": "luna_utils"
-    },
-    {
+		"Luna-Flow/calculus-numerical/internal",
+		"Luna-Flow/calculus-numerical/basic",
+		"Luna-Flow/luna-generic",
+		{
+			"path": "Luna-Flow/luna-utils",
+			"alias": "lu"
+		},
+		{
 			"path": "Kaida-Amethyst/math",
-			"alias": "luna_math"
+			"alias": "lm"
 		}
-  ]
+	]
 }

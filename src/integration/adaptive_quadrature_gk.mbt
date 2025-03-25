@@ -41,8 +41,8 @@
 ///
 /// @coverage.skip
 pub fn adap_quad_gk(
-  f : @basic.Func_Math,
-  q : @basic.Quad_GK,
+  f : Func_Math,
+  q : Quad_GK,
   a : Double,
   b : Double,
   epsabs : Double,
@@ -127,7 +127,7 @@ pub fn adap_quad_gk(
       )
       iteration_count = iteration_count + 1
     }
-    integral_result = @luna_utils.arr_sum(workspace.r_list)
+    integral_result = arr_sum(workspace.r_list)
     absolute_error = total_error
     if total_error <= tolerance {
       error_code = OK

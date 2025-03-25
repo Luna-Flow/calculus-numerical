@@ -29,7 +29,7 @@
 /// }
 /// ```
 /// @coverage.skip
-struct IntegrationWorkspace {
+priv struct IntegrationWorkspace {
   limit : Int
   mut size : Int
   mut i : Int
