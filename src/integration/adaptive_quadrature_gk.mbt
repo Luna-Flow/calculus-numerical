@@ -61,7 +61,7 @@ pub fn adap_quad_gk(
       f, a, b,
     )
     IntegrationWorkspace::init(workspace, a, b, initial_result, initial_error)
-    let mut tolerance = @math.maximum(epsabs, epsrel * initial_result.abs())
+    let mut tolerance = max(epsabs, epsrel * initial_result.abs())
     let roundoff_threshold = 50.0 *
       @internal.machine_dbl_epsilon *
       initial_abs_error
@@ -110,7 +110,7 @@ pub fn adap_quad_gk(
           roundoff_count_2 = roundoff_count_2 + 1
         }
       }
-      tolerance = @math.maximum(epsabs, epsrel * total_area.abs())
+      tolerance = max(epsabs, epsrel * total_area.abs())
       if total_error > tolerance {
         if roundoff_count_1 >= 6 || roundoff_count_2 >= 20 {
           error_type = 2
