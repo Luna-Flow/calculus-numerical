@@ -1,10 +1,10 @@
 ///|
-pub typealias Func_Math = (Double) -> Double
+pub typealias (Double) -> Double as Func_Math
 
 ///|
-pub typealias Quad_GK = ((Double) -> Double, Double, Double) -> (
+pub typealias ((Double) -> Double, Double, Double) -> (
   Double,
   Double,
   Double,
   Double,
-)
+) as Quad_GK

@@ -114,7 +114,7 @@ fn IntegrationWorkspace::init(
   a : Double,
   b : Double,
   result : Double,
-  error : Double
+  error : Double,
 ) -> Unit {
   workspace.size = 1
   workspace.i = 0
@@ -236,7 +236,7 @@ fn IntegrationWorkspace::update(
   a_2 : Double,
   b_2 : Double,
   area_2 : Double,
-  error_2 : Double
+  error_2 : Double,
 ) -> Unit {
   let i_max = workspace.i
   let new_level = workspace.level[i_max] + 1
@@ -298,7 +298,7 @@ fn IntegrationWorkspace::update(
 /// ```
 /// @coverage.skip
 fn IntegrationWorkspace::retrieve(
-  workspace : IntegrationWorkspace
+  workspace : IntegrationWorkspace,
 ) -> (Double, Double, Double, Double) {
   (
     workspace.a_list[workspace.i],

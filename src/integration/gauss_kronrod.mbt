@@ -6,7 +6,7 @@ fn gauss_kronrod(
   wgk : Array[Double],
   f : Func_Math,
   a : Double,
-  b : Double
+  b : Double,
 ) -> (Double, Double, Double, Double) {
   let center = 0.5 * (a + b)
   let half_length = 0.5 * (b - a)
@@ -94,7 +94,7 @@ fn gauss_kronrod(
 pub fn kronrod_r15(
   f : Func_Math,
   a : Double,
-  b : Double
+  b : Double,
 ) -> (Double, Double, Double, Double) {
   gauss_kronrod(8, xgk_r15, wg_r15, wgk_r15, f, a, b)
 }
@@ -132,7 +132,7 @@ pub fn kronrod_r15(
 pub fn kronrod_r21(
   f : Func_Math,
   a : Double,
-  b : Double
+  b : Double,
 ) -> (Double, Double, Double, Double) {
   gauss_kronrod(11, xgk_r21, wg_r21, wgk_r21, f, a, b)
 }
@@ -172,7 +172,7 @@ pub fn kronrod_r21(
 pub fn kronrod_r31(
   f : Func_Math,
   a : Double,
-  b : Double
+  b : Double,
 ) -> (Double, Double, Double, Double) {
   gauss_kronrod(16, xgk_r31, wg_r31, wgk_r31, f, a, b)
 }
@@ -213,7 +213,7 @@ pub fn kronrod_r31(
 pub fn kronrod_r41(
   f : Func_Math,
   a : Double,
-  b : Double
+  b : Double,
 ) -> (Double, Double, Double, Double) {
   gauss_kronrod(21, xgk_r41, wg_r41, wgk_r41, f, a, b)
 }
@@ -255,7 +255,7 @@ pub fn kronrod_r41(
 pub fn kronrod_r51(
   f : Func_Math,
   a : Double,
-  b : Double
+  b : Double,
 ) -> (Double, Double, Double, Double) {
   gauss_kronrod(26, xgk_r51, wg_r51, wgk_r51, f, a, b)
 }
@@ -295,7 +295,7 @@ pub fn kronrod_r51(
 pub fn kronrod_r61(
   f : Func_Math,
   a : Double,
-  b : Double
+  b : Double,
 ) -> (Double, Double, Double, Double) {
   gauss_kronrod(31, xgk_r61, wg_r61, wgk_r61, f, a, b)
 }

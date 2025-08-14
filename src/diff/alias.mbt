@@ -1,5 +1,5 @@
 ///|
-typealias Func_Math = @basic.Func_Math
+typealias @basic.Func_Math
 
 ///|
 fnalias @lm.(pow, sqrt)
@@ -8,4 +8,4 @@ fnalias @lm.(pow, sqrt)
 fnalias @lu.arr_sum
 
 ///|
-fnalias @math.(maximum as max, minimum as min)
+fnalias @cmp.(maximum as max, minimum as min)

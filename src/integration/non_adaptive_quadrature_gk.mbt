@@ -31,7 +31,7 @@ pub fn non_adap_quad_gk(
   a : Double,
   b : Double,
   epsabs : Double,
-  epsrel : Double
+  epsrel : Double,
 ) -> Result[(Double, Double, Int), ErrCode] {
   let half_interval = 0.5 * (b - a)
   let center = 0.5 * (a + b)

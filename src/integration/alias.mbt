@@ -1,14 +1,14 @@
 ///|
-typealias Func_Math = @basic.Func_Math
+typealias @basic.Func_Math
 
 ///|
-typealias Quad_GK = @basic.Quad_GK
+typealias @basic.Quad_GK
 
 ///|
 fnalias @lu.(arr_sum, zero_arr)
 
 ///|
-fnalias @math.maximum as max
+fnalias @cmp.maximum as max
 
 ///|
 fnalias @lm.sqrt

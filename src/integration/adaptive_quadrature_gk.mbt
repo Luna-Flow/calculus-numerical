@@ -47,7 +47,7 @@ pub fn adap_quad_gk(
   b : Double,
   epsabs : Double,
   epsrel : Double,
-  limit : Int
+  limit : Int,
 ) -> Result[(Double, Double, ErrCode), ErrCode] {
   let mut iteration_count : Int = 0
   let mut integral_result : Double = 0

@@ -2,7 +2,7 @@
 fn central_deriv(
   f : Func_Math,
   x : Double,
-  h : Double
+  h : Double,
 ) -> (Double, Double, Double) {
   let f_x_minus_h = f(x - h)
   let f_x_plus_h = f(x + h)
@@ -17,7 +17,7 @@ fn central_deriv(
     (f_x_plus_half_h.abs() + f_x_minus_half_h.abs()) *
     @internal.machine_dbl_epsilon +
     error_1st_order
-  let estimated_roundoff_error = @math.maximum(
+  let estimated_roundoff_error = @cmp.maximum(
       (central_diff_1st_order / h).abs(),
       (central_diff_2nd_order / h).abs(),
     ) *
@@ -91,7 +91,7 @@ pub fn deriv_central(f : Func_Math, x : Double, h : Double) -> (Double, Double) 
 fn forward_deriv(
   f : Func_Math,
   x : Double,
-  h : Double
+  h : Double,
 ) -> (Double, Double, Double) {
   let function_values = [x + h * 0.25, x + h * 0.5, x + h * 0.75, x + h]
   function_values.map_inplace(f)
@@ -106,7 +106,7 @@ fn forward_deriv(
     20.67 *
     arr_sum(abs_function_values) *
     @internal.machine_dbl_epsilon
-  let estimated_roundoff_error = @math.maximum(
+  let estimated_roundoff_error = @cmp.maximum(
       (forward_diff_1st_order / h).abs(),
       (forward_diff_2nd_order / h).abs(),
     ) *
@@ -206,7 +206,7 @@ pub fn deriv_forward(f : Func_Math, x : Double, h : Double) -> (Double, Double) 
 pub fn deriv_backward(
   f : Func_Math,
   x : Double,
-  h : Double
+  h : Double,
 ) -> (Double, Double) {
   deriv_forward(f, x, -h)
 }

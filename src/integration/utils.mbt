@@ -58,7 +58,7 @@ fn subinterval_check(a_1 : Double, a_2 : Double, b_2 : Double) -> Bool {
 pub fn rescale_error(
   err : Double,
   result_abs : Double,
-  result_asc : Double
+  result_asc : Double,
 ) -> Double {
   let mut err_ = err.abs()
   if result_asc != 0 && err_ != 0 {

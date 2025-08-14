@@ -1,5 +1,5 @@
 ///|
-typealias Func_Math = @basic.Func_Math
+typealias @basic.Func_Math
 
 ///|
 fnalias @lu.arr_sum
