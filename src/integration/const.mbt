@@ -1,25 +1,79 @@
 ///|
-let xgk_r15 = [
+/// Provides the abscissae (x-coordinates) for the 15-point Gauss-Kronrod
+/// quadrature rule.
+///
+/// This array contains the 8 positive abscissae values for the 15-point
+/// Gauss-Kronrod rule, arranged in descending order from approximately 0.991 to
+/// 0.000. The Gauss-Kronrod rule extends the 7-point Gauss rule by adding 8
+/// additional points, allowing for both numerical integration and error
+/// estimation. Due to symmetry, only the non-negative abscissae are stored, as
+/// the negative values are simply the negation of these positive values.
+///
+/// The 15-point rule uses 7 Gauss points (a subset of these values) plus 8
+/// Kronrod points to provide higher accuracy integration while enabling error
+/// estimation compared to the basic Gauss rule alone.
+///
+pub let xgk_r15 = [
   0.991455371120812639206854697526329, 0.949107912342758524526189684047851, 0.864864423359769072789712788640926,
   0.741531185599394439863864773280788, 0.586087235467691130294144838258730, 0.405845151377397166906606412076961,
   0.207784955007898467600689403773245, 0.000000000000000000000000000000000,
 ]
 
 ///|
-let wg_r15 = [
+/// Weights for Gauss quadrature with 15 nodes used in Gauss-Kronrod
+/// integration.
+///
+/// This array contains the weights for the 4 Gauss quadrature nodes that are
+/// embedded within the 15-node Gauss-Kronrod rule. These weights are used in
+/// numerical integration to compute the Gauss quadrature approximation, which
+/// is then compared with the Gauss-Kronrod approximation to estimate
+/// integration error.
+///
+/// The weights correspond to the nodes at positions that are symmetric about
+/// zero, and are ordered from the outermost to the innermost positions. These
+/// specific values are mathematically derived to ensure optimal accuracy for
+/// polynomial integration up to degree 7.
+///
+pub let wg_r15 = [
   0.129484966168869693270611432679082, 0.279705391489276667901467771423780, 0.381830050505118944950369775488975,
   0.417959183673469387755102040816327,
 ]
 
 ///|
-let wgk_r15 = [
+/// Weights for the Kronrod quadrature rule with 15 points.
+///
+/// This array contains the weights used in the 15-point Gauss-Kronrod
+/// quadrature rule for numerical integration. The Gauss-Kronrod rule extends a
+/// Gauss quadrature rule by adding additional points to provide both an
+/// approximation of the integral and an error estimate. These weights
+/// correspond to all 15 points (both Gauss and Kronrod points) in the rule.
+///
+/// The weights are ordered to correspond with the abscissas in `xgk_r15`, where
+/// the first 8 elements are the weights for the 8 Kronrod points that extend
+/// the 7-point Gauss rule.
+///
+pub let wgk_r15 = [
   0.022935322010529224963732008058970, 0.063092092629978553290700663189204, 0.104790010322250183839876322541518,
   0.140653259715525918745189590510238, 0.169004726639267902826583426598550, 0.190350578064785409913256402421014,
   0.204432940075298892414161999234649, 0.209482141084727828012999174891714,
 ]
 
 ///|
-let xgk_r21 = [
+/// Gauss-Kronrod quadrature nodes for the 21-point rule.
+///
+/// This array contains the abscissae (x-coordinates) used in the 21-point
+/// Gauss-Kronrod quadrature rule for numerical integration. The nodes are
+/// arranged in descending order from 1 to 0, representing the positive half of
+/// the symmetric quadrature points. The corresponding negative values are
+/// implied by symmetry. These nodes are used together with the Gauss-Kronrod
+/// weights (`wgk_r21`) and Gauss weights (`wg_r21`) to perform adaptive
+/// numerical integration with error estimation.
+///
+/// The 21-point rule extends the 10-point Gauss rule by adding 11 additional
+/// nodes, allowing for both integration and error estimation in a single
+/// evaluation.
+///
+pub let xgk_r21 = [
   0.995657163025808080735527280689003, 0.973906528517171720077964012084452, 0.930157491355708226001207180059508,
   0.865063366688984510732096688423493, 0.780817726586416897063717578345042, 0.679409568299024406234327365114874,
   0.562757134668604683339000099272694, 0.433395394129247190799265943165784, 0.294392862701460198131126603103866,
@@ -27,13 +81,51 @@ let xgk_r21 = [
 ]
 
 ///|
-let wg_r21 = [
+/// Provides Gauss weights for the 21-point Gauss-Kronrod quadrature rule.
+///
+/// This array contains the weights for the 10 Gauss points used in the 21-point
+/// Gauss-Kronrod integration rule. These weights are applied to function
+/// evaluations at the corresponding Gauss abscissae (stored in `ng_c`) to
+/// compute the Gauss quadrature approximation, which is then compared with the
+/// Kronrod extension for error estimation.
+///
+/// The weights correspond to the 10-point Gauss quadrature rule that forms the
+/// foundation of the 21-point Gauss-Kronrod rule. Each weight is paired with a
+/// corresponding abscissa from the Gauss node set.
+///
+/// Example:
+///
+/// ```moonbit
+/// // Access the first Gauss weight
+/// let first_weight = wg_r21[0] // 0.066671344308688137593568809893332
+///
+/// // Use with corresponding Gauss nodes for integration
+/// let gauss_contribution = ng_c[0] * wg_r21[0] // weight × node
+/// ```
+///
+pub let wg_r21 = [
   0.066671344308688137593568809893332, 0.149451349150580593145776339657697, 0.219086362515982043995534934228163,
   0.269266719309996355091226921569469, 0.295524224714752870173892994651338,
 ]
 
 ///|
-let wgk_r21 = [
+/// Weights for Kronrod integration using the 21-point rule.
+///
+/// This array contains the weights used in the Kronrod extension of the
+/// 10-point Gauss-Legendre quadrature rule. The Kronrod rule evaluates the
+/// integrand at 21 points (10 original Gauss points plus 11 additional Kronrod
+/// points) to provide both an integral estimate and an error estimate. These
+/// weights correspond to all 21 evaluation points in the Kronrod rule.
+///
+/// The weights are ordered from the leftmost to the rightmost integration
+/// points on the interval \[-1, 1], with the center point (weight ≈ 0.149445)
+/// corresponding to x = 0.
+///
+/// This constant is typically used in conjunction with `xgk_r21` (the
+/// corresponding abscissae) in adaptive quadrature algorithms to achieve higher
+/// accuracy integration with embedded error estimation.
+///
+pub let wgk_r21 = [
   0.011694638867371874278064396062192, 0.032558162307964727478818972459390, 0.054755896574351996031381300244580,
   0.075039674810919952767043140916190, 0.093125454583697605535065465083366, 0.109387158802297641899210590325805,
   0.123491976262065851077958109831074, 0.134709217311473325928054001771707, 0.142775938577060080797094273138717,
@@ -41,7 +133,26 @@ let wgk_r21 = [
 ]
 
 ///|
-let xgk_r31 = [
+/// Stores the abscissae (evaluation points) for the 31-point Gauss-Kronrod
+/// quadrature rule.
+///
+/// This array contains the x-coordinates where the integrand function is
+/// evaluated during numerical integration using the Gauss-Kronrod method. The
+/// 31-point rule uses 31 carefully chosen points that include the 15 points
+/// from the corresponding Gauss rule plus 16 additional Kronrod points,
+/// providing both a high-accuracy integral estimate and an error estimate.
+///
+/// The points are arranged symmetrically around zero, with the array containing
+/// only the non-negative values (including zero as the last element). The
+/// corresponding negative values are implied by symmetry. Each value represents
+/// a point in the interval \[-1, 1] where the transformed integrand is
+/// evaluated.
+///
+/// This constant is typically used in conjunction with the corresponding weight
+/// arrays `wg_r31` and `wgk_r31` to perform adaptive numerical integration with
+/// automatic error estimation.
+///
+pub let xgk_r31 = [
   0.998002298693397060285172840152271, 0.987992518020485428489565718586613, 0.967739075679139134257347978784337,
   0.937273392400705904307758947710209, 0.897264532344081900882509656454496, 0.848206583410427216200648320774217,
   0.790418501442465932967649294817947, 0.724417731360170047416186054613938, 0.650996741297416970533735895313275,
@@ -51,14 +162,39 @@ let xgk_r31 = [
 ]
 
 ///|
-let wg_r31 = [
+/// Gauss weights for the 31-point Gauss-Kronrod integration rule.
+///
+/// This array contains the weights for the 15-point Gauss quadrature rule that
+/// is embedded within the 31-point Gauss-Kronrod rule. These weights are used
+/// to compute the Gauss approximation of an integral, which is then compared
+/// with the Kronrod approximation (using `wgk_r31`) to estimate the integration
+/// error.
+///
+/// The weights correspond to the abscissae stored in `xgk_r31` at the odd
+/// indices (1, 3, 5, ..., 29), representing the 15 points of the embedded Gauss
+/// rule.
+///
+pub let wg_r31 = [
   0.030753241996117268354628393577204, 0.070366047488108124709267416450667, 0.107159220467171935011869546685869,
   0.139570677926154314447804794511028, 0.166269205816993933553200860481209, 0.186161000015562211026800561866423,
   0.198431485327111576456118326443839, 0.202578241925561272880620199967519,
 ]
 
 ///|
-let wgk_r31 = [
+/// Gauss-Kronrod quadrature weights for the 31-point rule.
+///
+/// This array contains the 16 weights used in the 31-point Gauss-Kronrod
+/// quadrature rule for numerical integration. These weights correspond to the
+/// function evaluations at the Kronrod points (including both Gauss and Kronrod
+/// nodes) and are used to compute the high-precision integral approximation.
+/// The weights are arranged in ascending order corresponding to the abscissae
+/// from the center outward.
+///
+/// The 31-point Gauss-Kronrod rule uses a 15-point Gauss rule nested within it,
+/// providing both a high-precision integral estimate and an error estimate for
+/// adaptive quadrature algorithms.
+///
+pub let wgk_r31 = [
   0.005377479872923348987792051430128, 0.015007947329316122538374763075807, 0.025460847326715320186874001019653,
   0.035346360791375846222037948478360, 0.044589751324764876608227299373280, 0.053481524690928087265343147239430,
   0.062009567800670640285139230960803, 0.069854121318728258709520077099147, 0.076849680757720378894432777482659,
@@ -68,7 +204,20 @@ let wgk_r31 = [
 ]
 
 ///|
-let xgk_r41 = [
+/// Contains the abscissae (x-coordinates) for the 41-point Gauss-Kronrod
+/// quadrature rule.
+///
+/// This array stores the pre-computed nodes used in numerical integration with
+/// the Gauss-Kronrod G21K41 rule. The values are symmetric about zero and
+/// arranged in descending order from positive to negative, with the last
+/// element being exactly zero. These abscissae are used together with
+/// corresponding weights to approximate definite integrals with high accuracy.
+///
+/// The array contains 21 positive values, followed by zero, representing the
+/// full set of 41 quadrature points when combined with their negative
+/// counterparts through symmetry.
+///
+pub let xgk_r41 = [
   0.998859031588277663838315576545863, 0.993128599185094924786122388471320, 0.981507877450250259193342994720217,
   0.963971927277913791267666131197277, 0.940822633831754753519982722212443, 0.912234428251325905867752441203298,
   0.878276811252281976077442995113078, 0.839116971822218823394529061701521, 0.795041428837551198350638833272788,
@@ -79,7 +228,23 @@ let xgk_r41 = [
 ]
 
 ///|
-let wg_r41 = [
+/// Gauss weights for the 41-point Gauss-Kronrod quadrature rule.
+///
+/// This array contains the weights corresponding to the Gauss points in the
+/// 41-point Gauss-Kronrod integration rule. These weights are used in
+/// conjunction with the Gauss points (not the Kronrod points) to compute the
+/// Gauss quadrature approximation, which serves as a baseline for error
+/// estimation in adaptive quadrature algorithms.
+///
+/// The array contains 10 weight values that correspond to the 20 Gauss points
+/// in the 41-point rule (due to symmetry, only half the weights need to be
+/// stored). These weights are designed to integrate polynomials of degree up to
+/// 2n-1 = 39 exactly, where n = 20 is the number of Gauss points.
+///
+/// Returns an array of 10 Double values representing the Gauss weights for the
+/// 41-point Gauss-Kronrod quadrature rule.
+///
+pub let wg_r41 = [
   0.017614007139152118311861962351853, 0.040601429800386941331039952274932, 0.062672048334109063569506535187042,
   0.083276741576704748724758143222046, 0.101930119817240435036750135480350, 0.118194531961518417312377377711382,
   0.131688638449176626898494499748163, 0.142096109318382051329298325067165, 0.149172986472603746787828737001969,
@@ -87,7 +252,19 @@ let wg_r41 = [
 ]
 
 ///|
-let wgk_r41 = [
+/// Stores the Gauss-Kronrod quadrature weights for the 41-point rule.
+///
+/// This array contains the 21 weights used in the 41-point Gauss-Kronrod
+/// quadrature formula. These weights correspond to all 41 evaluation points
+/// (both Gauss and Kronrod points) and are used in combination with `xgk_r41`
+/// to compute high-precision numerical integration. The Gauss-Kronrod method
+/// evaluates the integrand at 41 points and uses these weights to estimate both
+/// the integral value and the integration error.
+///
+/// The weights are arranged in ascending order corresponding to the abscissae
+/// from -1 to +1, taking advantage of the symmetry of the quadrature rule.
+///
+pub let wgk_r41 = [
   0.003073583718520531501218293246031, 0.008600269855642942198661787950102, 0.014626169256971252983787960308868,
   0.020388373461266523598010231432755, 0.025882133604951158834505067096153, 0.031287306777032798958543119323801,
   0.036600169758200798030557240707211, 0.041668873327973686263788305936895, 0.046434821867497674720231880926108,
@@ -98,7 +275,21 @@ let wgk_r41 = [
 ]
 
 ///|
-let xgk_r51 = [
+/// Contains the abscissae (x-coordinates) for the 51-point Gauss-Kronrod
+/// quadrature rule.
+///
+/// This array stores the 26 positive abscissae values for the 51-point
+/// Gauss-Kronrod quadrature rule, arranged in descending order from
+/// approximately 0.999 to 0.000. The comppub lete set of 51 points is obtained by
+/// using these values along with their negative counterparts and zero. These
+/// abscissae are the roots of specific orthogonal polynomials and are used in
+/// conjunction with `wgk_r51` weights for high-precision numerical integration.
+///
+/// The 51-point Gauss-Kronrod rule is designed to provide accurate integration
+/// results while allowing for reliable error estimation by comparing with
+/// embedded Gauss rules.
+///
+pub let xgk_r51 = [
   0.999262104992609834193457486540341, 0.995556969790498097908784946893902, 0.988035794534077247637331014577406,
   0.976663921459517511498315386479594, 0.961614986425842512418130033660167, 0.942974571228974339414011169658471,
   0.920747115281701561746346084546331, 0.894991997878275368851042006782805, 0.865847065293275595448996969588340,
@@ -111,7 +302,21 @@ let xgk_r51 = [
 ]
 
 ///|
-let wg_r51 = [
+/// Contains the Gauss quadrature weights for the 25-point Gauss-Kronrod rule
+/// (R51).
+///
+/// This array stores the weights corresponding to the Gauss points used in the
+/// 25-point Gauss-Kronrod quadrature rule. These weights are applied to
+/// function evaluations at the Gauss abscissae to compute the Gauss quadrature
+/// approximation, which is then compared with the Kronrod rule result to
+/// estimate integration error.
+///
+/// The array contains 13 weight values that correspond to the symmetric Gauss
+/// points. When combined with the corresponding abscissae from `xgk_r51`, these
+/// weights enable accurate numerical integration and error estimation for
+/// smooth functions over finite intervals.
+///
+pub let wg_r51 = [
   0.011393798501026287947902964113235, 0.026354986615032137261901815295299, 0.040939156701306312655623487711646,
   0.054904695975835191925936891540473, 0.068038333812356917207187185656708, 0.080140700335001018013234959669111,
   0.091028261982963649811497220702892, 0.100535949067050644202206890392686, 0.108519624474263653116093957050117,
@@ -120,7 +325,22 @@ let wg_r51 = [
 ]
 
 ///|
-let wgk_r51 = [
+/// Provides the Kronrod weights for the 51-point Gauss-Kronrod quadrature rule.
+///
+/// This array contains the 26 weights used in the Kronrod extension of the
+/// 25-point Gauss quadrature rule. The Gauss-Kronrod quadrature rule is used
+/// for adaptive numerical integration, where the Kronrod rule provides a
+/// higher-order approximation and error estimation compared to the embedded
+/// Gauss rule. The weights correspond to the abscissas defined in `xgk_r51` and
+/// are used to compute the Kronrod approximation of definite integrals.
+///
+/// The array contains 26 double-precision floating-point values, representing
+/// the weights for the positive abscissas (the weights for negative abscissas
+/// are the same due to symmetry). These weights are derived from the Kronrod
+/// extension theory and are designed to provide optimal error estimation when
+/// combined with the corresponding Gauss weights from `wg_r51`.
+///
+pub let wgk_r51 = [
   0.001987383892330315926507851882843, 0.005561932135356713758040236901066, 0.009473973386174151607207710523655,
   0.013236229195571674813656405846976, 0.016847817709128298231516667536336, 0.020435371145882835456568292235939,
   0.024009945606953216220092489164881, 0.027475317587851737802948455517811, 0.030792300167387488891109020215229,
@@ -133,7 +353,27 @@ let wgk_r51 = [
 ]
 
 ///|
-let xgk_r61 = [
+/// Contains the abscissae (x-coordinates) for the 61-point Gauss-Kronrod
+/// quadrature rule.
+///
+/// This array stores the 31 unique abscissae values for the 61-point
+/// Gauss-Kronrod integration rule. The abscissae are the x-coordinates at which
+/// the integrand function is evaluated during numerical integration. Due to
+/// symmetry, only the non-negative abscissae are stored, as the negative values
+/// are simply the negation of these positive values. The array includes the
+/// value 0.0 as the last element.
+///
+/// The Gauss-Kronrod rule with 61 points provides high-precision numerical
+/// integration by combining a 30-point Gauss rule with additional points to
+/// enable error estimation. This particular rule is suitable for integrands
+/// that require very high accuracy or have complex behavior.
+///
+/// The values in this array are mathematical constants derived from the zeros
+/// of specific orthogonal polynomials and are used in conjunction with the
+/// corresponding weights (`wg_r61` and `wgk_r61`) to perform numerical
+/// integration.
+///
+pub let xgk_r61 = [
   0.999484410050490637571325895705811, 0.996893484074649540271630050918695, 0.991630996870404594858628366109486,
   0.983668123279747209970032581605663, 0.973116322501126268374693868423707, 0.960021864968307512216871025581798,
   0.944374444748559979415831324037439, 0.926200047429274325879324277080474, 0.905573307699907798546522558925958,
@@ -148,7 +388,22 @@ let xgk_r61 = [
 ]
 
 ///|
-let wg_r61 = [
+/// Gauss weights for the 61-point Gauss-Kronrod quadrature rule.
+///
+/// This array contains the weights corresponding to the Gauss points (a subset
+/// of the Kronrod points) for numerical integration using the 61-point
+/// Gauss-Kronrod rule. These weights are used in conjunction with `xgk_r61` to
+/// compute the Gauss quadrature approximation, which is then compared with the
+/// Kronrod approximation (using `wgk_r61`) to estimate integration error.
+///
+/// The array contains 15 weight values that correspond to the Gauss points
+/// within the 61-point Kronrod set. These weights are precomputed mathematical
+/// constants with high precision for accurate numerical integration.
+///
+/// Returns an array of 15 `Double` values representing the Gauss weights for
+/// the 61-point rule.
+///
+pub let wg_r61 = [
   0.007968192496166605615465883474674, 0.018466468311090959142302131912047, 0.028784707883323369349719179611292,
   0.038799192569627049596801936446348, 0.048402672830594052902938140422808, 0.057493156217619066481721689402056,
   0.065974229882180495128128515115962, 0.073755974737705206268243850022191, 0.080755895229420215354694938460530,
@@ -157,7 +412,19 @@ let wg_r61 = [
 ]
 
 ///|
-let wgk_r61 = [
+/// Provides the Kronrod weights for the 61-point Gauss-Kronrod quadrature rule.
+///
+/// This array contains the 31 Kronrod weights for the 61-point Gauss-Kronrod
+/// integration rule. The Kronrod weights are used in conjunction with the
+/// corresponding abscissae to evaluate integrals with higher precision than the
+/// embedded 30-point Gauss rule. The weights are arranged in ascending order
+/// and are symmetric about zero, so only half of the weights need to be stored.
+///
+/// The 61-point Gauss-Kronrod rule provides high-precision numerical
+/// integration and is commonly used in adaptive quadrature algorithms for
+/// estimating integration errors and improving accuracy.
+///
+pub let wgk_r61 = [
   0.001389013698677007624551591226760, 0.003890461127099884051267201844516, 0.006630703915931292173319826369750,
   0.009273279659517763428441146892024, 0.011823015253496341742232898853251, 0.014369729507045804812451432443580,
   0.016920889189053272627572289420322, 0.019414141193942381173408951050128, 0.021828035821609192297167485738339,
@@ -172,37 +439,125 @@ let wgk_r61 = [
 ]
 
 ///|
-let ng_c = [
+/// Contains the 5 nodes for the 10-point Gauss-Legendre quadrature rule on the
+/// interval \[-1, 1].
+///
+/// This array stores the positive abscissae (x-coordinates) for the symmetric
+/// 10-point Gauss-Legendre quadrature formula. The comppub lete set of nodes
+/// includes both these positive values and their negative counterparts, forming
+/// a symmetric distribution around zero. These nodes are the roots of the 10th
+/// degree Legendre polynomial and are used in conjunction with the
+/// corresponding weights from `wg_10` to perform numerical integration.
+///
+/// The nodes are arranged in descending order from approximately 0.9739 to
+/// 0.1489.
+///
+pub let ng_c = [
   0.973906528517171720077964012084452, 0.865063366688984510732096688423493, 0.679409568299024406234327365114874,
   0.433395394129247190799265943165784, 0.148874338981631210884826001129720,
 ]
 
 ///|
-let wg_10 = [
+/// Gauss weights for 10-point Gauss-Legendre quadrature rule.
+///
+/// Contains the weights `w_i` used in the 10-point Gauss-Legendre quadrature
+/// formula to approximate definite integrals. These weights correspond to the
+/// abscissas defined in the companion array and are used in numerical
+/// integration algorithms that transform integrals over arbitrary intervals to
+/// the standard interval \[-1, 1].
+///
+/// The weights are ordered to correspond with the standard Gauss-Legendre
+/// quadrature points and are computed to high precision for accurate numerical
+/// integration.
+///
+pub let wg_10 = [
   0.066671344308688137593568809893332, 0.149451349150580593145776339657697, 0.219086362515982043995534934228163,
   0.269266719309996355091226921569469, 0.295524224714752870173892994651338,
 ]
 
 ///|
-let ng_21 = [
+/// Contains the 21-point Gauss nodes for numerical integration using
+/// Gauss-Kronrod quadrature.
+///
+/// This array stores the abscissae (x-coordinates) of the 21-point Gauss rule,
+/// which are the roots of the Legendre polynomial of degree 21. These nodes are
+/// used in adaptive quadrature algorithms to evaluate integrals with high
+/// precision. The nodes are symmetric about zero and stored in decreasing order
+/// from approximately 0.996 to 0.294.
+///
+/// The values represent the optimal sampling points for polynomial integration
+/// on the interval \[-1, 1], and are typically used in conjunction with
+/// corresponding weights (`wg_21a` and `wg_21b`) to form comppub lete Gauss-Kronrod
+/// quadrature rules for numerical integration.
+///
+pub let ng_21 = [
   0.995657163025808080735527280689003, 0.930157491355708226001207180059508, 0.780817726586416897063717578345042,
   0.562757134668604683339000099272694, 0.294392862701460198131126603103866,
 ]
 
 ///|
-let wg_21a = [
+/// Contains the weights for the 21-point Gauss-Kronrod rule (subset a).
+///
+/// This array stores the first set of weights used in the 21-point
+/// Gauss-Kronrod quadrature rule for numerical integration. These weights
+/// correspond to specific abscissas and are used in conjunction with `wg_21b`
+/// to form the comppub lete set of Kronrod weights for the 21-point rule. The
+/// Gauss-Kronrod method extends Gaussian quadrature by adding additional points
+/// to provide both an integral estimate and an error estimate.
+///
+/// The array contains 5 weight values that are applied to function evaluations
+/// at corresponding abscissas during numerical integration.
+///
+/// Example:
+///
+/// ```moonbit
+/// // Used internally in Gauss-Kronrod integration algorithms
+/// let weights_a = @integration.wg_21a
+/// println("First weight: \{weights_a[0]}")  // Prints: First weight: 0.032558162307964727478818972459390
+/// ```
+///
+pub let wg_21a = [
   0.032558162307964727478818972459390, 0.075039674810919952767043140916190, 0.109387158802297641899210590325805,
   0.134709217311473325928054001771707, 0.147739104901338491374841515972068,
 ]
 
 ///|
-let wg_21b = [
+/// Provides the Gauss-Kronrod 21-point rule weights for the 11 non-Gauss points
+/// in numerical integration.
+///
+/// This constant array contains the weights corresponding to the 11 additional
+/// evaluation points (beyond the 10 Gauss points) used in the Gauss-Kronrod
+/// 21-point quadrature rule. These weights are used in conjunction with
+/// `wg_21a` (weights for the 10 Gauss points) to compute both a 10-point Gauss
+/// quadrature estimate and a 21-point Kronrod estimate for error estimation and
+/// adaptive integration.
+///
+/// The array contains 6 weight values that are applied to specific non-Gauss
+/// evaluation points in the Gauss-Kronrod integration scheme. These weights are
+/// mathematically derived to ensure the accuracy and efficiency of the
+/// composite quadrature rule.
+///
+pub let wg_21b = [
   0.011694638867371874278064396062192, 0.054755896574351996031381300244580, 0.093125454583697605535065465083366,
   0.123491976262065851077958109831074, 0.142775938577060080797094273138717, 0.149445554002916905664936468389821,
 ]
 
 ///|
-let ng_43 = [
+/// Contains the abscissae (x-coordinates) for the 43-point Gauss quadrature
+/// rule.
+///
+/// This array stores the 11 positive abscissae values for Gauss quadrature with
+/// 43 points. The negative values are symmetric and implied. These values are
+/// the roots of the 43rd-degree Legendre polynomial, scaled to the interval
+/// \[-1, 1]. When combined with the corresponding weights, these points provide
+/// high-precision numerical integration for smooth functions.
+///
+/// The values are arranged in descending order from approximately 0.999 to
+/// 0.075, representing the positive roots. For a comppub lete 43-point quadrature
+/// rule, these values should be paired with their negative counterparts and the
+/// origin (0.0) to form the full set of 43 quadrature points.
+///
+pub let ng_43 = [
   0.999333360901932081394099323919911, 0.987433402908088869795961478381209, 0.954807934814266299257919200290473,
   0.900148695748328293625099494069092, 0.825198314983114150847066732588520, 0.732148388989304982612354848755461,
   0.622847970537725238641159120344323, 0.499479574071056499952214885499755, 0.364901661346580768043989548502644,
@@ -210,7 +565,21 @@ let ng_43 = [
 ]
 
 ///|
-let wg_43a = [
+/// Contains the Gauss weights for the 43-point Gauss-Kronrod quadrature rule
+/// (first set).
+///
+/// This array stores the first set of Gauss weights used in the 43-point
+/// Gauss-Kronrod integration rule. These weights correspond to specific
+/// abscissas and are used to compute the Gaussian quadrature approximation
+/// portion of the composite Gauss-Kronrod integration method. The 43-point rule
+/// provides high precision numerical integration by combining a 21-point Gauss
+/// rule with additional Kronrod points.
+///
+/// The weights are ordered to correspond with the appropriate abscissas in the
+/// integration formula, where they are multiplied by function evaluations to
+/// approximate definite integrals over the interval \[-1, 1].
+///
+pub let wg_43a = [
   0.016296734289666564924281974617663, 0.037522876120869501461613795898115, 0.054694902058255442147212685465005,
   0.067355414609478086075553166302174, 0.073870199632393953432140695251367, 0.005768556059769796184184327908655,
   0.027371890593248842081276069289151, 0.046560826910428830743339154433824, 0.061744995201442564496240336030883,
@@ -218,7 +587,23 @@ let wg_43a = [
 ]
 
 ///|
-let wg_43b = [
+/// Contains the Kronrod weights for the 43-point Gauss-Kronrod quadrature rule,
+/// corresponding to the 12 additional points not included in the embedded
+/// 21-point Gauss rule.
+///
+/// This array stores the integration weights for the Kronrod extension points
+/// in a 43-point Gauss-Kronrod quadrature formula. These weights are used in
+/// conjunction with `wg_43a` (which contains weights for points shared with the
+/// embedded Gauss rule) to perform adaptive numerical integration with
+/// automatic error estimation. The 43-point rule provides higher accuracy than
+/// lower-order rules and is particularly effective for smooth integrands.
+///
+/// The weights are arranged in order corresponding to the abscissae and are
+/// derived from the theory of orthogonal polynomials. Each weight represents
+/// the contribution of its corresponding quadrature point to the final integral
+/// approximation.
+///
+pub let wg_43b = [
   0.001844477640212414100389106552965, 0.010798689585891651740465406741293, 0.021895363867795428102523123075149,
   0.032597463975345689443882222526137, 0.042163137935191811847627924327955, 0.050741939600184577780189020092084,
   0.058379395542619248375475369330206, 0.064746404951445885544689259517511, 0.069566197912356484528633315038405,
@@ -226,7 +611,20 @@ let wg_43b = [
 ]
 
 ///|
-let ng_87 = [
+/// Contains the 22 nodes for 87-point Gauss-Kronrod quadrature rule.
+///
+/// This array stores the abscissae (evaluation points) for the 87-point
+/// Gauss-Kronrod quadrature rule. These nodes are the x-coordinates where the
+/// integrand function should be evaluated during numerical integration. The
+/// values are mathematically derived and optimized for high-precision numerical
+/// integration, particularly useful for adaptive quadrature algorithms that can
+/// estimate integration error.
+///
+/// The nodes are arranged in ascending order from 0 to approximately 1, and due
+/// to symmetry properties of Gauss-Kronrod rules, only the positive nodes are
+/// stored. The corresponding negative nodes are implicitly defined by negation.
+///
+pub let ng_87 = [
   0.999902977262729234490529830591582, 0.997989895986678745427496322365960, 0.992175497860687222808523352251425,
   0.981358163572712773571916941623894, 0.965057623858384619128284110607926, 0.943167613133670596816416634507426,
   0.915806414685507209591826430720050, 0.883221657771316501372117548744163, 0.845710748462415666605902011504855,
@@ -238,7 +636,25 @@ let ng_87 = [
 ]
 
 ///|
-let wg_87a = [
+/// Contains weights for the 87-point Gauss-Kronrod quadrature rule (part A).
+///
+/// This array stores the first set of weights used in the 87-point
+/// Gauss-Kronrod integration formula. The Gauss-Kronrod rule extends a 43-point
+/// Gauss rule by adding 44 additional points, providing both a high-precision
+/// integral estimate and an error estimate. This particular array contains 21
+/// weight values that correspond to specific abscissae in the integration
+/// scheme.
+///
+/// The weights are ordered corresponding to the abscissae and are used in
+/// conjunction with function evaluations at the corresponding points to compute
+/// the numerical integral. These values are mathematically derived constants
+/// that ensure the quadrature rule achieves maximum algebraic precision.
+///
+/// This constant is typically used internally by integration algorithms and is
+/// paired with `wg_87b` to form the comppub lete set of Gauss-Kronrod weights for
+/// 87-point quadrature.
+///
+pub let wg_87a = [
   0.008148377384149172900002878448190, 0.018761438201562822243935059003794, 0.027347451050052286161582829741283,
   0.033677707311637930046581056957588, 0.036935099820427907614589586742499, 0.002884872430211530501334156248695,
   0.013685946022712701888950035273128, 0.023280413502888311123409291030404, 0.030872497611713358675466394126442,
@@ -249,7 +665,18 @@ let wg_87a = [
 ]
 
 ///|
-let wg_87b = [
+/// Weights for the 87-point Gauss-Kronrod quadrature rule (second set).
+///
+/// Contains the second set of 23 weights used in the 87-point Gauss-Kronrod
+/// quadrature rule for numerical integration. These weights correspond to
+/// specific abscissae points and are used together with `wg_87a` to compute
+/// weighted function evaluations for high-precision numerical integration. The
+/// 87-point rule provides very high accuracy for smooth functions and is
+/// typically used when maximum precision is required.
+///
+/// Returns an array of 23 floating-point weights for Gauss-Kronrod integration.
+///
+pub let wg_87b = [
   0.000274145563762072350016527092881, 0.001807124155057942948341311753254, 0.004096869282759164864458070683480,
   0.006758290051847378699816577897424, 0.009549957672201646536053581325377, 0.012329447652244853694626639963780,
   0.015010447346388952376697286041943, 0.017548967986243191099665352925900, 0.019938037786440888202278192730714,

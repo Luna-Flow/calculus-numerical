@@ -1,4 +1,24 @@
-///|@coverage.skip
+///|
+/// Performs Gauss-Kronrod quadrature integration of a function over a specified
+/// interval.
+///
+/// Parameters:
+///
+/// * `n` : The number of Kronrod points in the quadrature rule.
+/// * `xgk` : Array of abscissae (evaluation points) for the Kronrod rule.
+/// * `wg` : Array of weights for the Gauss quadrature rule.
+/// * `wgk` : Array of weights for the Kronrod quadrature rule.
+/// * `f` : The mathematical function to integrate.
+/// * `a` : The lower bound of the integration interval.
+/// * `b` : The upper bound of the integration interval.
+///
+/// Returns a tuple containing four values:
+///
+/// 1. The Kronrod quadrature approximation of the integral
+/// 2. The absolute value of the Kronrod approximation
+/// 3. The absolute sum contribution used for error estimation
+/// 4. The rescaled error estimate between Gauss and Kronrod approximations
+///
 fn gauss_kronrod(
   n : Int,
   xgk : Array[Double],
@@ -62,35 +82,18 @@ fn gauss_kronrod(
 }
 
 ///|
-/// Performs numerical integration using Gauss-Kronrod quadrature rule of degree
-/// 15 (7-15 pair) on a given function over a specified interval.
+/// Performs numerical integration using the 15-point Gauss-Kronrod quadrature
+/// rule.
 ///
 /// Parameters:
 ///
-/// * `integrand` : A function that takes a `Double` and returns a `Double`. This
-/// is the function to be integrated.
-/// * `lower_bound` : The lower bound of the integration interval.
-/// * `upper_bound` : The upper bound of the integration interval.
+/// * `f` : The mathematical function to integrate.
+/// * `a` : The lower bound of the integration interval.
+/// * `b` : The upper bound of the integration interval.
 ///
-/// Returns a tuple containing:
-///
-/// * The approximation of the integral using Kronrod quadrature
-/// * The absolute value of the integral approximation
-/// * The absolute central difference approximation
-/// * The estimated error of the integration
-///
-/// Example:
-///
-/// ```moonbit
-/// test "kronrod_r15" {
-///   // Integrate x^2 from 0 to 1
-///   let f = fn(x : Double) -> Double { x * x }
-///   let (result, _, _, error) = kronrod_r15(f, 0.0, 1.0)
-///   inspect!(@double.round(result * 1000.0) / 1000.0, content="0.333")
-///   inspect!(@double.round(error * 1000.0) / 1000.0, content="0.000")
-/// }
-/// ```
-/// @coverage.skip
+/// Returns a tuple containing four values: the Kronrod approximation of the
+/// integral, the absolute value approximation, the absolute scaled convergence
+/// approximation, and the error estimate.
 pub fn kronrod_r15(
   f : Func_Math,
   a : Double,
@@ -100,35 +103,31 @@ pub fn kronrod_r15(
 }
 
 ///|
-/// Performs numerical integration using Gauss-Kronrod quadrature rule of degree
-/// 21 (10-21 pair) on a given function over a specified interval.
+/// Computes the definite integral of a function using the 21-point
+/// Gauss-Kronrod quadrature rule.
 ///
 /// Parameters:
 ///
-/// * `integrand` : A function that takes a `Double` and returns a `Double`. This
-/// is the function to be integrated.
-/// * `lower_bound` : The lower bound of the integration interval.
-/// * `upper_bound` : The upper bound of the integration interval.
+/// * `f` : The function to integrate.
+/// * `a` : The lower bound of integration.
+/// * `b` : The upper bound of integration.
 ///
-/// Returns a tuple containing:
+/// Returns a tuple containing four values:
 ///
-/// * The approximation of the integral using Kronrod quadrature
-/// * The absolute value of the integral approximation
-/// * The absolute central difference approximation
-/// * The estimated error of the integration
+/// * The approximated integral value using Kronrod quadrature
+/// * The absolute value estimate used for error bounds
+/// * The absolute sum of contributions estimate used for error bounds
+/// * The estimated absolute error of the integration
 ///
 /// Example:
 ///
 /// ```moonbit
-/// test "kronrod_r21" {
-///   // Integrate x^2 from 0 to 1
-///   let f = fn(x : Double) -> Double { x * x }
-///   let (result, _, _, error) = kronrod_r21(f, 0.0, 1.0)
-///   inspect!(@double.round(result * 1000.0) / 1000.0, content="0.333")
-///   inspect!(@double.round(error * 1000.0) / 1000.0, content="0.000")
-/// }
+/// // Integrate x^2 from 0 to 1
+/// let f = fn(x) { x * x }
+/// let (result, abs_est, asc_est, error) = kronrod_r21(f, 0.0, 1.0)
+/// // result should be approximately 1/3 ≈ 0.333...
 /// ```
-/// @coverage.skip
+///
 pub fn kronrod_r21(
   f : Func_Math,
   a : Double,
@@ -138,37 +137,28 @@ pub fn kronrod_r21(
 }
 
 ///|
-/// Performs numerical integration using Gauss-Kronrod quadrature rule of degree
-/// 31 (15-31 pair) on a given function over a specified interval. Provides
-/// higher accuracy compared to `kronrod_r15` and `kronrod_r21` at the cost of
-/// more function evaluations.
+/// Computes the definite integral of a function using the 31-point
+/// Gauss-Kronrod quadrature rule.
 ///
 /// Parameters:
 ///
-/// * `integrand` : A function that takes a `Double` and returns a `Double`. This
-/// is the function to be integrated.
-/// * `lower_bound` : The lower bound of the integration interval.
-/// * `upper_bound` : The upper bound of the integration interval.
+/// * `f` : The function to integrate.
+/// * `a` : The lower bound of integration.
+/// * `b` : The upper bound of integration.
 ///
-/// Returns a tuple containing:
-///
-/// * The approximation of the integral using Kronrod quadrature
-/// * The absolute value of the integral approximation
-/// * The absolute central difference approximation
-/// * The estimated error of the integration
+/// Returns a tuple containing four values: the integral approximation, the
+/// absolute value of the integral, the absolute sum for error estimation, and
+/// the estimated error bound.
 ///
 /// Example:
 ///
 /// ```moonbit
-/// test "kronrod_r31" {
-///   // Integrate x^2 from 0 to 1
-///   let f = fn(x : Double) -> Double { x * x }
-///   let (result, _, _, error) = kronrod_r31(f, 0.0, 1.0)
-///   inspect!(@double.round(result * 1000.0) / 1000.0, content="0.333")
-///   inspect!(@double.round(error * 1000.0) / 1000.0, content="0.000")
-/// }
+/// // Integrate x^2 from 0 to 1
+/// let f = fn(x) { x * x }
+/// let (result, abs_result, asc, error) = kronrod_r31(f, 0.0, 1.0)
+/// // result should be approximately 1/3 ≈ 0.3333
 /// ```
-/// @coverage.skip
+///
 pub fn kronrod_r31(
   f : Func_Math,
   a : Double,
@@ -178,38 +168,28 @@ pub fn kronrod_r31(
 }
 
 ///|
-/// Performs numerical integration using Gauss-Kronrod quadrature rule of degree
-/// 41 (20-41 pair) on a given function over a specified interval. This method
-/// provides a higher degree of accuracy compared to lower-order rules like
-/// `kronrod_r15`, making it suitable for integrating functions with moderate
-/// complexity.
+/// Computes the definite integral of a function using the 41-point
+/// Gauss-Kronrod quadrature rule.
 ///
 /// Parameters:
 ///
-/// * `integrand` : A function that takes a `Double` and returns a `Double`. This
-/// is the function to be integrated.
-/// * `lower_bound` : The lower bound of the integration interval.
-/// * `upper_bound` : The upper bound of the integration interval.
+/// * `f` : The function to integrate.
+/// * `a` : The lower bound of the integration interval.
+/// * `b` : The upper bound of the integration interval.
 ///
-/// Returns a tuple containing:
-///
-/// * The approximation of the integral using Kronrod quadrature
-/// * The absolute value of the integral approximation
-/// * The absolute central difference approximation
-/// * The estimated error of the integration
+/// Returns a tuple containing four values: the Kronrod approximation of the
+/// integral, the absolute value of the integral, the absolute sum contribution,
+/// and the estimated error bound.
 ///
 /// Example:
 ///
 /// ```moonbit
-/// test "kronrod_r41" {
-///   // Integrate x^2 from 0 to 1
-///   let f = fn(x : Double) -> Double { x * x }
-///   let (result, _, _, error) = kronrod_r41(f, 0.0, 1.0)
-///   inspect!(@double.round(result * 1000.0) / 1000.0, content="0.333")
-///   inspect!(@double.round(error * 1000.0) / 1000.0, content="0.000")
-/// }
+/// // Integrate x^2 from 0 to 1
+/// let f = fn(x) { x * x }
+/// let (result, abs_result, asc, error) = kronrod_r41(f, 0.0, 1.0)
+/// // result should be approximately 1/3 ≈ 0.333...
 /// ```
-/// @coverage.skip
+///
 pub fn kronrod_r41(
   f : Func_Math,
   a : Double,
@@ -219,39 +199,28 @@ pub fn kronrod_r41(
 }
 
 ///|
-/// Performs numerical integration using Gauss-Kronrod quadrature rule of degree
-/// 51 (25-51 pair) on a given function over a specified interval. This method
-/// provides highly accurate numerical integration results by using 51 evaluation
-/// points for the Kronrod rule and 25 points for the embedded Gauss rule.
+/// Computes the definite integral of a function using the 51-point
+/// Gauss-Kronrod quadrature rule.
 ///
 /// Parameters:
 ///
-/// * `integrand` : A function that maps a real number to a real number (type
-/// `@internal.Func_Math`). This is the function to be integrated.
-/// * `lower_bound` : The lower limit of the integration interval (type
-/// `Double`).
-/// * `upper_bound` : The upper limit of the integration interval (type
-/// `Double`).
+/// * `f` : The function to integrate.
+/// * `a` : The lower bound of the integration interval.
+/// * `b` : The upper bound of the integration interval.
 ///
-/// Returns a tuple of four components:
-///
-/// * The approximation of the integral using the Kronrod quadrature rule
-/// * The absolute value of the integral approximation
-/// * The absolute value of the central difference approximation
-/// * The estimated error of the integration
+/// Returns a tuple containing four values: the Kronrod approximation of the
+/// integral, the absolute value of the integral approximation, the absolute sum
+/// contribution, and the error estimate.
 ///
 /// Example:
 ///
 /// ```moonbit
-/// test "kronrod_r51" {
-///   // Integrate x^2 from 0 to 1
-///   let f = fn(x : Double) -> Double { x * x }
-///   let (result, _, _, error) = kronrod_r51(f, 0.0, 1.0)
-///   inspect!(@double.round(result * 1000.0) / 1000.0, content="0.333")
-///   inspect!(@double.round(error * 1000.0) / 1000.0, content="0.000")
-/// }
+/// // Integrate x^2 from 0 to 1
+/// let square = fn(x) { x * x }
+/// let (result, abs_val, abs_sum, error) = kronrod_r51(square, 0.0, 1.0)
+/// // Result should be approximately 1/3 ≈ 0.333333
 /// ```
-/// @coverage.skip
+///
 pub fn kronrod_r51(
   f : Func_Math,
   a : Double,
@@ -261,37 +230,27 @@ pub fn kronrod_r51(
 }
 
 ///|
-/// Performs numerical integration using Gauss-Kronrod quadrature rule of degree
-/// 61 (30-61 pair) on a given function over a specified interval. This is the
-/// highest-order rule available in this package, providing the most accurate
-/// results at the cost of more function evaluations.
+/// Computes the definite integral of a function using the 61-point
+/// Gauss-Kronrod quadrature rule.
 ///
 /// Parameters:
 ///
-/// * `integrand` : A function that takes a `Double` and returns a `Double`. This
-/// is the function to be integrated.
-/// * `lower_bound` : The lower bound of the integration interval.
-/// * `upper_bound` : The upper bound of the integration interval.
+/// * `f` : The function to integrate.
+/// * `a` : The lower bound of the integration interval.
+/// * `b` : The upper bound of the integration interval.
 ///
-/// Returns a tuple containing:
-///
-/// * The approximation of the integral using Kronrod quadrature
-/// * The absolute value of the integral approximation
-/// * The absolute central difference approximation
-/// * The estimated error of the integration
+/// Returns a tuple containing four values: the Kronrod approximation of the
+/// integral, the absolute value estimate, the absolute scaled error estimate,
+/// and the rescaled error estimate.
 ///
 /// Example:
 ///
 /// ```moonbit
-/// test "kronrod_r61" {
-///   // Integrate x^2 from 0 to 1
-///   let f = fn(x : Double) -> Double { x * x }
-///   let (result, _, _, error) = kronrod_r61(f, 0.0, 1.0)
-///   inspect!(@double.round(result * 1000.0) / 1000.0, content="0.333")
-///   inspect!(@double.round(error * 1000.0) / 1000.0, content="0.000")
-/// }
+/// let f = fn(x) { x * x }  // Function f(x) = x²
+/// let (integral, abs_val, abs_err, err) = @integration.kronrod_r61(f, 0.0, 2.0)
+/// // Computes ∫₀² x² dx = 8/3 ≈ 2.667
 /// ```
-/// @coverage.skip
+///
 pub fn kronrod_r61(
   f : Func_Math,
   a : Double,

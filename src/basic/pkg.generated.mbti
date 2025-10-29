@@ -1,4 +1,5 @@
-package Luna-Flow/calculus-numerical/basic
+// Generated using `moon info`, DON'T EDIT IT
+package "Luna-Flow/calculus-numerical/basic"
 
 // Values
 let math_1_pi : Double
@@ -35,12 +36,14 @@ let math_sqrt_3 : Double
 
 let math_sqrt_pi : Double
 
+// Errors
+
 // Types and methods
 
 // Type aliases
-pub typealias Func_Math = (Double) -> Double
+pub typealias (Double) -> Double as Func_Math
 
-pub typealias Quad_GK = ((Double) -> Double, Double, Double) -> (Double, Double, Double, Double)
+pub typealias ((Double) -> Double, Double, Double) -> (Double, Double, Double, Double) as Quad_GK
 
 // Traits
 

@@ -1,4 +1,5 @@
-package Luna-Flow/calculus-numerical/internal
+// Generated using `moon info`, DON'T EDIT IT
+package "Luna-Flow/calculus-numerical/internal"
 
 // Values
 let machine_dbl_epsilon : Double
@@ -110,6 +111,8 @@ let machine_sqrt_flt_max : Double
 let machine_sqrt_flt_min : Double
 
 let machine_sqrt_sflt_epsilon : Double
+
+// Errors
 
 // Types and methods
 

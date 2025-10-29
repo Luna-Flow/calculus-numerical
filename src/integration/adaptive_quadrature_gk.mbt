@@ -1,45 +1,32 @@
 ///|
-/// Performs adaptive quadrature integration using Gauss-Kronrod quadrature
-/// rules. Adaptively subdivides the integration interval to achieve the
-/// requested accuracy, handling difficult integrands by focusing computational
-/// effort where needed.
+/// Performs adaptive numerical integration using the Gauss-Kronrod quadrature
+/// method with automatic subdivision.
 ///
 /// Parameters:
 ///
-/// * `integrand` : The function to be integrated. Takes a `Double` and returns a
-/// `Double`.
-/// * `quadrature` : The Gauss-Kronrod quadrature rule to be used for
-/// integration. Can be any of the predefined rules (15, 21, 31, 41, 51, or 61
-/// points).
-/// * `lower_bound` : The lower bound of the integration interval.
-/// * `upper_bound` : The upper bound of the integration interval.
-/// * `absolute_tolerance` : The absolute error tolerance. Must be positive.
-/// * `relative_tolerance` : The relative error tolerance. Must be greater than
-/// machine epsilon.
-/// * `subdivision_limit` : The maximum number of subintervals allowed in the
-/// subdivision process.
+/// * `f` : The mathematical function to integrate.
+/// * `q` : The Gauss-Kronrod quadrature rule to use for integration.
+/// * `a` : The lower bound of the integration interval.
+/// * `b` : The upper bound of the integration interval.
+/// * `epsabs` : The absolute error tolerance. Must be positive.
+/// * `epsrel` : The relative error tolerance. Must be greater than machine
+///   epsilon.
+/// * `limit` : The maximum number of subintervals allowed during adaptive
+///   subdivision.
 ///
 /// Returns a `Result` containing either:
 ///
-/// * `Ok((result, error, status))` where:
-///  * `result` is the approximated value of the integral
-///  * `error` is the estimated absolute error
-///  * `status` is an error code indicating the success or failure mode
-/// * `Err(error_code)` if the integration fails due to invalid tolerance
-/// parameters
+/// * `Ok((integral, error, status))` where `integral` is the computed integral
+///   value, `error` is the estimated absolute error, and `status` is the
+///   success code.
+/// * `Err(error_code)` where `error_code` indicates the type of failure that
+///   occurred.
 ///
-/// Example:
+/// The function adaptively subdivides the integration interval until the
+/// desired accuracy is achieved or the iteration limit is reached. It employs
+/// sophisticated error detection for roundoff errors and potential
+/// singularities.
 ///
-/// ```moonbit
-/// test "adap_quad_gk" {
-///   let f = fn(x : Double) -> Double { x * x }
-///   let (result, error, status) = adap_quad_gk(f, kronrod_r21, 0.0, 1.0, 1e-10, 1e-10, 100).unwrap()
-///   inspect!(@double.round(result * 1000.0) / 1000.0, content="0.333")
-///   inspect!(status, content="OK")
-/// }
-/// ```
-///
-/// @coverage.skip
 pub fn adap_quad_gk(
   f : Func_Math,
   q : Quad_GK,

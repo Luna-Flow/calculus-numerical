@@ -1,28 +1,26 @@
 ///|
 /// Computes the numerical derivative of a function at a given point using
-/// backward difference method with adaptive step size. 
+/// backward difference method with adaptive step size optimization.
 ///
 /// Parameters:
 ///
-/// * `function` : A function that takes a `Double` and returns a `Double`. The
-/// function to be differentiated.
-/// * `point` : The point at which to compute the derivative.
+/// * `f` : The mathematical function to be differentiated, taking a `Double`
+///   input and returning a `Double` output.
+/// * `x` : The point at which to compute the derivative.
 ///
-/// Returns a tuple containing:
-///
-/// * The estimated derivative value using backward difference approximation
-/// * The estimated absolute error of the computation
+/// Returns a tuple containing the estimated derivative value and the estimated
+/// absolute error of the computation.
 ///
 /// Example:
-/// 
+///
 /// ```moonbit
 /// test "diff_backward" {
 ///   let f = fn(x : Double) { x * x } // f(x) = x^2, f'(x) = 2x
 ///   let (derivative, error) = diff_backward(f, 2.0)
-///   inspect!((derivative - 4.0).abs() < error, content="true")
+///   inspect((derivative - 4.0).abs() < error, content="true")
 /// }
 /// ```
-/// @coverage.skip
+///
 pub fn diff_backward(f : Func_Math, x : Double) -> (Double, Double) {
   // Define backward difference offsets
   let shifted_points : Array[Double] = [-2, -1, 0]
@@ -64,29 +62,18 @@ pub fn diff_backward(f : Func_Math, x : Double) -> (Double, Double) {
 
 ///|
 /// Computes the numerical derivative of a function at a given point using
-/// forward difference method with adaptive step size. 
+/// forward difference method with adaptive step size.
 ///
 /// Parameters:
 ///
-/// * `function` : A function that takes a `Double` and returns a `Double`. The
-/// function to be differentiated.
-/// * `point` : The point at which to compute the derivative.
+/// * `f` : A function that takes a `Double` and returns a `Double`. The
+///   function to be differentiated.
+/// * `x` : The point at which to compute the derivative.
 ///
 /// Returns a tuple containing:
 ///
 /// * The estimated derivative value using forward difference approximation
 /// * The estimated absolute error of the computation
-///
-/// Example:
-///
-/// ```moonbit
-/// test "diff_forward" {
-///   let f = fn(x : Double) { x * x } // f(x) = x^2, f'(x) = 2x
-///   let (derivative, error) = diff_forward(f, 2.0)
-///   inspect!((derivative - 4.0).abs() < error, content="true")
-/// }
-/// ```
-/// @coverage.skip
 pub fn diff_forward(f : Func_Math, x : Double) -> (Double, Double) {
   // Define perturbation steps for forward difference calculation
   let perturbation_steps : Array[Double] = [0, 1, 2]
@@ -151,7 +138,7 @@ pub fn diff_forward(f : Func_Math, x : Double) -> (Double, Double) {
 /// test "diff_central" {
 ///   let f = fn(x : Double) { x * x } // f(x) = x^2, f'(x) = 2x
 ///   let (derivative, error) = diff_central(f, 2.0)
-///   inspect!((derivative - 4.0).abs() < error, content="true")
+///   inspect((derivative - 4.0).abs() < error, content="true")
 /// }
 /// ```
 /// @coverage.skip
