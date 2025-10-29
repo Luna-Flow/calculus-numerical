@@ -1,4 +1,5 @@
-package Luna-Flow/calculus-numerical/diff
+// Generated using `moon info`, DON'T EDIT IT
+package "Luna-Flow/calculus-numerical/diff"
 
 // Values
 fn diff_backward((Double) -> Double, Double) -> (Double, Double)
@@ -6,6 +7,8 @@ fn diff_backward((Double) -> Double, Double) -> (Double, Double)
 fn diff_central((Double) -> Double, Double) -> (Double, Double)
 
 fn diff_forward((Double) -> Double, Double) -> (Double, Double)
+
+// Errors
 
 // Types and methods
 

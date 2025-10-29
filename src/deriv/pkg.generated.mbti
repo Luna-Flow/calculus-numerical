@@ -1,4 +1,5 @@
-package Luna-Flow/calculus-numerical/deriv
+// Generated using `moon info`, DON'T EDIT IT
+package "Luna-Flow/calculus-numerical/deriv"
 
 // Values
 fn deriv_backward((Double) -> Double, Double, Double) -> (Double, Double)
@@ -6,6 +7,8 @@ fn deriv_backward((Double) -> Double, Double, Double) -> (Double, Double)
 fn deriv_central((Double) -> Double, Double, Double) -> (Double, Double)
 
 fn deriv_forward((Double) -> Double, Double, Double) -> (Double, Double)
+
+// Errors
 
 // Types and methods
 

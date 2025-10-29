@@ -1,4 +1,21 @@
-///| @coverage.skip
+///|
+/// Computes the central difference derivative approximation of a function at a
+/// point using both first-order and second-order methods with comprehensive
+/// error analysis.
+///
+/// Parameters:
+///
+/// * `f` : A mathematical function that takes a `Double` and returns a
+///   `Double`. The function to be differentiated.
+/// * `x` : The point at which to compute the derivative.
+/// * `h` : The step size for the numerical approximation.
+///
+/// Returns a tuple containing:
+///
+/// * The second-order central difference derivative approximation
+/// * The estimated truncation error (absolute difference between second-order
+///   and first-order approximations divided by step size)
+/// * The estimated total error combining round-off and truncation errors
 fn central_deriv(
   f : Func_Math,
   x : Double,
@@ -31,25 +48,27 @@ fn central_deriv(
 }
 
 ///|
-/// Computes the central derivative approximation of a function at a point with
-/// adaptive step size refinement. Uses a combination of 5-point and 3-point
-/// rules to estimate both the derivative and its error, with automatic step size
-/// optimization based on the relative magnitudes of truncation and round-off
-/// errors.
+/// Computes the central difference derivative approximation of a function at a
+/// point with adaptive step size refinement.
+///
+/// Uses a combination of first-order and second-order central difference
+/// methods to estimate both the derivative and its error. The algorithm
+/// automatically optimizes the step size based on the relative magnitudes of
+/// truncation and round-off errors to minimize the total computational error.
 ///
 /// Parameters:
 ///
-/// * `function` : A mathematical function that takes a `Double` and returns a
-/// `Double`. The function to be differentiated.
-/// * `point` : The point at which to compute the derivative.
-/// * `step` : The initial step size for the numerical approximation. Will be
-/// automatically refined if possible to minimize the total error.
+/// * `f` : A mathematical function that takes a `Double` and returns a
+///   `Double`. The function to be differentiated.
+/// * `x` : The point at which to compute the derivative.
+/// * `h` : The initial step size for the numerical approximation. Will be
+///   automatically refined if possible to minimize the total error.
 ///
 /// Returns a tuple containing:
 ///
 /// * The best available derivative approximation
 /// * The estimated absolute error of the computation, combining both truncation
-/// and round-off errors
+///   and round-off errors
 ///
 /// Example:
 ///
@@ -57,10 +76,10 @@ fn central_deriv(
 /// test "deriv_central" {
 ///   let f = fn(x : Double) { x * x } // f(x) = x^2, f'(x) = 2x
 ///   let (deriv, error) = deriv_central(f, 2.0, 0.1)
-///   inspect!((deriv - 4.0).abs() < error, content="true")
+///   inspect((deriv - 4.0).abs() < error, content="true")
 /// }
 /// ```
-/// @coverage.skip
+///
 pub fn deriv_central(f : Func_Math, x : Double, h : Double) -> (Double, Double) {
   let (initial_derivative, roundoff_error, truncation_error) = central_deriv(
     f, x, h,
@@ -87,7 +106,22 @@ pub fn deriv_central(f : Func_Math, x : Double, h : Double) -> (Double, Double) 
   (derivative, total_error)
 }
 
-///| @coverage.skip
+///|
+/// Computes forward finite difference approximations for the derivative of a
+/// function using a 4-point stencil with error estimation.
+///
+/// Parameters:
+///
+/// * `f` : The mathematical function to differentiate.
+/// * `x` : The point at which to compute the derivative.
+/// * `h` : The step size for the finite difference approximation.
+///
+/// Returns a tuple containing:
+///
+/// * The second-order forward difference approximation of the derivative
+/// * The estimated truncation error (absolute difference between first and
+///   second order approximations divided by step size)
+/// * The estimated total error including both round-off and truncation errors
 fn forward_deriv(
   f : Func_Math,
   x : Double,
@@ -146,7 +180,7 @@ fn forward_deriv(
 /// test "deriv_forward" {
 ///   let f = fn(x : Double) { x * x } // f(x) = x^2, f'(x) = 2x
 ///   let (deriv, error) = deriv_forward(f, 2.0, 0.1)
-///   inspect!((deriv - 4.0).abs() < error, content="true")
+///   inspect((deriv - 4.0).abs() < error, content="true")
 /// }
 /// ```
 /// @coverage.skip
@@ -199,7 +233,7 @@ pub fn deriv_forward(f : Func_Math, x : Double, h : Double) -> (Double, Double) 
 /// test "deriv_backward" {
 ///   let f = fn(x : Double) { x * x } // f(x) = x^2, f'(x) = 2x
 ///   let (deriv, error) = deriv_backward(f, 2.0, 0.1)
-///   inspect!((deriv - 4.0).abs() < error, content="true")
+///   inspect((deriv - 4.0).abs() < error, content="true")
 /// }
 /// ```
 /// @coverage.skip

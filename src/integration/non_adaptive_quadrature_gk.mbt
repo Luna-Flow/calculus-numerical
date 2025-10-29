@@ -1,31 +1,41 @@
 ///|
-/// Performs non-adaptive Gauss-Kronrod quadrature integration on a given
-/// function over a specified interval. Uses three levels of Gauss-Kronrod rules
-/// (21, 43, and 87 points) to achieve the desired accuracy. Unlike adaptive
-/// quadrature, this method does not subdivide the integration interval.
+/// Computes the definite integral of a function over a finite interval using
+/// non-adaptive Gauss-Kronrod quadrature with progressively higher-order rules
+/// (10-21, 21-43, and 43-87 point rules).
 ///
 /// Parameters:
 ///
-/// * `integrand` : The function to be integrated. Takes a `Double` and returns a
-/// `Double`.
-/// * `lower_bound` : The lower bound of the integration interval.
-/// * `upper_bound` : The upper bound of the integration interval.
-/// * `absolute_tolerance` : The absolute error tolerance. Must be positive.
-/// * `relative_tolerance` : The relative error tolerance. Must be greater than
-/// machine epsilon.
+/// * `f` : The function to integrate.
+/// * `a` : The lower bound of the integration interval.
+/// * `b` : The upper bound of the integration interval.
+/// * `epsabs` : The absolute error tolerance for the integration result.
+/// * `epsrel` : The relative error tolerance for the integration result.
 ///
 /// Returns a `Result` containing either:
 ///
-/// * `Ok((result, error, points))` where:
-///  * `result` is the approximated value of the integral
-///  * `error` is the estimated absolute error
-///  * `points` is the number of Gauss-Kronrod points used (21, 43, or 87)
-/// * `Err("E_BAD_TOL")` if the tolerance parameters are invalid
-/// * `Err("E_FAILED")` if the integration fails to achieve the requested
-/// accuracy with all available quadrature rules
+/// * `Ok((integral, error, neval))` where `integral` is the computed integral
+///   value, `error` is the estimated absolute error, and `neval` is the number
+///   of function evaluations used (21, 43, or 87)
+/// * `Err(error_code)` if the integration fails
 ///
+/// Returns `Err(E_BAD_TOL)` if the tolerance parameters are invalid (epsabs ≤ 0
+/// and epsrel is too small), or `Err(E_FAILED)` if the desired accuracy cannot
+/// be achieved with the highest-order rule.
 ///
-/// @coverage.skip
+/// Example:
+///
+/// ```moonbit
+/// // Integrate x^2 from 0 to 1 (exact answer: 1/3)
+/// let f = fn(x) { x * x }
+/// match non_adap_quad_gk(f, 0.0, 1.0, 0.0000000001, 0.0000000001) {
+///   Ok((result, error, neval)) => 
+///     println("Integral: \{result}, Error: \{error}, Evaluations: \{neval}")
+///   Err(code) => {
+///     println("Integration failed with error: \{code}")
+///   }
+/// }
+/// ```
+///
 pub fn non_adap_quad_gk(
   f : Func_Math,
   a : Double,
