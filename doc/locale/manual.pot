@@ -509,6 +509,502 @@ msgstr ""
 msgid "For example, `machine_sqrt_dbl_epsilon` is $\\sqrt{\\varepsilon} \\approx 1.49 \\cdot 10^{-8}$ and `machine_log_dbl_max` is $\\ln(\\text{dbl\\_max}) \\approx 709.78$. The rounded `eps` values are `machine_sqrt_eps` ($3.2 \\cdot 10^{-8}$), `machine_root_3_eps` ($10^{-5}$), `machine_root_4_eps` ($1.78 \\cdot 10^{-4}$), `machine_root_5_eps` ($10^{-3}$), `machine_root_6_eps` ($3.16 \\cdot 10^{-3}$) and `machine_log_eps` ($-34.54$)."
 msgstr ""
 
+#: manual/architecture_rfc.md:1
+msgid "RFC 0001: Luna-Flow numerical calculus foundation architecture"
+msgstr ""
+
+#: manual/architecture_rfc.md:3
+msgid "Status: experimental validation"
+msgstr ""
+
+#: manual/architecture_rfc.md:4
+msgid "Target version: next major version"
+msgstr ""
+
+#: manual/architecture_rfc.md:5
+msgid "Scope: architecture, algorithm selection and API feasibility; does not replace the current production implementation"
+msgstr ""
+
+#: manual/architecture_rfc.md:7
+msgid "1. Decision summary"
+msgstr ""
+
+#: manual/architecture_rfc.md:9
+msgid "The next-generation `calculus-numerical` no longer takes GSL's `Double` API and implementation structure as its blueprint. Instead, it is built on Luna-Flow's algebraic traits, checked arithmetic and explicit numerical contexts."
+msgstr ""
+
+#: manual/architecture_rfc.md:11
+msgid "When the migration is carried out, the current `basic`, `deriv`, `diff` and `integration` APIs move into `legacy/*` and keep a compatibility period of one major version."
+msgstr ""
+
+#: manual/architecture_rfc.md:12
+msgid "In its first phase the new API supports only same-type scalar functions `(T) -> T`. The coordinate type, the return type and the error scalar are not separated for now."
+msgstr ""
+
+#: manual/architecture_rfc.md:13
+msgid "`Double` and `Float` use fast context-free implementations; `Decimal` and `BinFloat` use explicit context adapters."
+msgstr ""
+
+#: manual/architecture_rfc.md:14
+msgid "Full entry points must take a context, tolerances and resource limits; convenience entry points may use a documented default context. The default for Decimal is Decimal128."
+msgstr ""
+
+#: manual/architecture_rfc.md:15
+msgid "Numerical algorithms return named results and diagnostics instead of tuples whose meaning is opaque."
+msgstr ""
+
+#: manual/architecture_rfc.md:16
+msgid "`estimated_error` denotes an empirical error estimate. Only implementations based on interval arithmetic or BallFloat may return a `certified_bound`."
+msgstr ""
+
+#: manual/architecture_rfc.md:18
+msgid "2. Standards and independent implementation"
+msgstr ""
+
+#: manual/architecture_rfc.md:20
+msgid "2.1 Numerical semantics"
+msgstr ""
+
+#: manual/architecture_rfc.md:22
+msgid "Classification, rounding and special values of binary and decimal floating point follow IEEE 754-2019."
+msgstr ""
+
+#: manual/architecture_rfc.md:23
+msgid "Decimal context, flags, cohort and exception semantics follow the General Decimal Arithmetic specification and the decNumber test specification."
+msgstr ""
+
+#: manual/architecture_rfc.md:24
+msgid "Arbitrary-precision reference values are generated with MPFR or Arb; no particular machine `Double` implementation is taken as the standard of correctness."
+msgstr ""
+
+#: manual/architecture_rfc.md:26
+msgid "2.2 Algorithm sources"
+msgstr ""
+
+#: manual/architecture_rfc.md:28
+msgid "Implementations are based on papers and published algorithm descriptions; mature libraries are consulted only to cross-check interfaces and behavior:"
+msgstr ""
+
+#: manual/architecture_rfc.md:30
+msgid "Area"
+msgstr ""
+
+#: manual/architecture_rfc.md:30
+msgid "First-phase candidate"
+msgstr ""
+
+#: manual/architecture_rfc.md:30
+msgid "Primary basis"
+msgstr ""
+
+#: manual/architecture_rfc.md:30
+msgid "Reason for the choice"
+msgstr ""
+
+#: manual/architecture_rfc.md:32
+msgid "Numerical derivatives"
+msgstr ""
+
+#: manual/architecture_rfc.md:32
+msgid "Fornberg weights"
+msgstr ""
+
+#: manual/architecture_rfc.md:32
+msgid "Fornberg, 1988/1998"
+msgstr ""
+
+#: manual/architecture_rfc.md:32
+msgid "Arbitrary nodes and derivative orders, without hand-written stencil magic numbers"
+msgstr ""
+
+#: manual/architecture_rfc.md:33
+msgid "Adaptive derivatives"
+msgstr ""
+
+#: manual/architecture_rfc.md:33
+msgid "Richardson/Ridders"
+msgstr ""
+
+#: manual/architecture_rfc.md:33
+msgid "Richardson extrapolation and Ridders' method"
+msgstr ""
+
+#: manual/architecture_rfc.md:33
+msgid "Explainable step-size sequence and error estimate"
+msgstr ""
+
+#: manual/architecture_rfc.md:34
+msgid "Fixed quadrature"
+msgstr ""
+
+#: manual/architecture_rfc.md:34
+msgid "Gauss–Kronrod 15/21"
+msgstr ""
+
+#: manual/architecture_rfc.md:34
+msgid "Gauss–Kronrod rules and the QUADPACK literature"
+msgstr ""
+
+#: manual/architecture_rfc.md:34
+msgid "One sampling pass also yields a nested error estimate"
+msgstr ""
+
+#: manual/architecture_rfc.md:35
+msgid "Adaptive integration"
+msgstr ""
+
+#: manual/architecture_rfc.md:35
+msgid "Subdivide the interval with the largest error first"
+msgstr ""
+
+#: manual/architecture_rfc.md:35
+msgid "QUADPACK algorithm descriptions"
+msgstr ""
+
+#: manual/architecture_rfc.md:35
+msgid "Mature workspace and stopping strategy"
+msgstr ""
+
+#: manual/architecture_rfc.md:36
+msgid "High-precision integration"
+msgstr ""
+
+#: manual/architecture_rfc.md:36
+msgid "Tanh–Sinh"
+msgstr ""
+
+#: manual/architecture_rfc.md:36
+msgid "Takahasi–Mori double exponential formulas"
+msgstr ""
+
+#: manual/architecture_rfc.md:36
+msgid "Suited to endpoint singularities and high-precision Decimal"
+msgstr ""
+
+#: manual/architecture_rfc.md:37
+msgid "Integration of smooth functions"
+msgstr ""
+
+#: manual/architecture_rfc.md:37
+msgid "Clenshaw–Curtis"
+msgstr ""
+
+#: manual/architecture_rfc.md:37
+msgid "Chebyshev expansion literature"
+msgstr ""
+
+#: manual/architecture_rfc.md:37
+msgid "Reuses samples and extends naturally to high precision"
+msgstr ""
+
+#: manual/architecture_rfc.md:38
+msgid "Finite sums"
+msgstr ""
+
+#: manual/architecture_rfc.md:38
+msgid "pairwise, Kahan, Neumaier"
+msgstr ""
+
+#: manual/architecture_rfc.md:38
+msgid "Floating-point error analysis literature"
+msgstr ""
+
+#: manual/architecture_rfc.md:38
+msgid "Offers tiers of performance and stability"
+msgstr ""
+
+#: manual/architecture_rfc.md:39
+msgid "Infinite series"
+msgstr ""
+
+#: manual/architecture_rfc.md:39
+msgid "Wynn epsilon, Euler transform"
+msgstr ""
+
+#: manual/architecture_rfc.md:39
+msgid "Convergence acceleration literature"
+msgstr ""
+
+#: manual/architecture_rfc.md:39
+msgid "Covers common alternating and slowly converging cases"
+msgstr ""
+
+#: manual/architecture_rfc.md:40
+msgid "Power series"
+msgstr ""
+
+#: manual/architecture_rfc.md:40
+msgid "Truncated coefficient algebra"
+msgstr ""
+
+#: manual/architecture_rfc.md:40
+msgid "Standard formal power series algorithms"
+msgstr ""
+
+#: manual/architecture_rfc.md:40
+msgid "Supports evaluation, differentiation, integration and basic composition"
+msgstr ""
+
+#: manual/architecture_rfc.md:42
+msgid "GSL is GPL software. This project may compare its public behavior and the papers it cites, but must not copy, translate or structurally rewrite its source code."
+msgstr ""
+
+#: manual/architecture_rfc.md:44
+msgid "3. Dependency boundaries"
+msgstr ""
+
+#: manual/architecture_rfc.md:46
+msgid "Dependencies must stay one-way:"
+msgstr ""
+
+#: manual/architecture_rfc.md:56
+msgid "This phase does not modify `arithmetic` or `floating`. Ordinary algebraic operations compose the existing traits directly; inside calculus, minimal providers are used only for capabilities that are missing and depend on a context. Once validation has stabilized, a separate RFC will move the general `next_up`, numerical-format and context capabilities up into `arithmetic`, and `floating` will implement the Decimal/BinFloat instances."
+msgstr ""
+
+#: manual/architecture_rfc.md:58
+msgid "`floating` must not depend on calculus. The context capabilities of the existing Decimal types are provided by provider values owned by calculus; non-context capabilities such as addition, subtraction, multiplication, division, comparison, zero and one continue to use trait composition."
+msgstr ""
+
+#: manual/architecture_rfc.md:60
+msgid "4. Type system decisions"
+msgstr ""
+
+#: manual/architecture_rfc.md:62
+msgid "4.1 A single scalar and value type in the first phase"
+msgstr ""
+
+#: manual/architecture_rfc.md:64
+msgid "Stable entry points use `(T) -> T`. The current MoonBit/Luna-Flow ecosystem has no mature public capability that expresses the following relations:"
+msgstr ""
+
+#: manual/architecture_rfc.md:72
+msgid "Vector scaling in `linear-algebra` currently uses the same element type as well. A public three-type `S/V/E` API would force callers to pass large function tables and could introduce indirect calls into integration hot paths. Integration over vectors, matrices and heterogeneous value types is therefore deferred to a separate RFC."
+msgstr ""
+
+#: manual/architecture_rfc.md:74
+msgid "4.2 Trait composition plus minimal providers"
+msgstr ""
+
+#: manual/architecture_rfc.md:76
+msgid "No `RealNumber` trait bundling all elementary functions is added, and existing trait operations are not rewrapped into function tables. Algorithms take the minimal capabilities they need through trait composition:"
+msgstr ""
+
+#: manual/architecture_rfc.md:78
+msgid "Core scalars: compose existing traits such as `Zero`, `One`, `IntegralHomomorphism`, `Add`, `Sub`, `Mul`, `Div` and `Compare` directly."
+msgstr ""
+
+#: manual/architecture_rfc.md:79
+msgid "Numerical format: epsilon, adjacent values, minimum normal, maximum finite, value classification."
+msgstr ""
+
+#: manual/architecture_rfc.md:80
+msgid "Optional capabilities: context-aware `sqrt`, integer powers and parsing."
+msgstr ""
+
+#: manual/architecture_rfc.md:82
+msgid "Only context-dependent operations that existing traits cannot express correctly use a minimal provider, for example a context one of type `(Context) -> T` and a next-up of type `(T, Context) -> T`. Once stable, these capabilities move up into `arithmetic`."
+msgstr ""
+
+#: manual/architecture_rfc.md:84
+msgid "4.3 Context and epsilon"
+msgstr ""
+
+#: manual/architecture_rfc.md:86
+msgid "The format constants of `Float` and `Double` are determined by the type. The epsilon and range of Decimal are determined jointly by the precision, the exponent range and the rounding context, so a parameterless Decimal `epsilon()` must not be provided."
+msgstr ""
+
+#: manual/architecture_rfc.md:88
+msgid "The working epsilon of Decimal is defined as:"
+msgstr ""
+
+#: manual/architecture_rfc.md:94
+msgid "An algorithm entry point builds a derived environment once and caches epsilon, sqrt(epsilon) and commonly used coefficients. Hot loops must not repeatedly construct contexts, convert rule tables or compute format constants."
+msgstr ""
+
+#: manual/architecture_rfc.md:96
+msgid "5. Draft packages and public API"
+msgstr ""
+
+#: manual/architecture_rfc.md:107
+msgid "Suggested result shapes:"
+msgstr ""
+
+#: manual/architecture_rfc.md:126
+msgid "`NumericalStatus` distinguishes at least completion, resource exhaustion, invalid tolerance, rounding stagnation, suspected singularity, non-finite input/output and context arithmetic failure. Low-level Decimal flags should be aggregated into the diagnostics rather than compressed into a single integer error code."
+msgstr ""
+
+#: manual/architecture_rfc.md:128
+msgid "6. Algorithm boundaries"
+msgstr ""
+
+#: manual/architecture_rfc.md:130
+msgid "6.1 Derivatives"
+msgstr ""
+
+#: manual/architecture_rfc.md:132
+msgid "The rule layer generates Fornberg weights from the nodes and the derivative order; rule objects can be cached."
+msgstr ""
+
+#: manual/architecture_rfc.md:133
+msgid "The execution layer is only responsible for sampling and weighting."
+msgstr ""
+
+#: manual/architecture_rfc.md:134
+msgid "The control layer adjusts the step size with Richardson/Ridders and reports truncation and rounding errors."
+msgstr ""
+
+#: manual/architecture_rfc.md:135
+msgid "`autodiff` stays independent; calculus only provides an optional bridge and guidance on choosing an algorithm, and does not reimplement dual numbers."
+msgstr ""
+
+#: manual/architecture_rfc.md:137
+msgid "6.2 Integration"
+msgstr ""
+
+#: manual/architecture_rfc.md:139
+msgid "`QuadratureRule[T]` stores nodes, Gauss weights and extension weights, each with a documented source."
+msgstr ""
+
+#: manual/architecture_rfc.md:140
+msgid "Fixed rules are separate from the adaptive controller; the controller does not know where the rule coefficients come from."
+msgstr ""
+
+#: manual/architecture_rfc.md:141
+msgid "The adaptive workspace allows local mutation but exposes no mutable state."
+msgstr ""
+
+#: manual/architecture_rfc.md:142
+msgid "Double/Float rules use concrete static tables; Decimal/BinFloat rules are converted once for the context at the entry point and cached for that call."
+msgstr ""
+
+#: manual/architecture_rfc.md:143
+msgid "Tanh–Sinh does not depend on fixed-precision tables and is the preferred complement for high-precision and endpoint-singular cases."
+msgstr ""
+
+#: manual/architecture_rfc.md:145
+msgid "6.3 Series"
+msgstr ""
+
+#: manual/architecture_rfc.md:147
+msgid "Finite sequences provide naive, pairwise and Kahan/Neumaier summation, so that no single `sum` implicitly chooses the cost of precision."
+msgstr ""
+
+#: manual/architecture_rfc.md:148
+msgid "Infinite series must be given an explicit tolerance and maximum number of terms, and return the number of terms used and the reason for termination."
+msgstr ""
+
+#: manual/architecture_rfc.md:149
+msgid "Convergence acceleration is a composable strategy and is not mixed into sequence generators."
+msgstr ""
+
+#: manual/architecture_rfc.md:150
+msgid "`PowerSeries[T]` stores its truncation order explicitly; conversion to and from `luna-poly` is an explicit adapter, and a truncated series is not treated as an ordinary polynomial."
+msgstr ""
+
+#: manual/architecture_rfc.md:152
+msgid "7. Legacy migration"
+msgstr ""
+
+#: manual/architecture_rfc.md:154
+msgid "The migration proper spans two releases:"
+msgstr ""
+
+#: manual/architecture_rfc.md:156
+msgid "When the new packages are released, the old entry points forward to `legacy/*`, and the documentation marks them deprecated and provides an item-by-item migration table."
+msgstr ""
+
+#: manual/architecture_rfc.md:157
+msgid "The next major version removes legacy; serious correctness issues are still fixed, but legacy receives no new algorithms or numeric types."
+msgstr ""
+
+#: manual/architecture_rfc.md:159
+msgid "During this RFC phase no existing files are moved, to avoid creating compatibility changes before the new API has been validated."
+msgstr ""
+
+#: manual/architecture_rfc.md:161
+msgid "8. Validation gates"
+msgstr ""
+
+#: manual/architecture_rfc.md:163
+msgid "Each area first delivers one Double/Decimal vertical slice before the number of algorithms is expanded."
+msgstr ""
+
+#: manual/architecture_rfc.md:164
+msgid "The target overhead of the Double adapter prototype relative to a direct implementation is at most 15%; hot loops must not allocate per item."
+msgstr ""
+
+#: manual/architecture_rfc.md:165
+msgid "Decimal uses one explicit context throughout; tests must cover inexact, rounded, underflow, overflow and invalid operation."
+msgstr ""
+
+#: manual/architecture_rfc.md:166
+msgid "Analytic functions, hard functions and high-precision oracles are tested in separate layers; the actual error and the reported error are recorded separately."
+msgstr ""
+
+#: manual/architecture_rfc.md:167
+msgid "Property tests cover linearity, interval reversal, constant functions, scaling relations, tolerance monotonicity and series truncation consistency."
+msgstr ""
+
+#: manual/architecture_rfc.md:169
+msgid "9. Follow-up RFCs"
+msgstr ""
+
+#: manual/architecture_rfc.md:171
+msgid "Move the stable numerical-format capabilities up into `arithmetic`."
+msgstr ""
+
+#: manual/architecture_rfc.md:172
+msgid "Separation of scalar and value types, and integration over vectors, matrices and complex numbers."
+msgstr ""
+
+#: manual/architecture_rfc.md:173
+msgid "Certified integration with BallFloat/interval arithmetic."
+msgstr ""
+
+#: manual/architecture_rfc.md:174
+msgid "Fourier series and the boundary with the FFT ecosystem."
+msgstr ""
+
+#: manual/architecture_rfc.md:175
+msgid "ODE/PDE solvers; these are outside this foundational phase."
+msgstr ""
+
+#: manual/architecture_rfc.md:177
+msgid "References"
+msgstr ""
+
+#: manual/architecture_rfc.md:179
+msgid "B. Fornberg, “Generation of Finite Difference Formulas on Arbitrarily Spaced Grids”, 1988."
+msgstr ""
+
+#: manual/architecture_rfc.md:180
+msgid "B. Fornberg, “Calculation of Weights in Finite Difference Formulas”, 1998."
+msgstr ""
+
+#: manual/architecture_rfc.md:181
+msgid "R. Piessens et al., *QUADPACK: A Subroutine Package for Automatic Integration*, 1983."
+msgstr ""
+
+#: manual/architecture_rfc.md:182
+msgid "H. Takahasi and M. Mori, “Double Exponential Formulas for Numerical Integration”, 1974."
+msgstr ""
+
+#: manual/architecture_rfc.md:183
+msgid "L. N. Trefethen, “Is Gauss Quadrature Better than Clenshaw–Curtis?”, 2008."
+msgstr ""
+
+#: manual/architecture_rfc.md:184
+msgid "P. Wynn, “On a Device for Computing the e_m(S_n) Transformation”, 1956."
+msgstr ""
+
+#: manual/architecture_rfc.md:185
+msgid "IEEE 754-2019, *Standard for Floating-Point Arithmetic*."
+msgstr ""
+
+#: manual/architecture_rfc.md:186
+msgid "General Decimal Arithmetic Specification and decNumber test suite."
+msgstr ""
+
 #: manual/contributing.md:1
 msgid "Contribution guidelines"
 msgstr ""
@@ -804,53 +1300,61 @@ msgid "Machine constants used by the other packages."
 msgstr ""
 
 #: manual/index.md:19
-msgid "Feature list"
+msgid "Guides"
 msgstr ""
 
 #: manual/index.md:21
-msgid "**[Latest]** 25.01.31: Non-adaptive integration implementation (using Gaussian quadrature and Kronrod extension)"
+msgid "[Architecture RFC](architecture_rfc.md): the next-generation architecture under research, an independent, trait-compatible numerical foundation with explicit floating-point contexts and first-class Decimal support."
 msgstr ""
 
 #: manual/index.md:23
-msgid "**25.01.13**: Adaptive integration implementation (using Gaussian quadrature and Kronrod extension)"
-msgstr ""
-
-#: manual/index.md:24
-msgid "**25.01.02**: Quadrature methods implementation (using Gaussian quadrature and Kronrod extension)"
+msgid "Feature list"
 msgstr ""
 
 #: manual/index.md:25
-msgid "**24.12.30**: Derivatives and differential functionality implementation (using forward, backward, and central difference methods)"
+msgid "**[Latest]** 25.01.31: Non-adaptive integration implementation (using Gaussian quadrature and Kronrod extension)"
 msgstr ""
 
 #: manual/index.md:27
-msgid "How to contribute"
+msgid "**25.01.13**: Adaptive integration implementation (using Gaussian quadrature and Kronrod extension)"
+msgstr ""
+
+#: manual/index.md:28
+msgid "**25.01.02**: Quadrature methods implementation (using Gaussian quadrature and Kronrod extension)"
 msgstr ""
 
 #: manual/index.md:29
-msgid "We welcome contributions from the community, external developers, and individual enthusiasts! Whether you want to fix a bug, add a new feature, or improve the documentation, your participation is highly encouraged. To help you contribute smoothly, here are some simple steps:"
+msgid "**24.12.30**: Derivatives and differential functionality implementation (using forward, backward, and central difference methods)"
 msgstr ""
 
 #: manual/index.md:31
-msgid "Please choose a task from the [`TODO.md`](../../TODO.md) file or the current `issue` list that interests you. We recommend selecting something you are interested in or familiar with, as it will make it easier to get started and enjoy the process."
-msgstr ""
-
-#: manual/index.md:32
-msgid "Fork our project and create a new branch in your personal repository. This way, you can start working on your changes without affecting the main project."
+msgid "How to contribute"
 msgstr ""
 
 #: manual/index.md:33
-msgid "During development, please adhere to the coding style and guidelines in the [contribution guidelines](contributing.md). If your changes involve new features or bug fixes, please make sure to perform thorough testing to ensure everything works as expected."
-msgstr ""
-
-#: manual/index.md:34
-msgid "Once you're done, submit your PR and provide a clear description of your changes to help us understand the modifications you've made. This will help us review and merge your code more quickly."
+msgid "We welcome contributions from the community, external developers, and individual enthusiasts! Whether you want to fix a bug, add a new feature, or improve the documentation, your participation is highly encouraged. To help you contribute smoothly, here are some simple steps:"
 msgstr ""
 
 #: manual/index.md:35
-msgid "We will review your PR and may suggest improvements to ensure code quality. After approval, your contributions will be merged into the main branch."
+msgid "Please choose a task from the [`TODO.md`](../../TODO.md) file or the current `issue` list that interests you. We recommend selecting something you are interested in or familiar with, as it will make it easier to get started and enjoy the process."
+msgstr ""
+
+#: manual/index.md:36
+msgid "Fork our project and create a new branch in your personal repository. This way, you can start working on your changes without affecting the main project."
 msgstr ""
 
 #: manual/index.md:37
+msgid "During development, please adhere to the coding style and guidelines in the [contribution guidelines](contributing.md). If your changes involve new features or bug fixes, please make sure to perform thorough testing to ensure everything works as expected."
+msgstr ""
+
+#: manual/index.md:38
+msgid "Once you're done, submit your PR and provide a clear description of your changes to help us understand the modifications you've made. This will help us review and merge your code more quickly."
+msgstr ""
+
+#: manual/index.md:39
+msgid "We will review your PR and may suggest improvements to ensure code quality. After approval, your contributions will be merged into the main branch."
+msgstr ""
+
+#: manual/index.md:41
 msgid "Thank you again for your participation and contributions! Every effort helps make this project better. We look forward to seeing your great code!"
 msgstr ""

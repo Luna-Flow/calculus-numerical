@@ -517,6 +517,502 @@ msgstr "其自然对数"
 msgid "For example, `machine_sqrt_dbl_epsilon` is $\\sqrt{\\varepsilon} \\approx 1.49 \\cdot 10^{-8}$ and `machine_log_dbl_max` is $\\ln(\\text{dbl\\_max}) \\approx 709.78$. The rounded `eps` values are `machine_sqrt_eps` ($3.2 \\cdot 10^{-8}$), `machine_root_3_eps` ($10^{-5}$), `machine_root_4_eps` ($1.78 \\cdot 10^{-4}$), `machine_root_5_eps` ($10^{-3}$), `machine_root_6_eps` ($3.16 \\cdot 10^{-3}$) and `machine_log_eps` ($-34.54$)."
 msgstr "例如，`machine_sqrt_dbl_epsilon` 为 $\\sqrt{\\varepsilon} \\approx 1.49 \\cdot 10^{-8}$，`machine_log_dbl_max` 为 $\\ln(\\text{dbl\\_max}) \\approx 709.78$。取整后的 `eps` 值为 `machine_sqrt_eps`（$3.2 \\cdot 10^{-8}$）、`machine_root_3_eps`（$10^{-5}$）、`machine_root_4_eps`（$1.78 \\cdot 10^{-4}$）、`machine_root_5_eps`（$10^{-3}$）、`machine_root_6_eps`（$3.16 \\cdot 10^{-3}$）和 `machine_log_eps`（$-34.54$）。"
 
+#: manual/architecture_rfc.md:1
+msgid "RFC 0001: Luna-Flow numerical calculus foundation architecture"
+msgstr "RFC 0001：Luna-Flow 数值微积分基础架构"
+
+#: manual/architecture_rfc.md:3
+msgid "Status: experimental validation"
+msgstr "状态：实验验证"
+
+#: manual/architecture_rfc.md:4
+msgid "Target version: next major version"
+msgstr "目标版本：下一主版本"
+
+#: manual/architecture_rfc.md:5
+msgid "Scope: architecture, algorithm selection and API feasibility; does not replace the current production implementation"
+msgstr "范围：架构、算法选型与 API 可行性，不替换当前生产实现"
+
+#: manual/architecture_rfc.md:7
+msgid "1. Decision summary"
+msgstr "1. 决策摘要"
+
+#: manual/architecture_rfc.md:9
+msgid "The next-generation `calculus-numerical` no longer takes GSL's `Double` API and implementation structure as its blueprint. Instead, it is built on Luna-Flow's algebraic traits, checked arithmetic and explicit numerical contexts."
+msgstr "下一代 `calculus-numerical` 不再以 GSL 的 `Double` API 和实现结构为蓝本，而是建立在 Luna-Flow 的代数 trait、checked arithmetic 与显式数值上下文之上。"
+
+#: manual/architecture_rfc.md:11
+msgid "When the migration is carried out, the current `basic`, `deriv`, `diff` and `integration` APIs move into `legacy/*` and keep a compatibility period of one major version."
+msgstr "当前 `basic`、`deriv`、`diff`、`integration` API 在正式迁移时进入 `legacy/*`，保留一个主版本兼容期。"
+
+#: manual/architecture_rfc.md:12
+msgid "In its first phase the new API supports only same-type scalar functions `(T) -> T`. The coordinate type, the return type and the error scalar are not separated for now."
+msgstr "新 API 第一阶段只支持同类型标量函数 `(T) -> T`。坐标类型、返回值类型和误差标量暂不分离。"
+
+#: manual/architecture_rfc.md:13
+msgid "`Double` and `Float` use fast context-free implementations; `Decimal` and `BinFloat` use explicit context adapters."
+msgstr "`Double`、`Float` 使用无上下文快速实现；`Decimal`、`BinFloat` 使用显式 context adapter。"
+
+#: manual/architecture_rfc.md:14
+msgid "Full entry points must take a context, tolerances and resource limits; convenience entry points may use a documented default context. The default for Decimal is Decimal128."
+msgstr "完整入口必须接收 context、容差和资源限制；便捷入口可以使用有文档的默认 context。Decimal 的默认值为 Decimal128。"
+
+#: manual/architecture_rfc.md:15
+msgid "Numerical algorithms return named results and diagnostics instead of tuples whose meaning is opaque."
+msgstr "数值算法返回命名结果和诊断信息，不再返回含义不透明的多元组。"
+
+#: manual/architecture_rfc.md:16
+msgid "`estimated_error` denotes an empirical error estimate. Only implementations based on interval arithmetic or BallFloat may return a `certified_bound`."
+msgstr "`estimated_error` 表示经验误差估计。只有基于区间数或 BallFloat 的实现才能返回 `certified_bound`。"
+
+#: manual/architecture_rfc.md:18
+msgid "2. Standards and independent implementation"
+msgstr "2. 标准与独立实现原则"
+
+#: manual/architecture_rfc.md:20
+msgid "2.1 Numerical semantics"
+msgstr "2.1 数值语义"
+
+#: manual/architecture_rfc.md:22
+msgid "Classification, rounding and special values of binary and decimal floating point follow IEEE 754-2019."
+msgstr "二进制与十进制浮点分类、舍入和特殊值以 IEEE 754-2019 为准。"
+
+#: manual/architecture_rfc.md:23
+msgid "Decimal context, flags, cohort and exception semantics follow the General Decimal Arithmetic specification and the decNumber test specification."
+msgstr "Decimal 的 context、flags、cohort 和异常语义以 General Decimal Arithmetic 与 decNumber 测试规范为准。"
+
+#: manual/architecture_rfc.md:24
+msgid "Arbitrary-precision reference values are generated with MPFR or Arb; no particular machine `Double` implementation is taken as the standard of correctness."
+msgstr "任意精度参考值由 MPFR 或 Arb 生成；不以某个机器 `Double` 实现作为正确性标准。"
+
+#: manual/architecture_rfc.md:26
+msgid "2.2 Algorithm sources"
+msgstr "2.2 算法资料"
+
+#: manual/architecture_rfc.md:28
+msgid "Implementations are based on papers and published algorithm descriptions; mature libraries are consulted only to cross-check interfaces and behavior:"
+msgstr "实现以论文和公开算法描述为依据，参考成熟库仅用于交叉验证接口与行为："
+
+#: manual/architecture_rfc.md:30
+msgid "Area"
+msgstr "领域"
+
+#: manual/architecture_rfc.md:30
+msgid "First-phase candidate"
+msgstr "第一阶段候选"
+
+#: manual/architecture_rfc.md:30
+msgid "Primary basis"
+msgstr "主要依据"
+
+#: manual/architecture_rfc.md:30
+msgid "Reason for the choice"
+msgstr "选择原因"
+
+#: manual/architecture_rfc.md:32
+msgid "Numerical derivatives"
+msgstr "数值导数"
+
+#: manual/architecture_rfc.md:32
+msgid "Fornberg weights"
+msgstr "Fornberg 权重"
+
+#: manual/architecture_rfc.md:32
+msgid "Fornberg, 1988/1998"
+msgstr "Fornberg, 1988/1998"
+
+#: manual/architecture_rfc.md:32
+msgid "Arbitrary nodes and derivative orders, without hand-written stencil magic numbers"
+msgstr "任意节点、任意导数阶，避免手写 stencil 魔数"
+
+#: manual/architecture_rfc.md:33
+msgid "Adaptive derivatives"
+msgstr "自适应导数"
+
+#: manual/architecture_rfc.md:33
+msgid "Richardson/Ridders"
+msgstr "Richardson/Ridders"
+
+#: manual/architecture_rfc.md:33
+msgid "Richardson extrapolation and Ridders' method"
+msgstr "Richardson 外推与 Ridders 方法"
+
+#: manual/architecture_rfc.md:33
+msgid "Explainable step-size sequence and error estimate"
+msgstr "可解释的步长序列与误差估计"
+
+#: manual/architecture_rfc.md:34
+msgid "Fixed quadrature"
+msgstr "固定求积"
+
+#: manual/architecture_rfc.md:34
+msgid "Gauss–Kronrod 15/21"
+msgstr "Gauss–Kronrod 15/21"
+
+#: manual/architecture_rfc.md:34
+msgid "Gauss–Kronrod rules and the QUADPACK literature"
+msgstr "Gauss–Kronrod 规则与 QUADPACK 文献"
+
+#: manual/architecture_rfc.md:34
+msgid "One sampling pass also yields a nested error estimate"
+msgstr "单次采样同时给出嵌套误差估计"
+
+#: manual/architecture_rfc.md:35
+msgid "Adaptive integration"
+msgstr "自适应积分"
+
+#: manual/architecture_rfc.md:35
+msgid "Subdivide the interval with the largest error first"
+msgstr "最大误差区间优先细分"
+
+#: manual/architecture_rfc.md:35
+msgid "QUADPACK algorithm descriptions"
+msgstr "QUADPACK 算法说明"
+
+#: manual/architecture_rfc.md:35
+msgid "Mature workspace and stopping strategy"
+msgstr "成熟的工作区与停止策略"
+
+#: manual/architecture_rfc.md:36
+msgid "High-precision integration"
+msgstr "高精度积分"
+
+#: manual/architecture_rfc.md:36
+msgid "Tanh–Sinh"
+msgstr "Tanh–Sinh"
+
+#: manual/architecture_rfc.md:36
+msgid "Takahasi–Mori double exponential formulas"
+msgstr "Takahasi–Mori 双指数公式"
+
+#: manual/architecture_rfc.md:36
+msgid "Suited to endpoint singularities and high-precision Decimal"
+msgstr "适合端点奇异和高精度 Decimal"
+
+#: manual/architecture_rfc.md:37
+msgid "Integration of smooth functions"
+msgstr "光滑函数积分"
+
+#: manual/architecture_rfc.md:37
+msgid "Clenshaw–Curtis"
+msgstr "Clenshaw–Curtis"
+
+#: manual/architecture_rfc.md:37
+msgid "Chebyshev expansion literature"
+msgstr "Chebyshev 展开文献"
+
+#: manual/architecture_rfc.md:37
+msgid "Reuses samples and extends naturally to high precision"
+msgstr "可复用采样并自然扩展高精度"
+
+#: manual/architecture_rfc.md:38
+msgid "Finite sums"
+msgstr "有限求和"
+
+#: manual/architecture_rfc.md:38
+msgid "pairwise, Kahan, Neumaier"
+msgstr "pairwise、Kahan、Neumaier"
+
+#: manual/architecture_rfc.md:38
+msgid "Floating-point error analysis literature"
+msgstr "浮点误差分析文献"
+
+#: manual/architecture_rfc.md:38
+msgid "Offers tiers of performance and stability"
+msgstr "提供性能与稳定性分层"
+
+#: manual/architecture_rfc.md:39
+msgid "Infinite series"
+msgstr "无限级数"
+
+#: manual/architecture_rfc.md:39
+msgid "Wynn epsilon, Euler transform"
+msgstr "Wynn epsilon、Euler 变换"
+
+#: manual/architecture_rfc.md:39
+msgid "Convergence acceleration literature"
+msgstr "收敛加速文献"
+
+#: manual/architecture_rfc.md:39
+msgid "Covers common alternating and slowly converging cases"
+msgstr "覆盖交错与慢收敛常见场景"
+
+#: manual/architecture_rfc.md:40
+msgid "Power series"
+msgstr "幂级数"
+
+#: manual/architecture_rfc.md:40
+msgid "Truncated coefficient algebra"
+msgstr "截断系数代数"
+
+#: manual/architecture_rfc.md:40
+msgid "Standard formal power series algorithms"
+msgstr "形式幂级数标准算法"
+
+#: manual/architecture_rfc.md:40
+msgid "Supports evaluation, differentiation, integration and basic composition"
+msgstr "支持求值、导数、积分和组合基础"
+
+#: manual/architecture_rfc.md:42
+msgid "GSL is GPL software. This project may compare its public behavior and the papers it cites, but must not copy, translate or structurally rewrite its source code."
+msgstr "GSL 是 GPL 软件。本项目可以比较其公开行为和论文出处，但不得复制、翻译或结构性改写其源代码。"
+
+#: manual/architecture_rfc.md:44
+msgid "3. Dependency boundaries"
+msgstr "3. 依赖边界"
+
+#: manual/architecture_rfc.md:46
+msgid "Dependencies must stay one-way:"
+msgstr "依赖必须保持单向："
+
+#: manual/architecture_rfc.md:56
+msgid "This phase does not modify `arithmetic` or `floating`. Ordinary algebraic operations compose the existing traits directly; inside calculus, minimal providers are used only for capabilities that are missing and depend on a context. Once validation has stabilized, a separate RFC will move the general `next_up`, numerical-format and context capabilities up into `arithmetic`, and `floating` will implement the Decimal/BinFloat instances."
+msgstr "本阶段不修改 `arithmetic` 与 `floating`。普通代数运算直接组合现有 trait；calculus 内部只为缺失且依赖 context 的能力使用极小 provider。验证稳定后，再提交独立 RFC 将通用的 `next_up`、数值格式和 context 能力上移到 `arithmetic`，并由 `floating` 实现 Decimal/BinFloat 实例。"
+
+#: manual/architecture_rfc.md:58
+msgid "`floating` must not depend on calculus. The context capabilities of the existing Decimal types are provided by provider values owned by calculus; non-context capabilities such as addition, subtraction, multiplication, division, comparison, zero and one continue to use trait composition."
+msgstr "不得让 `floating` 依赖 calculus。现有 Decimal 类型的 context 能力由 calculus 拥有的 provider 值完成；加减乘除、比较、零、一等非 context 能力继续使用 trait composition。"
+
+#: manual/architecture_rfc.md:60
+msgid "4. Type system decisions"
+msgstr "4. 类型系统决策"
+
+#: manual/architecture_rfc.md:62
+msgid "4.1 A single scalar and value type in the first phase"
+msgstr "4.1 第一阶段统一标量和值域"
+
+#: manual/architecture_rfc.md:64
+msgid "Stable entry points use `(T) -> T`. The current MoonBit/Luna-Flow ecosystem has no mature public capability that expresses the following relations:"
+msgstr "稳定入口采用 `(T) -> T`。当前 MoonBit/Luna-Flow 生态没有成熟表达以下关系的公共能力："
+
+#: manual/architecture_rfc.md:72
+msgid "Vector scaling in `linear-algebra` currently uses the same element type as well. A public three-type `S/V/E` API would force callers to pass large function tables and could introduce indirect calls into integration hot paths. Integration over vectors, matrices and heterogeneous value types is therefore deferred to a separate RFC."
+msgstr "`linear-algebra` 当前的向量缩放也使用相同元素类型。公开 `S/V/E` 三类型 API 会迫使调用者传递大块函数表，并可能在积分热点中引入间接调用。因此向量、矩阵和异构值域积分推迟到独立 RFC。"
+
+#: manual/architecture_rfc.md:74
+msgid "4.2 Trait composition plus minimal providers"
+msgstr "4.2 Trait composition 加最小 provider"
+
+#: manual/architecture_rfc.md:76
+msgid "No `RealNumber` trait bundling all elementary functions is added, and existing trait operations are not rewrapped into function tables. Algorithms take the minimal capabilities they need through trait composition:"
+msgstr "不新增包含全部初等函数的 `RealNumber` trait，也不把已有 trait 运算重新包装进函数表。算法通过 trait composition 接收自己需要的最小能力："
+
+#: manual/architecture_rfc.md:78
+msgid "Core scalars: compose existing traits such as `Zero`, `One`, `IntegralHomomorphism`, `Add`, `Sub`, `Mul`, `Div` and `Compare` directly."
+msgstr "核心标量：直接组合 `Zero`、`One`、`IntegralHomomorphism`、`Add`、`Sub`、`Mul`、`Div`、`Compare` 等已有 trait。"
+
+#: manual/architecture_rfc.md:79
+msgid "Numerical format: epsilon, adjacent values, minimum normal, maximum finite, value classification."
+msgstr "数值格式：epsilon、相邻值、最小 normal、最大 finite、值分类。"
+
+#: manual/architecture_rfc.md:80
+msgid "Optional capabilities: context-aware `sqrt`, integer powers and parsing."
+msgstr "可选能力：context-aware `sqrt`、整数幂和解析。"
+
+#: manual/architecture_rfc.md:82
+msgid "Only context-dependent operations that existing traits cannot express correctly use a minimal provider, for example a context one of type `(Context) -> T` and a next-up of type `(T, Context) -> T`. Once stable, these capabilities move up into `arithmetic`."
+msgstr "只有无法由现有 trait 正确表达的 context-dependent 操作使用极小 provider，例如 `(Context) -> T` 的 context one 和 `(T, Context) -> T` 的 next-up。稳定后这些能力再上移到 `arithmetic`。"
+
+#: manual/architecture_rfc.md:84
+msgid "4.3 Context and epsilon"
+msgstr "4.3 Context 与 epsilon"
+
+#: manual/architecture_rfc.md:86
+msgid "The format constants of `Float` and `Double` are determined by the type. The epsilon and range of Decimal are determined jointly by the precision, the exponent range and the rounding context, so a parameterless Decimal `epsilon()` must not be provided."
+msgstr "`Float` 和 `Double` 的格式常量由类型决定。Decimal 的 epsilon 和范围由 precision、指数范围及舍入上下文共同决定，因此不得提供无参数的 Decimal `epsilon()`。"
+
+#: manual/architecture_rfc.md:88
+msgid "The working epsilon of Decimal is defined as:"
+msgstr "Decimal 的工作 epsilon 定义为："
+
+#: manual/architecture_rfc.md:94
+msgid "An algorithm entry point builds a derived environment once and caches epsilon, sqrt(epsilon) and commonly used coefficients. Hot loops must not repeatedly construct contexts, convert rule tables or compute format constants."
+msgstr "算法入口构造一次派生环境，缓存 epsilon、sqrt(epsilon) 与常用系数。热点循环不得反复构造 context、转换规则表或计算格式常量。"
+
+#: manual/architecture_rfc.md:96
+msgid "5. Draft packages and public API"
+msgstr "5. 包与公开 API 草案"
+
+#: manual/architecture_rfc.md:107
+msgid "Suggested result shapes:"
+msgstr "建议结果形状："
+
+#: manual/architecture_rfc.md:126
+msgid "`NumericalStatus` distinguishes at least completion, resource exhaustion, invalid tolerance, rounding stagnation, suspected singularity, non-finite input/output and context arithmetic failure. Low-level Decimal flags should be aggregated into the diagnostics rather than compressed into a single integer error code."
+msgstr "`NumericalStatus` 至少区分完成、资源耗尽、无效容差、舍入停滞、疑似奇点、非有限输入/输出和 context arithmetic failure。底层 Decimal flags 应聚合到 diagnostics，而不是压缩成单个整数错误码。"
+
+#: manual/architecture_rfc.md:128
+msgid "6. Algorithm boundaries"
+msgstr "6. 算法边界"
+
+#: manual/architecture_rfc.md:130
+msgid "6.1 Derivatives"
+msgstr "6.1 导数"
+
+#: manual/architecture_rfc.md:132
+msgid "The rule layer generates Fornberg weights from the nodes and the derivative order; rule objects can be cached."
+msgstr "规则层根据节点和导数阶生成 Fornberg 权重，规则对象可缓存。"
+
+#: manual/architecture_rfc.md:133
+msgid "The execution layer is only responsible for sampling and weighting."
+msgstr "执行层只负责采样和加权。"
+
+#: manual/architecture_rfc.md:134
+msgid "The control layer adjusts the step size with Richardson/Ridders and reports truncation and rounding errors."
+msgstr "控制层使用 Richardson/Ridders 调整步长并报告截断与舍入误差。"
+
+#: manual/architecture_rfc.md:135
+msgid "`autodiff` stays independent; calculus only provides an optional bridge and guidance on choosing an algorithm, and does not reimplement dual numbers."
+msgstr "`autodiff` 保持独立；calculus 只提供可选 bridge 和算法选择说明，不重复实现 dual number。"
+
+#: manual/architecture_rfc.md:137
+msgid "6.2 Integration"
+msgstr "6.2 积分"
+
+#: manual/architecture_rfc.md:139
+msgid "`QuadratureRule[T]` stores nodes, Gauss weights and extension weights, each with a documented source."
+msgstr "`QuadratureRule[T]` 保存有来源的节点、Gauss 权重和扩展权重。"
+
+#: manual/architecture_rfc.md:140
+msgid "Fixed rules are separate from the adaptive controller; the controller does not know where the rule coefficients come from."
+msgstr "固定规则与自适应 controller 分离；controller 不知道规则系数来源。"
+
+#: manual/architecture_rfc.md:141
+msgid "The adaptive workspace allows local mutation but exposes no mutable state."
+msgstr "自适应工作区允许局部 mutation，但不暴露可变状态。"
+
+#: manual/architecture_rfc.md:142
+msgid "Double/Float rules use concrete static tables; Decimal/BinFloat rules are converted once for the context at the entry point and cached for that call."
+msgstr "Double/Float 规则使用具体静态表；Decimal/BinFloat 规则在入口按 context 转换一次并缓存于本次调用。"
+
+#: manual/architecture_rfc.md:143
+msgid "Tanh–Sinh does not depend on fixed-precision tables and is the preferred complement for high-precision and endpoint-singular cases."
+msgstr "Tanh–Sinh 不依赖固定精度表，作为高精度和端点奇异场景的首选补充。"
+
+#: manual/architecture_rfc.md:145
+msgid "6.3 Series"
+msgstr "6.3 级数"
+
+#: manual/architecture_rfc.md:147
+msgid "Finite sequences provide naive, pairwise and Kahan/Neumaier summation, so that no single `sum` implicitly chooses the cost of precision."
+msgstr "有限序列提供 naive、pairwise、Kahan/Neumaier，不让一个 `sum` 隐式选择精度成本。"
+
+#: manual/architecture_rfc.md:148
+msgid "Infinite series must be given an explicit tolerance and maximum number of terms, and return the number of terms used and the reason for termination."
+msgstr "无限级数必须显式给出容差与最大项数，并返回使用项数与终止原因。"
+
+#: manual/architecture_rfc.md:149
+msgid "Convergence acceleration is a composable strategy and is not mixed into sequence generators."
+msgstr "收敛加速作为可组合策略，不混入序列生成器。"
+
+#: manual/architecture_rfc.md:150
+msgid "`PowerSeries[T]` stores its truncation order explicitly; conversion to and from `luna-poly` is an explicit adapter, and a truncated series is not treated as an ordinary polynomial."
+msgstr "`PowerSeries[T]` 明确保存截断阶；与 `luna-poly` 的转换是显式 adapter，不把截断级数等同于普通多项式。"
+
+#: manual/architecture_rfc.md:152
+msgid "7. Legacy migration"
+msgstr "7. Legacy 迁移"
+
+#: manual/architecture_rfc.md:154
+msgid "The migration proper spans two releases:"
+msgstr "正式迁移分两个版本："
+
+#: manual/architecture_rfc.md:156
+msgid "When the new packages are released, the old entry points forward to `legacy/*`, and the documentation marks them deprecated and provides an item-by-item migration table."
+msgstr "新包发布时，旧入口转发到 `legacy/*`，文档标记弃用并提供逐项迁移表。"
+
+#: manual/architecture_rfc.md:157
+msgid "The next major version removes legacy; serious correctness issues are still fixed, but legacy receives no new algorithms or numeric types."
+msgstr "下一个主版本删除 legacy；严重正确性问题仍修复，但 legacy 不再新增算法或数值类型。"
+
+#: manual/architecture_rfc.md:159
+msgid "During this RFC phase no existing files are moved, to avoid creating compatibility changes before the new API has been validated."
+msgstr "本 RFC 阶段不移动现有文件，避免在新 API 尚未验证前制造兼容性变化。"
+
+#: manual/architecture_rfc.md:161
+msgid "8. Validation gates"
+msgstr "8. 验证门槛"
+
+#: manual/architecture_rfc.md:163
+msgid "Each area first delivers one Double/Decimal vertical slice before the number of algorithms is expanded."
+msgstr "每个领域先交付一个 Double/Decimal 纵向切片，再扩展算法数量。"
+
+#: manual/architecture_rfc.md:164
+msgid "The target overhead of the Double adapter prototype relative to a direct implementation is at most 15%; hot loops must not allocate per item."
+msgstr "Double adapter 原型相对直接实现的目标开销不超过 15%，热点循环不得逐项分配。"
+
+#: manual/architecture_rfc.md:165
+msgid "Decimal uses one explicit context throughout; tests must cover inexact, rounded, underflow, overflow and invalid operation."
+msgstr "Decimal 全程使用同一个显式 context；测试必须覆盖 inexact、rounded、underflow、overflow 和 invalid operation。"
+
+#: manual/architecture_rfc.md:166
+msgid "Analytic functions, hard functions and high-precision oracles are tested in separate layers; the actual error and the reported error are recorded separately."
+msgstr "解析函数、困难函数与高精度 oracle 分层测试；实际误差与报告误差分别记录。"
+
+#: manual/architecture_rfc.md:167
+msgid "Property tests cover linearity, interval reversal, constant functions, scaling relations, tolerance monotonicity and series truncation consistency."
+msgstr "性质测试覆盖线性、区间反转、常数函数、缩放关系、容差单调性和级数截断一致性。"
+
+#: manual/architecture_rfc.md:169
+msgid "9. Follow-up RFCs"
+msgstr "9. 后续 RFC"
+
+#: manual/architecture_rfc.md:171
+msgid "Move the stable numerical-format capabilities up into `arithmetic`."
+msgstr "将稳定的数值格式能力上移到 `arithmetic`。"
+
+#: manual/architecture_rfc.md:172
+msgid "Separation of scalar and value types, and integration over vectors, matrices and complex numbers."
+msgstr "标量和值域分离及向量/矩阵/复数积分。"
+
+#: manual/architecture_rfc.md:173
+msgid "Certified integration with BallFloat/interval arithmetic."
+msgstr "BallFloat/区间数的 certified integration。"
+
+#: manual/architecture_rfc.md:174
+msgid "Fourier series and the boundary with the FFT ecosystem."
+msgstr "Fourier 级数与 FFT 生态边界。"
+
+#: manual/architecture_rfc.md:175
+msgid "ODE/PDE solvers; these are outside this foundational phase."
+msgstr "ODE/PDE 求解器；不属于本基础能力阶段。"
+
+#: manual/architecture_rfc.md:177
+msgid "References"
+msgstr "参考资料"
+
+#: manual/architecture_rfc.md:179
+msgid "B. Fornberg, “Generation of Finite Difference Formulas on Arbitrarily Spaced Grids”, 1988."
+msgstr "B. Fornberg, “Generation of Finite Difference Formulas on Arbitrarily Spaced Grids”, 1988."
+
+#: manual/architecture_rfc.md:180
+msgid "B. Fornberg, “Calculation of Weights in Finite Difference Formulas”, 1998."
+msgstr "B. Fornberg, “Calculation of Weights in Finite Difference Formulas”, 1998."
+
+#: manual/architecture_rfc.md:181
+msgid "R. Piessens et al., *QUADPACK: A Subroutine Package for Automatic Integration*, 1983."
+msgstr "R. Piessens et al., *QUADPACK: A Subroutine Package for Automatic Integration*, 1983."
+
+#: manual/architecture_rfc.md:182
+msgid "H. Takahasi and M. Mori, “Double Exponential Formulas for Numerical Integration”, 1974."
+msgstr "H. Takahasi and M. Mori, “Double Exponential Formulas for Numerical Integration”, 1974."
+
+#: manual/architecture_rfc.md:183
+msgid "L. N. Trefethen, “Is Gauss Quadrature Better than Clenshaw–Curtis?”, 2008."
+msgstr "L. N. Trefethen, “Is Gauss Quadrature Better than Clenshaw–Curtis?”, 2008."
+
+#: manual/architecture_rfc.md:184
+msgid "P. Wynn, “On a Device for Computing the e_m(S_n) Transformation”, 1956."
+msgstr "P. Wynn, “On a Device for Computing the e_m(S_n) Transformation”, 1956."
+
+#: manual/architecture_rfc.md:185
+msgid "IEEE 754-2019, *Standard for Floating-Point Arithmetic*."
+msgstr "IEEE 754-2019, *Standard for Floating-Point Arithmetic*."
+
+#: manual/architecture_rfc.md:186
+msgid "General Decimal Arithmetic Specification and decNumber test suite."
+msgstr "General Decimal Arithmetic Specification and decNumber test suite."
+
 #: manual/contributing.md:1
 msgid "Contribution guidelines"
 msgstr "贡献规范"
@@ -812,54 +1308,62 @@ msgid "Machine constants used by the other packages."
 msgstr "供其他包使用的机器常量。"
 
 #: manual/index.md:19
+msgid "Guides"
+msgstr "指南"
+
+#: manual/index.md:21
+msgid "[Architecture RFC](architecture_rfc.md): the next-generation architecture under research, an independent, trait-compatible numerical foundation with explicit floating-point contexts and first-class Decimal support."
+msgstr "[架构 RFC](architecture_rfc.md)：正在研究的下一代架构，即一个独立的、与 trait 兼容的数值基础，具备显式浮点上下文和一等的 Decimal 支持。"
+
+#: manual/index.md:23
 msgid "Feature list"
 msgstr "功能列表"
 
-#: manual/index.md:21
+#: manual/index.md:25
 msgid "**[Latest]** 25.01.31: Non-adaptive integration implementation (using Gaussian quadrature and Kronrod extension)"
 msgstr "**[最新]** 25.01.31: 非自适应积分实现（使用高斯求积法及 Kronrod 扩展）"
 
-#: manual/index.md:23
+#: manual/index.md:27
 msgid "**25.01.13**: Adaptive integration implementation (using Gaussian quadrature and Kronrod extension)"
 msgstr "**25.01.13**: 自适应积分实现（使用高斯求积法及 Kronrod 扩展）"
 
-#: manual/index.md:24
+#: manual/index.md:28
 msgid "**25.01.02**: Quadrature methods implementation (using Gaussian quadrature and Kronrod extension)"
 msgstr "**25.01.02**: 求积法实现（使用高斯求积法及 Kronrod 扩展）"
 
-#: manual/index.md:25
+#: manual/index.md:29
 msgid "**24.12.30**: Derivatives and differential functionality implementation (using forward, backward, and central difference methods)"
 msgstr "**24.12.30**: 导数与微分功能实现（使用前向、后向及中心差分法）"
 
-#: manual/index.md:27
+#: manual/index.md:31
 msgid "How to contribute"
 msgstr "如何参与贡献"
 
-#: manual/index.md:29
+#: manual/index.md:33
 msgid "We welcome contributions from the community, external developers, and individual enthusiasts! Whether you want to fix a bug, add a new feature, or improve the documentation, your participation is highly encouraged. To help you contribute smoothly, here are some simple steps:"
 msgstr "我们非常欢迎社区、外部开发者以及个人爱好者的贡献！无论你是想解决某个 bug、增加新功能，还是改进文档，都非常欢迎你的参与。为了帮助你顺利贡献，以下是一些简单的步骤："
 
-#: manual/index.md:31
+#: manual/index.md:35
 msgid "Please choose a task from the [`TODO.md`](../../TODO.md) file or the current `issue` list that interests you. We recommend selecting something you are interested in or familiar with, as it will make it easier to get started and enjoy the process."
 msgstr "请从 [`TODO.md`](../../TODO.md) 文件或者当前的`issue`列表中挑选一个你感兴趣的任务。我们建议选择自己有兴趣或熟悉的内容，这样你会更容易上手，也能享受其中的过程。"
 
-#: manual/index.md:32
+#: manual/index.md:36
 msgid "Fork our project and create a new branch in your personal repository. This way, you can start working on your changes without affecting the main project."
 msgstr "Fork 我们的项目，并在你的个人仓库中创建一个新的分支。这样，你就可以在自己的分支上开始进行开发工作，而不会影响到主项目的进展。"
 
-#: manual/index.md:33
+#: manual/index.md:37
 msgid "During development, please adhere to the coding style and guidelines in the [contribution guidelines](contributing.md). If your changes involve new features or bug fixes, please make sure to perform thorough testing to ensure everything works as expected."
 msgstr "在编写代码过程中，请尽量遵循[贡献指南](contributing.md)中的代码风格和规范。如果你的修改涉及到新功能或修复 bug，请确保进行充分的测试，确保一切正常运行。"
 
-#: manual/index.md:34
+#: manual/index.md:38
 msgid "Once you're done, submit your PR and provide a clear description of your changes to help us understand the modifications you've made. This will help us review and merge your code more quickly."
 msgstr "完成后，请提交你的 PR，并在提交时提供一个清晰的描述，帮助我们了解你所做的更改。这样有助于更快地进行代码审查和合并。"
 
-#: manual/index.md:35
+#: manual/index.md:39
 msgid "We will review your PR and may suggest improvements to ensure code quality. After approval, your contributions will be merged into the main branch."
 msgstr "我们会对你的 PR 进行审查，并可能会提出一些改进意见，这只是为了确保代码质量。待审查通过后，我们会将你的贡献合并到主分支中。"
 
-#: manual/index.md:37
+#: manual/index.md:41
 msgid "Thank you again for your participation and contributions! Every effort helps make this project better. We look forward to seeing your great code!"
 msgstr "再次感谢你的参与和贡献！每一份努力都能让这个项目变得更好。我们期待看到你的精彩代码！"
 

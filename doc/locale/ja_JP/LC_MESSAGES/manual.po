@@ -509,6 +509,502 @@ msgstr "その自然対数"
 msgid "For example, `machine_sqrt_dbl_epsilon` is $\\sqrt{\\varepsilon} \\approx 1.49 \\cdot 10^{-8}$ and `machine_log_dbl_max` is $\\ln(\\text{dbl\\_max}) \\approx 709.78$. The rounded `eps` values are `machine_sqrt_eps` ($3.2 \\cdot 10^{-8}$), `machine_root_3_eps` ($10^{-5}$), `machine_root_4_eps` ($1.78 \\cdot 10^{-4}$), `machine_root_5_eps` ($10^{-3}$), `machine_root_6_eps` ($3.16 \\cdot 10^{-3}$) and `machine_log_eps` ($-34.54$)."
 msgstr "例えば `machine_sqrt_dbl_epsilon` は $\\sqrt{\\varepsilon} \\approx 1.49 \\cdot 10^{-8}$、`machine_log_dbl_max` は $\\ln(\\text{dbl\\_max}) \\approx 709.78$ です。丸められた `eps` の値は `machine_sqrt_eps`（$3.2 \\cdot 10^{-8}$）、`machine_root_3_eps`（$10^{-5}$）、`machine_root_4_eps`（$1.78 \\cdot 10^{-4}$）、`machine_root_5_eps`（$10^{-3}$）、`machine_root_6_eps`（$3.16 \\cdot 10^{-3}$）、`machine_log_eps`（$-34.54$）です。"
 
+#: manual/architecture_rfc.md:1
+msgid "RFC 0001: Luna-Flow numerical calculus foundation architecture"
+msgstr "RFC 0001：Luna-Flow 数値微積分の基盤アーキテクチャ"
+
+#: manual/architecture_rfc.md:3
+msgid "Status: experimental validation"
+msgstr "ステータス：実験的検証"
+
+#: manual/architecture_rfc.md:4
+msgid "Target version: next major version"
+msgstr "対象バージョン：次期メジャーバージョン"
+
+#: manual/architecture_rfc.md:5
+msgid "Scope: architecture, algorithm selection and API feasibility; does not replace the current production implementation"
+msgstr "範囲：アーキテクチャ、アルゴリズムの選定、API の実現可能性。現行の本番実装は置き換えない"
+
+#: manual/architecture_rfc.md:7
+msgid "1. Decision summary"
+msgstr "1. 決定の要約"
+
+#: manual/architecture_rfc.md:9
+msgid "The next-generation `calculus-numerical` no longer takes GSL's `Double` API and implementation structure as its blueprint. Instead, it is built on Luna-Flow's algebraic traits, checked arithmetic and explicit numerical contexts."
+msgstr "次世代の `calculus-numerical` は、GSL の `Double` API と実装構造を手本とするのをやめ、Luna-Flow の代数トレイト、checked arithmetic、明示的な数値コンテキストの上に構築する。"
+
+#: manual/architecture_rfc.md:11
+msgid "When the migration is carried out, the current `basic`, `deriv`, `diff` and `integration` APIs move into `legacy/*` and keep a compatibility period of one major version."
+msgstr "正式な移行時に、現行の `basic`、`deriv`、`diff`、`integration` API は `legacy/*` に移し、メジャーバージョン 1 つ分の互換期間を設ける。"
+
+#: manual/architecture_rfc.md:12
+msgid "In its first phase the new API supports only same-type scalar functions `(T) -> T`. The coordinate type, the return type and the error scalar are not separated for now."
+msgstr "新 API の第 1 段階では、同一型のスカラー関数 `(T) -> T` のみをサポートする。座標の型、戻り値の型、誤差スカラーは当面分離しない。"
+
+#: manual/architecture_rfc.md:13
+msgid "`Double` and `Float` use fast context-free implementations; `Decimal` and `BinFloat` use explicit context adapters."
+msgstr "`Double`、`Float` はコンテキストなしの高速実装を使い、`Decimal`、`BinFloat` は明示的な context adapter を使う。"
+
+#: manual/architecture_rfc.md:14
+msgid "Full entry points must take a context, tolerances and resource limits; convenience entry points may use a documented default context. The default for Decimal is Decimal128."
+msgstr "完全なエントリポイントはコンテキスト、許容誤差、リソース上限を必ず受け取る。簡便なエントリポイントは文書化されたデフォルトコンテキストを使ってよい。Decimal のデフォルトは Decimal128 とする。"
+
+#: manual/architecture_rfc.md:15
+msgid "Numerical algorithms return named results and diagnostics instead of tuples whose meaning is opaque."
+msgstr "数値アルゴリズムは、意味の不透明な多値タプルではなく、名前付きの結果と診断情報を返す。"
+
+#: manual/architecture_rfc.md:16
+msgid "`estimated_error` denotes an empirical error estimate. Only implementations based on interval arithmetic or BallFloat may return a `certified_bound`."
+msgstr "`estimated_error` は経験的な誤差推定を表す。`certified_bound` を返せるのは、区間演算または BallFloat に基づく実装だけである。"
+
+#: manual/architecture_rfc.md:18
+msgid "2. Standards and independent implementation"
+msgstr "2. 標準と独立実装の原則"
+
+#: manual/architecture_rfc.md:20
+msgid "2.1 Numerical semantics"
+msgstr "2.1 数値セマンティクス"
+
+#: manual/architecture_rfc.md:22
+msgid "Classification, rounding and special values of binary and decimal floating point follow IEEE 754-2019."
+msgstr "2 進および 10 進浮動小数点の分類、丸め、特殊値は IEEE 754-2019 に従う。"
+
+#: manual/architecture_rfc.md:23
+msgid "Decimal context, flags, cohort and exception semantics follow the General Decimal Arithmetic specification and the decNumber test specification."
+msgstr "Decimal のコンテキスト、フラグ、cohort、例外のセマンティクスは General Decimal Arithmetic と decNumber のテスト仕様に従う。"
+
+#: manual/architecture_rfc.md:24
+msgid "Arbitrary-precision reference values are generated with MPFR or Arb; no particular machine `Double` implementation is taken as the standard of correctness."
+msgstr "任意精度の参照値は MPFR または Arb で生成する。特定のマシン `Double` 実装を正しさの基準としない。"
+
+#: manual/architecture_rfc.md:26
+msgid "2.2 Algorithm sources"
+msgstr "2.2 アルゴリズムの資料"
+
+#: manual/architecture_rfc.md:28
+msgid "Implementations are based on papers and published algorithm descriptions; mature libraries are consulted only to cross-check interfaces and behavior:"
+msgstr "実装は論文と公開されたアルゴリズム記述に基づく。成熟したライブラリは、インターフェースと挙動の相互検証にのみ参照する。"
+
+#: manual/architecture_rfc.md:30
+msgid "Area"
+msgstr "分野"
+
+#: manual/architecture_rfc.md:30
+msgid "First-phase candidate"
+msgstr "第 1 段階の候補"
+
+#: manual/architecture_rfc.md:30
+msgid "Primary basis"
+msgstr "主な根拠"
+
+#: manual/architecture_rfc.md:30
+msgid "Reason for the choice"
+msgstr "選定理由"
+
+#: manual/architecture_rfc.md:32
+msgid "Numerical derivatives"
+msgstr "数値微分"
+
+#: manual/architecture_rfc.md:32
+msgid "Fornberg weights"
+msgstr "Fornberg の重み"
+
+#: manual/architecture_rfc.md:32
+msgid "Fornberg, 1988/1998"
+msgstr "Fornberg, 1988/1998"
+
+#: manual/architecture_rfc.md:32
+msgid "Arbitrary nodes and derivative orders, without hand-written stencil magic numbers"
+msgstr "任意の節点・任意の微分階数に対応し、手書きのステンシル定数を避けられる"
+
+#: manual/architecture_rfc.md:33
+msgid "Adaptive derivatives"
+msgstr "適応的微分"
+
+#: manual/architecture_rfc.md:33
+msgid "Richardson/Ridders"
+msgstr "Richardson/Ridders"
+
+#: manual/architecture_rfc.md:33
+msgid "Richardson extrapolation and Ridders' method"
+msgstr "Richardson 補外と Ridders 法"
+
+#: manual/architecture_rfc.md:33
+msgid "Explainable step-size sequence and error estimate"
+msgstr "説明可能なステップ幅の列と誤差推定"
+
+#: manual/architecture_rfc.md:34
+msgid "Fixed quadrature"
+msgstr "固定求積"
+
+#: manual/architecture_rfc.md:34
+msgid "Gauss–Kronrod 15/21"
+msgstr "Gauss–Kronrod 15/21"
+
+#: manual/architecture_rfc.md:34
+msgid "Gauss–Kronrod rules and the QUADPACK literature"
+msgstr "Gauss–Kronrod 則と QUADPACK の文献"
+
+#: manual/architecture_rfc.md:34
+msgid "One sampling pass also yields a nested error estimate"
+msgstr "1 回のサンプリングで入れ子の誤差推定も得られる"
+
+#: manual/architecture_rfc.md:35
+msgid "Adaptive integration"
+msgstr "適応積分"
+
+#: manual/architecture_rfc.md:35
+msgid "Subdivide the interval with the largest error first"
+msgstr "誤差最大の区間を優先して細分"
+
+#: manual/architecture_rfc.md:35
+msgid "QUADPACK algorithm descriptions"
+msgstr "QUADPACK のアルゴリズム解説"
+
+#: manual/architecture_rfc.md:35
+msgid "Mature workspace and stopping strategy"
+msgstr "成熟したワークスペースと停止戦略"
+
+#: manual/architecture_rfc.md:36
+msgid "High-precision integration"
+msgstr "高精度積分"
+
+#: manual/architecture_rfc.md:36
+msgid "Tanh–Sinh"
+msgstr "Tanh–Sinh"
+
+#: manual/architecture_rfc.md:36
+msgid "Takahasi–Mori double exponential formulas"
+msgstr "高橋・森の二重指数関数型公式"
+
+#: manual/architecture_rfc.md:36
+msgid "Suited to endpoint singularities and high-precision Decimal"
+msgstr "端点特異性と高精度 Decimal に適する"
+
+#: manual/architecture_rfc.md:37
+msgid "Integration of smooth functions"
+msgstr "滑らかな関数の積分"
+
+#: manual/architecture_rfc.md:37
+msgid "Clenshaw–Curtis"
+msgstr "Clenshaw–Curtis"
+
+#: manual/architecture_rfc.md:37
+msgid "Chebyshev expansion literature"
+msgstr "Chebyshev 展開の文献"
+
+#: manual/architecture_rfc.md:37
+msgid "Reuses samples and extends naturally to high precision"
+msgstr "サンプルを再利用でき、高精度へ自然に拡張できる"
+
+#: manual/architecture_rfc.md:38
+msgid "Finite sums"
+msgstr "有限和"
+
+#: manual/architecture_rfc.md:38
+msgid "pairwise, Kahan, Neumaier"
+msgstr "pairwise、Kahan、Neumaier"
+
+#: manual/architecture_rfc.md:38
+msgid "Floating-point error analysis literature"
+msgstr "浮動小数点誤差解析の文献"
+
+#: manual/architecture_rfc.md:38
+msgid "Offers tiers of performance and stability"
+msgstr "性能と安定性の段階を提供する"
+
+#: manual/architecture_rfc.md:39
+msgid "Infinite series"
+msgstr "無限級数"
+
+#: manual/architecture_rfc.md:39
+msgid "Wynn epsilon, Euler transform"
+msgstr "Wynn epsilon、Euler 変換"
+
+#: manual/architecture_rfc.md:39
+msgid "Convergence acceleration literature"
+msgstr "収束加速の文献"
+
+#: manual/architecture_rfc.md:39
+msgid "Covers common alternating and slowly converging cases"
+msgstr "交代級数や収束の遅い一般的な場合をカバーする"
+
+#: manual/architecture_rfc.md:40
+msgid "Power series"
+msgstr "べき級数"
+
+#: manual/architecture_rfc.md:40
+msgid "Truncated coefficient algebra"
+msgstr "打ち切り係数の代数"
+
+#: manual/architecture_rfc.md:40
+msgid "Standard formal power series algorithms"
+msgstr "形式的べき級数の標準アルゴリズム"
+
+#: manual/architecture_rfc.md:40
+msgid "Supports evaluation, differentiation, integration and basic composition"
+msgstr "評価、微分、積分、合成の基礎をサポートする"
+
+#: manual/architecture_rfc.md:42
+msgid "GSL is GPL software. This project may compare its public behavior and the papers it cites, but must not copy, translate or structurally rewrite its source code."
+msgstr "GSL は GPL ソフトウェアである。本プロジェクトはその公開された挙動と出典論文を比較してよいが、ソースコードをコピー、翻訳、または構造的に書き換えてはならない。"
+
+#: manual/architecture_rfc.md:44
+msgid "3. Dependency boundaries"
+msgstr "3. 依存関係の境界"
+
+#: manual/architecture_rfc.md:46
+msgid "Dependencies must stay one-way:"
+msgstr "依存関係は一方向に保たなければならない。"
+
+#: manual/architecture_rfc.md:56
+msgid "This phase does not modify `arithmetic` or `floating`. Ordinary algebraic operations compose the existing traits directly; inside calculus, minimal providers are used only for capabilities that are missing and depend on a context. Once validation has stabilized, a separate RFC will move the general `next_up`, numerical-format and context capabilities up into `arithmetic`, and `floating` will implement the Decimal/BinFloat instances."
+msgstr "この段階では `arithmetic` と `floating` を変更しない。通常の代数演算は既存のトレイトを直接組み合わせる。calculus の内部では、欠けていてコンテキストに依存する能力に限って極小の provider を使う。検証が安定した後、別の RFC を提出し、汎用的な `next_up`、数値フォーマット、コンテキストの能力を `arithmetic` に移し、`floating` が Decimal/BinFloat のインスタンスを実装する。"
+
+#: manual/architecture_rfc.md:58
+msgid "`floating` must not depend on calculus. The context capabilities of the existing Decimal types are provided by provider values owned by calculus; non-context capabilities such as addition, subtraction, multiplication, division, comparison, zero and one continue to use trait composition."
+msgstr "`floating` が calculus に依存してはならない。既存の Decimal 型のコンテキスト能力は calculus が所有する provider 値で提供する。四則演算、比較、ゼロ、1 などコンテキストに依存しない能力は引き続きトレイト合成を使う。"
+
+#: manual/architecture_rfc.md:60
+msgid "4. Type system decisions"
+msgstr "4. 型システムの決定"
+
+#: manual/architecture_rfc.md:62
+msgid "4.1 A single scalar and value type in the first phase"
+msgstr "4.1 第 1 段階ではスカラーと値域を統一する"
+
+#: manual/architecture_rfc.md:64
+msgid "Stable entry points use `(T) -> T`. The current MoonBit/Luna-Flow ecosystem has no mature public capability that expresses the following relations:"
+msgstr "安定したエントリポイントは `(T) -> T` を採用する。現在の MoonBit/Luna-Flow エコシステムには、次の関係を表現する成熟した公開能力がない。"
+
+#: manual/architecture_rfc.md:72
+msgid "Vector scaling in `linear-algebra` currently uses the same element type as well. A public three-type `S/V/E` API would force callers to pass large function tables and could introduce indirect calls into integration hot paths. Integration over vectors, matrices and heterogeneous value types is therefore deferred to a separate RFC."
+msgstr "`linear-algebra` の現在のベクトルのスケーリングも同じ要素型を使っている。`S/V/E` の 3 つの型を持つ API を公開すると、呼び出し側に大きな関数テーブルを渡させることになり、積分のホットパスに間接呼び出しが入るおそれがある。そのため、ベクトル、行列、異種の値域に対する積分は別の RFC に先送りする。"
+
+#: manual/architecture_rfc.md:74
+msgid "4.2 Trait composition plus minimal providers"
+msgstr "4.2 トレイト合成と最小限の provider"
+
+#: manual/architecture_rfc.md:76
+msgid "No `RealNumber` trait bundling all elementary functions is added, and existing trait operations are not rewrapped into function tables. Algorithms take the minimal capabilities they need through trait composition:"
+msgstr "すべての初等関数を含む `RealNumber` トレイトは新設せず、既存のトレイト演算を関数テーブルに包み直すこともしない。アルゴリズムは必要な最小限の能力をトレイト合成で受け取る。"
+
+#: manual/architecture_rfc.md:78
+msgid "Core scalars: compose existing traits such as `Zero`, `One`, `IntegralHomomorphism`, `Add`, `Sub`, `Mul`, `Div` and `Compare` directly."
+msgstr "コアのスカラー：`Zero`、`One`、`IntegralHomomorphism`、`Add`、`Sub`、`Mul`、`Div`、`Compare` などの既存トレイトを直接組み合わせる。"
+
+#: manual/architecture_rfc.md:79
+msgid "Numerical format: epsilon, adjacent values, minimum normal, maximum finite, value classification."
+msgstr "数値フォーマット：epsilon、隣接値、最小正規数、最大有限値、値の分類。"
+
+#: manual/architecture_rfc.md:80
+msgid "Optional capabilities: context-aware `sqrt`, integer powers and parsing."
+msgstr "オプションの能力：コンテキスト対応の `sqrt`、整数べき、パース。"
+
+#: manual/architecture_rfc.md:82
+msgid "Only context-dependent operations that existing traits cannot express correctly use a minimal provider, for example a context one of type `(Context) -> T` and a next-up of type `(T, Context) -> T`. Once stable, these capabilities move up into `arithmetic`."
+msgstr "既存のトレイトでは正しく表現できないコンテキスト依存の操作に限って極小の provider を使う。例えば `(Context) -> T` のコンテキスト付きの 1 や、`(T, Context) -> T` の next-up である。安定した後、これらの能力は `arithmetic` に移す。"
+
+#: manual/architecture_rfc.md:84
+msgid "4.3 Context and epsilon"
+msgstr "4.3 コンテキストと epsilon"
+
+#: manual/architecture_rfc.md:86
+msgid "The format constants of `Float` and `Double` are determined by the type. The epsilon and range of Decimal are determined jointly by the precision, the exponent range and the rounding context, so a parameterless Decimal `epsilon()` must not be provided."
+msgstr "`Float` と `Double` のフォーマット定数は型によって決まる。Decimal の epsilon と範囲は精度、指数範囲、丸めコンテキストによって共に決まるため、引数なしの Decimal `epsilon()` を提供してはならない。"
+
+#: manual/architecture_rfc.md:88
+msgid "The working epsilon of Decimal is defined as:"
+msgstr "Decimal の作業用 epsilon は次のように定義する。"
+
+#: manual/architecture_rfc.md:94
+msgid "An algorithm entry point builds a derived environment once and caches epsilon, sqrt(epsilon) and commonly used coefficients. Hot loops must not repeatedly construct contexts, convert rule tables or compute format constants."
+msgstr "アルゴリズムのエントリポイントは派生環境を 1 回だけ構築し、epsilon、sqrt(epsilon) とよく使う係数をキャッシュする。ホットループの中でコンテキストの構築、規則テーブルの変換、フォーマット定数の計算を繰り返してはならない。"
+
+#: manual/architecture_rfc.md:96
+msgid "5. Draft packages and public API"
+msgstr "5. パッケージと公開 API の草案"
+
+#: manual/architecture_rfc.md:107
+msgid "Suggested result shapes:"
+msgstr "提案する結果の形："
+
+#: manual/architecture_rfc.md:126
+msgid "`NumericalStatus` distinguishes at least completion, resource exhaustion, invalid tolerance, rounding stagnation, suspected singularity, non-finite input/output and context arithmetic failure. Low-level Decimal flags should be aggregated into the diagnostics rather than compressed into a single integer error code."
+msgstr "`NumericalStatus` は少なくとも、完了、リソース枯渇、無効な許容誤差、丸めによる停滞、特異点の疑い、非有限の入力・出力、context arithmetic failure を区別する。下層の Decimal フラグは、単一の整数エラーコードに圧縮するのではなく、診断情報に集約するべきである。"
+
+#: manual/architecture_rfc.md:128
+msgid "6. Algorithm boundaries"
+msgstr "6. アルゴリズムの境界"
+
+#: manual/architecture_rfc.md:130
+msgid "6.1 Derivatives"
+msgstr "6.1 微分"
+
+#: manual/architecture_rfc.md:132
+msgid "The rule layer generates Fornberg weights from the nodes and the derivative order; rule objects can be cached."
+msgstr "規則層は節点と微分階数から Fornberg の重みを生成し、規則オブジェクトはキャッシュできる。"
+
+#: manual/architecture_rfc.md:133
+msgid "The execution layer is only responsible for sampling and weighting."
+msgstr "実行層はサンプリングと重み付けだけを担当する。"
+
+#: manual/architecture_rfc.md:134
+msgid "The control layer adjusts the step size with Richardson/Ridders and reports truncation and rounding errors."
+msgstr "制御層は Richardson/Ridders でステップ幅を調整し、打ち切り誤差と丸め誤差を報告する。"
+
+#: manual/architecture_rfc.md:135
+msgid "`autodiff` stays independent; calculus only provides an optional bridge and guidance on choosing an algorithm, and does not reimplement dual numbers."
+msgstr "`autodiff` は独立したままとする。calculus はオプションのブリッジとアルゴリズム選択の説明だけを提供し、二重数を重複して実装しない。"
+
+#: manual/architecture_rfc.md:137
+msgid "6.2 Integration"
+msgstr "6.2 積分"
+
+#: manual/architecture_rfc.md:139
+msgid "`QuadratureRule[T]` stores nodes, Gauss weights and extension weights, each with a documented source."
+msgstr "`QuadratureRule[T]` は出典のある節点、Gauss の重み、拡張の重みを保持する。"
+
+#: manual/architecture_rfc.md:140
+msgid "Fixed rules are separate from the adaptive controller; the controller does not know where the rule coefficients come from."
+msgstr "固定規則と適応コントローラは分離する。コントローラは規則係数の出典を知らない。"
+
+#: manual/architecture_rfc.md:141
+msgid "The adaptive workspace allows local mutation but exposes no mutable state."
+msgstr "適応ワークスペースは局所的な変更を許すが、可変状態を公開しない。"
+
+#: manual/architecture_rfc.md:142
+msgid "Double/Float rules use concrete static tables; Decimal/BinFloat rules are converted once for the context at the entry point and cached for that call."
+msgstr "Double/Float の規則は具体的な静的テーブルを使う。Decimal/BinFloat の規則はエントリポイントでコンテキストに合わせて 1 回だけ変換し、その呼び出しの間キャッシュする。"
+
+#: manual/architecture_rfc.md:143
+msgid "Tanh–Sinh does not depend on fixed-precision tables and is the preferred complement for high-precision and endpoint-singular cases."
+msgstr "Tanh–Sinh は固定精度のテーブルに依存せず、高精度および端点特異性のある場合の第一の補完手段とする。"
+
+#: manual/architecture_rfc.md:145
+msgid "6.3 Series"
+msgstr "6.3 級数"
+
+#: manual/architecture_rfc.md:147
+msgid "Finite sequences provide naive, pairwise and Kahan/Neumaier summation, so that no single `sum` implicitly chooses the cost of precision."
+msgstr "有限列には naive、pairwise、Kahan/Neumaier を提供し、1 つの `sum` が精度のコストを暗黙に選ぶことはしない。"
+
+#: manual/architecture_rfc.md:148
+msgid "Infinite series must be given an explicit tolerance and maximum number of terms, and return the number of terms used and the reason for termination."
+msgstr "無限級数では許容誤差と最大項数を明示しなければならず、使用した項数と終了理由を返す。"
+
+#: manual/architecture_rfc.md:149
+msgid "Convergence acceleration is a composable strategy and is not mixed into sequence generators."
+msgstr "収束加速は合成可能な戦略とし、数列の生成器には混ぜない。"
+
+#: manual/architecture_rfc.md:150
+msgid "`PowerSeries[T]` stores its truncation order explicitly; conversion to and from `luna-poly` is an explicit adapter, and a truncated series is not treated as an ordinary polynomial."
+msgstr "`PowerSeries[T]` は打ち切り次数を明示的に保持する。`luna-poly` との変換は明示的な adapter とし、打ち切り級数を通常の多項式と同一視しない。"
+
+#: manual/architecture_rfc.md:152
+msgid "7. Legacy migration"
+msgstr "7. Legacy の移行"
+
+#: manual/architecture_rfc.md:154
+msgid "The migration proper spans two releases:"
+msgstr "正式な移行は 2 つのバージョンに分けて行う。"
+
+#: manual/architecture_rfc.md:156
+msgid "When the new packages are released, the old entry points forward to `legacy/*`, and the documentation marks them deprecated and provides an item-by-item migration table."
+msgstr "新パッケージのリリース時に、旧エントリポイントは `legacy/*` に転送し、ドキュメントで非推奨と明記して項目ごとの移行表を提供する。"
+
+#: manual/architecture_rfc.md:157
+msgid "The next major version removes legacy; serious correctness issues are still fixed, but legacy receives no new algorithms or numeric types."
+msgstr "次のメジャーバージョンで legacy を削除する。重大な正しさの問題は引き続き修正するが、legacy に新しいアルゴリズムや数値型は追加しない。"
+
+#: manual/architecture_rfc.md:159
+msgid "During this RFC phase no existing files are moved, to avoid creating compatibility changes before the new API has been validated."
+msgstr "この RFC の段階では既存のファイルを移動しない。新 API が検証される前に互換性の変化を生まないためである。"
+
+#: manual/architecture_rfc.md:161
+msgid "8. Validation gates"
+msgstr "8. 検証の基準"
+
+#: manual/architecture_rfc.md:163
+msgid "Each area first delivers one Double/Decimal vertical slice before the number of algorithms is expanded."
+msgstr "各分野ではまず Double/Decimal の縦断的なスライスを 1 つ提供してから、アルゴリズムの数を増やす。"
+
+#: manual/architecture_rfc.md:164
+msgid "The target overhead of the Double adapter prototype relative to a direct implementation is at most 15%; hot loops must not allocate per item."
+msgstr "Double adapter のプロトタイプは、直接実装に対するオーバーヘッドを 15% 以内とすることを目標とし、ホットループで項目ごとに割り当ててはならない。"
+
+#: manual/architecture_rfc.md:165
+msgid "Decimal uses one explicit context throughout; tests must cover inexact, rounded, underflow, overflow and invalid operation."
+msgstr "Decimal は全体を通して同じ明示的コンテキストを使う。テストは inexact、rounded、underflow、overflow、invalid operation を網羅しなければならない。"
+
+#: manual/architecture_rfc.md:166
+msgid "Analytic functions, hard functions and high-precision oracles are tested in separate layers; the actual error and the reported error are recorded separately."
+msgstr "解析的な関数、難しい関数、高精度オラクルを階層に分けてテストし、実際の誤差と報告された誤差を別々に記録する。"
+
+#: manual/architecture_rfc.md:167
+msgid "Property tests cover linearity, interval reversal, constant functions, scaling relations, tolerance monotonicity and series truncation consistency."
+msgstr "性質テストは線形性、区間の反転、定数関数、スケーリング関係、許容誤差に対する単調性、級数の打ち切りの一貫性を網羅する。"
+
+#: manual/architecture_rfc.md:169
+msgid "9. Follow-up RFCs"
+msgstr "9. 今後の RFC"
+
+#: manual/architecture_rfc.md:171
+msgid "Move the stable numerical-format capabilities up into `arithmetic`."
+msgstr "安定した数値フォーマットの能力を `arithmetic` に移す。"
+
+#: manual/architecture_rfc.md:172
+msgid "Separation of scalar and value types, and integration over vectors, matrices and complex numbers."
+msgstr "スカラーと値域の分離、およびベクトル・行列・複素数の積分。"
+
+#: manual/architecture_rfc.md:173
+msgid "Certified integration with BallFloat/interval arithmetic."
+msgstr "BallFloat/区間演算による certified integration。"
+
+#: manual/architecture_rfc.md:174
+msgid "Fourier series and the boundary with the FFT ecosystem."
+msgstr "Fourier 級数と FFT エコシステムとの境界。"
+
+#: manual/architecture_rfc.md:175
+msgid "ODE/PDE solvers; these are outside this foundational phase."
+msgstr "ODE/PDE ソルバー。この基盤能力の段階には含まれない。"
+
+#: manual/architecture_rfc.md:177
+msgid "References"
+msgstr "参考文献"
+
+#: manual/architecture_rfc.md:179
+msgid "B. Fornberg, “Generation of Finite Difference Formulas on Arbitrarily Spaced Grids”, 1988."
+msgstr "B. Fornberg, “Generation of Finite Difference Formulas on Arbitrarily Spaced Grids”, 1988."
+
+#: manual/architecture_rfc.md:180
+msgid "B. Fornberg, “Calculation of Weights in Finite Difference Formulas”, 1998."
+msgstr "B. Fornberg, “Calculation of Weights in Finite Difference Formulas”, 1998."
+
+#: manual/architecture_rfc.md:181
+msgid "R. Piessens et al., *QUADPACK: A Subroutine Package for Automatic Integration*, 1983."
+msgstr "R. Piessens et al., *QUADPACK: A Subroutine Package for Automatic Integration*, 1983."
+
+#: manual/architecture_rfc.md:182
+msgid "H. Takahasi and M. Mori, “Double Exponential Formulas for Numerical Integration”, 1974."
+msgstr "H. Takahasi and M. Mori, “Double Exponential Formulas for Numerical Integration”, 1974."
+
+#: manual/architecture_rfc.md:183
+msgid "L. N. Trefethen, “Is Gauss Quadrature Better than Clenshaw–Curtis?”, 2008."
+msgstr "L. N. Trefethen, “Is Gauss Quadrature Better than Clenshaw–Curtis?”, 2008."
+
+#: manual/architecture_rfc.md:184
+msgid "P. Wynn, “On a Device for Computing the e_m(S_n) Transformation”, 1956."
+msgstr "P. Wynn, “On a Device for Computing the e_m(S_n) Transformation”, 1956."
+
+#: manual/architecture_rfc.md:185
+msgid "IEEE 754-2019, *Standard for Floating-Point Arithmetic*."
+msgstr "IEEE 754-2019, *Standard for Floating-Point Arithmetic*."
+
+#: manual/architecture_rfc.md:186
+msgid "General Decimal Arithmetic Specification and decNumber test suite."
+msgstr "General Decimal Arithmetic Specification and decNumber test suite."
+
 #: manual/contributing.md:1
 msgid "Contribution guidelines"
 msgstr "貢献ガイドライン"
@@ -804,54 +1300,62 @@ msgid "Machine constants used by the other packages."
 msgstr "他のパッケージが使う機械定数。"
 
 #: manual/index.md:19
+msgid "Guides"
+msgstr "ガイド"
+
+#: manual/index.md:21
+msgid "[Architecture RFC](architecture_rfc.md): the next-generation architecture under research, an independent, trait-compatible numerical foundation with explicit floating-point contexts and first-class Decimal support."
+msgstr "[アーキテクチャ RFC](architecture_rfc.md)：研究中の次世代アーキテクチャ。明示的な浮動小数点コンテキストと Decimal のファーストクラスのサポートを備えた、独立したトレイト互換の数値基盤である。"
+
+#: manual/index.md:23
 msgid "Feature list"
 msgstr "機能一覧"
 
-#: manual/index.md:21
+#: manual/index.md:25
 msgid "**[Latest]** 25.01.31: Non-adaptive integration implementation (using Gaussian quadrature and Kronrod extension)"
 msgstr "**[最新]** 25.01.31: 非適応積分の実装（Gauss 求積法および Kronrod 拡張を使用）"
 
-#: manual/index.md:23
+#: manual/index.md:27
 msgid "**25.01.13**: Adaptive integration implementation (using Gaussian quadrature and Kronrod extension)"
 msgstr "**25.01.13**: 適応積分の実装（Gauss 求積法および Kronrod 拡張を使用）"
 
-#: manual/index.md:24
+#: manual/index.md:28
 msgid "**25.01.02**: Quadrature methods implementation (using Gaussian quadrature and Kronrod extension)"
 msgstr "**25.01.02**: 求積法の実装（Gauss 求積法および Kronrod 拡張を使用）"
 
-#: manual/index.md:25
+#: manual/index.md:29
 msgid "**24.12.30**: Derivatives and differential functionality implementation (using forward, backward, and central difference methods)"
 msgstr "**24.12.30**: 微分と微分係数の差分機能の実装（前進差分法、後退差分法、中心差分法を使用）"
 
-#: manual/index.md:27
+#: manual/index.md:31
 msgid "How to contribute"
 msgstr "貢献方法"
 
-#: manual/index.md:29
+#: manual/index.md:33
 msgid "We welcome contributions from the community, external developers, and individual enthusiasts! Whether you want to fix a bug, add a new feature, or improve the documentation, your participation is highly encouraged. To help you contribute smoothly, here are some simple steps:"
 msgstr "コミュニティ、外部開発者、個人の愛好者からの貢献を歓迎します！バグ修正、新機能の追加、ドキュメントの改善など、どんな形でも貢献をお待ちしています。スムーズに貢献できるよう、以下の簡単な手順をお知らせします。"
 
-#: manual/index.md:31
+#: manual/index.md:35
 msgid "Please choose a task from the [`TODO.md`](../../TODO.md) file or the current `issue` list that interests you. We recommend selecting something you are interested in or familiar with, as it will make it easier to get started and enjoy the process."
 msgstr "まず、[`TODO.md`](../../TODO.md) ファイルまたは現在の`issue`リストから、興味のあるタスクを選んでください。自分の興味や得意分野に関連した内容を選ぶことをお勧めします。そうすることで、よりスムーズに作業を始められ、プロセスを楽しむことができます。"
 
-#: manual/index.md:32
+#: manual/index.md:36
 msgid "Fork our project and create a new branch in your personal repository. This way, you can start working on your changes without affecting the main project."
 msgstr "プロジェクトをフォークし、個人リポジトリ内で新しいブランチを作成します。これで、メインプロジェクトに影響を与えることなく、変更作業を進めることができます。"
 
-#: manual/index.md:33
+#: manual/index.md:37
 msgid "During development, please adhere to the coding style and guidelines in the [contribution guidelines](contributing.md). If your changes involve new features or bug fixes, please make sure to perform thorough testing to ensure everything works as expected."
 msgstr "開発中は、[貢献ガイドライン](contributing.md)に記載されているコードスタイルやガイドラインに従ってください。新しい機能追加やバグ修正が含まれている場合は、十分なテストを実施し、すべてが正常に動作することを確認してください。"
 
-#: manual/index.md:34
+#: manual/index.md:38
 msgid "Once you're done, submit your PR and provide a clear description of your changes to help us understand the modifications you've made. This will help us review and merge your code more quickly."
 msgstr "作業が完了したら、PR を提出し、行った変更の明確な説明を提供してください。これにより、コードレビューとマージがスムーズに進みます。"
 
-#: manual/index.md:35
+#: manual/index.md:39
 msgid "We will review your PR and may suggest improvements to ensure code quality. After approval, your contributions will be merged into the main branch."
 msgstr "PR をレビューし、コード品質を確保するために改善案を提案することがあります。レビューが完了次第、あなたの貢献をメインブランチにマージします。"
 
-#: manual/index.md:37
+#: manual/index.md:41
 msgid "Thank you again for your participation and contributions! Every effort helps make this project better. We look forward to seeing your great code!"
 msgstr "再度、貢献していただきありがとうございます！皆様の努力が、このプロジェクトをより良くしていきます。あなたの素晴らしいコードを楽しみにしています！"
 

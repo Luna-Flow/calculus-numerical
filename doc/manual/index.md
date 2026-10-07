@@ -16,6 +16,10 @@ The library works on functions of type `(Double) -> Double` and is divided into 
 | [`integration`](api/integration.md) | Gauss–Kronrod rules and adaptive and non-adaptive integrators. |
 | [`internal`](api/internal.md) | Machine constants used by the other packages. |
 
+## Guides
+
+- [Architecture RFC](architecture_rfc.md): the next-generation architecture under research, an independent, trait-compatible numerical foundation with explicit floating-point contexts and first-class Decimal support.
+
 ## Feature list
 
 **[Latest]** 25.01.31: Non-adaptive integration implementation (using Gaussian quadrature and Kronrod extension)
