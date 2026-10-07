@@ -2,7 +2,7 @@
 
 [![img](https://img.shields.io/badge/Maintainer-KCN--judu-pink)](https://github.com/KCN-judu) [![img](https://img.shields.io/badge/License-Apache%202.0-blue)](https://github.com/Luna-Flow/calculus-numerical/blob/main/LICENSE) ![img](https://img.shields.io/badge/State-active-success)
 
-**See the README.md in other languages here: [zh_CN](https://github.com/Luna-Flow/calculus-numerical/blob/main/doc/zh_CN/README.md) | [ja_JP](https://github.com/Luna-Flow/calculus-numerical/blob/main/doc/ja_JP/README.md)**
+**Documentation, in English, Chinese and Japanese: <https://luna-flow.github.io/en/calculus-numerical/>. The English source is in [`doc/manual`](doc/manual/index.md).**
 
 ## Contents
 

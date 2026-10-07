@@ -1,0 +1,1182 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Luna-Flow documentation\n"
+"Report-Msgid-Bugs-To: https://github.com/Luna-Flow\n"
+"Language: ja_JP\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: conf.json:summary
+msgid "Numerical differentiation and Gauss–Kronrod integration of real functions for MoonBit, part of Luna-Flow."
+msgstr "MoonBit 向けの実関数の数値微分と Gauss–Kronrod 数値積分のライブラリ。Luna-Flow の一部です。"
+
+#: manual/api/basic.md:1
+msgid "basic API"
+msgstr "basic API"
+
+#: manual/api/basic.md:3
+msgid "The `basic` package defines the function types shared by the other packages and a set of mathematical constants."
+msgstr "`basic` パッケージは、他のパッケージが共有する関数型と数学定数を定義します。"
+
+#: manual/api/basic.md:5
+msgid "Type aliases"
+msgstr "タイプエイリアス"
+
+#: manual/api/basic.md:9
+msgid "Represents a single-variable mathematical function."
+msgstr "単変数の数学関数を表現します。"
+
+#: manual/api/basic.md:13
+msgid "Represents a Gauss-Kronrod numerical integration function, such as `@integration.kronrod_r15()`"
+msgstr "`@integration.kronrod_r15()`のようなガウス・クロンロッド型数値積分関数を表現します。"
+
+#: manual/api/basic.md:15
+msgid "Constants"
+msgstr "定数"
+
+#: manual/api/basic.md:17
+msgid "The constants are `Double` values with full double precision."
+msgstr "定数はいずれも完全な倍精度を持つ `Double` 値です。"
+
+#: manual/api/basic.md:19
+msgid "Constant"
+msgstr "定数"
+
+#: manual/api/basic.md:19
+#: manual/api/integration.md:22
+#: manual/api/internal.md:22
+msgid "Value"
+msgstr "値"
+
+#: manual/api/basic.md:37
+msgid "Euler's constant $\\gamma$"
+msgstr "オイラー定数 $\\gamma$"
+
+#: manual/api/deriv.md:1
+msgid "deriv API"
+msgstr "deriv API"
+
+#: manual/api/deriv.md:3
+msgid "The `deriv` package estimates the derivative of a function at a point from a caller-supplied initial step size `h`. Each function returns the estimate together with an error bound."
+msgstr "`deriv` パッケージは、呼び出し側が与える初期ステップサイズ `h` から、ある点における関数の微分係数を推定します。各関数は推定値と誤差の上限を合わせて返します。"
+
+#: manual/api/deriv.md:7
+msgid "**Description:** Computes the derivative of the function `f` at point `x` using an **adaptive central difference method**, which balances truncation and round-off errors for improved accuracy."
+msgstr "関数`f`の点`x`における微分係数を、__適応的中心差分法__を使用して計算します。これは、切り捨て誤差と丸め誤差を調和させ、精度を向上させます。"
+
+#: manual/api/deriv.md:10
+#: manual/api/deriv.md:44
+#: manual/api/deriv.md:79
+#: manual/api/diff.md:11
+#: manual/api/diff.md:46
+#: manual/api/diff.md:68
+msgid "**Parameters:**"
+msgstr "**パラメーター：**"
+
+#: manual/api/deriv.md:12
+#: manual/api/deriv.md:46
+#: manual/api/deriv.md:81
+msgid "`f: Func_Math` — A mathematical function that takes a `Double` as input and Returns: a `Double` as output."
+msgstr "`f: Func_Math` — `Double`を入力とし、`Double`を出力とする数学関数。"
+
+#: manual/api/deriv.md:13
+#: manual/api/deriv.md:47
+#: manual/api/deriv.md:82
+msgid "`x: Double` — The point at which the derivative is evaluated."
+msgstr "`x: Double` — 微分係数を評価する点。"
+
+#: manual/api/deriv.md:14
+#: manual/api/deriv.md:48
+#: manual/api/deriv.md:83
+msgid "`h: Double` — The initial step size for numerical differentiation, which will be adaptively adjusted if necessary."
+msgstr "`h: Double` — 数値微分の初期ステップサイズ。必要に応じて適応的に調整されます。"
+
+#: manual/api/deriv.md:16
+#: manual/api/deriv.md:50
+#: manual/api/diff.md:16
+#: manual/api/diff.md:51
+#: manual/api/diff.md:73
+msgid "**Returns:**"
+msgstr "**戻り値：**"
+
+#: manual/api/deriv.md:18
+#: manual/api/deriv.md:52
+#: manual/api/diff.md:18
+#: manual/api/diff.md:53
+#: manual/api/diff.md:75
+msgid "A tuple `(Double, Double)`, where:"
+msgstr "タプル`(Double, Double)`で、以下の内容を返します："
+
+#: manual/api/deriv.md:20
+#: manual/api/deriv.md:54
+#: manual/api/deriv.md:88
+msgid "The first value is the estimated derivative at `x`."
+msgstr "第一値は`x`における推定微分係数。"
+
+#: manual/api/deriv.md:21
+#: manual/api/deriv.md:55
+#: manual/api/deriv.md:89
+msgid "The second value is the total estimated error, combining truncation and round-off errors."
+msgstr "第二値は、切り捨て誤差と丸め誤差を組み合わせた総推定誤差。"
+
+#: manual/api/deriv.md:23
+#: manual/api/deriv.md:57
+#: manual/api/deriv.md:91
+#: manual/api/diff.md:23
+#: manual/api/diff.md:80
+msgid "**Example Usage:**"
+msgstr "**例：**"
+
+#: manual/api/deriv.md:33
+#: manual/api/deriv.md:67
+#: manual/api/deriv.md:101
+#: manual/api/diff.md:33
+#: manual/api/diff.md:58
+#: manual/api/diff.md:90
+msgid "**Notes:**"
+msgstr "**メモ：**"
+
+#: manual/api/deriv.md:35
+msgid "The method **automatically adjusts the step size** to achieve the best accuracy."
+msgstr "この方法は、精度を最適化するため、__自動的にステップサイズを調整__します。"
+
+#: manual/api/deriv.md:36
+msgid "Works well for smooth functions but may be **less accurate near discontinuities**."
+msgstr "スムーズな関数には効果的ですが、不連続点近傍では__精度が低下する可能性__があります。"
+
+#: manual/api/deriv.md:37
+msgid "Compared to a simple 2-point method, this approach significantly reduces numerical errors."
+msgstr "簡単な2点法と比較して、このアプローチは数値誤差を大きく低減します。"
+
+#: manual/api/deriv.md:41
+msgid "**Description:** Computes the derivative of the function `f` at point `x` using an **adaptive forward difference method**, which optimizes step size to minimize truncation and round-off errors."
+msgstr "関数`f`の点`x`における微分係数を、__適応的前進差分法__を使用して計算します。これは、ステップサイズを調整して、切り捨て誤差と丸め誤差を最小化します。"
+
+#: manual/api/deriv.md:69
+msgid "The method **automatically refines the step size** for better accuracy."
+msgstr "この方法は、精度を最適化するため、__自動的にステップサイズを調整__します。"
+
+#: manual/api/deriv.md:70
+msgid "Compared to basic forward difference methods, this approach **significantly reduces numerical errors**."
+msgstr "簡単な前進差分法と比較して、このアプローチは数値誤差を大幅に低減します。"
+
+#: manual/api/deriv.md:71
+msgid "Works well for smooth functions but may be **less accurate for functions with sharp changes or discontinuities**."
+msgstr "スムーズな関数には効果的ですが、急変や不連続を有する関数では__精度が低下する可能性__があります。"
+
+#: manual/api/deriv.md:72
+msgid "This method is especially useful when evaluating derivatives at boundaries where central differences are not feasible."
+msgstr "中央差分が適用できない境界で微分係数を評価する場合に特に役立ちます。"
+
+#: manual/api/deriv.md:76
+msgid "**Description:** Computes the derivative of the function `f` at point `x` using an **adaptive backward difference method**, which mirrors forward differentiation but with a negative step size."
+msgstr "関数`f`の点`x`における微分係数を、__適応的後退差分法__を使用して計算します。これは、前進差分微分係数と同様ですが、負のステップサイズを使用します。"
+
+#: manual/api/deriv.md:85
+msgid "**Returns:** A tuple `(Double, Double)`, where:"
+msgstr "タプル`(Double, Double)`で、以下の内容を返します："
+
+#: manual/api/deriv.md:103
+msgid "The method **automatically refines the step size** to optimize accuracy."
+msgstr "この方法は、精度を最適化するため、__自動的にステップサイズを調整__します。"
+
+#: manual/api/deriv.md:104
+msgid "Suitable for cases where **backward differences** are preferred, such as differentiation near the upper boundary of a dataset."
+msgstr "データセットの上界近傍などで微分を行う場合、__後退差分法__が適していることがあります。"
+
+#: manual/api/deriv.md:105
+msgid "Shares the same numerical advantages as `deriv_forward`, significantly reducing numerical errors compared to simple finite differences."
+msgstr "`deriv_forward`と同様の数値的な利点を持ち、単純な有限差分と比較して数値誤差を大幅に低減します。"
+
+#: manual/api/diff.md:1
+msgid "diff API"
+msgstr "diff API"
+
+#: manual/api/diff.md:3
+msgid "The `diff` package estimates the derivative of a function at a point without a step size from the caller: the step is derived from machine precision and the local behaviour of the function. Each function returns the estimate together with an error bound."
+msgstr "`diff` パッケージは、呼び出し側からステップサイズを受け取らずに、ある点における関数の微分係数を推定します。ステップは機械精度と関数の局所的な振る舞いから決まります。各関数は推定値と誤差の上限を合わせて返します。"
+
+#: manual/api/diff.md:7
+#: manual/api/diff.md:42
+#: manual/api/diff.md:64
+msgid "**Description:**"
+msgstr "**説明：**"
+
+#: manual/api/diff.md:9
+msgid "Computes the numerical derivative of a function at a given point using the backward difference method with adaptive step size."
+msgstr "適応ステップサイズを使用して、与えられた点における関数の数値微分係数を後退差分法を使用して計算します。"
+
+#: manual/api/diff.md:13
+#: manual/api/diff.md:48
+#: manual/api/diff.md:70
+msgid "`f: Func_Math` — A function that takes a `Double` and Returns: a `Double`. The function to be differentiated."
+msgstr "`f: Func_Math` — `Double`を入力とし、`Double`を出力とする関数。微分対象の関数。"
+
+#: manual/api/diff.md:14
+#: manual/api/diff.md:49
+#: manual/api/diff.md:71
+msgid "`x: Double` — The point at which to compute the derivative."
+msgstr "`x: Double` — 微分係数を計算する点。"
+
+#: manual/api/diff.md:20
+msgid "The first value is the estimated derivative value using backward difference approximation."
+msgstr "第一値は後退差分近似を使用した推定微分係数値。"
+
+#: manual/api/diff.md:21
+#: manual/api/diff.md:56
+#: manual/api/diff.md:78
+msgid "The second value is the estimated absolute error of the computation."
+msgstr "第二値は計算の推定絶対誤差。"
+
+#: manual/api/diff.md:35
+msgid "The function evaluates the given function at three backward points using an adaptive step size."
+msgstr "この関数は、適応ステップサイズを使用して3つの後方差分点で与えられた関数を評価します。"
+
+#: manual/api/diff.md:36
+msgid "It applies Neville’s recursion to compute divided differences and estimate the derivative."
+msgstr "商差を計算し、微分係数の推定にネビルの再帰法を適用します。"
+
+#: manual/api/diff.md:37
+msgid "The method includes an error estimation based on the second-order divided difference."
+msgstr "方法には、2階商差に基づく誤差推定が含まれています。"
+
+#: manual/api/diff.md:38
+msgid "If `h` is too large, accuracy may decrease; if too small, numerical precision issues may arise."
+msgstr "`h`が大きすぎると精度が低下する可能性があり、小さすぎると数値精度の問題が発生する可能性があります。"
+
+#: manual/api/diff.md:44
+msgid "Computes the numerical derivative of a function at a given point using the forward difference method with adaptive step size."
+msgstr "適応ステップサイズを使用して、与えられた点における関数の数値微分係数を前進差分法で計算します。"
+
+#: manual/api/diff.md:55
+msgid "The first value is the estimated derivative value using forward difference approximation."
+msgstr "第一値は前進差分近似を使用した推定微分係数値。"
+
+#: manual/api/diff.md:60
+msgid "The function evaluates the given function at three forward points to choose the step size, so it only needs values of `f` at and above `x`."
+msgstr "この関数はステップサイズを決めるために3つの前方の点で与えられた関数を評価するので、`x` 以上の点における `f` の値だけを必要とします。"
+
+#: manual/api/diff.md:66
+msgid "Computes the numerical derivative of a function at a given point using the central difference method with adaptive step size."
+msgstr "適応ステップサイズを使用して、与えられた点における関数の数値微分係数を中心差分法で計算します。"
+
+#: manual/api/diff.md:77
+msgid "The first value is the estimated derivative value using central difference approximation."
+msgstr "第一値は中心差分近似を使用した推定微分係数値。"
+
+#: manual/api/diff.md:92
+msgid "The function evaluates the given function at four points around `x` to choose the step size."
+msgstr "この関数はステップサイズを決めるために `x` の周りの4つの点で与えられた関数を評価します。"
+
+#: manual/api/integration.md:1
+msgid "integration API"
+msgstr "integration API"
+
+#: manual/api/integration.md:3
+msgid "The `integration` package computes definite integrals of a `Func_Math` over a finite interval $[a, b]$ with Gauss–Kronrod quadrature. It provides the basic Gauss–Kronrod rules, an adaptive integrator that subdivides the interval, and a non-adaptive integrator that raises the order of the rule."
+msgstr "`integration` パッケージは、Gauss–Kronrod 求積法により有限区間 $[a, b]$ 上の `Func_Math` の定積分を計算します。基本的な Gauss–Kronrod 則、区間を分割する適応積分器、そして則の次数を上げていく非適応積分器を提供します。"
+
+#: manual/api/integration.md:5
+msgid "Gauss–Kronrod rules"
+msgstr "Gauss–Kronrod 則"
+
+#: manual/api/integration.md:9
+msgid "Each function applies one Gauss–Kronrod rule to `f` on $[a, b]$; the number in the name is the number of Kronrod points."
+msgstr "各関数は $[a, b]$ 上で `f` に Gauss–Kronrod 則を一つ適用します。名前の数字は Kronrod 点の数です。"
+
+#: manual/api/integration.md:20
+msgid "The result is the tuple `(result, result_abs, result_asc, error)`:"
+msgstr "結果はタプル `(result, result_abs, result_asc, error)` です。"
+
+#: manual/api/integration.md:22
+#: manual/api/integration.md:99
+#: manual/api/internal.md:9
+msgid "Meaning"
+msgstr "意味"
+
+#: manual/api/integration.md:24
+msgid "The Kronrod approximation of the integral of `f`."
+msgstr "`f` の積分の Kronrod 近似。"
+
+#: manual/api/integration.md:25
+msgid "The same rule applied to $\\lvert f \\rvert$."
+msgstr "同じ則を $\\lvert f \\rvert$ に適用した値。"
+
+#: manual/api/integration.md:26
+msgid "The same rule applied to $\\lvert f - \\bar f \\rvert$, where $\\bar f$ is the mean value of `f` on the interval; it measures how much `f` varies."
+msgstr "同じ則を $\\lvert f - \\bar f \\rvert$ に適用した値。$\\bar f$ は区間上の `f` の平均値で、`f` の変動の大きさを表します。"
+
+#: manual/api/integration.md:27
+msgid "The difference between the Kronrod and the embedded Gauss approximation, rescaled with `rescale_error`."
+msgstr "Kronrod 近似と埋め込まれた Gauss 近似の差を `rescale_error` で再スケールしたもの。"
+
+#: manual/api/integration.md:29
+msgid "Every rule has the type `Quad_GK` from the `basic` package, so it can be passed to `adap_quad_gk`."
+msgstr "どの則も `basic` パッケージの型 `Quad_GK` を持つので、`adap_quad_gk` に渡せます。"
+
+#: manual/api/integration.md:33
+msgid "`rescale_error` turns the raw difference between two quadrature approximations into a conservative error estimate."
+msgstr "`rescale_error` は、二つの求積近似の生の差を保守的な誤差推定に変換します。"
+
+#: manual/api/integration.md:39
+msgid "`rescale_error(err, result_abs, result_asc)` scales $\\lvert err \\rvert$ to $result\\_asc \\cdot \\min(1, (200 \\lvert err \\rvert / result\\_asc)^{3/2})$ when both are non-zero, and never returns less than $50\\,\\varepsilon \\cdot result\\_abs$, where $\\varepsilon$ is the machine epsilon of `Double`. This is the error heuristic of QUADPACK."
+msgstr "`rescale_error(err, result_abs, result_asc)` は、両者が非零のとき $\\lvert err \\rvert$ を $result\\_asc \\cdot \\min(1, (200 \\lvert err \\rvert / result\\_asc)^{3/2})$ にスケールし、$50\\,\\varepsilon \\cdot result\\_abs$ 未満の値は返しません。ここで $\\varepsilon$ は `Double` の機械イプシロンです。これは QUADPACK の誤差ヒューリスティックです。"
+
+#: manual/api/integration.md:41
+msgid "Integrators"
+msgstr "積分器"
+
+#: manual/api/integration.md:45
+msgid "`adap_quad_gk` integrates `f` over $[a, b]$ adaptively: it bisects the subinterval with the largest error until the total error meets the tolerance."
+msgstr "`adap_quad_gk` は $[a, b]$ 上で `f` を適応的に積分します。総誤差が許容誤差を満たすまで、誤差が最大の部分区間を二等分します。"
+
+#: manual/api/integration.md:51
+msgid "`adap_quad_gk(f, q, a, b, epsabs, epsrel, limit)` applies the rule `q`, for example `kronrod_r21`, to each subinterval. The computation stops successfully when the estimated absolute error is at most $\\max(epsabs, epsrel \\cdot \\lvert I \\rvert)$, where $I$ is the current integral estimate. `limit` is the maximum number of subintervals."
+msgstr "`adap_quad_gk(f, q, a, b, epsabs, epsrel, limit)` は各部分区間に則 `q`（例えば `kronrod_r21`）を適用します。推定絶対誤差が $\\max(epsabs, epsrel \\cdot \\lvert I \\rvert)$ 以下になると計算は成功で終了します。ここで $I$ は現在の積分推定値です。`limit` は部分区間の最大数です。"
+
+#: manual/api/integration.md:53
+msgid "The result is `Ok((integral, error, OK))` on success. Otherwise it is `Err(code)`:"
+msgstr "成功すると結果は `Ok((integral, error, OK))`、そうでなければ `Err(code)` です。"
+
+#: manual/api/integration.md:55
+msgid "Code"
+msgstr "コード"
+
+#: manual/api/integration.md:55
+msgid "Cause"
+msgstr "原因"
+
+#: manual/api/integration.md:57
+msgid "`epsabs` is not positive and `epsrel` is smaller than the machine epsilon or $0.5 \\cdot 10^{-28}$."
+msgstr "`epsabs` が正でなく、かつ `epsrel` が機械イプシロンまたは $0.5 \\cdot 10^{-28}$ より小さい。"
+
+#: manual/api/integration.md:58
+msgid "Roundoff error prevents the requested tolerance from being reached."
+msgstr "丸め誤差のため、要求された許容誤差に到達できない。"
+
+#: manual/api/integration.md:59
+msgid "A subinterval became too small to bisect, which suggests a singularity or a highly oscillatory integrand."
+msgstr "部分区間が小さくなりすぎて二等分できない。特異点や激しく振動する被積分関数が疑われます。"
+
+#: manual/api/integration.md:60
+msgid "`limit` subintervals were used before the tolerance was reached."
+msgstr "許容誤差に到達する前に `limit` 個の部分区間を使い切った。"
+
+#: manual/api/integration.md:64
+msgid "`non_adap_quad_gk` integrates `f` over $[a, b]$ with Gauss–Kronrod rules of increasing order, without subdividing the interval."
+msgstr "`non_adap_quad_gk` は、区間を分割せずに次数を上げていく Gauss–Kronrod 則で $[a, b]$ 上の `f` を積分します。"
+
+#: manual/api/integration.md:70
+msgid "`non_adap_quad_gk(f, a, b, epsabs, epsrel)` tries the 21-, 43- and 87-point rules in turn and returns as soon as the estimated error is below `epsabs` or below `epsrel` times the absolute value of the result. The result is `Ok((integral, error, neval))`, where `neval` is the number of function evaluations used (21, 43 or 87). It is `Err(E_BAD_TOL)` for invalid tolerances, as in `adap_quad_gk`, and `Err(E_FAILED)` when even the 87-point rule does not reach the tolerance."
+msgstr "`non_adap_quad_gk(f, a, b, epsabs, epsrel)` は 21 点、43 点、87 点の則を順に試し、推定誤差が `epsabs` 未満、または `epsrel` と結果の絶対値の積未満になった時点で返ります。結果は `Ok((integral, error, neval))` で、`neval` は使用した関数評価の回数（21、43、87 のいずれか）です。許容誤差が不正な場合は `adap_quad_gk` と同様に `Err(E_BAD_TOL)`、87 点の則でも許容誤差に達しない場合は `Err(E_FAILED)` になります。"
+
+#: manual/api/integration.md:82
+msgid "Error codes"
+msgstr "エラーコード"
+
+#: manual/api/integration.md:86
+msgid "`ErrCode` reports the outcome of an integration."
+msgstr "`ErrCode` は積分の結果を表します。"
+
+#: manual/api/integration.md:99
+msgid "Constructor"
+msgstr "コンストラクタ"
+
+#: manual/api/integration.md:101
+msgid "The integration succeeded."
+msgstr "積分に成功した。"
+
+#: manual/api/integration.md:102
+msgid "Unexpected roundoff error."
+msgstr "予期しない丸め誤差。"
+
+#: manual/api/integration.md:103
+msgid "Possible singularity or highly oscillatory integrand."
+msgstr "特異点または激しく振動する被積分関数の可能性。"
+
+#: manual/api/integration.md:104
+msgid "Maximum number of subdivisions reached."
+msgstr "分割数の上限に達した。"
+
+#: manual/api/integration.md:105
+msgid "General failure."
+msgstr "一般的な失敗。"
+
+#: manual/api/integration.md:106
+msgid "Invalid tolerance parameters."
+msgstr "不正な許容誤差パラメーター。"
+
+#: manual/api/integration.md:108
+msgid "`ErrCode` implements `Eq`, so a result code can be compared with a constructor."
+msgstr "`ErrCode` は `Eq` を実装しているので、結果のコードをコンストラクタと比較できます。"
+
+#: manual/api/internal.md:1
+msgid "internal API"
+msgstr "internal API"
+
+#: manual/api/internal.md:3
+msgid "The `internal` package holds the machine constants that the other packages use to choose step sizes and to bound roundoff error. It contains no functions. The constants are those of `gsl_machine.h` in the GNU Scientific Library."
+msgstr "`internal` パッケージは、他のパッケージがステップサイズの選択や丸め誤差の評価に使う機械定数を保持します。関数は含みません。定数は GNU Scientific Library の `gsl_machine.h` のものです。"
+
+#: manual/api/internal.md:5
+msgid "Machine constants"
+msgstr "機械定数"
+
+#: manual/api/internal.md:7
+msgid "Every constant is a `Double` named `machine_<prefix><quantity>`. The quantity names a limit of a floating-point format:"
+msgstr "各定数は `machine_<prefix><quantity>` という名前の `Double` です。quantity は浮動小数点形式の限界値を表します。"
+
+#: manual/api/internal.md:9
+msgid "Quantity"
+msgstr "量"
+
+#: manual/api/internal.md:11
+msgid "The machine epsilon of double precision, $2^{-52} \\approx 2.22 \\cdot 10^{-16}$."
+msgstr "倍精度の機械イプシロン、$2^{-52} \\approx 2.22 \\cdot 10^{-16}$。"
+
+#: manual/api/internal.md:12
+msgid "The smallest positive normal double, $\\approx 2.23 \\cdot 10^{-308}$."
+msgstr "最小の正の正規化倍精度数、$\\approx 2.23 \\cdot 10^{-308}$。"
+
+#: manual/api/internal.md:13
+msgid "The largest finite double, $\\approx 1.80 \\cdot 10^{308}$."
+msgstr "最大の有限な倍精度数、$\\approx 1.80 \\cdot 10^{308}$。"
+
+#: manual/api/internal.md:14
+msgid "The machine epsilon of single precision, $2^{-23}$."
+msgstr "単精度の機械イプシロン、$2^{-23}$。"
+
+#: manual/api/internal.md:15
+msgid "The smallest positive normal single-precision value."
+msgstr "最小の正の正規化単精度数。"
+
+#: manual/api/internal.md:16
+msgid "The largest finite single-precision value."
+msgstr "最大の有限な単精度数。"
+
+#: manual/api/internal.md:17
+msgid "The machine epsilon of the short float format of GSL, $2^{-11}$."
+msgstr "GSL の短精度浮動小数点形式の機械イプシロン、$2^{-11}$。"
+
+#: manual/api/internal.md:18
+msgid "The rounded machine tolerances of `GSL_MACH_EPS`, which exist only with a prefix."
+msgstr "`GSL_MACH_EPS` 系列の丸められた機械許容誤差で、接頭辞付きの形でのみ存在します。"
+
+#: manual/api/internal.md:20
+msgid "The prefix names a function of that quantity:"
+msgstr "接頭辞はその量に適用する関数を表します。"
+
+#: manual/api/internal.md:22
+msgid "Prefix"
+msgstr "接頭辞"
+
+#: manual/api/internal.md:22
+msgid "Available for"
+msgstr "対象"
+
+#: manual/api/internal.md:24
+msgid "none"
+msgstr "なし"
+
+#: manual/api/internal.md:24
+msgid "the quantity itself"
+msgstr "量そのもの"
+
+#: manual/api/internal.md:25
+msgid "its square root"
+msgstr "その平方根"
+
+#: manual/api/internal.md:25
+#: manual/api/internal.md:26
+#: manual/api/internal.md:27
+msgid "all quantities"
+msgstr "すべての量"
+
+#: manual/api/internal.md:26
+msgid "`root_3_` to `root_6_`"
+msgstr "`root_3_` から `root_6_`"
+
+#: manual/api/internal.md:26
+msgid "its third to sixth root"
+msgstr "その 3 乗根から 6 乗根"
+
+#: manual/api/internal.md:27
+msgid "its natural logarithm"
+msgstr "その自然対数"
+
+#: manual/api/internal.md:29
+msgid "For example, `machine_sqrt_dbl_epsilon` is $\\sqrt{\\varepsilon} \\approx 1.49 \\cdot 10^{-8}$ and `machine_log_dbl_max` is $\\ln(\\text{dbl\\_max}) \\approx 709.78$. The rounded `eps` values are `machine_sqrt_eps` ($3.2 \\cdot 10^{-8}$), `machine_root_3_eps` ($10^{-5}$), `machine_root_4_eps` ($1.78 \\cdot 10^{-4}$), `machine_root_5_eps` ($10^{-3}$), `machine_root_6_eps` ($3.16 \\cdot 10^{-3}$) and `machine_log_eps` ($-34.54$)."
+msgstr "例えば `machine_sqrt_dbl_epsilon` は $\\sqrt{\\varepsilon} \\approx 1.49 \\cdot 10^{-8}$、`machine_log_dbl_max` は $\\ln(\\text{dbl\\_max}) \\approx 709.78$ です。丸められた `eps` の値は `machine_sqrt_eps`（$3.2 \\cdot 10^{-8}$）、`machine_root_3_eps`（$10^{-5}$）、`machine_root_4_eps`（$1.78 \\cdot 10^{-4}$）、`machine_root_5_eps`（$10^{-3}$）、`machine_root_6_eps`（$3.16 \\cdot 10^{-3}$）、`machine_log_eps`（$-34.54$）です。"
+
+#: manual/contributing.md:1
+msgid "Contribution guidelines"
+msgstr "貢献ガイドライン"
+
+#: manual/contributing.md:3
+msgid "To contributors"
+msgstr "貢献者の皆様へ"
+
+#: manual/contributing.md:5
+msgid "We warmly welcome developers familiar with various scientific computing libraries related to numerical calculus to join the project, contribute code, and share their valuable experiences. At the same time, we encourage beginners to learn and master numerical methods related to calculus by participating in development and improving documentation. In this project, we hope that both experienced developers and beginners can find contribution goals that interest them by reviewing the project's documentation, tables, and code examples."
+msgstr "微積分の数値計算に関連するさまざまな科学計算ライブラリに詳しい開発者の皆様の参加、コードの貢献、そして貴重な経験の共有を心より歓迎します。同時に、初心者の方には開発やドキュメントの改善に参加しながら、微積分に関する数値計算手法を学び身につけることをお勧めします。経験豊富な開発者も初心者も、プロジェクトのドキュメント、表、コード例を通じて、興味のある貢献目標を見つけられることを願っています。"
+
+#: manual/contributing.md:7
+msgid "We sincerely thank all the developers who have contributed to this project. Whether through submitting code, improving documentation, or providing valuable feedback, every effort you make helps to make this project better. Your enthusiasm and wisdom in the development process continually drive the project forward, and bring more opportunities for collaboration within the community. We appreciate your support and dedication, and we look forward to achieving more together, driving this project toward an even brighter future!"
+msgstr "本プロジェクトに貢献してくださったすべての開発者の皆様に心より感謝申し上げます。コードの提出、ドキュメントの改善、貴重なフィードバックなど、皆様一人ひとりの努力がこのプロジェクトをより良いものにしています。開発における皆様の熱意と知恵がプロジェクトを前進させ続け、コミュニティに新たな協力の機会をもたらしています。皆様のご支援と献身に感謝するとともに、共にさらなる成果を上げ、このプロジェクトをより明るい未来へと導いていけることを楽しみにしています。"
+
+#: manual/contributing.md:9
+msgid "1. Code style"
+msgstr "1. コードスタイル"
+
+#: manual/contributing.md:11
+msgid "The project follows the formatting style enforced by the MoonBit Toolchain. Format your code automatically using the following command:"
+msgstr "本プロジェクトは MoonBit ツールチェインが採用するフォーマット規則に従う。以下のコマンドを実行してコードを自動でフォーマットすること。"
+
+#: manual/contributing.md:17
+msgid "Ensure that you run `moon fmt` before committing your code to maintain consistency."
+msgstr "コードの一貫性を保つために、コミット前に `moon fmt` を実行すること。"
+
+#: manual/contributing.md:19
+msgid "Alternatively, you can use the `ready_to_pr.sh` script to automatically format the code, run checks, generate test coverage files, and create `.mbti` files."
+msgstr "また、`ready_to_pr.sh` スクリプトを実行してコードのフォーマット、チェック、テストカバレッジファイルの生成、`.mbti` ファイルの生成を行うことも可能。"
+
+#: manual/contributing.md:21
+msgid "2. Naming conventions"
+msgstr "2. 名前の命名規則"
+
+#: manual/contributing.md:23
+msgid "2.1 Variable naming"
+msgstr "2.1 変数の命名"
+
+#: manual/contributing.md:25
+msgid "Use **lowercase letters with underscores** as separators (e.g., `my_var`)."
+msgstr "小文字とアンダースコア（ `_` ）を使用（例: `my_var`）。"
+
+#: manual/contributing.md:26
+msgid "Variable names should be descriptive and clearly indicate their purpose."
+msgstr "変数名は意味が明確で、用途が直感的に理解できるものにする。"
+
+#: manual/contributing.md:28
+msgid "2.2 Function naming"
+msgstr "2.2 関数の命名"
+
+#: manual/contributing.md:30
+msgid "Use **lowercase letters with underscores** as separators (e.g., `calc_total_price()`)."
+msgstr "小文字とアンダースコア（ `_` ）を使用（例: `calc_total_price()`）。"
+
+#: manual/contributing.md:31
+msgid "Function names should be concise and descriptive, clearly expressing their functionality."
+msgstr "関数名は簡潔かつ説明的にし、機能が明確に分かるようにする。"
+
+#: manual/contributing.md:33
+msgid "2.3 Struct and trait naming"
+msgstr "2.3 ストラクトとトレイトの命名"
+
+#: manual/contributing.md:35
+msgid "Use **PascalCase** (e.g., `MyStruct`, `MyTrait`)."
+msgstr "パスカルケース（PascalCase）を使用（例: `MyStruct`, `MyTrait`）。"
+
+#: manual/contributing.md:36
+msgid "Names should intuitively reflect the function or role of the struct or trait, avoiding overly abstract or non-descriptive names."
+msgstr "機能や役割を直感的に表す名前を使用し、抽象的すぎる名前は避ける。"
+
+#: manual/contributing.md:38
+msgid "2.4 Constant naming"
+msgstr "2.4 定数の命名"
+
+#: manual/contributing.md:40
+msgid "**Note:** In the MoonBit context, \"variables\" are typically referred to as \"bindings\" and are immutable by default unless marked with `mut`. Thus, there is no strict distinction between constant and variable naming."
+msgstr "**注意：** MoonBit では「変数」は通常「束縛（binding）」と呼ばれ、`mut` を付けない限り既定で不変です。そのため、定数と変数の命名に厳密な区別はありません。"
+
+#: manual/contributing.md:41
+msgid "Use **lowercase letters with underscores** as separators (e.g., `machine_dbl_epsilon`)."
+msgstr "小文字とアンダースコア（ `_` ）を使用（例: `machine_dbl_epsilon`）。"
+
+#: manual/contributing.md:42
+msgid "Prefix constants with a descriptive category where applicable (e.g., `machine_dbl_epsilon`, where `machine` indicates a machine-related constant)."
+msgstr "必要に応じてカテゴリーをプレフィックスとして付与（例: `machine_dbl_epsilon` は機械関連の定数）。"
+
+#: manual/contributing.md:43
+msgid "Constant names should be concise and descriptive to facilitate understanding."
+msgstr "分かりやすく、簡潔な名前を付ける。"
+
+#: manual/contributing.md:45
+msgid "2.5 Result Err construction and Err code"
+msgstr "2.5 結果エラーのエラーコードの設計"
+
+#: manual/contributing.md:47
+msgid "Use **uppercase letters with underscores** as separators (e.g., `E_MAX_ITER`)."
+msgstr "大文字とアンダースコア（ `_` ）を使用（例: `E_MAX_ITER`）。"
+
+#: manual/contributing.md:48
+msgid "Err codes should be prefixed with `E` to indicate an error-related construct."
+msgstr "エラーコードには `E` をプレフィックスとして付与。"
+
+#: manual/contributing.md:49
+msgid "Err codes should be concise and descriptive for easy comprehension."
+msgstr "短く分かりやすいエラーコードを心掛ける。"
+
+#: manual/contributing.md:51
+msgid "3. Comments"
+msgstr "3. コメント"
+
+#: manual/contributing.md:53
+msgid "**Conciseness**: Comments should be clear and to the point, avoiding unnecessary verbosity."
+msgstr "簡潔さ：冗長にならず、明確に記述する。"
+
+#: manual/contributing.md:54
+msgid "**Consistency**: Use uniform terminology and style across the codebase."
+msgstr "一貫性：コード全体で統一された用語とスタイルを使用する。"
+
+#: manual/contributing.md:55
+msgid "**Clarity**: Ensure comments are easy to understand, avoiding complex jargon or ambiguous wording."
+msgstr "明確さ：分かりやすい表現を用い、曖昧な表現や専門用語の多用を避ける。"
+
+#: manual/contributing.md:56
+msgid "**Accuracy**: Comments must accurately reflect the functionality and purpose of the code."
+msgstr "正確さ：コードの動作や目的を正しく反映する。"
+
+#: manual/contributing.md:57
+msgid "**Up-to-date**: Comments should be updated alongside code changes to maintain relevance."
+msgstr "最新状態の維持：コードの変更に応じてコメントを更新する。"
+
+#: manual/contributing.md:59
+msgid "Developers are encouraged to use MoonBit LSP’s AI-generated code comments to improve efficiency, but AI-generated comments should be reviewed to ensure correctness."
+msgstr "開発者は MoonBit LSP の AI によるコードコメント生成機能を活用できるが、AI が生成したコメントは必ずレビューし、正確性を確認すること。"
+
+#: manual/contributing.md:61
+msgid "4. File standards"
+msgstr "4. ファイルの規格"
+
+#: manual/contributing.md:63
+msgid "4.1 Folder naming"
+msgstr "4.1 フォルダ名の命名"
+
+#: manual/contributing.md:65
+msgid "Use **lowercase letters** for folder names."
+msgstr "小文字のみを使用。"
+
+#: manual/contributing.md:66
+msgid "Folder names should be concise, descriptive, and separated using underscores (`_`). Avoid numbers and special characters."
+msgstr "フォルダ名は簡潔で内容がわかるものにし、単語はアンダースコア（`_`）で区切ってください。数字や特殊文字は避けてください。"
+
+#: manual/contributing.md:68
+#: manual/contributing.md:78
+#: manual/contributing.md:94
+msgid "Examples:"
+msgstr "例："
+
+#: manual/contributing.md:70
+msgid "For differentiation-related functionality: `diff`"
+msgstr "微分関連の機能：`diff`"
+
+#: manual/contributing.md:71
+msgid "For derivative-related functionality: `deriv`"
+msgstr "導関数関連の機能：`deriv`"
+
+#: manual/contributing.md:73
+msgid "4.2 File organization"
+msgstr "4.2 ファイルの構成"
+
+#: manual/contributing.md:75
+msgid "Files should be organized based on functionality, with each file focusing on a specific feature. Use **lowercase letters with underscores** for file names."
+msgstr "ファイルは機能ごとに整理し、それぞれ特定の機能に焦点を当てる。ファイル名には**小文字とアンダースコア**を使用する。"
+
+#: manual/contributing.md:76
+msgid "File names should be descriptive and clearly indicate the core functionality they implement."
+msgstr "ファイル名は説明的にし、実装している中心的な機能を明確に示すものにする。"
+
+#: manual/contributing.md:80
+msgid "`gauss_kronrod.mbt`: Implements Gaussian quadrature with Kronrod extension."
+msgstr "`gauss_kronrod.mbt`: ガウス求積法（クロンスロッド拡張）を実装。"
+
+#: manual/contributing.md:81
+msgid "`adaptive_quadrature_gk.mbt`: Implements adaptive quadrature using Gaussian quadrature with Kronrod extension."
+msgstr "`adaptive_quadrature_gk.mbt`: ガウス求積法（クロンスロッド拡張）を用いた適応型求積法を実装。"
+
+#: manual/contributing.md:83
+msgid "**Note:** Avoid overly generic or vague file names such as `utils.mbt`. Instead, ensure file names correspond to their function or module."
+msgstr "注意：`utils.mbt` のような汎用的すぎる名前は避け、機能を明確に表す名前を使用すること。"
+
+#: manual/contributing.md:85
+msgid "5. Commit guidelines"
+msgstr "5. コミット規則"
+
+#: manual/contributing.md:87
+msgid "5.1 Commit messages"
+msgstr "5.1 コミットメッセージ"
+
+#: manual/contributing.md:89
+msgid "Use the `ready_to_pr.sh` script before committing to format code, run checks, generate test coverage files, and create `.mbti` files."
+msgstr "`ready_to_pr.sh` スクリプトを実行し、コードフォーマット、チェック、テストカバレッジ生成、`.mbti` ファイル生成を行うこと。"
+
+#: manual/contributing.md:90
+msgid "Each commit should have a clear description of the changes made."
+msgstr "コミットごとに変更内容を明確に記述する。"
+
+#: manual/contributing.md:91
+msgid "Commit messages should be in **English**, concise, and precise."
+msgstr "コミットメッセージは英語で、簡潔かつ明確に記述する。"
+
+#: manual/contributing.md:92
+msgid "Use prefixes such as `fix:`, `feat:`, `refactor:`, and `doc:` to indicate the type of change."
+msgstr "`fix:`, `feat:`, `refactor:`, `doc:` などのプレフィックスを使用。"
+
+#: manual/contributing.md:103
+msgid "5.2 Commit frequency"
+msgstr "5.2 コミットの頻度"
+
+#: manual/contributing.md:105
+msgid "Keep commits small and focused on a single feature or fix."
+msgstr "コミットは小さく、一つの機能や修正に集中させる。"
+
+#: manual/contributing.md:106
+msgid "Avoid large, monolithic commits that include multiple unrelated changes."
+msgstr "複数の変更を一つの大きなコミットにまとめないこと。"
+
+#: manual/contributing.md:108
+msgid "6. Code review"
+msgstr "6. コードレビュー"
+
+#: manual/contributing.md:110
+msgid "If you are not a maintainer or collaborator, contact them before modifying dependencies or version numbers in `moon.mod.json`."
+msgstr "`moon.mod.json` の依存関係やバージョンを変更する前に、メンテナーまたはコラボレーターに確認すること。"
+
+#: manual/contributing.md:111
+msgid "All code submissions must undergo **code review**."
+msgstr "すべてのコードはコードレビューを受ける必要がある。"
+
+#: manual/contributing.md:112
+msgid "Code reviews should focus on code quality, style, performance, and security."
+msgstr "コードレビューでは、コードの品質、スタイル、パフォーマンス、セキュリティを重視する。"
+
+#: manual/contributing.md:113
+msgid "Reviewers should provide constructive feedback to improve the code."
+msgstr "レビュアーは建設的なフィードバックを提供し、コードの改善に努める。"
+
+#: manual/index.md:1
+msgid "calculus-numerical"
+msgstr "calculus-numerical"
+
+#: manual/index.md:3
+msgid "[![img](https://img.shields.io/badge/Maintainer-KCN--judu-pink)](https://github.com/KCN-judu) [![img](https://img.shields.io/badge/License-Apache%202.0-blue)](https://github.com/Luna-Flow/calculus-numerical/blob/main/LICENSE) ![img](https://img.shields.io/badge/State-active-success)"
+msgstr "[![img](https://img.shields.io/badge/Maintainer-KCN--judu-pink)](https://github.com/KCN-judu) [![img](https://img.shields.io/badge/License-Apache%202.0-blue)](https://github.com/Luna-Flow/calculus-numerical/blob/main/LICENSE) ![img](https://img.shields.io/badge/State-active-success)"
+
+#: manual/index.md:5
+msgid "Introduction"
+msgstr "紹介"
+
+#: manual/index.md:7
+msgid "This is a numerical calculus library written in [**MoonBit**](https://www.moonbitlang.cn/), designed to fill the gap in the MoonBit ecosystem for scientific computing."
+msgstr "これは[**MoonBit**](https://www.moonbitlang.cn/)で開発された数値微積分ライブラリで、MoonBit エコシステムにおける科学計算のギャップを埋めることを目的としています。"
+
+#: manual/index.md:9
+msgid "The library works on functions of type `(Double) -> Double` and is divided into five packages:"
+msgstr "このライブラリは `(Double) -> Double` 型の関数を扱い、五つのパッケージに分かれています。"
+
+#: manual/index.md:11
+msgid "Package"
+msgstr "パッケージ"
+
+#: manual/index.md:11
+msgid "Contents"
+msgstr "内容"
+
+#: manual/index.md:13
+msgid "The function types `Func_Math` and `Quad_GK` and mathematical constants."
+msgstr "関数型 `Func_Math` と `Quad_GK`、および数学定数。"
+
+#: manual/index.md:14
+msgid "Derivatives by forward, backward and central differences from a given initial step size."
+msgstr "与えられた初期ステップサイズから、前進・後退・中心差分で微分係数を求めます。"
+
+#: manual/index.md:15
+msgid "Derivatives by forward, backward and central differences with a step size chosen automatically."
+msgstr "ステップサイズを自動的に選び、前進・後退・中心差分で微分係数を求めます。"
+
+#: manual/index.md:16
+msgid "Gauss–Kronrod rules and adaptive and non-adaptive integrators."
+msgstr "Gauss–Kronrod 則と、適応・非適応の積分器。"
+
+#: manual/index.md:17
+msgid "Machine constants used by the other packages."
+msgstr "他のパッケージが使う機械定数。"
+
+#: manual/index.md:19
+msgid "Feature list"
+msgstr "機能一覧"
+
+#: manual/index.md:21
+msgid "**[Latest]** 25.01.31: Non-adaptive integration implementation (using Gaussian quadrature and Kronrod extension)"
+msgstr "**[最新]** 25.01.31: 非適応積分の実装（Gauss 求積法および Kronrod 拡張を使用）"
+
+#: manual/index.md:23
+msgid "**25.01.13**: Adaptive integration implementation (using Gaussian quadrature and Kronrod extension)"
+msgstr "**25.01.13**: 適応積分の実装（Gauss 求積法および Kronrod 拡張を使用）"
+
+#: manual/index.md:24
+msgid "**25.01.02**: Quadrature methods implementation (using Gaussian quadrature and Kronrod extension)"
+msgstr "**25.01.02**: 求積法の実装（Gauss 求積法および Kronrod 拡張を使用）"
+
+#: manual/index.md:25
+msgid "**24.12.30**: Derivatives and differential functionality implementation (using forward, backward, and central difference methods)"
+msgstr "**24.12.30**: 微分と微分係数の差分機能の実装（前進差分法、後退差分法、中心差分法を使用）"
+
+#: manual/index.md:27
+msgid "How to contribute"
+msgstr "貢献方法"
+
+#: manual/index.md:29
+msgid "We welcome contributions from the community, external developers, and individual enthusiasts! Whether you want to fix a bug, add a new feature, or improve the documentation, your participation is highly encouraged. To help you contribute smoothly, here are some simple steps:"
+msgstr "コミュニティ、外部開発者、個人の愛好者からの貢献を歓迎します！バグ修正、新機能の追加、ドキュメントの改善など、どんな形でも貢献をお待ちしています。スムーズに貢献できるよう、以下の簡単な手順をお知らせします。"
+
+#: manual/index.md:31
+msgid "Please choose a task from the [`TODO.md`](../../TODO.md) file or the current `issue` list that interests you. We recommend selecting something you are interested in or familiar with, as it will make it easier to get started and enjoy the process."
+msgstr "まず、[`TODO.md`](../../TODO.md) ファイルまたは現在の`issue`リストから、興味のあるタスクを選んでください。自分の興味や得意分野に関連した内容を選ぶことをお勧めします。そうすることで、よりスムーズに作業を始められ、プロセスを楽しむことができます。"
+
+#: manual/index.md:32
+msgid "Fork our project and create a new branch in your personal repository. This way, you can start working on your changes without affecting the main project."
+msgstr "プロジェクトをフォークし、個人リポジトリ内で新しいブランチを作成します。これで、メインプロジェクトに影響を与えることなく、変更作業を進めることができます。"
+
+#: manual/index.md:33
+msgid "During development, please adhere to the coding style and guidelines in the [contribution guidelines](contributing.md). If your changes involve new features or bug fixes, please make sure to perform thorough testing to ensure everything works as expected."
+msgstr "開発中は、[貢献ガイドライン](contributing.md)に記載されているコードスタイルやガイドラインに従ってください。新しい機能追加やバグ修正が含まれている場合は、十分なテストを実施し、すべてが正常に動作することを確認してください。"
+
+#: manual/index.md:34
+msgid "Once you're done, submit your PR and provide a clear description of your changes to help us understand the modifications you've made. This will help us review and merge your code more quickly."
+msgstr "作業が完了したら、PR を提出し、行った変更の明確な説明を提供してください。これにより、コードレビューとマージがスムーズに進みます。"
+
+#: manual/index.md:35
+msgid "We will review your PR and may suggest improvements to ensure code quality. After approval, your contributions will be merged into the main branch."
+msgstr "PR をレビューし、コード品質を確保するために改善案を提案することがあります。レビューが完了次第、あなたの貢献をメインブランチにマージします。"
+
+#: manual/index.md:37
+msgid "Thank you again for your participation and contributions! Every effort helps make this project better. We look forward to seeing your great code!"
+msgstr "再度、貢献していただきありがとうございます！皆様の努力が、このプロジェクトをより良くしていきます。あなたの素晴らしいコードを楽しみにしています！"
+
+#~ msgid "Table of Contents"
+#~ msgstr "**貢献者の皆様へ**"
+
+#, fuzzy
+#~ msgid "[Code Style](#1-code-style)"
+#~ msgstr "[コードスタイル](#1-コードスタイル)"
+
+#, fuzzy
+#~ msgid "[Naming Conventions](#2-naming-conventions) 2.1 [Variable Naming](#21-variable-naming) 2.2 [Function Naming](#22-function-naming) 2.3 [Struct and Trait Naming](#23-struct-and-trait-naming) 2.4 [Constant Naming](#24-constant-naming) 2.5 [Result Err Construction and Err Code](#25-result-err-construction-and-err-code)"
+#~ msgstr "[名前の命名規則](#2-名前の命名規則) 2.1 [変数の命名](#21-変数の命名) 2.2 [関数の命名](#22-関数の命名) 2.3 [ストラクトとトレイトの命名](#23-ストラクトとトレイトの命名) 2.4 [定数の命名](#24-定数の命名) 2.5 [結果エラーのエラーコードの設計](#25-結果エラーのエラーコードの設計)"
+
+#, fuzzy
+#~ msgid "[Comments](#3-comments)"
+#~ msgstr "[コメント](#3-コメント)"
+
+#, fuzzy
+#~ msgid "[File Standards](#4-file-standards) 4.1 [Folder Naming](#41-folder-naming) 4.2 [File Organization](#42-file-organization)"
+#~ msgstr "[ファイルの規格](#4-ファイルの規格) 4.1[フォルダ名の命名](#41-フォルダ名の命名) 4.2[ファイルの構成](#42-ファイルの構成)"
+
+#, fuzzy
+#~ msgid "[Commit Guidelines](#5-commit-guidelines) 5.1 [Commit Messages](#51-commit-messages) 5.2 [Commit Frequency](#52-commit-frequency)"
+#~ msgstr "[コミット規則](#5-コミット規則) 5.1[コミットメッセージ](#51-コミットメッセージ) 5.2[コミットの頻度](#52-コミットの頻度)"
+
+#, fuzzy
+#~ msgid "[Code Review](#6-code-review)"
+#~ msgstr "[コードレビュー](#6-コードレビュー)"
+
+#~ msgid "TODO List"
+#~ msgstr "TODO リスト"
+
+#~ msgid "Content 目录"
+#~ msgstr "目次"
+
+#, fuzzy
+#~ msgid "[Documentation Writing](#documentation-writing)"
+#~ msgstr "[ドキュメント作成](#ドキュメント作成)"
+
+#, fuzzy
+#~ msgid "[Feature Implementation](#feature-implementation)"
+#~ msgstr "[機能実装](#機能実装)"
+
+#~ msgid "Documentation Writing"
+#~ msgstr "ドキュメント作成"
+
+#~ msgid "Since the project primarily focuses on numerical solutions related to calculus, documentation in this project is not only the foundation for sustainable development but also a key medium for helping developers understand and apply numerical solving methods, while also enabling them to deeply master the implementation and application of algorithms. Improving and updating the documentation is an ongoing effort, requiring continuous contributions from the community. Whether it is detailed algorithm explanations or tutorials and usage instructions for beginners, every small improvement will greatly enhance the accessibility and maintainability of the project. Therefore, we sincerely invite all developers to participate, especially those who are already familiar with various numerical computation libraries. Their experience will provide valuable insights for improving the quality of the documentation. We also encourage beginners to contribute to writing and refining the documentation, as it will not only help them better understand the project but also deepen their understanding of calculus and numerical computation through their contributions. Through joint effort, we believe that the project documentation will become a driving force for the growth of every contributor in the community, helping the project progress further in the future."
+#~ msgstr "本プロジェクトは主に微積分に関連する数値解法に焦点を当てているため、本プロジェクトにおけるドキュメントは、持続的な開発の基盤であるだけでなく、開発者が数値解法を理解し、適用するのを助けるための重要な手段であり、さらにアルゴリズムの実装と応用を深く習得するための手助けとなるメディアでもあります。ドキュメントの改善と更新は継続的な努力を必要とし、コミュニティからの継続的な貢献が求められます。詳細なアルゴリズムの説明や、初心者向けのチュートリアルや使用ガイドラインなど、どんな小さな改善でもプロジェクトのアクセス性とメンテナンス性を大いに向上させます。そのため、すべての開発者の参加を心より歓迎します。特に、さまざまな数値計算ライブラリに精通している開発者の経験は、ドキュメントの質を向上させる貴重な視点を提供します。また、初心者にもドキュメント作成や改善に貢献していただきたいと考えています。これにより、プロジェクトをより深く理解できるだけでなく、微積分や数値計算に対する理解を深めることができます。共同の努力を通じて、プロジェクトのドキュメントはコミュニティ内のすべての貢献者の成長を促進し、今後プロジェクトの進展に大きく寄与することになると信じています。"
+
+#~ msgid "Feature Implementation"
+#~ msgstr "機能実装"
+
+#~ msgid "This project primarily focuses on implementing numerical solutions for calculus. In the next few versions, the focus will shift primarily to integration. Therefore, only integration-related functions are listed below. Below is a table of function name components and their meanings:"
+#~ msgstr "本プロジェクトは主に微積分の数値解法の実装に焦点を当てています。次の数バージョンでは、主に積分に焦点を当てる予定です。そのため、以下には積分に関連する関数のみがリストされています。以下は、関数名の構成要素とその意味を示す表です："
+
+#~ msgid "**Component**"
+#~ msgstr "**構成要素**"
+
+#~ msgid "Double (e.g., doubly adaptive, indicating multiple levels of adaptation)."
+#~ msgstr "ダブル（例：二重適応、適応レベルの複数階層を示す）"
+
+#~ msgid "Adaptive (dynamic adjustment of strategy, e.g., error control or interval subdivision)."
+#~ msgstr "適応（戦略の動的調整、例：誤差制御や区間分割）"
+
+#~ msgid "General-purpose (suitable for a wide range of problems)."
+#~ msgstr "一般的（幅広い問題に適用可能）"
+
+#~ msgid "Oscillatory (handling functions with oscillatory behavior)."
+#~ msgstr "振動性（振動的な挙動を持つ関数を扱う）"
+
+#~ msgid "Singularities (handling functions with singular points)."
+#~ msgstr "特異点（特異点を持つ関数を扱う）"
+
+#~ msgid "Weighted (handling functions with specific weight functions)."
+#~ msgstr "重み付き（特定の重み関数を持つ関数を扱う）"
+
+#~ msgid "Quadrature (numerical integration)."
+#~ msgstr "数値積分（積分法）"
+
+#~ msgid "Cauchy Principal Value (handling singularities or infinite intervals)."
+#~ msgstr "コーシー主値（特異点や無限区間を扱う）"
+
+#~ msgid "Fourier (specific oscillatory properties, often related to Fourier transforms)."
+#~ msgstr "フーリエ（フーリエ変換などの特定の振動特性に関連）"
+
+#~ msgid "Gauss-Kronrod (a specific numerical integration method)."
+#~ msgstr "ガウス・クロンドロッド（特定の数値積分法）"
+
+#~ msgid "Simpson’s rule (a numerical integration method with higher accuracy)."
+#~ msgstr "シンプソン法（高精度な数値積分法）"
+
+#~ msgid "Trapezoidal rule (a basic numerical integration method)."
+#~ msgstr "台形法（基本的な数値積分法）"
+
+#~ msgid "Below is a table of functions that need to be implemented. The table includes the package each function belongs to, its name, purpose, and implementation difficulty, providing developers with a convenient reference to choose contribution goals based on their individual needs and abilities. | Package | **Function** | **Purpose** | **Difficulty** |"
+#~ msgstr "以下は、実装が必要な関数の表です。各関数が所属するパッケージ、関数名、目的、実装の難易度を含んでおり、開発者が自分のニーズと能力に基づいて貢献目標を選ぶ際に便利な参考になります。"
+
+#~ msgid "basic is part of Luna-Flow/calculus-numerical. This page should describe the public types, constructors, functions, traits, and observable semantics that are implemented in the current branch."
+#~ msgstr "basic は Luna-Flow/calculus-numerical の一部です。このページでは、現在のブランチで実装されている公開型、コンストラクタ、関数、trait、および可観測セマンティクスを記述します。"
+
+#~ msgid "Scope"
+#~ msgstr "範囲"
+
+#~ msgid "Source boundary: `src/basic`"
+#~ msgstr "ソース境界: `src/basic`"
+
+#~ msgid "Audience: package users, integrators, and maintainers who need the exported contract"
+#~ msgstr "想定読者: 公開契約に依存する利用者、統合担当者、保守者"
+
+#~ msgid "Status: active"
+#~ msgstr "状態: active"
+
+#~ msgid "Public Contract"
+#~ msgstr "公開契約"
+
+#~ msgid "Describe only exported behavior that exists today."
+#~ msgstr "今日存在する公開挙動だけを記述する。"
+
+#~ msgid "Call out backend or subtype differences when they are observable."
+#~ msgstr "バックエンドや実行経路に可観測差異がある場合は明記する。"
+
+#~ msgid "Keep naming, argument ordering, and error semantics aligned with sibling modules when possible."
+#~ msgstr "可能な限り、兄弟モジュールと命名・引数順・エラー意味論をそろえる。"
+
+#~ msgid "deriv is part of Luna-Flow/calculus-numerical. This page should describe the public types, constructors, functions, traits, and observable semantics that are implemented in the current branch."
+#~ msgstr "deriv は Luna-Flow/calculus-numerical の一部です。このページでは、現在のブランチで実装されている公開型、コンストラクタ、関数、trait、および可観測セマンティクスを記述します。"
+
+#~ msgid "Source boundary: `src/deriv`"
+#~ msgstr "ソース境界: `src/deriv`"
+
+#~ msgid "diff is part of Luna-Flow/calculus-numerical. This page should describe the public types, constructors, functions, traits, and observable semantics that are implemented in the current branch."
+#~ msgstr "diff は Luna-Flow/calculus-numerical の一部です。このページでは、現在のブランチで実装されている公開型、コンストラクタ、関数、trait、および可観測セマンティクスを記述します。"
+
+#~ msgid "Source boundary: `src/diff`"
+#~ msgstr "ソース境界: `src/diff`"
+
+#~ msgid "integration is part of Luna-Flow/calculus-numerical. This page should describe the public types, constructors, functions, traits, and observable semantics that are implemented in the current branch."
+#~ msgstr "integration は Luna-Flow/calculus-numerical の一部です。このページでは、現在のブランチで実装されている公開型、コンストラクタ、関数、trait、および可観測セマンティクスを記述します。"
+
+#~ msgid "Source boundary: `src/integration`"
+#~ msgstr "ソース境界: `src/integration`"
+
+#~ msgid "internal is part of Luna-Flow/calculus-numerical. This page should describe the public types, constructors, functions, traits, and observable semantics that are implemented in the current branch."
+#~ msgstr "internal は Luna-Flow/calculus-numerical の一部です。このページでは、現在のブランチで実装されている公開型、コンストラクタ、関数、trait、および可観測セマンティクスを記述します。"
+
+#~ msgid "Source boundary: `src/internal`"
+#~ msgstr "ソース境界: `src/internal`"
+
+#~ msgid "API Reference Manual"
+#~ msgstr "API 参考手册"
+
+#~ msgid "Derivation"
+#~ msgstr "微分係数"
+
+#~ msgid "Differentiation"
+#~ msgstr "微分"
+
+#~ msgid "Documentation Standard"
+#~ msgstr "ドキュメント標準"
+
+#~ msgid "This repository's documentation must describe the real implementation on the current branch for Luna-Flow/calculus-numerical. It should stay aligned with the exported surface, repository layout, and release narrative."
+#~ msgstr "Luna-Flow/calculus-numerical のドキュメントは、現在のブランチに存在する実装だけを記述し、公開面・リポジトリ構成・リリース叙述と常に整合していなければなりません。"
+
+#~ msgid "Provide `README.md`, `doc_standard.md`, and structured module or subsystem documents for every supported locale."
+#~ msgstr "各対応言語で `README.md`、`doc_standard.md`、モジュールまたはサブシステム文書をそろえる。"
+
+#~ msgid "Document only APIs, workflows, and design decisions that exist in the current branch."
+#~ msgstr "現在のブランチに存在しない API や運用手順は書かない。"
+
+#~ msgid "Keep the directory layout aligned with real package or subsystem boundaries."
+#~ msgstr "ディレクトリ構成は実際のパッケージ境界またはサブシステム境界に合わせる。"
+
+#~ msgid "Each module or subsystem directory must contain `api.md`, `tutorial.md`, and `design.md`."
+#~ msgstr "各モジュールまたはサブシステム配下に `api.md`、`tutorial.md`、`design.md` を置く。"
+
+#~ msgid "Use cross-links between related mutable/immutable, runtime/frontend, or spec/implementation areas when semantics differ."
+#~ msgstr "可観測な差異がある場合は、関連ページを相互参照しつつ明示する。"
+
+#~ msgid "basic Design"
+#~ msgstr "basic 設計"
+
+#~ msgid "Use this page to explain the structural responsibilities and implementation constraints of this module. basic in Luna-Flow/calculus-numerical."
+#~ msgstr "このページは、このモジュールの構造上の責務と実装制約を説明します。 Luna-Flow/calculus-numerical の basic を対象にします。"
+
+#~ msgid "Responsibilities"
+#~ msgstr "責務"
+
+#~ msgid "Keep the code and docs aligned around `src/basic`."
+#~ msgstr "`src/basic` を軸にコードと文書の整合を保つ。"
+
+#~ msgid "Preserve the real execution model instead of smoothing over important internal differences."
+#~ msgstr "重要な内部差異を隠さず、実際の実行モデルをそのまま説明する。"
+
+#~ msgid "Note extension points, invariants, and limitations that maintainers must keep stable."
+#~ msgstr "保守者が維持すべき拡張点、不変条件、制約を書く。"
+
+#~ msgid "Maintenance Notes"
+#~ msgstr "保守メモ"
+
+#~ msgid "Update this page whenever the module boundary, core algorithm, or observable semantics change."
+#~ msgstr "モジュール境界、主要アルゴリズム、可観測意味論が変わったら更新する。"
+
+#~ msgid "If the module is intentionally incomplete, say so here instead of documenting speculative APIs."
+#~ msgstr "未完成なモジュールなら、その事実を明記し、未来の API を捏造しない。"
+
+#~ msgid "deriv Design"
+#~ msgstr "deriv 設計"
+
+#~ msgid "Use this page to explain the structural responsibilities and implementation constraints of this module. deriv in Luna-Flow/calculus-numerical."
+#~ msgstr "このページは、このモジュールの構造上の責務と実装制約を説明します。 Luna-Flow/calculus-numerical の deriv を対象にします。"
+
+#~ msgid "Keep the code and docs aligned around `src/deriv`."
+#~ msgstr "`src/deriv` を軸にコードと文書の整合を保つ。"
+
+#~ msgid "diff Design"
+#~ msgstr "diff 設計"
+
+#~ msgid "Use this page to explain the structural responsibilities and implementation constraints of this module. diff in Luna-Flow/calculus-numerical."
+#~ msgstr "このページは、このモジュールの構造上の責務と実装制約を説明します。 Luna-Flow/calculus-numerical の diff を対象にします。"
+
+#~ msgid "Keep the code and docs aligned around `src/diff`."
+#~ msgstr "`src/diff` を軸にコードと文書の整合を保つ。"
+
+#~ msgid "integration Design"
+#~ msgstr "integration 設計"
+
+#~ msgid "Keep the code and docs aligned around `src/integration`."
+#~ msgstr "`src/integration` を軸にコードと文書の整合を保つ。"
+
+#~ msgid "internal Design"
+#~ msgstr "internal 設計"
+
+#~ msgid "Use this page to explain the structural responsibilities and implementation constraints of this module. internal in Luna-Flow/calculus-numerical."
+#~ msgstr "このページは、このモジュールの構造上の責務と実装制約を説明します。 Luna-Flow/calculus-numerical の internal を対象にします。"
+
+#~ msgid "Keep the code and docs aligned around `src/internal`."
+#~ msgstr "`src/internal` を軸にコードと文書の整合を保つ。"
+
+#~ msgid "[Introduction](#introduction)"
+#~ msgstr "[紹介](#紹介)"
+
+#~ msgid "[Feature List](#feature-list)"
+#~ msgstr "[機能一覧](#機能一覧)"
+
+#~ msgid "[How to Contribute](#how-to-contribute)"
+#~ msgstr "[貢献方法](#貢献方法)"
+
+#~ msgid "The project will provide basic methods for numerical calculus solutions. For the integration part, multiple numerical solving methods will be available. Additionally, we will also support complex calculations such as Fourier transforms."
+#~ msgstr "このプロジェクトは、基本的な数値微積分の解法を提供します。積分部分では、複数の数値解法を利用可能にする予定です。また、フーリエ変換などの複雑な計算もサポートします。"
+
+#~ msgid "**_Starting from the first official release, both English and Chinese documentation will be fully maintained. Japanese documentation may be added in future updates._**"
+#~ msgstr "**_最初の正式リリース以降、英語および中国語のドキュメントは引き続き完全に維持され、今後の更新で日本語ドキュメントが追加される可能性もあります。_**"
+
+#~ msgid "basic Tutorial"
+#~ msgstr "basic チュートリアル"
+
+#~ msgid "Use this page as the starting point for practical workflows around this module. basic in Luna-Flow/calculus-numerical."
+#~ msgstr "このページは、このモジュールの実用的な利用フローを説明する出発点です。 Luna-Flow/calculus-numerical の basic を対象にします。"
+
+#~ msgid "Suggested Flow"
+#~ msgstr "推奨フロー"
+
+#~ msgid "Read the repository README and the basic API reference."
+#~ msgstr "まずリポジトリ README と basic の API 文書を読む。"
+
+#~ msgid "Start from the constructors or entry points under `src/basic`."
+#~ msgstr "`src/basic` にあるコンストラクタまたは入口から始める。"
+
+#~ msgid "Validate behavior with the existing tests or examples before depending on edge-case semantics."
+#~ msgstr "境界挙動へ依存する前に、既存のテストや例で意味論を確認する。"
+
+#~ msgid "Practical Guidance"
+#~ msgstr "実践ガイド"
+
+#~ msgid "Prefer the documented entry points over internal helpers."
+#~ msgstr "内部ヘルパーではなく、文書化された入口を優先する。"
+
+#~ msgid "Record runtime, numeric, or proof-state assumptions explicitly in downstream code."
+#~ msgstr "ランタイム・数値・証明状態の前提を下流コードに明示する。"
+
+#~ msgid "deriv Tutorial"
+#~ msgstr "deriv チュートリアル"
+
+#~ msgid "Use this page as the starting point for practical workflows around this module. deriv in Luna-Flow/calculus-numerical."
+#~ msgstr "このページは、このモジュールの実用的な利用フローを説明する出発点です。 Luna-Flow/calculus-numerical の deriv を対象にします。"
+
+#~ msgid "Read the repository README and the deriv API reference."
+#~ msgstr "まずリポジトリ README と deriv の API 文書を読む。"
+
+#~ msgid "Start from the constructors or entry points under `src/deriv`."
+#~ msgstr "`src/deriv` にあるコンストラクタまたは入口から始める。"
+
+#~ msgid "diff Tutorial"
+#~ msgstr "diff チュートリアル"
+
+#~ msgid "Use this page as the starting point for practical workflows around this module. diff in Luna-Flow/calculus-numerical."
+#~ msgstr "このページは、このモジュールの実用的な利用フローを説明する出発点です。 Luna-Flow/calculus-numerical の diff を対象にします。"
+
+#~ msgid "Read the repository README and the diff API reference."
+#~ msgstr "まずリポジトリ README と diff の API 文書を読む。"
+
+#~ msgid "Start from the constructors or entry points under `src/diff`."
+#~ msgstr "`src/diff` にあるコンストラクタまたは入口から始める。"
+
+#~ msgid "integration Tutorial"
+#~ msgstr "integration チュートリアル"
+
+#~ msgid "Use this page as the starting point for practical workflows around this module. integration in Luna-Flow/calculus-numerical."
+#~ msgstr "このページは、このモジュールの実用的な利用フローを説明する出発点です。 Luna-Flow/calculus-numerical の integration を対象にします。"
+
+#~ msgid "Read the repository README and the integration API reference."
+#~ msgstr "まずリポジトリ README と integration の API 文書を読む。"
+
+#~ msgid "Start from the constructors or entry points under `src/integration`."
+#~ msgstr "`src/integration` にあるコンストラクタまたは入口から始める。"
+
+#~ msgid "internal Tutorial"
+#~ msgstr "internal チュートリアル"
+
+#~ msgid "Use this page as the starting point for practical workflows around this module. internal in Luna-Flow/calculus-numerical."
+#~ msgstr "このページは、このモジュールの実用的な利用フローを説明する出発点です。 Luna-Flow/calculus-numerical の internal を対象にします。"
+
+#~ msgid "Read the repository README and the internal API reference."
+#~ msgstr "まずリポジトリ README と internal の API 文書を読む。"
+
+#~ msgid "Start from the constructors or entry points under `src/internal`."
+#~ msgstr "`src/internal` にあるコンストラクタまたは入口から始める。"

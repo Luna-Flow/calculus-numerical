@@ -1,6 +1,6 @@
 # Contribution Guidelines
 
-View Contribution Guidelines in [zh_CN](https://github.com/Luna-Flow/calculus-numerical/tree/main/doc/zh_CN/CONTRIBUTING.md) | [ja_JP](https://github.com/Luna-Flow/calculus-numerical/tree/main/doc/ja_JP/CONTRIBUTING.md)
+These guidelines are also part of the [manual](doc/manual/contributing.md), which is published with Chinese and Japanese translations at <https://luna-flow.github.io/en/calculus-numerical/>.
 
 ## To Contributors
 

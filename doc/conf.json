@@ -1,0 +1,8 @@
+{
+  "title": "calculus-numerical",
+  "summary": "Numerical differentiation and Gauss–Kronrod integration of real functions for MoonBit, part of Luna-Flow.",
+  "locales": [
+    "zh_CN",
+    "ja_JP"
+  ]
+}

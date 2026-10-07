@@ -1,0 +1,856 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Luna-Flow documentation\n"
+"Report-Msgid-Bugs-To: https://github.com/Luna-Flow\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: conf.json:summary
+msgid "Numerical differentiation and Gauss–Kronrod integration of real functions for MoonBit, part of Luna-Flow."
+msgstr ""
+
+#: manual/api/basic.md:1
+msgid "basic API"
+msgstr ""
+
+#: manual/api/basic.md:3
+msgid "The `basic` package defines the function types shared by the other packages and a set of mathematical constants."
+msgstr ""
+
+#: manual/api/basic.md:5
+msgid "Type aliases"
+msgstr ""
+
+#: manual/api/basic.md:9
+msgid "Represents a single-variable mathematical function."
+msgstr ""
+
+#: manual/api/basic.md:13
+msgid "Represents a Gauss-Kronrod numerical integration function, such as `@integration.kronrod_r15()`"
+msgstr ""
+
+#: manual/api/basic.md:15
+msgid "Constants"
+msgstr ""
+
+#: manual/api/basic.md:17
+msgid "The constants are `Double` values with full double precision."
+msgstr ""
+
+#: manual/api/basic.md:19
+msgid "Constant"
+msgstr ""
+
+#: manual/api/basic.md:19
+#: manual/api/integration.md:22
+#: manual/api/internal.md:22
+msgid "Value"
+msgstr ""
+
+#: manual/api/basic.md:37
+msgid "Euler's constant $\\gamma$"
+msgstr ""
+
+#: manual/api/deriv.md:1
+msgid "deriv API"
+msgstr ""
+
+#: manual/api/deriv.md:3
+msgid "The `deriv` package estimates the derivative of a function at a point from a caller-supplied initial step size `h`. Each function returns the estimate together with an error bound."
+msgstr ""
+
+#: manual/api/deriv.md:7
+msgid "**Description:** Computes the derivative of the function `f` at point `x` using an **adaptive central difference method**, which balances truncation and round-off errors for improved accuracy."
+msgstr ""
+
+#: manual/api/deriv.md:10
+#: manual/api/deriv.md:44
+#: manual/api/deriv.md:79
+#: manual/api/diff.md:11
+#: manual/api/diff.md:46
+#: manual/api/diff.md:68
+msgid "**Parameters:**"
+msgstr ""
+
+#: manual/api/deriv.md:12
+#: manual/api/deriv.md:46
+#: manual/api/deriv.md:81
+msgid "`f: Func_Math` — A mathematical function that takes a `Double` as input and Returns: a `Double` as output."
+msgstr ""
+
+#: manual/api/deriv.md:13
+#: manual/api/deriv.md:47
+#: manual/api/deriv.md:82
+msgid "`x: Double` — The point at which the derivative is evaluated."
+msgstr ""
+
+#: manual/api/deriv.md:14
+#: manual/api/deriv.md:48
+#: manual/api/deriv.md:83
+msgid "`h: Double` — The initial step size for numerical differentiation, which will be adaptively adjusted if necessary."
+msgstr ""
+
+#: manual/api/deriv.md:16
+#: manual/api/deriv.md:50
+#: manual/api/diff.md:16
+#: manual/api/diff.md:51
+#: manual/api/diff.md:73
+msgid "**Returns:**"
+msgstr ""
+
+#: manual/api/deriv.md:18
+#: manual/api/deriv.md:52
+#: manual/api/diff.md:18
+#: manual/api/diff.md:53
+#: manual/api/diff.md:75
+msgid "A tuple `(Double, Double)`, where:"
+msgstr ""
+
+#: manual/api/deriv.md:20
+#: manual/api/deriv.md:54
+#: manual/api/deriv.md:88
+msgid "The first value is the estimated derivative at `x`."
+msgstr ""
+
+#: manual/api/deriv.md:21
+#: manual/api/deriv.md:55
+#: manual/api/deriv.md:89
+msgid "The second value is the total estimated error, combining truncation and round-off errors."
+msgstr ""
+
+#: manual/api/deriv.md:23
+#: manual/api/deriv.md:57
+#: manual/api/deriv.md:91
+#: manual/api/diff.md:23
+#: manual/api/diff.md:80
+msgid "**Example Usage:**"
+msgstr ""
+
+#: manual/api/deriv.md:33
+#: manual/api/deriv.md:67
+#: manual/api/deriv.md:101
+#: manual/api/diff.md:33
+#: manual/api/diff.md:58
+#: manual/api/diff.md:90
+msgid "**Notes:**"
+msgstr ""
+
+#: manual/api/deriv.md:35
+msgid "The method **automatically adjusts the step size** to achieve the best accuracy."
+msgstr ""
+
+#: manual/api/deriv.md:36
+msgid "Works well for smooth functions but may be **less accurate near discontinuities**."
+msgstr ""
+
+#: manual/api/deriv.md:37
+msgid "Compared to a simple 2-point method, this approach significantly reduces numerical errors."
+msgstr ""
+
+#: manual/api/deriv.md:41
+msgid "**Description:** Computes the derivative of the function `f` at point `x` using an **adaptive forward difference method**, which optimizes step size to minimize truncation and round-off errors."
+msgstr ""
+
+#: manual/api/deriv.md:69
+msgid "The method **automatically refines the step size** for better accuracy."
+msgstr ""
+
+#: manual/api/deriv.md:70
+msgid "Compared to basic forward difference methods, this approach **significantly reduces numerical errors**."
+msgstr ""
+
+#: manual/api/deriv.md:71
+msgid "Works well for smooth functions but may be **less accurate for functions with sharp changes or discontinuities**."
+msgstr ""
+
+#: manual/api/deriv.md:72
+msgid "This method is especially useful when evaluating derivatives at boundaries where central differences are not feasible."
+msgstr ""
+
+#: manual/api/deriv.md:76
+msgid "**Description:** Computes the derivative of the function `f` at point `x` using an **adaptive backward difference method**, which mirrors forward differentiation but with a negative step size."
+msgstr ""
+
+#: manual/api/deriv.md:85
+msgid "**Returns:** A tuple `(Double, Double)`, where:"
+msgstr ""
+
+#: manual/api/deriv.md:103
+msgid "The method **automatically refines the step size** to optimize accuracy."
+msgstr ""
+
+#: manual/api/deriv.md:104
+msgid "Suitable for cases where **backward differences** are preferred, such as differentiation near the upper boundary of a dataset."
+msgstr ""
+
+#: manual/api/deriv.md:105
+msgid "Shares the same numerical advantages as `deriv_forward`, significantly reducing numerical errors compared to simple finite differences."
+msgstr ""
+
+#: manual/api/diff.md:1
+msgid "diff API"
+msgstr ""
+
+#: manual/api/diff.md:3
+msgid "The `diff` package estimates the derivative of a function at a point without a step size from the caller: the step is derived from machine precision and the local behaviour of the function. Each function returns the estimate together with an error bound."
+msgstr ""
+
+#: manual/api/diff.md:7
+#: manual/api/diff.md:42
+#: manual/api/diff.md:64
+msgid "**Description:**"
+msgstr ""
+
+#: manual/api/diff.md:9
+msgid "Computes the numerical derivative of a function at a given point using the backward difference method with adaptive step size."
+msgstr ""
+
+#: manual/api/diff.md:13
+#: manual/api/diff.md:48
+#: manual/api/diff.md:70
+msgid "`f: Func_Math` — A function that takes a `Double` and Returns: a `Double`. The function to be differentiated."
+msgstr ""
+
+#: manual/api/diff.md:14
+#: manual/api/diff.md:49
+#: manual/api/diff.md:71
+msgid "`x: Double` — The point at which to compute the derivative."
+msgstr ""
+
+#: manual/api/diff.md:20
+msgid "The first value is the estimated derivative value using backward difference approximation."
+msgstr ""
+
+#: manual/api/diff.md:21
+#: manual/api/diff.md:56
+#: manual/api/diff.md:78
+msgid "The second value is the estimated absolute error of the computation."
+msgstr ""
+
+#: manual/api/diff.md:35
+msgid "The function evaluates the given function at three backward points using an adaptive step size."
+msgstr ""
+
+#: manual/api/diff.md:36
+msgid "It applies Neville’s recursion to compute divided differences and estimate the derivative."
+msgstr ""
+
+#: manual/api/diff.md:37
+msgid "The method includes an error estimation based on the second-order divided difference."
+msgstr ""
+
+#: manual/api/diff.md:38
+msgid "If `h` is too large, accuracy may decrease; if too small, numerical precision issues may arise."
+msgstr ""
+
+#: manual/api/diff.md:44
+msgid "Computes the numerical derivative of a function at a given point using the forward difference method with adaptive step size."
+msgstr ""
+
+#: manual/api/diff.md:55
+msgid "The first value is the estimated derivative value using forward difference approximation."
+msgstr ""
+
+#: manual/api/diff.md:60
+msgid "The function evaluates the given function at three forward points to choose the step size, so it only needs values of `f` at and above `x`."
+msgstr ""
+
+#: manual/api/diff.md:66
+msgid "Computes the numerical derivative of a function at a given point using the central difference method with adaptive step size."
+msgstr ""
+
+#: manual/api/diff.md:77
+msgid "The first value is the estimated derivative value using central difference approximation."
+msgstr ""
+
+#: manual/api/diff.md:92
+msgid "The function evaluates the given function at four points around `x` to choose the step size."
+msgstr ""
+
+#: manual/api/integration.md:1
+msgid "integration API"
+msgstr ""
+
+#: manual/api/integration.md:3
+msgid "The `integration` package computes definite integrals of a `Func_Math` over a finite interval $[a, b]$ with Gauss–Kronrod quadrature. It provides the basic Gauss–Kronrod rules, an adaptive integrator that subdivides the interval, and a non-adaptive integrator that raises the order of the rule."
+msgstr ""
+
+#: manual/api/integration.md:5
+msgid "Gauss–Kronrod rules"
+msgstr ""
+
+#: manual/api/integration.md:9
+msgid "Each function applies one Gauss–Kronrod rule to `f` on $[a, b]$; the number in the name is the number of Kronrod points."
+msgstr ""
+
+#: manual/api/integration.md:20
+msgid "The result is the tuple `(result, result_abs, result_asc, error)`:"
+msgstr ""
+
+#: manual/api/integration.md:22
+#: manual/api/integration.md:99
+#: manual/api/internal.md:9
+msgid "Meaning"
+msgstr ""
+
+#: manual/api/integration.md:24
+msgid "The Kronrod approximation of the integral of `f`."
+msgstr ""
+
+#: manual/api/integration.md:25
+msgid "The same rule applied to $\\lvert f \\rvert$."
+msgstr ""
+
+#: manual/api/integration.md:26
+msgid "The same rule applied to $\\lvert f - \\bar f \\rvert$, where $\\bar f$ is the mean value of `f` on the interval; it measures how much `f` varies."
+msgstr ""
+
+#: manual/api/integration.md:27
+msgid "The difference between the Kronrod and the embedded Gauss approximation, rescaled with `rescale_error`."
+msgstr ""
+
+#: manual/api/integration.md:29
+msgid "Every rule has the type `Quad_GK` from the `basic` package, so it can be passed to `adap_quad_gk`."
+msgstr ""
+
+#: manual/api/integration.md:33
+msgid "`rescale_error` turns the raw difference between two quadrature approximations into a conservative error estimate."
+msgstr ""
+
+#: manual/api/integration.md:39
+msgid "`rescale_error(err, result_abs, result_asc)` scales $\\lvert err \\rvert$ to $result\\_asc \\cdot \\min(1, (200 \\lvert err \\rvert / result\\_asc)^{3/2})$ when both are non-zero, and never returns less than $50\\,\\varepsilon \\cdot result\\_abs$, where $\\varepsilon$ is the machine epsilon of `Double`. This is the error heuristic of QUADPACK."
+msgstr ""
+
+#: manual/api/integration.md:41
+msgid "Integrators"
+msgstr ""
+
+#: manual/api/integration.md:45
+msgid "`adap_quad_gk` integrates `f` over $[a, b]$ adaptively: it bisects the subinterval with the largest error until the total error meets the tolerance."
+msgstr ""
+
+#: manual/api/integration.md:51
+msgid "`adap_quad_gk(f, q, a, b, epsabs, epsrel, limit)` applies the rule `q`, for example `kronrod_r21`, to each subinterval. The computation stops successfully when the estimated absolute error is at most $\\max(epsabs, epsrel \\cdot \\lvert I \\rvert)$, where $I$ is the current integral estimate. `limit` is the maximum number of subintervals."
+msgstr ""
+
+#: manual/api/integration.md:53
+msgid "The result is `Ok((integral, error, OK))` on success. Otherwise it is `Err(code)`:"
+msgstr ""
+
+#: manual/api/integration.md:55
+msgid "Code"
+msgstr ""
+
+#: manual/api/integration.md:55
+msgid "Cause"
+msgstr ""
+
+#: manual/api/integration.md:57
+msgid "`epsabs` is not positive and `epsrel` is smaller than the machine epsilon or $0.5 \\cdot 10^{-28}$."
+msgstr ""
+
+#: manual/api/integration.md:58
+msgid "Roundoff error prevents the requested tolerance from being reached."
+msgstr ""
+
+#: manual/api/integration.md:59
+msgid "A subinterval became too small to bisect, which suggests a singularity or a highly oscillatory integrand."
+msgstr ""
+
+#: manual/api/integration.md:60
+msgid "`limit` subintervals were used before the tolerance was reached."
+msgstr ""
+
+#: manual/api/integration.md:64
+msgid "`non_adap_quad_gk` integrates `f` over $[a, b]$ with Gauss–Kronrod rules of increasing order, without subdividing the interval."
+msgstr ""
+
+#: manual/api/integration.md:70
+msgid "`non_adap_quad_gk(f, a, b, epsabs, epsrel)` tries the 21-, 43- and 87-point rules in turn and returns as soon as the estimated error is below `epsabs` or below `epsrel` times the absolute value of the result. The result is `Ok((integral, error, neval))`, where `neval` is the number of function evaluations used (21, 43 or 87). It is `Err(E_BAD_TOL)` for invalid tolerances, as in `adap_quad_gk`, and `Err(E_FAILED)` when even the 87-point rule does not reach the tolerance."
+msgstr ""
+
+#: manual/api/integration.md:82
+msgid "Error codes"
+msgstr ""
+
+#: manual/api/integration.md:86
+msgid "`ErrCode` reports the outcome of an integration."
+msgstr ""
+
+#: manual/api/integration.md:99
+msgid "Constructor"
+msgstr ""
+
+#: manual/api/integration.md:101
+msgid "The integration succeeded."
+msgstr ""
+
+#: manual/api/integration.md:102
+msgid "Unexpected roundoff error."
+msgstr ""
+
+#: manual/api/integration.md:103
+msgid "Possible singularity or highly oscillatory integrand."
+msgstr ""
+
+#: manual/api/integration.md:104
+msgid "Maximum number of subdivisions reached."
+msgstr ""
+
+#: manual/api/integration.md:105
+msgid "General failure."
+msgstr ""
+
+#: manual/api/integration.md:106
+msgid "Invalid tolerance parameters."
+msgstr ""
+
+#: manual/api/integration.md:108
+msgid "`ErrCode` implements `Eq`, so a result code can be compared with a constructor."
+msgstr ""
+
+#: manual/api/internal.md:1
+msgid "internal API"
+msgstr ""
+
+#: manual/api/internal.md:3
+msgid "The `internal` package holds the machine constants that the other packages use to choose step sizes and to bound roundoff error. It contains no functions. The constants are those of `gsl_machine.h` in the GNU Scientific Library."
+msgstr ""
+
+#: manual/api/internal.md:5
+msgid "Machine constants"
+msgstr ""
+
+#: manual/api/internal.md:7
+msgid "Every constant is a `Double` named `machine_<prefix><quantity>`. The quantity names a limit of a floating-point format:"
+msgstr ""
+
+#: manual/api/internal.md:9
+msgid "Quantity"
+msgstr ""
+
+#: manual/api/internal.md:11
+msgid "The machine epsilon of double precision, $2^{-52} \\approx 2.22 \\cdot 10^{-16}$."
+msgstr ""
+
+#: manual/api/internal.md:12
+msgid "The smallest positive normal double, $\\approx 2.23 \\cdot 10^{-308}$."
+msgstr ""
+
+#: manual/api/internal.md:13
+msgid "The largest finite double, $\\approx 1.80 \\cdot 10^{308}$."
+msgstr ""
+
+#: manual/api/internal.md:14
+msgid "The machine epsilon of single precision, $2^{-23}$."
+msgstr ""
+
+#: manual/api/internal.md:15
+msgid "The smallest positive normal single-precision value."
+msgstr ""
+
+#: manual/api/internal.md:16
+msgid "The largest finite single-precision value."
+msgstr ""
+
+#: manual/api/internal.md:17
+msgid "The machine epsilon of the short float format of GSL, $2^{-11}$."
+msgstr ""
+
+#: manual/api/internal.md:18
+msgid "The rounded machine tolerances of `GSL_MACH_EPS`, which exist only with a prefix."
+msgstr ""
+
+#: manual/api/internal.md:20
+msgid "The prefix names a function of that quantity:"
+msgstr ""
+
+#: manual/api/internal.md:22
+msgid "Prefix"
+msgstr ""
+
+#: manual/api/internal.md:22
+msgid "Available for"
+msgstr ""
+
+#: manual/api/internal.md:24
+msgid "none"
+msgstr ""
+
+#: manual/api/internal.md:24
+msgid "the quantity itself"
+msgstr ""
+
+#: manual/api/internal.md:25
+msgid "its square root"
+msgstr ""
+
+#: manual/api/internal.md:25
+#: manual/api/internal.md:26
+#: manual/api/internal.md:27
+msgid "all quantities"
+msgstr ""
+
+#: manual/api/internal.md:26
+msgid "`root_3_` to `root_6_`"
+msgstr ""
+
+#: manual/api/internal.md:26
+msgid "its third to sixth root"
+msgstr ""
+
+#: manual/api/internal.md:27
+msgid "its natural logarithm"
+msgstr ""
+
+#: manual/api/internal.md:29
+msgid "For example, `machine_sqrt_dbl_epsilon` is $\\sqrt{\\varepsilon} \\approx 1.49 \\cdot 10^{-8}$ and `machine_log_dbl_max` is $\\ln(\\text{dbl\\_max}) \\approx 709.78$. The rounded `eps` values are `machine_sqrt_eps` ($3.2 \\cdot 10^{-8}$), `machine_root_3_eps` ($10^{-5}$), `machine_root_4_eps` ($1.78 \\cdot 10^{-4}$), `machine_root_5_eps` ($10^{-3}$), `machine_root_6_eps` ($3.16 \\cdot 10^{-3}$) and `machine_log_eps` ($-34.54$)."
+msgstr ""
+
+#: manual/contributing.md:1
+msgid "Contribution guidelines"
+msgstr ""
+
+#: manual/contributing.md:3
+msgid "To contributors"
+msgstr ""
+
+#: manual/contributing.md:5
+msgid "We warmly welcome developers familiar with various scientific computing libraries related to numerical calculus to join the project, contribute code, and share their valuable experiences. At the same time, we encourage beginners to learn and master numerical methods related to calculus by participating in development and improving documentation. In this project, we hope that both experienced developers and beginners can find contribution goals that interest them by reviewing the project's documentation, tables, and code examples."
+msgstr ""
+
+#: manual/contributing.md:7
+msgid "We sincerely thank all the developers who have contributed to this project. Whether through submitting code, improving documentation, or providing valuable feedback, every effort you make helps to make this project better. Your enthusiasm and wisdom in the development process continually drive the project forward, and bring more opportunities for collaboration within the community. We appreciate your support and dedication, and we look forward to achieving more together, driving this project toward an even brighter future!"
+msgstr ""
+
+#: manual/contributing.md:9
+msgid "1. Code style"
+msgstr ""
+
+#: manual/contributing.md:11
+msgid "The project follows the formatting style enforced by the MoonBit Toolchain. Format your code automatically using the following command:"
+msgstr ""
+
+#: manual/contributing.md:17
+msgid "Ensure that you run `moon fmt` before committing your code to maintain consistency."
+msgstr ""
+
+#: manual/contributing.md:19
+msgid "Alternatively, you can use the `ready_to_pr.sh` script to automatically format the code, run checks, generate test coverage files, and create `.mbti` files."
+msgstr ""
+
+#: manual/contributing.md:21
+msgid "2. Naming conventions"
+msgstr ""
+
+#: manual/contributing.md:23
+msgid "2.1 Variable naming"
+msgstr ""
+
+#: manual/contributing.md:25
+msgid "Use **lowercase letters with underscores** as separators (e.g., `my_var`)."
+msgstr ""
+
+#: manual/contributing.md:26
+msgid "Variable names should be descriptive and clearly indicate their purpose."
+msgstr ""
+
+#: manual/contributing.md:28
+msgid "2.2 Function naming"
+msgstr ""
+
+#: manual/contributing.md:30
+msgid "Use **lowercase letters with underscores** as separators (e.g., `calc_total_price()`)."
+msgstr ""
+
+#: manual/contributing.md:31
+msgid "Function names should be concise and descriptive, clearly expressing their functionality."
+msgstr ""
+
+#: manual/contributing.md:33
+msgid "2.3 Struct and trait naming"
+msgstr ""
+
+#: manual/contributing.md:35
+msgid "Use **PascalCase** (e.g., `MyStruct`, `MyTrait`)."
+msgstr ""
+
+#: manual/contributing.md:36
+msgid "Names should intuitively reflect the function or role of the struct or trait, avoiding overly abstract or non-descriptive names."
+msgstr ""
+
+#: manual/contributing.md:38
+msgid "2.4 Constant naming"
+msgstr ""
+
+#: manual/contributing.md:40
+msgid "**Note:** In the MoonBit context, \"variables\" are typically referred to as \"bindings\" and are immutable by default unless marked with `mut`. Thus, there is no strict distinction between constant and variable naming."
+msgstr ""
+
+#: manual/contributing.md:41
+msgid "Use **lowercase letters with underscores** as separators (e.g., `machine_dbl_epsilon`)."
+msgstr ""
+
+#: manual/contributing.md:42
+msgid "Prefix constants with a descriptive category where applicable (e.g., `machine_dbl_epsilon`, where `machine` indicates a machine-related constant)."
+msgstr ""
+
+#: manual/contributing.md:43
+msgid "Constant names should be concise and descriptive to facilitate understanding."
+msgstr ""
+
+#: manual/contributing.md:45
+msgid "2.5 Result Err construction and Err code"
+msgstr ""
+
+#: manual/contributing.md:47
+msgid "Use **uppercase letters with underscores** as separators (e.g., `E_MAX_ITER`)."
+msgstr ""
+
+#: manual/contributing.md:48
+msgid "Err codes should be prefixed with `E` to indicate an error-related construct."
+msgstr ""
+
+#: manual/contributing.md:49
+msgid "Err codes should be concise and descriptive for easy comprehension."
+msgstr ""
+
+#: manual/contributing.md:51
+msgid "3. Comments"
+msgstr ""
+
+#: manual/contributing.md:53
+msgid "**Conciseness**: Comments should be clear and to the point, avoiding unnecessary verbosity."
+msgstr ""
+
+#: manual/contributing.md:54
+msgid "**Consistency**: Use uniform terminology and style across the codebase."
+msgstr ""
+
+#: manual/contributing.md:55
+msgid "**Clarity**: Ensure comments are easy to understand, avoiding complex jargon or ambiguous wording."
+msgstr ""
+
+#: manual/contributing.md:56
+msgid "**Accuracy**: Comments must accurately reflect the functionality and purpose of the code."
+msgstr ""
+
+#: manual/contributing.md:57
+msgid "**Up-to-date**: Comments should be updated alongside code changes to maintain relevance."
+msgstr ""
+
+#: manual/contributing.md:59
+msgid "Developers are encouraged to use MoonBit LSP’s AI-generated code comments to improve efficiency, but AI-generated comments should be reviewed to ensure correctness."
+msgstr ""
+
+#: manual/contributing.md:61
+msgid "4. File standards"
+msgstr ""
+
+#: manual/contributing.md:63
+msgid "4.1 Folder naming"
+msgstr ""
+
+#: manual/contributing.md:65
+msgid "Use **lowercase letters** for folder names."
+msgstr ""
+
+#: manual/contributing.md:66
+msgid "Folder names should be concise, descriptive, and separated using underscores (`_`). Avoid numbers and special characters."
+msgstr ""
+
+#: manual/contributing.md:68
+#: manual/contributing.md:78
+#: manual/contributing.md:94
+msgid "Examples:"
+msgstr ""
+
+#: manual/contributing.md:70
+msgid "For differentiation-related functionality: `diff`"
+msgstr ""
+
+#: manual/contributing.md:71
+msgid "For derivative-related functionality: `deriv`"
+msgstr ""
+
+#: manual/contributing.md:73
+msgid "4.2 File organization"
+msgstr ""
+
+#: manual/contributing.md:75
+msgid "Files should be organized based on functionality, with each file focusing on a specific feature. Use **lowercase letters with underscores** for file names."
+msgstr ""
+
+#: manual/contributing.md:76
+msgid "File names should be descriptive and clearly indicate the core functionality they implement."
+msgstr ""
+
+#: manual/contributing.md:80
+msgid "`gauss_kronrod.mbt`: Implements Gaussian quadrature with Kronrod extension."
+msgstr ""
+
+#: manual/contributing.md:81
+msgid "`adaptive_quadrature_gk.mbt`: Implements adaptive quadrature using Gaussian quadrature with Kronrod extension."
+msgstr ""
+
+#: manual/contributing.md:83
+msgid "**Note:** Avoid overly generic or vague file names such as `utils.mbt`. Instead, ensure file names correspond to their function or module."
+msgstr ""
+
+#: manual/contributing.md:85
+msgid "5. Commit guidelines"
+msgstr ""
+
+#: manual/contributing.md:87
+msgid "5.1 Commit messages"
+msgstr ""
+
+#: manual/contributing.md:89
+msgid "Use the `ready_to_pr.sh` script before committing to format code, run checks, generate test coverage files, and create `.mbti` files."
+msgstr ""
+
+#: manual/contributing.md:90
+msgid "Each commit should have a clear description of the changes made."
+msgstr ""
+
+#: manual/contributing.md:91
+msgid "Commit messages should be in **English**, concise, and precise."
+msgstr ""
+
+#: manual/contributing.md:92
+msgid "Use prefixes such as `fix:`, `feat:`, `refactor:`, and `doc:` to indicate the type of change."
+msgstr ""
+
+#: manual/contributing.md:103
+msgid "5.2 Commit frequency"
+msgstr ""
+
+#: manual/contributing.md:105
+msgid "Keep commits small and focused on a single feature or fix."
+msgstr ""
+
+#: manual/contributing.md:106
+msgid "Avoid large, monolithic commits that include multiple unrelated changes."
+msgstr ""
+
+#: manual/contributing.md:108
+msgid "6. Code review"
+msgstr ""
+
+#: manual/contributing.md:110
+msgid "If you are not a maintainer or collaborator, contact them before modifying dependencies or version numbers in `moon.mod.json`."
+msgstr ""
+
+#: manual/contributing.md:111
+msgid "All code submissions must undergo **code review**."
+msgstr ""
+
+#: manual/contributing.md:112
+msgid "Code reviews should focus on code quality, style, performance, and security."
+msgstr ""
+
+#: manual/contributing.md:113
+msgid "Reviewers should provide constructive feedback to improve the code."
+msgstr ""
+
+#: manual/index.md:1
+msgid "calculus-numerical"
+msgstr ""
+
+#: manual/index.md:3
+msgid "[![img](https://img.shields.io/badge/Maintainer-KCN--judu-pink)](https://github.com/KCN-judu) [![img](https://img.shields.io/badge/License-Apache%202.0-blue)](https://github.com/Luna-Flow/calculus-numerical/blob/main/LICENSE) ![img](https://img.shields.io/badge/State-active-success)"
+msgstr ""
+
+#: manual/index.md:5
+msgid "Introduction"
+msgstr ""
+
+#: manual/index.md:7
+msgid "This is a numerical calculus library written in [**MoonBit**](https://www.moonbitlang.cn/), designed to fill the gap in the MoonBit ecosystem for scientific computing."
+msgstr ""
+
+#: manual/index.md:9
+msgid "The library works on functions of type `(Double) -> Double` and is divided into five packages:"
+msgstr ""
+
+#: manual/index.md:11
+msgid "Package"
+msgstr ""
+
+#: manual/index.md:11
+msgid "Contents"
+msgstr ""
+
+#: manual/index.md:13
+msgid "The function types `Func_Math` and `Quad_GK` and mathematical constants."
+msgstr ""
+
+#: manual/index.md:14
+msgid "Derivatives by forward, backward and central differences from a given initial step size."
+msgstr ""
+
+#: manual/index.md:15
+msgid "Derivatives by forward, backward and central differences with a step size chosen automatically."
+msgstr ""
+
+#: manual/index.md:16
+msgid "Gauss–Kronrod rules and adaptive and non-adaptive integrators."
+msgstr ""
+
+#: manual/index.md:17
+msgid "Machine constants used by the other packages."
+msgstr ""
+
+#: manual/index.md:19
+msgid "Feature list"
+msgstr ""
+
+#: manual/index.md:21
+msgid "**[Latest]** 25.01.31: Non-adaptive integration implementation (using Gaussian quadrature and Kronrod extension)"
+msgstr ""
+
+#: manual/index.md:23
+msgid "**25.01.13**: Adaptive integration implementation (using Gaussian quadrature and Kronrod extension)"
+msgstr ""
+
+#: manual/index.md:24
+msgid "**25.01.02**: Quadrature methods implementation (using Gaussian quadrature and Kronrod extension)"
+msgstr ""
+
+#: manual/index.md:25
+msgid "**24.12.30**: Derivatives and differential functionality implementation (using forward, backward, and central difference methods)"
+msgstr ""
+
+#: manual/index.md:27
+msgid "How to contribute"
+msgstr ""
+
+#: manual/index.md:29
+msgid "We welcome contributions from the community, external developers, and individual enthusiasts! Whether you want to fix a bug, add a new feature, or improve the documentation, your participation is highly encouraged. To help you contribute smoothly, here are some simple steps:"
+msgstr ""
+
+#: manual/index.md:31
+msgid "Please choose a task from the [`TODO.md`](../../TODO.md) file or the current `issue` list that interests you. We recommend selecting something you are interested in or familiar with, as it will make it easier to get started and enjoy the process."
+msgstr ""
+
+#: manual/index.md:32
+msgid "Fork our project and create a new branch in your personal repository. This way, you can start working on your changes without affecting the main project."
+msgstr ""
+
+#: manual/index.md:33
+msgid "During development, please adhere to the coding style and guidelines in the [contribution guidelines](contributing.md). If your changes involve new features or bug fixes, please make sure to perform thorough testing to ensure everything works as expected."
+msgstr ""
+
+#: manual/index.md:34
+msgid "Once you're done, submit your PR and provide a clear description of your changes to help us understand the modifications you've made. This will help us review and merge your code more quickly."
+msgstr ""
+
+#: manual/index.md:35
+msgid "We will review your PR and may suggest improvements to ensure code quality. After approval, your contributions will be merged into the main branch."
+msgstr ""
+
+#: manual/index.md:37
+msgid "Thank you again for your participation and contributions! Every effort helps make this project better. We look forward to seeing your great code!"
+msgstr ""
