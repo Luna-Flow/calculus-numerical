@@ -46,7 +46,12 @@ follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   bounds.
 - Package `series`: `naive_sum`, `pairwise_sum`, `kahan_sum`, `neumaier_sum`
   and `wynn_epsilon` (epsilon-algorithm acceleration of an infinite series).
-- Dependency `Luna-Flow/arithmetic@0.5.1` (for the diagnostics in `core`).
+- Package `power_series`: `PowerSeries[T]` over generic coefficients
+  (`from_coefficients`, `order`, `coefficient`, `evaluate`, `derivative`,
+  `antiderivative`) and `taylor_from_derivatives` / `maclaurin_from_derivatives`.
+- Dependencies `Luna-Flow/luna-generic@0.4.0`, `Luna-Flow/floating@0.9.0` (only
+  for the Decimal test) and `Luna-Flow/arithmetic@0.5.1` (diagnostics in `core`
+  and contextual division in `power_series`).
 - A CI workflow (`.github/workflows/ci.yml`) that installs the latest MoonBit
   toolchain and runs `moon check --target <backend> --deny-warn` and
   `moon test --target <backend>` on `wasm`, `wasm-gc`, `js` and `native`, plus
