@@ -1,0 +1,48 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "Luna-Flow/calculus-numerical/legacy/basic"
+
+// Values
+pub let math_1_pi : Double
+
+pub let math_2_pi : Double
+
+pub let math_2_sqrt_pi : Double
+
+pub let math_e : Double
+
+pub let math_euler : Double
+
+pub let math_ln_10 : Double
+
+pub let math_ln_2 : Double
+
+pub let math_ln_pi : Double
+
+pub let math_log_10_e : Double
+
+pub let math_log_2_e : Double
+
+pub let math_pi : Double
+
+pub let math_pi_2 : Double
+
+pub let math_pi_4 : Double
+
+pub let math_sqrt_1_2 : Double
+
+pub let math_sqrt_2 : Double
+
+pub let math_sqrt_3 : Double
+
+pub let math_sqrt_pi : Double
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+pub type Func_Math = (Double) -> Double
+
+pub type Quad_GK = ((Double) -> Double, Double, Double) -> (Double, Double, Double, Double)
+
+// Traits

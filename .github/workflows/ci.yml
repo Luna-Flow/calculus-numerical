@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: test (${{ matrix.backend }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        backend: [wasm, wasm-gc, js, native]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install the latest MoonBit toolchain
+        run: |
+          curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash
+          echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
+      - name: Record toolchain
+        run: moon version --all
+      - name: Update registry
+        run: moon update
+      - name: Check
+        run: moon check --target ${{ matrix.backend }} --deny-warn
+      - name: Test
+        run: moon test --target ${{ matrix.backend }}
+
+  hygiene:
+    name: format and interface
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install the latest MoonBit toolchain
+        run: |
+          curl -fsSL https://cli.moonbitlang.com/install/unix.sh | bash
+          echo "$HOME/.moon/bin" >> "$GITHUB_PATH"
+      - name: Update registry
+        run: moon update
+      - name: Check formatting
+        run: moon fmt --check
+      - name: Check that the committed interfaces are current
+        run: |
+          moon info
+          git diff --exit-code -- '*.mbti'

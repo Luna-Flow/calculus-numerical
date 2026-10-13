@@ -1,0 +1,7 @@
+import {
+  "Luna-Flow/calculus-numerical/legacy/basic",
+  "Luna-Flow/calculus-numerical/legacy/internal",
+  "Luna-Flow/calculus-numerical/legacy/support" @legacy_support,
+  "Kaida-Amethyst/math" @lm,
+  "moonbitlang/core/cmp",
+}

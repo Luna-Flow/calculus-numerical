@@ -1,0 +1,100 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "Luna-Flow/calculus-numerical/legacy/integration"
+
+// Values
+pub fn adap_quad_gk((Double) -> Double, ((Double) -> Double, Double, Double) -> (Double, Double, Double, Double), Double, Double, Double, Double, Int) -> Result[(Double, Double, ErrCode), ErrCode]
+
+pub fn kronrod_r15((Double) -> Double, Double, Double) -> (Double, Double, Double, Double)
+
+pub fn kronrod_r21((Double) -> Double, Double, Double) -> (Double, Double, Double, Double)
+
+pub fn kronrod_r31((Double) -> Double, Double, Double) -> (Double, Double, Double, Double)
+
+pub fn kronrod_r41((Double) -> Double, Double, Double) -> (Double, Double, Double, Double)
+
+pub fn kronrod_r51((Double) -> Double, Double, Double) -> (Double, Double, Double, Double)
+
+pub fn kronrod_r61((Double) -> Double, Double, Double) -> (Double, Double, Double, Double)
+
+pub let ng_21 : ReadOnlyArray[Double]
+
+pub let ng_43 : ReadOnlyArray[Double]
+
+pub let ng_87 : ReadOnlyArray[Double]
+
+pub let ng_c : ReadOnlyArray[Double]
+
+pub fn non_adap_quad_gk((Double) -> Double, Double, Double, Double, Double) -> Result[(Double, Double, Int), ErrCode]
+
+pub fn rescale_error(Double, Double, Double) -> Double
+
+pub let wg_10 : ReadOnlyArray[Double]
+
+pub let wg_21a : ReadOnlyArray[Double]
+
+pub let wg_21b : ReadOnlyArray[Double]
+
+pub let wg_43a : ReadOnlyArray[Double]
+
+pub let wg_43b : ReadOnlyArray[Double]
+
+pub let wg_87a : ReadOnlyArray[Double]
+
+pub let wg_87b : ReadOnlyArray[Double]
+
+pub let wg_r15 : ReadOnlyArray[Double]
+
+pub let wg_r21 : ReadOnlyArray[Double]
+
+pub let wg_r31 : ReadOnlyArray[Double]
+
+pub let wg_r41 : ReadOnlyArray[Double]
+
+pub let wg_r51 : ReadOnlyArray[Double]
+
+pub let wg_r61 : ReadOnlyArray[Double]
+
+pub let wgk_r15 : ReadOnlyArray[Double]
+
+pub let wgk_r21 : ReadOnlyArray[Double]
+
+pub let wgk_r31 : ReadOnlyArray[Double]
+
+pub let wgk_r41 : ReadOnlyArray[Double]
+
+pub let wgk_r51 : ReadOnlyArray[Double]
+
+pub let wgk_r61 : ReadOnlyArray[Double]
+
+pub let xgk_r15 : ReadOnlyArray[Double]
+
+pub let xgk_r21 : ReadOnlyArray[Double]
+
+pub let xgk_r31 : ReadOnlyArray[Double]
+
+pub let xgk_r41 : ReadOnlyArray[Double]
+
+pub let xgk_r51 : ReadOnlyArray[Double]
+
+pub let xgk_r61 : ReadOnlyArray[Double]
+
+// Errors
+
+// Types and methods
+pub(all) enum ErrCode {
+  OK
+  E_ROUND
+  E_SINGULARITY
+  E_MAX_ITER
+  E_FAILED
+  E_BAD_TOL
+} derive(Eq)
+pub fn ErrCode::equal(Self, Self) -> Bool
+pub fn ErrCode::not_equal(Self, Self) -> Bool
+pub fn ErrCode::output(Self, &Logger) -> Unit
+pub fn ErrCode::to_string(Self) -> String
+pub impl Show for ErrCode
+
+// Type aliases
+
+// Traits

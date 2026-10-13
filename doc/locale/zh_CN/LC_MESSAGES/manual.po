@@ -11,509 +11,509 @@ msgstr ""
 msgid "Numerical differentiation and Gauss–Kronrod integration of real functions for MoonBit, part of Luna-Flow."
 msgstr "面向 MoonBit 的实函数数值微分与 Gauss–Kronrod 数值积分库，属于 Luna-Flow 的一部分。"
 
-#: manual/api/basic.md:1
-msgid "basic API"
-msgstr "basic API"
+#: manual/api/legacy_basic.md:1
+msgid "legacy/basic API"
+msgstr "legacy/basic API"
 
-#: manual/api/basic.md:3
-msgid "The `basic` package defines the function types shared by the other packages and a set of mathematical constants."
-msgstr "`basic` 包定义了其他包共用的函数类型以及一组数学常量。"
+#: manual/api/legacy_basic.md:3
+msgid "The `legacy/basic` package defines the function types shared by the other packages and a set of mathematical constants."
+msgstr "`legacy/basic` 包定义了其他包共用的函数类型以及一组数学常量。"
 
-#: manual/api/basic.md:5
+#: manual/api/legacy_basic.md:5
 msgid "Type aliases"
 msgstr "类型别名"
 
-#: manual/api/basic.md:9
+#: manual/api/legacy_basic.md:9
 msgid "Represents a single-variable mathematical function."
 msgstr "表示单变量数学函数。"
 
-#: manual/api/basic.md:13
-msgid "Represents a Gauss-Kronrod numerical integration function, such as `@integration.kronrod_r15()`"
-msgstr "表示高斯-克朗罗德（Gauss-Kronrod）数值积分函数，例如 `@integration.kronrod_r15()`。"
+#: manual/api/legacy_basic.md:13
+msgid "Represents a Gauss-Kronrod numerical integration function, such as `@legacy_integration.kronrod_r15()`"
+msgstr "表示高斯-克朗罗德（Gauss-Kronrod）数值积分函数，例如 `@legacy_integration.kronrod_r15()`。"
 
-#: manual/api/basic.md:15
+#: manual/api/legacy_basic.md:15
 msgid "Constants"
 msgstr "常量"
 
-#: manual/api/basic.md:17
+#: manual/api/legacy_basic.md:17
 msgid "The constants are `Double` values with full double precision."
 msgstr "这些常量都是具有完整双精度的 `Double` 值。"
 
-#: manual/api/basic.md:19
+#: manual/api/legacy_basic.md:19
 msgid "Constant"
 msgstr "常量"
 
-#: manual/api/basic.md:19
-#: manual/api/integration.md:22
-#: manual/api/internal.md:22
+#: manual/api/legacy_basic.md:19
+#: manual/api/legacy_integration.md:22
+#: manual/api/legacy_internal.md:22
 msgid "Value"
 msgstr "值"
 
-#: manual/api/basic.md:37
+#: manual/api/legacy_basic.md:37
 msgid "Euler's constant $\\gamma$"
 msgstr "欧拉常数 $\\gamma$"
 
-#: manual/api/deriv.md:1
-msgid "deriv API"
-msgstr "deriv API"
+#: manual/api/legacy_deriv.md:1
+msgid "legacy/deriv API"
+msgstr "legacy/deriv API"
 
-#: manual/api/deriv.md:3
-msgid "The `deriv` package estimates the derivative of a function at a point from a caller-supplied initial step size `h`. Each function returns the estimate together with an error bound."
-msgstr "`deriv` 包根据调用者给出的初始步长 `h` 估计函数在某一点处的导数。每个函数都会同时返回估计值和误差界。"
+#: manual/api/legacy_deriv.md:3
+msgid "The `legacy/deriv` package estimates the derivative of a function at a point from a caller-supplied initial step size `h`. Each function returns the estimate together with an error bound."
+msgstr "`legacy/deriv` 包根据调用者给出的初始步长 `h` 估计函数在某一点处的导数。每个函数都会同时返回估计值和误差界。"
 
-#: manual/api/deriv.md:7
+#: manual/api/legacy_deriv.md:7
 msgid "**Description:** Computes the derivative of the function `f` at point `x` using an **adaptive central difference method**, which balances truncation and round-off errors for improved accuracy."
 msgstr ""
 "**描述：**\\\n"
 "使用**自适应中心差分法**计算函数 `f` 在点 `x` 处的导数，通过平衡截断误差和舍入误差提高精度。"
 
-#: manual/api/deriv.md:10
-#: manual/api/deriv.md:44
-#: manual/api/deriv.md:79
-#: manual/api/diff.md:11
-#: manual/api/diff.md:46
-#: manual/api/diff.md:68
+#: manual/api/legacy_deriv.md:10
+#: manual/api/legacy_deriv.md:44
+#: manual/api/legacy_deriv.md:79
+#: manual/api/legacy_diff.md:11
+#: manual/api/legacy_diff.md:46
+#: manual/api/legacy_diff.md:68
 msgid "**Parameters:**"
 msgstr "**参数：**"
 
-#: manual/api/deriv.md:12
-#: manual/api/deriv.md:46
-#: manual/api/deriv.md:81
+#: manual/api/legacy_deriv.md:12
+#: manual/api/legacy_deriv.md:46
+#: manual/api/legacy_deriv.md:81
 msgid "`f: Func_Math` — A mathematical function that takes a `Double` as input and Returns: a `Double` as output."
 msgstr "`f: Func_Math` — 输入 `Double` 类型值并返回 `Double` 的数学函数。"
 
-#: manual/api/deriv.md:13
-#: manual/api/deriv.md:47
-#: manual/api/deriv.md:82
+#: manual/api/legacy_deriv.md:13
+#: manual/api/legacy_deriv.md:47
+#: manual/api/legacy_deriv.md:82
 msgid "`x: Double` — The point at which the derivative is evaluated."
 msgstr "`x: Double` — 求导点的位置。"
 
-#: manual/api/deriv.md:14
-#: manual/api/deriv.md:48
-#: manual/api/deriv.md:83
+#: manual/api/legacy_deriv.md:14
+#: manual/api/legacy_deriv.md:48
+#: manual/api/legacy_deriv.md:83
 msgid "`h: Double` — The initial step size for numerical differentiation, which will be adaptively adjusted if necessary."
 msgstr "`h: Double` — 数值微分的初始步长，必要时会自动调整。"
 
-#: manual/api/deriv.md:16
-#: manual/api/deriv.md:50
-#: manual/api/diff.md:16
-#: manual/api/diff.md:51
-#: manual/api/diff.md:73
+#: manual/api/legacy_deriv.md:16
+#: manual/api/legacy_deriv.md:50
+#: manual/api/legacy_diff.md:16
+#: manual/api/legacy_diff.md:51
+#: manual/api/legacy_diff.md:73
 msgid "**Returns:**"
 msgstr "**返回值：**"
 
-#: manual/api/deriv.md:18
-#: manual/api/deriv.md:52
-#: manual/api/diff.md:18
-#: manual/api/diff.md:53
-#: manual/api/diff.md:75
+#: manual/api/legacy_deriv.md:18
+#: manual/api/legacy_deriv.md:52
+#: manual/api/legacy_diff.md:18
+#: manual/api/legacy_diff.md:53
+#: manual/api/legacy_diff.md:75
 msgid "A tuple `(Double, Double)`, where:"
 msgstr "元组 `(Double, Double)`，其中："
 
-#: manual/api/deriv.md:20
-#: manual/api/deriv.md:54
-#: manual/api/deriv.md:88
+#: manual/api/legacy_deriv.md:20
+#: manual/api/legacy_deriv.md:54
+#: manual/api/legacy_deriv.md:88
 msgid "The first value is the estimated derivative at `x`."
 msgstr "第一个值为 `x` 处的导数估计值。"
 
-#: manual/api/deriv.md:21
-#: manual/api/deriv.md:55
-#: manual/api/deriv.md:89
+#: manual/api/legacy_deriv.md:21
+#: manual/api/legacy_deriv.md:55
+#: manual/api/legacy_deriv.md:89
 msgid "The second value is the total estimated error, combining truncation and round-off errors."
 msgstr "第二个值为总估计误差（包含截断误差和舍入误差）。"
 
-#: manual/api/deriv.md:23
-#: manual/api/deriv.md:57
-#: manual/api/deriv.md:91
-#: manual/api/diff.md:23
-#: manual/api/diff.md:80
+#: manual/api/legacy_deriv.md:23
+#: manual/api/legacy_deriv.md:57
+#: manual/api/legacy_deriv.md:91
+#: manual/api/legacy_diff.md:23
+#: manual/api/legacy_diff.md:80
 msgid "**Example Usage:**"
 msgstr "**示例：**"
 
-#: manual/api/deriv.md:33
-#: manual/api/deriv.md:67
-#: manual/api/deriv.md:101
-#: manual/api/diff.md:33
-#: manual/api/diff.md:58
-#: manual/api/diff.md:90
+#: manual/api/legacy_deriv.md:33
+#: manual/api/legacy_deriv.md:67
+#: manual/api/legacy_deriv.md:101
+#: manual/api/legacy_diff.md:33
+#: manual/api/legacy_diff.md:58
+#: manual/api/legacy_diff.md:90
 msgid "**Notes:**"
 msgstr "**注意事项：**"
 
-#: manual/api/deriv.md:35
+#: manual/api/legacy_deriv.md:35
 msgid "The method **automatically adjusts the step size** to achieve the best accuracy."
 msgstr "方法**自动调整步长**以优化精度。"
 
-#: manual/api/deriv.md:36
+#: manual/api/legacy_deriv.md:36
 msgid "Works well for smooth functions but may be **less accurate near discontinuities**."
 msgstr "对平滑函数效果良好，但在不连续点附近**精度可能下降**。"
 
-#: manual/api/deriv.md:37
+#: manual/api/legacy_deriv.md:37
 msgid "Compared to a simple 2-point method, this approach significantly reduces numerical errors."
 msgstr "相比简单的两点法，此方法显著降低了数值误差。"
 
-#: manual/api/deriv.md:41
+#: manual/api/legacy_deriv.md:41
 msgid "**Description:** Computes the derivative of the function `f` at point `x` using an **adaptive forward difference method**, which optimizes step size to minimize truncation and round-off errors."
 msgstr ""
 "**描述：**\\\n"
 "使用**自适应前向差分法**计算函数 `f` 在点 `x` 处的导数，通过优化步长最小化截断和舍入误差。"
 
-#: manual/api/deriv.md:69
+#: manual/api/legacy_deriv.md:69
 msgid "The method **automatically refines the step size** for better accuracy."
 msgstr "方法**自动优化步长**以提高精度。"
 
-#: manual/api/deriv.md:70
+#: manual/api/legacy_deriv.md:70
 msgid "Compared to basic forward difference methods, this approach **significantly reduces numerical errors**."
 msgstr "相比基础前向差分法，此方法**显著减少数值误差**。"
 
-#: manual/api/deriv.md:71
+#: manual/api/legacy_deriv.md:71
 msgid "Works well for smooth functions but may be **less accurate for functions with sharp changes or discontinuities**."
 msgstr "对平滑函数效果良好，但对于存在剧烈变化或不连续点的函数**精度可能下降**。"
 
-#: manual/api/deriv.md:72
+#: manual/api/legacy_deriv.md:72
 msgid "This method is especially useful when evaluating derivatives at boundaries where central differences are not feasible."
 msgstr "适用于边界点求导（此时中心差分法不可用）。"
 
-#: manual/api/deriv.md:76
+#: manual/api/legacy_deriv.md:76
 msgid "**Description:** Computes the derivative of the function `f` at point `x` using an **adaptive backward difference method**, which mirrors forward differentiation but with a negative step size."
 msgstr ""
 "**描述：**\\\n"
 "使用**自适应后向差分法**计算函数 `f` 在点 `x` 处的导数，原理与前向差分法相同但步长为负。"
 
-#: manual/api/deriv.md:85
+#: manual/api/legacy_deriv.md:85
 msgid "**Returns:** A tuple `(Double, Double)`, where:"
 msgstr ""
 "**返回值：**\\\n"
 "元组 `(Double, Double)`："
 
-#: manual/api/deriv.md:103
+#: manual/api/legacy_deriv.md:103
 msgid "The method **automatically refines the step size** to optimize accuracy."
 msgstr "方法**自动优化步长**以提高精度。"
 
-#: manual/api/deriv.md:104
+#: manual/api/legacy_deriv.md:104
 msgid "Suitable for cases where **backward differences** are preferred, such as differentiation near the upper boundary of a dataset."
 msgstr "适用于数据集的**上边界附近求导**。"
 
-#: manual/api/deriv.md:105
+#: manual/api/legacy_deriv.md:105
 msgid "Shares the same numerical advantages as `deriv_forward`, significantly reducing numerical errors compared to simple finite differences."
 msgstr "与 `deriv_forward` 具有相同的数值优势，相比简单有限差分显著降低数值误差。"
 
-#: manual/api/diff.md:1
-msgid "diff API"
-msgstr "diff API"
+#: manual/api/legacy_diff.md:1
+msgid "legacy/diff API"
+msgstr "legacy/diff API"
 
-#: manual/api/diff.md:3
-msgid "The `diff` package estimates the derivative of a function at a point without a step size from the caller: the step is derived from machine precision and the local behaviour of the function. Each function returns the estimate together with an error bound."
-msgstr "`diff` 包估计函数在某一点处的导数，无需调用者提供步长：步长由机器精度和函数的局部性态确定。每个函数都会同时返回估计值和误差界。"
+#: manual/api/legacy_diff.md:3
+msgid "The `legacy/diff` package estimates the derivative of a function at a point without a step size from the caller: the step is derived from machine precision and the local behaviour of the function. Each function returns the estimate together with an error bound."
+msgstr "`legacy/diff` 包估计函数在某一点处的导数，无需调用者提供步长：步长由机器精度和函数的局部性态确定。每个函数都会同时返回估计值和误差界。"
 
-#: manual/api/diff.md:7
-#: manual/api/diff.md:42
-#: manual/api/diff.md:64
+#: manual/api/legacy_diff.md:7
+#: manual/api/legacy_diff.md:42
+#: manual/api/legacy_diff.md:64
 msgid "**Description:**"
 msgstr "**描述：**"
 
-#: manual/api/diff.md:9
+#: manual/api/legacy_diff.md:9
 msgid "Computes the numerical derivative of a function at a given point using the backward difference method with adaptive step size."
 msgstr "使用自适应步长的后向差分法计算函数在给定点的数值导数。"
 
-#: manual/api/diff.md:13
-#: manual/api/diff.md:48
-#: manual/api/diff.md:70
+#: manual/api/legacy_diff.md:13
+#: manual/api/legacy_diff.md:48
+#: manual/api/legacy_diff.md:70
 msgid "`f: Func_Math` — A function that takes a `Double` and Returns: a `Double`. The function to be differentiated."
 msgstr "`f: Func_Math` — 输入 `Double` 类型值并返回 `Double` 的数学函数。"
 
-#: manual/api/diff.md:14
-#: manual/api/diff.md:49
-#: manual/api/diff.md:71
+#: manual/api/legacy_diff.md:14
+#: manual/api/legacy_diff.md:49
+#: manual/api/legacy_diff.md:71
 msgid "`x: Double` — The point at which to compute the derivative."
 msgstr "`x: Double` — 求导点的位置。"
 
-#: manual/api/diff.md:20
+#: manual/api/legacy_diff.md:20
 msgid "The first value is the estimated derivative value using backward difference approximation."
 msgstr "第一个值为后向差分导数估计值。"
 
-#: manual/api/diff.md:21
-#: manual/api/diff.md:56
-#: manual/api/diff.md:78
+#: manual/api/legacy_diff.md:21
+#: manual/api/legacy_diff.md:56
+#: manual/api/legacy_diff.md:78
 msgid "The second value is the estimated absolute error of the computation."
 msgstr "第二个值为计算的绝对误差估计值。"
 
-#: manual/api/diff.md:35
+#: manual/api/legacy_diff.md:35
 msgid "The function evaluates the given function at three backward points using an adaptive step size."
 msgstr "方法使用三个后向点自适应计算导数。"
 
-#: manual/api/diff.md:36
+#: manual/api/legacy_diff.md:36
 msgid "It applies Neville’s recursion to compute divided differences and estimate the derivative."
 msgstr "应用 Neville 递归法计算差分并估计误差。"
 
-#: manual/api/diff.md:37
+#: manual/api/legacy_diff.md:37
 msgid "The method includes an error estimation based on the second-order divided difference."
 msgstr "该方法包含基于二阶差商的误差估计。"
 
-#: manual/api/diff.md:38
+#: manual/api/legacy_diff.md:38
 msgid "If `h` is too large, accuracy may decrease; if too small, numerical precision issues may arise."
 msgstr "步长 `h` 过大可能降低精度，过小可能导致数值精度问题。"
 
-#: manual/api/diff.md:44
+#: manual/api/legacy_diff.md:44
 msgid "Computes the numerical derivative of a function at a given point using the forward difference method with adaptive step size."
 msgstr "使用自适应步长的前向差分法计算函数在给定点的数值导数。"
 
-#: manual/api/diff.md:55
+#: manual/api/legacy_diff.md:55
 msgid "The first value is the estimated derivative value using forward difference approximation."
 msgstr "第一个值为前向差分导数估计值。"
 
-#: manual/api/diff.md:60
+#: manual/api/legacy_diff.md:60
 msgid "The function evaluates the given function at three forward points to choose the step size, so it only needs values of `f` at and above `x`."
 msgstr "该函数在三个前向点上对给定函数求值以确定步长，因此只需要 `f` 在 `x` 及其右侧的取值。"
 
-#: manual/api/diff.md:66
+#: manual/api/legacy_diff.md:66
 msgid "Computes the numerical derivative of a function at a given point using the central difference method with adaptive step size."
 msgstr "使用自适应步长的中心差分法计算函数在给定点的数值导数。"
 
-#: manual/api/diff.md:77
+#: manual/api/legacy_diff.md:77
 msgid "The first value is the estimated derivative value using central difference approximation."
 msgstr "第一个值为中心差分导数估计值。"
 
-#: manual/api/diff.md:92
+#: manual/api/legacy_diff.md:92
 msgid "The function evaluates the given function at four points around `x` to choose the step size."
 msgstr "该函数在 `x` 附近的四个点上对给定函数求值以确定步长。"
 
-#: manual/api/integration.md:1
-msgid "integration API"
-msgstr "integration API"
+#: manual/api/legacy_integration.md:1
+msgid "legacy/integration API"
+msgstr "legacy/integration API"
 
-#: manual/api/integration.md:3
-msgid "The `integration` package computes definite integrals of a `Func_Math` over a finite interval $[a, b]$ with Gauss–Kronrod quadrature. It provides the basic Gauss–Kronrod rules, an adaptive integrator that subdivides the interval, and a non-adaptive integrator that raises the order of the rule."
-msgstr "`integration` 包使用 Gauss–Kronrod 求积法计算 `Func_Math` 在有限区间 $[a, b]$ 上的定积分。它提供基本的 Gauss–Kronrod 求积公式、通过细分区间工作的自适应积分器，以及通过提高求积公式阶数工作的非自适应积分器。"
+#: manual/api/legacy_integration.md:3
+msgid "The `legacy/integration` package computes definite integrals of a `Func_Math` over a finite interval $[a, b]$ with Gauss–Kronrod quadrature. It provides the basic Gauss–Kronrod rules, an adaptive integrator that subdivides the interval, and a non-adaptive integrator that raises the order of the rule."
+msgstr "`legacy/integration` 包使用 Gauss–Kronrod 求积法计算 `Func_Math` 在有限区间 $[a, b]$ 上的定积分。它提供基本的 Gauss–Kronrod 求积公式、通过细分区间工作的自适应积分器，以及通过提高求积公式阶数工作的非自适应积分器。"
 
-#: manual/api/integration.md:5
+#: manual/api/legacy_integration.md:5
 msgid "Gauss–Kronrod rules"
 msgstr "Gauss–Kronrod 求积公式"
 
-#: manual/api/integration.md:9
+#: manual/api/legacy_integration.md:9
 msgid "Each function applies one Gauss–Kronrod rule to `f` on $[a, b]$; the number in the name is the number of Kronrod points."
 msgstr "每个函数在 $[a, b]$ 上对 `f` 应用一个 Gauss–Kronrod 求积公式；名称中的数字是 Kronrod 节点数。"
 
-#: manual/api/integration.md:20
+#: manual/api/legacy_integration.md:20
 msgid "The result is the tuple `(result, result_abs, result_asc, error)`:"
 msgstr "结果是元组 `(result, result_abs, result_asc, error)`："
 
-#: manual/api/integration.md:22
-#: manual/api/integration.md:99
-#: manual/api/internal.md:9
+#: manual/api/legacy_integration.md:22
+#: manual/api/legacy_integration.md:99
+#: manual/api/legacy_internal.md:9
 msgid "Meaning"
 msgstr "含义"
 
-#: manual/api/integration.md:24
+#: manual/api/legacy_integration.md:24
 msgid "The Kronrod approximation of the integral of `f`."
 msgstr "`f` 的积分的 Kronrod 近似值。"
 
-#: manual/api/integration.md:25
+#: manual/api/legacy_integration.md:25
 msgid "The same rule applied to $\\lvert f \\rvert$."
 msgstr "对 $\\lvert f \\rvert$ 应用同一求积公式的结果。"
 
-#: manual/api/integration.md:26
+#: manual/api/legacy_integration.md:26
 msgid "The same rule applied to $\\lvert f - \\bar f \\rvert$, where $\\bar f$ is the mean value of `f` on the interval; it measures how much `f` varies."
 msgstr "对 $\\lvert f - \\bar f \\rvert$ 应用同一求积公式的结果，其中 $\\bar f$ 是 `f` 在区间上的平均值；它衡量 `f` 的变化程度。"
 
-#: manual/api/integration.md:27
+#: manual/api/legacy_integration.md:27
 msgid "The difference between the Kronrod and the embedded Gauss approximation, rescaled with `rescale_error`."
 msgstr "Kronrod 近似与内嵌 Gauss 近似之差，经 `rescale_error` 重新缩放。"
 
-#: manual/api/integration.md:29
-msgid "Every rule has the type `Quad_GK` from the `basic` package, so it can be passed to `adap_quad_gk`."
-msgstr "每个求积公式的类型都是 `basic` 包中的 `Quad_GK`，因此可以传给 `adap_quad_gk`。"
+#: manual/api/legacy_integration.md:29
+msgid "Every rule has the type `Quad_GK` from the `legacy/basic` package, so it can be passed to `adap_quad_gk`."
+msgstr "每个求积公式的类型都是 `legacy/basic` 包中的 `Quad_GK`，因此可以传给 `adap_quad_gk`。"
 
-#: manual/api/integration.md:33
+#: manual/api/legacy_integration.md:33
 msgid "`rescale_error` turns the raw difference between two quadrature approximations into a conservative error estimate."
 msgstr "`rescale_error` 将两个求积近似值之间的原始差值转换为保守的误差估计。"
 
-#: manual/api/integration.md:39
+#: manual/api/legacy_integration.md:39
 msgid "`rescale_error(err, result_abs, result_asc)` scales $\\lvert err \\rvert$ to $result\\_asc \\cdot \\min(1, (200 \\lvert err \\rvert / result\\_asc)^{3/2})$ when both are non-zero, and never returns less than $50\\,\\varepsilon \\cdot result\\_abs$, where $\\varepsilon$ is the machine epsilon of `Double`. This is the error heuristic of QUADPACK."
 msgstr "当两者均非零时，`rescale_error(err, result_abs, result_asc)` 将 $\\lvert err \\rvert$ 缩放为 $result\\_asc \\cdot \\min(1, (200 \\lvert err \\rvert / result\\_asc)^{3/2})$，且返回值不小于 $50\\,\\varepsilon \\cdot result\\_abs$，其中 $\\varepsilon$ 是 `Double` 的机器精度。这是 QUADPACK 的误差启发式方法。"
 
-#: manual/api/integration.md:41
+#: manual/api/legacy_integration.md:41
 msgid "Integrators"
 msgstr "积分器"
 
-#: manual/api/integration.md:45
+#: manual/api/legacy_integration.md:45
 msgid "`adap_quad_gk` integrates `f` over $[a, b]$ adaptively: it bisects the subinterval with the largest error until the total error meets the tolerance."
 msgstr "`adap_quad_gk` 在 $[a, b]$ 上自适应地对 `f` 积分：它不断二分误差最大的子区间，直到总误差满足容差。"
 
-#: manual/api/integration.md:51
+#: manual/api/legacy_integration.md:51
 msgid "`adap_quad_gk(f, q, a, b, epsabs, epsrel, limit)` applies the rule `q`, for example `kronrod_r21`, to each subinterval. The computation stops successfully when the estimated absolute error is at most $\\max(epsabs, epsrel \\cdot \\lvert I \\rvert)$, where $I$ is the current integral estimate. `limit` is the maximum number of subintervals."
 msgstr "`adap_quad_gk(f, q, a, b, epsabs, epsrel, limit)` 对每个子区间应用求积公式 `q`（例如 `kronrod_r21`）。当估计的绝对误差不超过 $\\max(epsabs, epsrel \\cdot \\lvert I \\rvert)$ 时计算成功结束，其中 $I$ 为当前的积分估计值。`limit` 是子区间的最大数量。"
 
-#: manual/api/integration.md:53
+#: manual/api/legacy_integration.md:53
 msgid "The result is `Ok((integral, error, OK))` on success. Otherwise it is `Err(code)`:"
 msgstr "成功时结果为 `Ok((integral, error, OK))`，否则为 `Err(code)`："
 
-#: manual/api/integration.md:55
+#: manual/api/legacy_integration.md:55
 msgid "Code"
 msgstr "代码"
 
-#: manual/api/integration.md:55
+#: manual/api/legacy_integration.md:55
 msgid "Cause"
 msgstr "原因"
 
-#: manual/api/integration.md:57
+#: manual/api/legacy_integration.md:57
 msgid "`epsabs` is not positive and `epsrel` is smaller than the machine epsilon or $0.5 \\cdot 10^{-28}$."
 msgstr "`epsabs` 不为正，且 `epsrel` 小于机器精度或 $0.5 \\cdot 10^{-28}$。"
 
-#: manual/api/integration.md:58
+#: manual/api/legacy_integration.md:58
 msgid "Roundoff error prevents the requested tolerance from being reached."
 msgstr "舍入误差使得无法达到所要求的容差。"
 
-#: manual/api/integration.md:59
+#: manual/api/legacy_integration.md:59
 msgid "A subinterval became too small to bisect, which suggests a singularity or a highly oscillatory integrand."
 msgstr "某个子区间已小到无法再二分，这表明被积函数可能存在奇点或剧烈振荡。"
 
-#: manual/api/integration.md:60
+#: manual/api/legacy_integration.md:60
 msgid "`limit` subintervals were used before the tolerance was reached."
 msgstr "在达到容差之前已用完 `limit` 个子区间。"
 
-#: manual/api/integration.md:64
+#: manual/api/legacy_integration.md:64
 msgid "`non_adap_quad_gk` integrates `f` over $[a, b]$ with Gauss–Kronrod rules of increasing order, without subdividing the interval."
 msgstr "`non_adap_quad_gk` 使用阶数递增的 Gauss–Kronrod 求积公式在 $[a, b]$ 上对 `f` 积分，不细分区间。"
 
-#: manual/api/integration.md:70
+#: manual/api/legacy_integration.md:70
 msgid "`non_adap_quad_gk(f, a, b, epsabs, epsrel)` tries the 21-, 43- and 87-point rules in turn and returns as soon as the estimated error is below `epsabs` or below `epsrel` times the absolute value of the result. The result is `Ok((integral, error, neval))`, where `neval` is the number of function evaluations used (21, 43 or 87). It is `Err(E_BAD_TOL)` for invalid tolerances, as in `adap_quad_gk`, and `Err(E_FAILED)` when even the 87-point rule does not reach the tolerance."
 msgstr "`non_adap_quad_gk(f, a, b, epsabs, epsrel)` 依次尝试 21 点、43 点和 87 点求积公式，一旦估计误差小于 `epsabs` 或小于 `epsrel` 乘以结果的绝对值便立即返回。结果为 `Ok((integral, error, neval))`，其中 `neval` 是所用的函数求值次数（21、43 或 87）。容差非法时（与 `adap_quad_gk` 相同）结果为 `Err(E_BAD_TOL)`；即使 87 点公式也达不到容差时结果为 `Err(E_FAILED)`。"
 
-#: manual/api/integration.md:82
+#: manual/api/legacy_integration.md:82
 msgid "Error codes"
 msgstr "错误码"
 
-#: manual/api/integration.md:86
+#: manual/api/legacy_integration.md:86
 msgid "`ErrCode` reports the outcome of an integration."
 msgstr "`ErrCode` 报告积分的结果状态。"
 
-#: manual/api/integration.md:99
+#: manual/api/legacy_integration.md:99
 msgid "Constructor"
 msgstr "构造器"
 
-#: manual/api/integration.md:101
+#: manual/api/legacy_integration.md:101
 msgid "The integration succeeded."
 msgstr "积分成功。"
 
-#: manual/api/integration.md:102
+#: manual/api/legacy_integration.md:102
 msgid "Unexpected roundoff error."
 msgstr "出现意外的舍入误差。"
 
-#: manual/api/integration.md:103
+#: manual/api/legacy_integration.md:103
 msgid "Possible singularity or highly oscillatory integrand."
 msgstr "被积函数可能存在奇点或剧烈振荡。"
 
-#: manual/api/integration.md:104
+#: manual/api/legacy_integration.md:104
 msgid "Maximum number of subdivisions reached."
 msgstr "已达到最大细分次数。"
 
-#: manual/api/integration.md:105
+#: manual/api/legacy_integration.md:105
 msgid "General failure."
 msgstr "一般性失败。"
 
-#: manual/api/integration.md:106
+#: manual/api/legacy_integration.md:106
 msgid "Invalid tolerance parameters."
 msgstr "容差参数非法。"
 
-#: manual/api/integration.md:108
+#: manual/api/legacy_integration.md:108
 msgid "`ErrCode` implements `Eq`, so a result code can be compared with a constructor."
 msgstr "`ErrCode` 实现了 `Eq`，因此可以将结果码与构造器进行比较。"
 
-#: manual/api/internal.md:1
-msgid "internal API"
-msgstr "internal API"
+#: manual/api/legacy_internal.md:1
+msgid "legacy/internal API"
+msgstr "legacy/internal API"
 
-#: manual/api/internal.md:3
-msgid "The `internal` package holds the machine constants that the other packages use to choose step sizes and to bound roundoff error. It contains no functions. The constants are those of `gsl_machine.h` in the GNU Scientific Library."
-msgstr "`internal` 包存放其他包用来选择步长和界定舍入误差的机器常量，不包含任何函数。这些常量与 GNU Scientific Library 中 `gsl_machine.h` 的常量一致。"
+#: manual/api/legacy_internal.md:3
+msgid "The `legacy/internal` package holds the machine constants that the other packages use to choose step sizes and to bound roundoff error. It contains no functions. The constants are those of `gsl_machine.h` in the GNU Scientific Library."
+msgstr "`legacy/internal` 包存放其他包用来选择步长和界定舍入误差的机器常量，不包含任何函数。这些常量与 GNU Scientific Library 中 `gsl_machine.h` 的常量一致。"
 
-#: manual/api/internal.md:5
+#: manual/api/legacy_internal.md:5
 msgid "Machine constants"
 msgstr "机器常量"
 
-#: manual/api/internal.md:7
+#: manual/api/legacy_internal.md:7
 msgid "Every constant is a `Double` named `machine_<prefix><quantity>`. The quantity names a limit of a floating-point format:"
 msgstr "每个常量都是名为 `machine_<prefix><quantity>` 的 `Double`。其中 quantity 表示某种浮点格式的一个极限值："
 
-#: manual/api/internal.md:9
+#: manual/api/legacy_internal.md:9
 msgid "Quantity"
 msgstr "量"
 
-#: manual/api/internal.md:11
+#: manual/api/legacy_internal.md:11
 msgid "The machine epsilon of double precision, $2^{-52} \\approx 2.22 \\cdot 10^{-16}$."
 msgstr "双精度的机器精度，$2^{-52} \\approx 2.22 \\cdot 10^{-16}$。"
 
-#: manual/api/internal.md:12
+#: manual/api/legacy_internal.md:12
 msgid "The smallest positive normal double, $\\approx 2.23 \\cdot 10^{-308}$."
 msgstr "最小的正规格化双精度数，$\\approx 2.23 \\cdot 10^{-308}$。"
 
-#: manual/api/internal.md:13
+#: manual/api/legacy_internal.md:13
 msgid "The largest finite double, $\\approx 1.80 \\cdot 10^{308}$."
 msgstr "最大的有限双精度数，$\\approx 1.80 \\cdot 10^{308}$。"
 
-#: manual/api/internal.md:14
+#: manual/api/legacy_internal.md:14
 msgid "The machine epsilon of single precision, $2^{-23}$."
 msgstr "单精度的机器精度，$2^{-23}$。"
 
-#: manual/api/internal.md:15
+#: manual/api/legacy_internal.md:15
 msgid "The smallest positive normal single-precision value."
 msgstr "最小的正规格化单精度数。"
 
-#: manual/api/internal.md:16
+#: manual/api/legacy_internal.md:16
 msgid "The largest finite single-precision value."
 msgstr "最大的有限单精度数。"
 
-#: manual/api/internal.md:17
+#: manual/api/legacy_internal.md:17
 msgid "The machine epsilon of the short float format of GSL, $2^{-11}$."
 msgstr "GSL 短浮点格式的机器精度，$2^{-11}$。"
 
-#: manual/api/internal.md:18
+#: manual/api/legacy_internal.md:18
 msgid "The rounded machine tolerances of `GSL_MACH_EPS`, which exist only with a prefix."
 msgstr "`GSL_MACH_EPS` 系列中取整后的机器容差，仅以带前缀的形式存在。"
 
-#: manual/api/internal.md:20
+#: manual/api/legacy_internal.md:20
 msgid "The prefix names a function of that quantity:"
 msgstr "前缀表示对该量所取的函数："
 
-#: manual/api/internal.md:22
+#: manual/api/legacy_internal.md:22
 msgid "Prefix"
 msgstr "前缀"
 
-#: manual/api/internal.md:22
+#: manual/api/legacy_internal.md:22
 msgid "Available for"
 msgstr "适用于"
 
-#: manual/api/internal.md:24
+#: manual/api/legacy_internal.md:24
 msgid "none"
 msgstr "无"
 
-#: manual/api/internal.md:24
+#: manual/api/legacy_internal.md:24
 msgid "the quantity itself"
 msgstr "该量本身"
 
-#: manual/api/internal.md:25
+#: manual/api/legacy_internal.md:25
 msgid "its square root"
 msgstr "其平方根"
 
-#: manual/api/internal.md:25
-#: manual/api/internal.md:26
-#: manual/api/internal.md:27
+#: manual/api/legacy_internal.md:25
+#: manual/api/legacy_internal.md:26
+#: manual/api/legacy_internal.md:27
 msgid "all quantities"
 msgstr "所有量"
 
-#: manual/api/internal.md:26
+#: manual/api/legacy_internal.md:26
 msgid "`root_3_` to `root_6_`"
 msgstr "`root_3_` 至 `root_6_`"
 
-#: manual/api/internal.md:26
+#: manual/api/legacy_internal.md:26
 msgid "its third to sixth root"
 msgstr "其三次至六次方根"
 
-#: manual/api/internal.md:27
+#: manual/api/legacy_internal.md:27
 msgid "its natural logarithm"
 msgstr "其自然对数"
 
-#: manual/api/internal.md:29
+#: manual/api/legacy_internal.md:29
 msgid "For example, `machine_sqrt_dbl_epsilon` is $\\sqrt{\\varepsilon} \\approx 1.49 \\cdot 10^{-8}$ and `machine_log_dbl_max` is $\\ln(\\text{dbl\\_max}) \\approx 709.78$. The rounded `eps` values are `machine_sqrt_eps` ($3.2 \\cdot 10^{-8}$), `machine_root_3_eps` ($10^{-5}$), `machine_root_4_eps` ($1.78 \\cdot 10^{-4}$), `machine_root_5_eps` ($10^{-3}$), `machine_root_6_eps` ($3.16 \\cdot 10^{-3}$) and `machine_log_eps` ($-34.54$)."
 msgstr "例如，`machine_sqrt_dbl_epsilon` 为 $\\sqrt{\\varepsilon} \\approx 1.49 \\cdot 10^{-8}$，`machine_log_dbl_max` 为 $\\ln(\\text{dbl\\_max}) \\approx 709.78$。取整后的 `eps` 值为 `machine_sqrt_eps`（$3.2 \\cdot 10^{-8}$）、`machine_root_3_eps`（$10^{-5}$）、`machine_root_4_eps`（$1.78 \\cdot 10^{-4}$）、`machine_root_5_eps`（$10^{-3}$）、`machine_root_6_eps`（$3.16 \\cdot 10^{-3}$）和 `machine_log_eps`（$-34.54$）。"
 
@@ -1042,220 +1042,224 @@ msgid "Ensure that you run `moon fmt` before committing your code to maintain co
 msgstr "请确保在提交代码之前，使用 `moon fmt` 格式化代码，以保持一致的代码风格。"
 
 #: manual/contributing.md:19
+msgid "The project is built and tested with the latest MoonBit toolchain; the compiler version is not pinned, and CI installs the newest release. Fix incompatibilities in the code instead of pinning an older compiler. Before opening a pull request, check all four backends with `moon check --target all --deny-warn` and run `moon test --target wasm`, `wasm-gc`, `js` and `native`."
+msgstr "本项目使用最新的 MoonBit 工具链构建和测试；编译器版本不做固定，CI 会安装最新发布版。遇到不兼容之处请修改代码，而不要固定旧版编译器。提交 Pull Request 之前，请用 `moon check --target all --deny-warn` 检查全部四个后端，并分别以 `wasm`、`wasm-gc`、`js` 和 `native` 运行 `moon test --target`。"
+
+#: manual/contributing.md:21
 msgid "Alternatively, you can use the `ready_to_pr.sh` script to automatically format the code, run checks, generate test coverage files, and create `.mbti` files."
 msgstr "或者，可以使用 `ready_to_pr.sh` 脚本来自动格式化代码、运行检查、生成测试覆盖率文件和 `.mbti` 文件。"
 
-#: manual/contributing.md:21
+#: manual/contributing.md:23
 msgid "2. Naming conventions"
 msgstr "2. 命名约定"
 
-#: manual/contributing.md:23
+#: manual/contributing.md:25
 msgid "2.1 Variable naming"
 msgstr "2.1 变量命名"
 
-#: manual/contributing.md:25
+#: manual/contributing.md:27
 msgid "Use **lowercase letters with underscores** as separators (e.g., `my_var`)."
 msgstr "采用 **小写字母和下划线** 分隔（例如：`my_var`）。"
 
-#: manual/contributing.md:26
+#: manual/contributing.md:28
 msgid "Variable names should be descriptive and clearly indicate their purpose."
 msgstr "变量名应具有描述性，能够准确反映其用途。"
 
-#: manual/contributing.md:28
+#: manual/contributing.md:30
 msgid "2.2 Function naming"
 msgstr "2.2 函数命名"
 
-#: manual/contributing.md:30
+#: manual/contributing.md:32
 msgid "Use **lowercase letters with underscores** as separators (e.g., `calc_total_price()`)."
 msgstr "使用 **小写字母和下划线** 分隔（例如：`calc_total_price()`）。"
 
-#: manual/contributing.md:31
+#: manual/contributing.md:33
 msgid "Function names should be concise and descriptive, clearly expressing their functionality."
 msgstr "函数名应简洁且具有描述性，能够清晰表达函数的功能。"
 
-#: manual/contributing.md:33
+#: manual/contributing.md:35
 msgid "2.3 Struct and trait naming"
 msgstr "2.3 Struct 和 Trait 命名"
 
-#: manual/contributing.md:35
+#: manual/contributing.md:37
 msgid "Use **PascalCase** (e.g., `MyStruct`, `MyTrait`)."
 msgstr "使用 **首字母大写的驼峰式命名**（例如：`MyStruct`、`MyTrait`）。"
 
-#: manual/contributing.md:36
+#: manual/contributing.md:38
 msgid "Names should intuitively reflect the function or role of the struct or trait, avoiding overly abstract or non-descriptive names."
 msgstr "命名应直观地反映该结构体或特征的功能或角色，避免使用过于抽象或不具描述性的名称。"
 
-#: manual/contributing.md:38
+#: manual/contributing.md:40
 msgid "2.4 Constant naming"
 msgstr "2.4 常量命名"
 
-#: manual/contributing.md:40
+#: manual/contributing.md:42
 msgid "**Note:** In the MoonBit context, \"variables\" are typically referred to as \"bindings\" and are immutable by default unless marked with `mut`. Thus, there is no strict distinction between constant and variable naming."
 msgstr "**注意：** 由于在 MoonBit 的语境下，“变量”通常称为“binding”，且默认是不可变的，只有添加 `mut` 关键字才能使其可变。因此，常量和“变量”之间没有严格的命名差异，保持一致性。"
 
-#: manual/contributing.md:41
+#: manual/contributing.md:43
 msgid "Use **lowercase letters with underscores** as separators (e.g., `machine_dbl_epsilon`)."
 msgstr "常量名采用 **全小写字母和下划线** 分隔（例如：`machine_dbl_epsilon`）。"
 
-#: manual/contributing.md:42
+#: manual/contributing.md:44
 msgid "Prefix constants with a descriptive category where applicable (e.g., `machine_dbl_epsilon`, where `machine` indicates a machine-related constant)."
 msgstr "常量名通常以第一个单词作为前缀，表示常量的用途或分类。例如，`machine_dbl_epsilon` 中的 `machine` 表示与机器相关的常量。"
 
-#: manual/contributing.md:43
+#: manual/contributing.md:45
 msgid "Constant names should be concise and descriptive to facilitate understanding."
 msgstr "常量名应简洁且具有描述性，便于其他开发者理解。"
 
-#: manual/contributing.md:45
+#: manual/contributing.md:47
 msgid "2.5 Result Err construction and Err code"
 msgstr "2.5 Result 的 Err 构造内容和 Err Code"
 
-#: manual/contributing.md:47
+#: manual/contributing.md:49
 msgid "Use **uppercase letters with underscores** as separators (e.g., `E_MAX_ITER`)."
 msgstr "采用 **全大写字母和下划线** 分隔（例如：`E_MAX_ITER`）。"
 
-#: manual/contributing.md:48
+#: manual/contributing.md:50
 msgid "Err codes should be prefixed with `E` to indicate an error-related construct."
 msgstr "构造内容通常以字符`E`作为前缀，表示其用于 Err 构造或者错误代码。"
 
-#: manual/contributing.md:49
+#: manual/contributing.md:51
 msgid "Err codes should be concise and descriptive for easy comprehension."
 msgstr "构造内容应简洁且具有描述性，便于其他开发者理解。"
 
-#: manual/contributing.md:51
+#: manual/contributing.md:53
 msgid "3. Comments"
 msgstr "3. 注释"
 
-#: manual/contributing.md:53
+#: manual/contributing.md:55
 msgid "**Conciseness**: Comments should be clear and to the point, avoiding unnecessary verbosity."
 msgstr "**简洁性**：注释应简洁明了，只包含必要的信息，避免冗长和不相关的内容。"
 
-#: manual/contributing.md:54
+#: manual/contributing.md:56
 msgid "**Consistency**: Use uniform terminology and style across the codebase."
 msgstr "**一致性**：使用一致的术语和风格，避免在不同地方使用不同的方式描述相同的概念。"
 
-#: manual/contributing.md:55
+#: manual/contributing.md:57
 msgid "**Clarity**: Ensure comments are easy to understand, avoiding complex jargon or ambiguous wording."
 msgstr "**清晰性**：确保注释易于理解，避免复杂的术语或模糊的表述。应使任何阅读代码的人能够快速理解注释的意图。"
 
-#: manual/contributing.md:56
+#: manual/contributing.md:58
 msgid "**Accuracy**: Comments must accurately reflect the functionality and purpose of the code."
 msgstr "**准确性**：注释必须准确反映代码的功能和目的，避免与代码行为不符的描述。"
 
-#: manual/contributing.md:57
+#: manual/contributing.md:59
 msgid "**Up-to-date**: Comments should be updated alongside code changes to maintain relevance."
 msgstr "**更新性**：随着代码的变更，注释也应随时更新，确保注释与代码同步。"
 
-#: manual/contributing.md:59
+#: manual/contributing.md:61
 msgid "Developers are encouraged to use MoonBit LSP’s AI-generated code comments to improve efficiency, but AI-generated comments should be reviewed to ensure correctness."
 msgstr "我们鼓励开发者采用 MoonBit LSP 提供的 AI 代码注释生成来提升注释的编写效率，但需要开发者对 AI 生成的内容进行审核，以确保其对方法、结构体和特征的解释是正确无误的。"
 
-#: manual/contributing.md:61
+#: manual/contributing.md:63
 msgid "4. File standards"
 msgstr "4. 文件规范"
 
-#: manual/contributing.md:63
+#: manual/contributing.md:65
 msgid "4.1 Folder naming"
 msgstr "4.1 文件夹命名"
 
-#: manual/contributing.md:65
+#: manual/contributing.md:67
 msgid "Use **lowercase letters** for folder names."
 msgstr "对于大的功能模块，请使用小写字母命名的文件夹（包）。"
 
-#: manual/contributing.md:66
+#: manual/contributing.md:68
 msgid "Folder names should be concise, descriptive, and separated using underscores (`_`). Avoid numbers and special characters."
 msgstr "文件夹名称应简洁、具有描述性，并使用下划线（`_`）分隔单词。请避免使用数字和特殊字符。"
 
-#: manual/contributing.md:68
-#: manual/contributing.md:78
-#: manual/contributing.md:94
+#: manual/contributing.md:70
+#: manual/contributing.md:80
+#: manual/contributing.md:96
 msgid "Examples:"
 msgstr "例如："
 
-#: manual/contributing.md:70
-msgid "For differentiation-related functionality: `diff`"
-msgstr "微分相关功能：`diff`"
-
-#: manual/contributing.md:71
-msgid "For derivative-related functionality: `deriv`"
-msgstr "导数相关功能：`deriv`"
+#: manual/contributing.md:72
+msgid "For differentiation-related functionality: `legacy/diff`"
+msgstr "微分相关功能：`legacy/diff`"
 
 #: manual/contributing.md:73
+msgid "For derivative-related functionality: `legacy/deriv`"
+msgstr "导数相关功能：`legacy/deriv`"
+
+#: manual/contributing.md:75
 msgid "4.2 File organization"
 msgstr "4.2 文件划分"
 
-#: manual/contributing.md:75
+#: manual/contributing.md:77
 msgid "Files should be organized based on functionality, with each file focusing on a specific feature. Use **lowercase letters with underscores** for file names."
 msgstr "文件应该按功能划分，每个文件专注于特定的功能。文件名使用**小写字母和下划线**。"
 
-#: manual/contributing.md:76
+#: manual/contributing.md:78
 msgid "File names should be descriptive and clearly indicate the core functionality they implement."
 msgstr "文件名应具备描述性，清楚反映该文件所实现的核心功能。"
 
-#: manual/contributing.md:80
+#: manual/contributing.md:82
 msgid "`gauss_kronrod.mbt`: Implements Gaussian quadrature with Kronrod extension."
 msgstr "`gauss_kronrod.mbt`：实现带克龙罗德扩展的高斯求积。"
 
-#: manual/contributing.md:81
+#: manual/contributing.md:83
 msgid "`adaptive_quadrature_gk.mbt`: Implements adaptive quadrature using Gaussian quadrature with Kronrod extension."
 msgstr "`adaptive_quadrature_gk.mbt`：使用带克龙罗德扩展的高斯求积实现的自适应积分。"
 
-#: manual/contributing.md:83
+#: manual/contributing.md:85
 msgid "**Note:** Avoid overly generic or vague file names such as `utils.mbt`. Instead, ensure file names correspond to their function or module."
 msgstr "**注意**：在文件命名中（除了在@internal 中不可避免的情况），请避免使用过于通用或模糊的名称，如 `utils.mbt`，请尽量使文件名与其功能或模块相关联。"
 
-#: manual/contributing.md:85
+#: manual/contributing.md:87
 msgid "5. Commit guidelines"
 msgstr "5. 提交规范"
 
-#: manual/contributing.md:87
+#: manual/contributing.md:89
 msgid "5.1 Commit messages"
 msgstr "5.1 提交信息"
 
-#: manual/contributing.md:89
+#: manual/contributing.md:91
 msgid "Use the `ready_to_pr.sh` script before committing to format code, run checks, generate test coverage files, and create `.mbti` files."
 msgstr "在提交前请使用 `ready_to_pr.sh` 脚本来自动格式化代码、运行检查、生成测试覆盖率文件和 `.mbti` 文件。"
 
-#: manual/contributing.md:90
+#: manual/contributing.md:92
 msgid "Each commit should have a clear description of the changes made."
 msgstr "每个提交应具有清晰的描述，说明此次提交所做的变更。"
 
-#: manual/contributing.md:91
+#: manual/contributing.md:93
 msgid "Commit messages should be in **English**, concise, and precise."
 msgstr "提交信息应使用**英文**，并遵循**简短、精炼**的原则。"
 
-#: manual/contributing.md:92
+#: manual/contributing.md:94
 msgid "Use prefixes such as `fix:`, `feat:`, `refactor:`, and `doc:` to indicate the type of change."
 msgstr "使用 `fix:`，`feat:`，`refactor:` 和 `doc:` 等前缀来区分提交的类型"
 
-#: manual/contributing.md:103
+#: manual/contributing.md:105
 msgid "5.2 Commit frequency"
 msgstr "5.2 提交频率"
 
-#: manual/contributing.md:105
+#: manual/contributing.md:107
 msgid "Keep commits small and focused on a single feature or fix."
 msgstr "尽量保持每次提交都很小且聚焦于一个功能或修复。"
 
-#: manual/contributing.md:106
+#: manual/contributing.md:108
 msgid "Avoid large, monolithic commits that include multiple unrelated changes."
 msgstr "不要一次性提交大规模的更改。"
 
-#: manual/contributing.md:108
+#: manual/contributing.md:110
 msgid "6. Code review"
 msgstr "6. 代码审查"
 
-#: manual/contributing.md:110
-msgid "If you are not a maintainer or collaborator, contact them before modifying dependencies or version numbers in `moon.mod.json`."
-msgstr "非项目维护者和合作者在修改`moon.mod.json`内的依赖和版本号前，请先联系维护者或者合作者。"
+#: manual/contributing.md:112
+msgid "If you are not a maintainer or collaborator, contact them before modifying dependencies or version numbers in `moon.mod`."
+msgstr "非项目维护者和合作者在修改`moon.mod`内的依赖和版本号前，请先联系维护者或者合作者。"
 
-#: manual/contributing.md:111
+#: manual/contributing.md:113
 msgid "All code submissions must undergo **code review**."
 msgstr "所有的代码提交都必须经过**代码审查**。"
 
-#: manual/contributing.md:112
+#: manual/contributing.md:114
 msgid "Code reviews should focus on code quality, style, performance, and security."
 msgstr "在审查过程中，关注代码质量、风格、性能和安全性。"
 
-#: manual/contributing.md:113
+#: manual/contributing.md:115
 msgid "Reviewers should provide constructive feedback to improve the code."
 msgstr "审查者应提供建设性的反馈，帮助改进代码。"
 
@@ -1276,8 +1280,8 @@ msgid "This is a numerical calculus library written in [**MoonBit**](https://www
 msgstr "这是一个使用[**MoonBit**](https://www.moonbitlang.cn)编写的微积分数值求解库，旨在填补 MoonBit 生态在科学计算领域的空白。"
 
 #: manual/index.md:9
-msgid "The library works on functions of type `(Double) -> Double` and is divided into five packages:"
-msgstr "本库处理类型为 `(Double) -> Double` 的函数，分为五个包："
+msgid "The library works on functions of type `(Double) -> Double`. Its original API lives in five packages under `legacy/`:"
+msgstr "本库处理类型为 `(Double) -> Double` 的函数。其原有 API 位于 `legacy/` 下的五个包中："
 
 #: manual/index.md:11
 msgid "Package"
@@ -1308,62 +1312,66 @@ msgid "Machine constants used by the other packages."
 msgstr "供其他包使用的机器常量。"
 
 #: manual/index.md:19
+msgid "Before this layout the same packages were published as `basic`, `deriv`, `diff`, `integration` and `internal`. Only the import path changed; the functions, types and their behaviour are the same. Import them with, for example, `\"Luna-Flow/calculus-numerical/legacy/deriv\"` instead of `\"Luna-Flow/calculus-numerical/deriv\"`. The top-level paths are reserved for the next-generation packages described in the architecture RFC below."
+msgstr "在此布局之前，这些包以 `basic`、`deriv`、`diff`、`integration` 和 `internal` 之名发布。只有导入路径发生了变化，函数、类型及其行为保持不变。例如，请使用 `\"Luna-Flow/calculus-numerical/legacy/deriv\"` 代替 `\"Luna-Flow/calculus-numerical/deriv\"` 来导入。顶层路径保留给下文架构 RFC 所述的下一代包。"
+
+#: manual/index.md:21
 msgid "Guides"
 msgstr "指南"
 
-#: manual/index.md:21
+#: manual/index.md:23
 msgid "[Architecture RFC](architecture_rfc.md): the next-generation architecture under research, an independent, trait-compatible numerical foundation with explicit floating-point contexts and first-class Decimal support."
 msgstr "[架构 RFC](architecture_rfc.md)：正在研究的下一代架构，即一个独立的、与 trait 兼容的数值基础，具备显式浮点上下文和一等的 Decimal 支持。"
 
-#: manual/index.md:23
+#: manual/index.md:25
 msgid "Feature list"
 msgstr "功能列表"
 
-#: manual/index.md:25
+#: manual/index.md:27
 msgid "**[Latest]** 25.01.31: Non-adaptive integration implementation (using Gaussian quadrature and Kronrod extension)"
 msgstr "**[最新]** 25.01.31: 非自适应积分实现（使用高斯求积法及 Kronrod 扩展）"
 
-#: manual/index.md:27
+#: manual/index.md:29
 msgid "**25.01.13**: Adaptive integration implementation (using Gaussian quadrature and Kronrod extension)"
 msgstr "**25.01.13**: 自适应积分实现（使用高斯求积法及 Kronrod 扩展）"
 
-#: manual/index.md:28
+#: manual/index.md:30
 msgid "**25.01.02**: Quadrature methods implementation (using Gaussian quadrature and Kronrod extension)"
 msgstr "**25.01.02**: 求积法实现（使用高斯求积法及 Kronrod 扩展）"
 
-#: manual/index.md:29
+#: manual/index.md:31
 msgid "**24.12.30**: Derivatives and differential functionality implementation (using forward, backward, and central difference methods)"
 msgstr "**24.12.30**: 导数与微分功能实现（使用前向、后向及中心差分法）"
 
-#: manual/index.md:31
+#: manual/index.md:33
 msgid "How to contribute"
 msgstr "如何参与贡献"
 
-#: manual/index.md:33
+#: manual/index.md:35
 msgid "We welcome contributions from the community, external developers, and individual enthusiasts! Whether you want to fix a bug, add a new feature, or improve the documentation, your participation is highly encouraged. To help you contribute smoothly, here are some simple steps:"
 msgstr "我们非常欢迎社区、外部开发者以及个人爱好者的贡献！无论你是想解决某个 bug、增加新功能，还是改进文档，都非常欢迎你的参与。为了帮助你顺利贡献，以下是一些简单的步骤："
 
-#: manual/index.md:35
+#: manual/index.md:37
 msgid "Please choose a task from the [`TODO.md`](../../TODO.md) file or the current `issue` list that interests you. We recommend selecting something you are interested in or familiar with, as it will make it easier to get started and enjoy the process."
 msgstr "请从 [`TODO.md`](../../TODO.md) 文件或者当前的`issue`列表中挑选一个你感兴趣的任务。我们建议选择自己有兴趣或熟悉的内容，这样你会更容易上手，也能享受其中的过程。"
 
-#: manual/index.md:36
+#: manual/index.md:38
 msgid "Fork our project and create a new branch in your personal repository. This way, you can start working on your changes without affecting the main project."
 msgstr "Fork 我们的项目，并在你的个人仓库中创建一个新的分支。这样，你就可以在自己的分支上开始进行开发工作，而不会影响到主项目的进展。"
 
-#: manual/index.md:37
+#: manual/index.md:39
 msgid "During development, please adhere to the coding style and guidelines in the [contribution guidelines](contributing.md). If your changes involve new features or bug fixes, please make sure to perform thorough testing to ensure everything works as expected."
 msgstr "在编写代码过程中，请尽量遵循[贡献指南](contributing.md)中的代码风格和规范。如果你的修改涉及到新功能或修复 bug，请确保进行充分的测试，确保一切正常运行。"
 
-#: manual/index.md:38
+#: manual/index.md:40
 msgid "Once you're done, submit your PR and provide a clear description of your changes to help us understand the modifications you've made. This will help us review and merge your code more quickly."
 msgstr "完成后，请提交你的 PR，并在提交时提供一个清晰的描述，帮助我们了解你所做的更改。这样有助于更快地进行代码审查和合并。"
 
-#: manual/index.md:39
+#: manual/index.md:41
 msgid "We will review your PR and may suggest improvements to ensure code quality. After approval, your contributions will be merged into the main branch."
 msgstr "我们会对你的 PR 进行审查，并可能会提出一些改进意见，这只是为了确保代码质量。待审查通过后，我们会将你的贡献合并到主分支中。"
 
-#: manual/index.md:41
+#: manual/index.md:43
 msgid "Thank you again for your participation and contributions! Every effort helps make this project better. We look forward to seeing your great code!"
 msgstr "再次感谢你的参与和贡献！每一份努力都能让这个项目变得更好。我们期待看到你的精彩代码！"
 

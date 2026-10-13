@@ -6,15 +6,17 @@
 
 This is a numerical calculus library written in [**MoonBit**](https://www.moonbitlang.cn/), designed to fill the gap in the MoonBit ecosystem for scientific computing.
 
-The library works on functions of type `(Double) -> Double` and is divided into five packages:
+The library works on functions of type `(Double) -> Double`. Its original API lives in five packages under `legacy/`:
 
 | Package | Contents |
 | --- | --- |
-| [`basic`](api/basic.md) | The function types `Func_Math` and `Quad_GK` and mathematical constants. |
-| [`deriv`](api/deriv.md) | Derivatives by forward, backward and central differences from a given initial step size. |
-| [`diff`](api/diff.md) | Derivatives by forward, backward and central differences with a step size chosen automatically. |
-| [`integration`](api/integration.md) | Gauss–Kronrod rules and adaptive and non-adaptive integrators. |
-| [`internal`](api/internal.md) | Machine constants used by the other packages. |
+| [`legacy/basic`](api/legacy_basic.md) | The function types `Func_Math` and `Quad_GK` and mathematical constants. |
+| [`legacy/deriv`](api/legacy_deriv.md) | Derivatives by forward, backward and central differences from a given initial step size. |
+| [`legacy/diff`](api/legacy_diff.md) | Derivatives by forward, backward and central differences with a step size chosen automatically. |
+| [`legacy/integration`](api/legacy_integration.md) | Gauss–Kronrod rules and adaptive and non-adaptive integrators. |
+| [`legacy/internal`](api/legacy_internal.md) | Machine constants used by the other packages. |
+
+Before this layout the same packages were published as `basic`, `deriv`, `diff`, `integration` and `internal`. Only the import path changed; the functions, types and their behaviour are the same. Import them with, for example, `"Luna-Flow/calculus-numerical/legacy/deriv"` instead of `"Luna-Flow/calculus-numerical/deriv"`. The top-level paths are reserved for the next-generation packages described in the architecture RFC below.
 
 ## Guides
 

@@ -1,6 +1,15 @@
 target/
+_build/
 .mooncakes/
 .DS_Store
 .vscode/
 _coverage/
 coverage_summary.txt
+
+# Agent and editor working directories
+.claude/
+.codex/
+.cursor/
+.aider*
+.continue/
+.windsurf/

@@ -36,6 +36,8 @@ We sincerely thank all the developers who have contributed to this project. Whet
 
   Ensure that you run `moon fmt` before committing your code to maintain consistency.
 
+  The project is built and tested with the latest MoonBit toolchain; the compiler version is not pinned, and CI installs the newest release. Fix incompatibilities in the code instead of pinning an older compiler. Before opening a pull request, check all four backends with `moon check --target all --deny-warn` and run `moon test --target wasm`, `wasm-gc`, `js` and `native`.
+
   Alternatively, you can use the `ready_to_pr.sh` script to automatically format the code, run checks, generate test coverage files, and create `.mbti` files.
 
 ## 2. Naming Conventions
@@ -87,8 +89,8 @@ Developers are encouraged to use MoonBit LSP’s AI-generated code comments to i
 
   Examples:
 
-  - For differentiation-related functionality: `diff`
-  - For derivative-related functionality: `deriv`
+  - For differentiation-related functionality: `legacy/diff`
+  - For derivative-related functionality: `legacy/deriv`
 
 ### 4.2 File Organization
 
@@ -127,7 +129,7 @@ Developers are encouraged to use MoonBit LSP’s AI-generated code comments to i
 
 ## 6. Code Review
 
-- If you are not a maintainer or collaborator, contact them before modifying dependencies or version numbers in `moon.mod.json`.
+- If you are not a maintainer or collaborator, contact them before modifying dependencies or version numbers in `moon.mod`.
 - All code submissions must undergo **code review**.
 - Code reviews should focus on code quality, style, performance, and security.
 - Reviewers should provide constructive feedback to improve the code.
