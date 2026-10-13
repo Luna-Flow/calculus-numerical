@@ -105,6 +105,7 @@ msgstr "**説明：** Fornberg（1988）のアルゴリズムにより、Vanderm
 #: manual/api/legacy_diff.md:16
 #: manual/api/legacy_diff.md:51
 #: manual/api/legacy_diff.md:73
+#: manual/api/series.md:35
 msgid "**Returns:**"
 msgstr "**戻り値：**"
 
@@ -119,6 +120,7 @@ msgstr "`Some(weights)`。`weights[i][k]` は `center` における `k` 階導�
 #: manual/api/legacy_diff.md:33
 #: manual/api/legacy_diff.md:58
 #: manual/api/legacy_diff.md:90
+#: manual/api/series.md:39
 msgid "**Notes:**"
 msgstr "**メモ：**"
 
@@ -139,6 +141,8 @@ msgstr "節点の配置が悪いと重みは悪条件になります。関数は
 #: manual/api/legacy_deriv.md:91
 #: manual/api/legacy_diff.md:23
 #: manual/api/legacy_diff.md:80
+#: manual/api/series.md:18
+#: manual/api/series.md:44
 msgid "**Example Usage:**"
 msgstr "**例：**"
 
@@ -159,6 +163,7 @@ msgstr "**説明：** Ridders 法により `point` での 1 階導関数を推�
 #: manual/api/legacy_diff.md:11
 #: manual/api/legacy_diff.md:46
 #: manual/api/legacy_diff.md:68
+#: manual/api/series.md:30
 msgid "**Parameters:**"
 msgstr "**パラメーター：**"
 
@@ -684,6 +689,95 @@ msgstr "その自然対数"
 msgid "For example, `machine_sqrt_dbl_epsilon` is $\\sqrt{\\varepsilon} \\approx 1.49 \\cdot 10^{-8}$ and `machine_log_dbl_max` is $\\ln(\\text{dbl\\_max}) \\approx 709.78$. The rounded `eps` values are `machine_sqrt_eps` ($3.2 \\cdot 10^{-8}$), `machine_root_3_eps` ($10^{-5}$), `machine_root_4_eps` ($1.78 \\cdot 10^{-4}$), `machine_root_5_eps` ($10^{-3}$), `machine_root_6_eps` ($3.16 \\cdot 10^{-3}$) and `machine_log_eps` ($-34.54$)."
 msgstr "例えば `machine_sqrt_dbl_epsilon` は $\\sqrt{\\varepsilon} \\approx 1.49 \\cdot 10^{-8}$、`machine_log_dbl_max` は $\\ln(\\text{dbl\\_max}) \\approx 709.78$ です。丸められた `eps` の値は `machine_sqrt_eps`（$3.2 \\cdot 10^{-8}$）、`machine_root_3_eps`（$10^{-5}$）、`machine_root_4_eps`（$1.78 \\cdot 10^{-4}$）、`machine_root_5_eps`（$10^{-3}$）、`machine_root_6_eps`（$3.16 \\cdot 10^{-3}$）、`machine_log_eps`（$-34.54$）です。"
 
+#: manual/api/series.md:1
+msgid "series API"
+msgstr "series API"
+
+#: manual/api/series.md:3
+msgid "The `series` package sums finite and infinite series of `Double` values."
+msgstr "`series` パッケージは、`Double` 値の有限級数と無限級数の和を計算します。"
+
+#: manual/api/series.md:5
+#: manual/architecture_rfc.md:38
+msgid "Finite sums"
+msgstr "有限和"
+
+#: manual/api/series.md:7
+msgid "Each function takes a `ReadOnlyArray[Double]` and returns its sum. They differ in how rounding error accumulates:"
+msgstr "各関数は `ReadOnlyArray[Double]` を受け取り、その和を返します。違いは丸め誤差の蓄積の仕方です。"
+
+#: manual/api/series.md:9
+msgid "Function"
+msgstr "関数"
+
+#: manual/api/series.md:9
+msgid "Method"
+msgstr "手法"
+
+#: manual/api/series.md:9
+msgid "Error growth"
+msgstr "誤差の増え方"
+
+#: manual/api/series.md:11
+msgid "Left-to-right accumulation."
+msgstr "左から右へ累積します。"
+
+#: manual/api/series.md:11
+msgid "Proportional to the number of terms."
+msgstr "項数に比例します。"
+
+#: manual/api/series.md:12
+msgid "Recursive halving, with blocks of at most 16 terms summed directly."
+msgstr "再帰的に二分し、16 項以下のブロックは直接合計します。"
+
+#: manual/api/series.md:12
+msgid "Proportional to the logarithm of the number of terms."
+msgstr "項数の対数に比例します。"
+
+#: manual/api/series.md:13
+msgid "Kahan compensated summation."
+msgstr "Kahan の補償加算。"
+
+#: manual/api/series.md:13
+msgid "Independent of the number of terms for well-scaled inputs."
+msgstr "適切にスケールされた入力では項数に依存しません。"
+
+#: manual/api/series.md:14
+msgid "Neumaier's variant of compensated summation, which also handles a term larger than the running sum."
+msgstr "Neumaier による補償加算の変種で、現在の部分和より大きい項も扱えます。"
+
+#: manual/api/series.md:14
+msgid "Independent of the number of terms."
+msgstr "項数に依存しません。"
+
+#: manual/api/series.md:16
+msgid "The sum of an empty array is `0`."
+msgstr "空の配列の和は `0` です。"
+
+#: manual/api/series.md:27
+msgid "**Description:** Accelerates the convergence of the series whose `index`-th term (counting from `0`) is `term(index)`, with Wynn's epsilon algorithm applied to the partial sums."
+msgstr "**説明：** `index` 番目の項（`0` から数える）が `term(index)` である級数に対し、部分和へ Wynn のイプシロン算法を適用して収束を加速します。"
+
+#: manual/api/series.md:32
+msgid "`max_terms` — The number of terms summed. Defaults to `32`; it must be at least `3`."
+msgstr "`max_terms` — 合計する項数。既定値は `32` で、3 以上である必要があります。"
+
+#: manual/api/series.md:33
+msgid "`tolerance` — Stop when two successive accelerated estimates differ by at most this. Defaults to `1.0e-12`; it must not be negative."
+msgstr "`tolerance` — 連続する 2 つの加速推定値の差がこれ以下になったら停止します。既定値は `1.0e-12` で、負であってはなりません。"
+
+#: manual/api/series.md:37
+msgid "An `Estimate[Double]` whose `estimated_error` is the difference of the last two accelerated estimates. This is a heuristic indicator, not a bound. `status` is `Converged` when the tolerance was met, `MaxIterations` otherwise, and `InvalidInput` for invalid arguments. `evaluations` is `max_terms`."
+msgstr "`Estimate[Double]`。`estimated_error` は最後の 2 つの加速推定値の差で、ヒューリスティックな指標であり、上界ではありません。許容誤差が満たされた場合は `status` が `Converged`、そうでなければ `MaxIterations`、引数が無効な場合は `InvalidInput` です。`evaluations` は `max_terms` です。"
+
+#: manual/api/series.md:41
+msgid "The method suits alternating and slowly converging series, such as the alternating harmonic series (sum `ln 2`) or the Leibniz series for `pi/4`."
+msgstr "この手法は、交代級数や収束の遅い級数、たとえば交代調和級数（和は `ln 2`）や `pi/4` のライプニッツ級数に適しています。"
+
+#: manual/api/series.md:42
+msgid "It does not detect divergent series, and it may return a misleading limit for them."
+msgstr "発散する級数は検出されず、そのような級数に対しては誤解を招く極限値が返ることがあります。"
+
 #: manual/architecture_rfc.md:1
 msgid "RFC 0001: Luna-Flow numerical calculus foundation architecture"
 msgstr "RFC 0001：Luna-Flow 数値微積分の基盤アーキテクチャ"
@@ -871,10 +965,6 @@ msgstr "Chebyshev 展開の文献"
 #: manual/architecture_rfc.md:37
 msgid "Reuses samples and extends naturally to high precision"
 msgstr "サンプルを再利用でき、高精度へ自然に拡張できる"
-
-#: manual/architecture_rfc.md:38
-msgid "Finite sums"
-msgstr "有限和"
 
 #: manual/architecture_rfc.md:38
 msgid "pairwise, Kahan, Neumaier"
@@ -1451,12 +1541,12 @@ msgid "The library works on functions of type `(Double) -> Double`. The next-gen
 msgstr "本ライブラリは型 `(Double) -> Double` の関数を扱います。次世代のパッケージは、誤差推定値と状態を持つ名前付きの結果を返します。"
 
 #: manual/index.md:11
-#: manual/index.md:19
+#: manual/index.md:20
 msgid "Package"
 msgstr "パッケージ"
 
 #: manual/index.md:11
-#: manual/index.md:19
+#: manual/index.md:20
 msgid "Contents"
 msgstr "内容"
 
@@ -1472,91 +1562,95 @@ msgstr "Fornberg の有限差分の重みと、Ridders の導関数推定器。"
 msgid "The 21-point Gauss–Kronrod rule, adaptive Gauss–Kronrod integration and tanh–sinh integration."
 msgstr "21 点ガウス・クロンロッド則、適応型ガウス・クロンロッド積分、tanh–sinh 積分。"
 
-#: manual/index.md:17
+#: manual/index.md:16
+msgid "Finite sums (naive, pairwise, Kahan, Neumaier) and Wynn epsilon acceleration of infinite series."
+msgstr "有限和（単純・ペアワイズ・Kahan・Neumaier）と、無限級数の Wynn イプシロン加速。"
+
+#: manual/index.md:18
 msgid "The original API lives in five packages under `legacy/`:"
 msgstr "従来の API は `legacy/` 以下の五つのパッケージにあります。"
 
-#: manual/index.md:21
+#: manual/index.md:22
 msgid "The function types `Func_Math` and `Quad_GK` and mathematical constants."
 msgstr "関数型 `Func_Math` と `Quad_GK`、および数学定数。"
 
-#: manual/index.md:22
+#: manual/index.md:23
 msgid "Derivatives by forward, backward and central differences from a given initial step size."
 msgstr "与えられた初期ステップサイズから、前進・後退・中心差分で微分係数を求めます。"
 
-#: manual/index.md:23
+#: manual/index.md:24
 msgid "Derivatives by forward, backward and central differences with a step size chosen automatically."
 msgstr "ステップサイズを自動的に選び、前進・後退・中心差分で微分係数を求めます。"
 
-#: manual/index.md:24
+#: manual/index.md:25
 msgid "Gauss–Kronrod rules and adaptive and non-adaptive integrators."
 msgstr "Gauss–Kronrod 則と、適応・非適応の積分器。"
 
-#: manual/index.md:25
+#: manual/index.md:26
 msgid "Machine constants used by the other packages."
 msgstr "他のパッケージが使う機械定数。"
 
-#: manual/index.md:27
+#: manual/index.md:28
 msgid "Before this layout the same packages were published as `basic`, `deriv`, `diff`, `integration` and `internal`. Only the import path changed; the functions, types and their behaviour are the same. Import them with, for example, `\"Luna-Flow/calculus-numerical/legacy/deriv\"` instead of `\"Luna-Flow/calculus-numerical/deriv\"`. The top-level `integration` path now holds the next-generation integration package; the old integrators are `legacy/integration`."
 msgstr "このレイアウトの前は、同じパッケージが `basic`、`deriv`、`diff`、`integration`、`internal` として公開されていました。変わったのはインポートパスだけで、関数・型とその振る舞いは同じです。たとえば `\"Luna-Flow/calculus-numerical/deriv\"` の代わりに `\"Luna-Flow/calculus-numerical/legacy/deriv\"` をインポートしてください。最上位の `integration` パスは次世代の積分パッケージになり、従来の積分器は `legacy/integration` です。"
 
-#: manual/index.md:29
+#: manual/index.md:30
 msgid "Guides"
 msgstr "ガイド"
 
-#: manual/index.md:31
+#: manual/index.md:32
 msgid "[Architecture RFC](architecture_rfc.md): the next-generation architecture under research, an independent, trait-compatible numerical foundation with explicit floating-point contexts and first-class Decimal support."
 msgstr "[アーキテクチャ RFC](architecture_rfc.md)：研究中の次世代アーキテクチャ。明示的な浮動小数点コンテキストと Decimal のファーストクラスのサポートを備えた、独立したトレイト互換の数値基盤である。"
 
-#: manual/index.md:33
+#: manual/index.md:34
 msgid "Feature list"
 msgstr "機能一覧"
 
-#: manual/index.md:35
+#: manual/index.md:36
 msgid "**[Latest]** 25.01.31: Non-adaptive integration implementation (using Gaussian quadrature and Kronrod extension)"
 msgstr "**[最新]** 25.01.31: 非適応積分の実装（Gauss 求積法および Kronrod 拡張を使用）"
 
-#: manual/index.md:37
+#: manual/index.md:38
 msgid "**25.01.13**: Adaptive integration implementation (using Gaussian quadrature and Kronrod extension)"
 msgstr "**25.01.13**: 適応積分の実装（Gauss 求積法および Kronrod 拡張を使用）"
 
-#: manual/index.md:38
+#: manual/index.md:39
 msgid "**25.01.02**: Quadrature methods implementation (using Gaussian quadrature and Kronrod extension)"
 msgstr "**25.01.02**: 求積法の実装（Gauss 求積法および Kronrod 拡張を使用）"
 
-#: manual/index.md:39
+#: manual/index.md:40
 msgid "**24.12.30**: Derivatives and differential functionality implementation (using forward, backward, and central difference methods)"
 msgstr "**24.12.30**: 微分と微分係数の差分機能の実装（前進差分法、後退差分法、中心差分法を使用）"
 
-#: manual/index.md:41
+#: manual/index.md:42
 msgid "How to contribute"
 msgstr "貢献方法"
 
-#: manual/index.md:43
+#: manual/index.md:44
 msgid "We welcome contributions from the community, external developers, and individual enthusiasts! Whether you want to fix a bug, add a new feature, or improve the documentation, your participation is highly encouraged. To help you contribute smoothly, here are some simple steps:"
 msgstr "コミュニティ、外部開発者、個人の愛好者からの貢献を歓迎します！バグ修正、新機能の追加、ドキュメントの改善など、どんな形でも貢献をお待ちしています。スムーズに貢献できるよう、以下の簡単な手順をお知らせします。"
 
-#: manual/index.md:45
+#: manual/index.md:46
 msgid "Please choose a task from the [`TODO.md`](../../TODO.md) file or the current `issue` list that interests you. We recommend selecting something you are interested in or familiar with, as it will make it easier to get started and enjoy the process."
 msgstr "まず、[`TODO.md`](../../TODO.md) ファイルまたは現在の`issue`リストから、興味のあるタスクを選んでください。自分の興味や得意分野に関連した内容を選ぶことをお勧めします。そうすることで、よりスムーズに作業を始められ、プロセスを楽しむことができます。"
 
-#: manual/index.md:46
+#: manual/index.md:47
 msgid "Fork our project and create a new branch in your personal repository. This way, you can start working on your changes without affecting the main project."
 msgstr "プロジェクトをフォークし、個人リポジトリ内で新しいブランチを作成します。これで、メインプロジェクトに影響を与えることなく、変更作業を進めることができます。"
 
-#: manual/index.md:47
+#: manual/index.md:48
 msgid "During development, please adhere to the coding style and guidelines in the [contribution guidelines](contributing.md). If your changes involve new features or bug fixes, please make sure to perform thorough testing to ensure everything works as expected."
 msgstr "開発中は、[貢献ガイドライン](contributing.md)に記載されているコードスタイルやガイドラインに従ってください。新しい機能追加やバグ修正が含まれている場合は、十分なテストを実施し、すべてが正常に動作することを確認してください。"
 
-#: manual/index.md:48
+#: manual/index.md:49
 msgid "Once you're done, submit your PR and provide a clear description of your changes to help us understand the modifications you've made. This will help us review and merge your code more quickly."
 msgstr "作業が完了したら、PR を提出し、行った変更の明確な説明を提供してください。これにより、コードレビューとマージがスムーズに進みます。"
 
-#: manual/index.md:49
+#: manual/index.md:50
 msgid "We will review your PR and may suggest improvements to ensure code quality. After approval, your contributions will be merged into the main branch."
 msgstr "PR をレビューし、コード品質を確保するために改善案を提案することがあります。レビューが完了次第、あなたの貢献をメインブランチにマージします。"
 
-#: manual/index.md:51
+#: manual/index.md:52
 msgid "Thank you again for your participation and contributions! Every effort helps make this project better. We look forward to seeing your great code!"
 msgstr "再度、貢献していただきありがとうございます！皆様の努力が、このプロジェクトをより良くしていきます。あなたの素晴らしいコードを楽しみにしています！"
 

@@ -44,6 +44,8 @@ follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   is now `legacy/integration`): `gauss_kronrod_21`, `adaptive_gauss_kronrod`
   and `tanh_sinh`. The error values are empirical estimates, not guaranteed
   bounds.
+- Package `series`: `naive_sum`, `pairwise_sum`, `kahan_sum`, `neumaier_sum`
+  and `wynn_epsilon` (epsilon-algorithm acceleration of an infinite series).
 - Dependency `Luna-Flow/arithmetic@0.5.1` (for the diagnostics in `core`).
 - A CI workflow (`.github/workflows/ci.yml`) that installs the latest MoonBit
   toolchain and runs `moon check --target <backend> --deny-warn` and

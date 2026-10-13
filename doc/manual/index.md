@@ -13,6 +13,7 @@ The library works on functions of type `(Double) -> Double`. The next-generation
 | [`core`](api/core.md) | The result type `Estimate` and the status `NumericalStatus`. |
 | [`differentiation`](api/differentiation.md) | Fornberg finite-difference weights and Ridders' derivative estimator. |
 | [`integration`](api/integration.md) | The 21-point Gauss–Kronrod rule, adaptive Gauss–Kronrod integration and tanh–sinh integration. |
+| [`series`](api/series.md) | Finite sums (naive, pairwise, Kahan, Neumaier) and Wynn epsilon acceleration of infinite series. |
 
 The original API lives in five packages under `legacy/`:
 
