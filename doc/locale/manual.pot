@@ -105,6 +105,7 @@ msgstr ""
 #: manual/api/legacy_diff.md:16
 #: manual/api/legacy_diff.md:51
 #: manual/api/legacy_diff.md:73
+#: manual/api/series.md:35
 msgid "**Returns:**"
 msgstr ""
 
@@ -119,6 +120,7 @@ msgstr ""
 #: manual/api/legacy_diff.md:33
 #: manual/api/legacy_diff.md:58
 #: manual/api/legacy_diff.md:90
+#: manual/api/series.md:39
 msgid "**Notes:**"
 msgstr ""
 
@@ -139,6 +141,8 @@ msgstr ""
 #: manual/api/legacy_deriv.md:91
 #: manual/api/legacy_diff.md:23
 #: manual/api/legacy_diff.md:80
+#: manual/api/series.md:18
+#: manual/api/series.md:44
 msgid "**Example Usage:**"
 msgstr ""
 
@@ -159,6 +163,7 @@ msgstr ""
 #: manual/api/legacy_diff.md:11
 #: manual/api/legacy_diff.md:46
 #: manual/api/legacy_diff.md:68
+#: manual/api/series.md:30
 msgid "**Parameters:**"
 msgstr ""
 
@@ -684,6 +689,95 @@ msgstr ""
 msgid "For example, `machine_sqrt_dbl_epsilon` is $\\sqrt{\\varepsilon} \\approx 1.49 \\cdot 10^{-8}$ and `machine_log_dbl_max` is $\\ln(\\text{dbl\\_max}) \\approx 709.78$. The rounded `eps` values are `machine_sqrt_eps` ($3.2 \\cdot 10^{-8}$), `machine_root_3_eps` ($10^{-5}$), `machine_root_4_eps` ($1.78 \\cdot 10^{-4}$), `machine_root_5_eps` ($10^{-3}$), `machine_root_6_eps` ($3.16 \\cdot 10^{-3}$) and `machine_log_eps` ($-34.54$)."
 msgstr ""
 
+#: manual/api/series.md:1
+msgid "series API"
+msgstr ""
+
+#: manual/api/series.md:3
+msgid "The `series` package sums finite and infinite series of `Double` values."
+msgstr ""
+
+#: manual/api/series.md:5
+#: manual/architecture_rfc.md:38
+msgid "Finite sums"
+msgstr ""
+
+#: manual/api/series.md:7
+msgid "Each function takes a `ReadOnlyArray[Double]` and returns its sum. They differ in how rounding error accumulates:"
+msgstr ""
+
+#: manual/api/series.md:9
+msgid "Function"
+msgstr ""
+
+#: manual/api/series.md:9
+msgid "Method"
+msgstr ""
+
+#: manual/api/series.md:9
+msgid "Error growth"
+msgstr ""
+
+#: manual/api/series.md:11
+msgid "Left-to-right accumulation."
+msgstr ""
+
+#: manual/api/series.md:11
+msgid "Proportional to the number of terms."
+msgstr ""
+
+#: manual/api/series.md:12
+msgid "Recursive halving, with blocks of at most 16 terms summed directly."
+msgstr ""
+
+#: manual/api/series.md:12
+msgid "Proportional to the logarithm of the number of terms."
+msgstr ""
+
+#: manual/api/series.md:13
+msgid "Kahan compensated summation."
+msgstr ""
+
+#: manual/api/series.md:13
+msgid "Independent of the number of terms for well-scaled inputs."
+msgstr ""
+
+#: manual/api/series.md:14
+msgid "Neumaier's variant of compensated summation, which also handles a term larger than the running sum."
+msgstr ""
+
+#: manual/api/series.md:14
+msgid "Independent of the number of terms."
+msgstr ""
+
+#: manual/api/series.md:16
+msgid "The sum of an empty array is `0`."
+msgstr ""
+
+#: manual/api/series.md:27
+msgid "**Description:** Accelerates the convergence of the series whose `index`-th term (counting from `0`) is `term(index)`, with Wynn's epsilon algorithm applied to the partial sums."
+msgstr ""
+
+#: manual/api/series.md:32
+msgid "`max_terms` — The number of terms summed. Defaults to `32`; it must be at least `3`."
+msgstr ""
+
+#: manual/api/series.md:33
+msgid "`tolerance` — Stop when two successive accelerated estimates differ by at most this. Defaults to `1.0e-12`; it must not be negative."
+msgstr ""
+
+#: manual/api/series.md:37
+msgid "An `Estimate[Double]` whose `estimated_error` is the difference of the last two accelerated estimates. This is a heuristic indicator, not a bound. `status` is `Converged` when the tolerance was met, `MaxIterations` otherwise, and `InvalidInput` for invalid arguments. `evaluations` is `max_terms`."
+msgstr ""
+
+#: manual/api/series.md:41
+msgid "The method suits alternating and slowly converging series, such as the alternating harmonic series (sum `ln 2`) or the Leibniz series for `pi/4`."
+msgstr ""
+
+#: manual/api/series.md:42
+msgid "It does not detect divergent series, and it may return a misleading limit for them."
+msgstr ""
+
 #: manual/architecture_rfc.md:1
 msgid "RFC 0001: Luna-Flow numerical calculus foundation architecture"
 msgstr ""
@@ -870,10 +964,6 @@ msgstr ""
 
 #: manual/architecture_rfc.md:37
 msgid "Reuses samples and extends naturally to high precision"
-msgstr ""
-
-#: manual/architecture_rfc.md:38
-msgid "Finite sums"
 msgstr ""
 
 #: manual/architecture_rfc.md:38
@@ -1451,12 +1541,12 @@ msgid "The library works on functions of type `(Double) -> Double`. The next-gen
 msgstr ""
 
 #: manual/index.md:11
-#: manual/index.md:19
+#: manual/index.md:20
 msgid "Package"
 msgstr ""
 
 #: manual/index.md:11
-#: manual/index.md:19
+#: manual/index.md:20
 msgid "Contents"
 msgstr ""
 
@@ -1472,90 +1562,94 @@ msgstr ""
 msgid "The 21-point Gauss–Kronrod rule, adaptive Gauss–Kronrod integration and tanh–sinh integration."
 msgstr ""
 
-#: manual/index.md:17
+#: manual/index.md:16
+msgid "Finite sums (naive, pairwise, Kahan, Neumaier) and Wynn epsilon acceleration of infinite series."
+msgstr ""
+
+#: manual/index.md:18
 msgid "The original API lives in five packages under `legacy/`:"
 msgstr ""
 
-#: manual/index.md:21
+#: manual/index.md:22
 msgid "The function types `Func_Math` and `Quad_GK` and mathematical constants."
 msgstr ""
 
-#: manual/index.md:22
+#: manual/index.md:23
 msgid "Derivatives by forward, backward and central differences from a given initial step size."
 msgstr ""
 
-#: manual/index.md:23
+#: manual/index.md:24
 msgid "Derivatives by forward, backward and central differences with a step size chosen automatically."
 msgstr ""
 
-#: manual/index.md:24
+#: manual/index.md:25
 msgid "Gauss–Kronrod rules and adaptive and non-adaptive integrators."
 msgstr ""
 
-#: manual/index.md:25
+#: manual/index.md:26
 msgid "Machine constants used by the other packages."
 msgstr ""
 
-#: manual/index.md:27
+#: manual/index.md:28
 msgid "Before this layout the same packages were published as `basic`, `deriv`, `diff`, `integration` and `internal`. Only the import path changed; the functions, types and their behaviour are the same. Import them with, for example, `\"Luna-Flow/calculus-numerical/legacy/deriv\"` instead of `\"Luna-Flow/calculus-numerical/deriv\"`. The top-level `integration` path now holds the next-generation integration package; the old integrators are `legacy/integration`."
 msgstr ""
 
-#: manual/index.md:29
+#: manual/index.md:30
 msgid "Guides"
 msgstr ""
 
-#: manual/index.md:31
+#: manual/index.md:32
 msgid "[Architecture RFC](architecture_rfc.md): the next-generation architecture under research, an independent, trait-compatible numerical foundation with explicit floating-point contexts and first-class Decimal support."
 msgstr ""
 
-#: manual/index.md:33
+#: manual/index.md:34
 msgid "Feature list"
 msgstr ""
 
-#: manual/index.md:35
+#: manual/index.md:36
 msgid "**[Latest]** 25.01.31: Non-adaptive integration implementation (using Gaussian quadrature and Kronrod extension)"
 msgstr ""
 
-#: manual/index.md:37
+#: manual/index.md:38
 msgid "**25.01.13**: Adaptive integration implementation (using Gaussian quadrature and Kronrod extension)"
 msgstr ""
 
-#: manual/index.md:38
+#: manual/index.md:39
 msgid "**25.01.02**: Quadrature methods implementation (using Gaussian quadrature and Kronrod extension)"
 msgstr ""
 
-#: manual/index.md:39
+#: manual/index.md:40
 msgid "**24.12.30**: Derivatives and differential functionality implementation (using forward, backward, and central difference methods)"
 msgstr ""
 
-#: manual/index.md:41
+#: manual/index.md:42
 msgid "How to contribute"
 msgstr ""
 
-#: manual/index.md:43
+#: manual/index.md:44
 msgid "We welcome contributions from the community, external developers, and individual enthusiasts! Whether you want to fix a bug, add a new feature, or improve the documentation, your participation is highly encouraged. To help you contribute smoothly, here are some simple steps:"
 msgstr ""
 
-#: manual/index.md:45
+#: manual/index.md:46
 msgid "Please choose a task from the [`TODO.md`](../../TODO.md) file or the current `issue` list that interests you. We recommend selecting something you are interested in or familiar with, as it will make it easier to get started and enjoy the process."
 msgstr ""
 
-#: manual/index.md:46
+#: manual/index.md:47
 msgid "Fork our project and create a new branch in your personal repository. This way, you can start working on your changes without affecting the main project."
 msgstr ""
 
-#: manual/index.md:47
+#: manual/index.md:48
 msgid "During development, please adhere to the coding style and guidelines in the [contribution guidelines](contributing.md). If your changes involve new features or bug fixes, please make sure to perform thorough testing to ensure everything works as expected."
 msgstr ""
 
-#: manual/index.md:48
+#: manual/index.md:49
 msgid "Once you're done, submit your PR and provide a clear description of your changes to help us understand the modifications you've made. This will help us review and merge your code more quickly."
 msgstr ""
 
-#: manual/index.md:49
+#: manual/index.md:50
 msgid "We will review your PR and may suggest improvements to ensure code quality. After approval, your contributions will be merged into the main branch."
 msgstr ""
 
-#: manual/index.md:51
+#: manual/index.md:52
 msgid "Thank you again for your participation and contributions! Every effort helps make this project better. We look forward to seeing your great code!"
 msgstr ""

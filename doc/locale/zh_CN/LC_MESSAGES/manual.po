@@ -105,6 +105,7 @@ msgstr "**描述：** 使用 Fornberg（1988）算法为任意节点计算有限
 #: manual/api/legacy_diff.md:16
 #: manual/api/legacy_diff.md:51
 #: manual/api/legacy_diff.md:73
+#: manual/api/series.md:35
 msgid "**Returns:**"
 msgstr "**返回值：**"
 
@@ -119,6 +120,7 @@ msgstr "`Some(weights)`，其中 `weights[i][k]` 是 `nodes[i]` 在 `center` 处
 #: manual/api/legacy_diff.md:33
 #: manual/api/legacy_diff.md:58
 #: manual/api/legacy_diff.md:90
+#: manual/api/series.md:39
 msgid "**Notes:**"
 msgstr "**注意事项：**"
 
@@ -139,6 +141,8 @@ msgstr "节点分布不佳会使权重病态；函数不会检测这一点。"
 #: manual/api/legacy_deriv.md:91
 #: manual/api/legacy_diff.md:23
 #: manual/api/legacy_diff.md:80
+#: manual/api/series.md:18
+#: manual/api/series.md:44
 msgid "**Example Usage:**"
 msgstr "**示例：**"
 
@@ -159,6 +163,7 @@ msgstr "**描述：** 用 Ridders 方法估计 `point` 处的一阶导数：每�
 #: manual/api/legacy_diff.md:11
 #: manual/api/legacy_diff.md:46
 #: manual/api/legacy_diff.md:68
+#: manual/api/series.md:30
 msgid "**Parameters:**"
 msgstr "**参数：**"
 
@@ -692,6 +697,95 @@ msgstr "其自然对数"
 msgid "For example, `machine_sqrt_dbl_epsilon` is $\\sqrt{\\varepsilon} \\approx 1.49 \\cdot 10^{-8}$ and `machine_log_dbl_max` is $\\ln(\\text{dbl\\_max}) \\approx 709.78$. The rounded `eps` values are `machine_sqrt_eps` ($3.2 \\cdot 10^{-8}$), `machine_root_3_eps` ($10^{-5}$), `machine_root_4_eps` ($1.78 \\cdot 10^{-4}$), `machine_root_5_eps` ($10^{-3}$), `machine_root_6_eps` ($3.16 \\cdot 10^{-3}$) and `machine_log_eps` ($-34.54$)."
 msgstr "例如，`machine_sqrt_dbl_epsilon` 为 $\\sqrt{\\varepsilon} \\approx 1.49 \\cdot 10^{-8}$，`machine_log_dbl_max` 为 $\\ln(\\text{dbl\\_max}) \\approx 709.78$。取整后的 `eps` 值为 `machine_sqrt_eps`（$3.2 \\cdot 10^{-8}$）、`machine_root_3_eps`（$10^{-5}$）、`machine_root_4_eps`（$1.78 \\cdot 10^{-4}$）、`machine_root_5_eps`（$10^{-3}$）、`machine_root_6_eps`（$3.16 \\cdot 10^{-3}$）和 `machine_log_eps`（$-34.54$）。"
 
+#: manual/api/series.md:1
+msgid "series API"
+msgstr "series API"
+
+#: manual/api/series.md:3
+msgid "The `series` package sums finite and infinite series of `Double` values."
+msgstr "`series` 包对 `Double` 值的有限级数和无穷级数求和。"
+
+#: manual/api/series.md:5
+#: manual/architecture_rfc.md:38
+msgid "Finite sums"
+msgstr "有限求和"
+
+#: manual/api/series.md:7
+msgid "Each function takes a `ReadOnlyArray[Double]` and returns its sum. They differ in how rounding error accumulates:"
+msgstr "每个函数接受一个 `ReadOnlyArray[Double]` 并返回其和。它们的区别在于舍入误差的累积方式："
+
+#: manual/api/series.md:9
+msgid "Function"
+msgstr "函数"
+
+#: manual/api/series.md:9
+msgid "Method"
+msgstr "方法"
+
+#: manual/api/series.md:9
+msgid "Error growth"
+msgstr "误差增长"
+
+#: manual/api/series.md:11
+msgid "Left-to-right accumulation."
+msgstr "从左到右累加。"
+
+#: manual/api/series.md:11
+msgid "Proportional to the number of terms."
+msgstr "与项数成正比。"
+
+#: manual/api/series.md:12
+msgid "Recursive halving, with blocks of at most 16 terms summed directly."
+msgstr "递归二分，至多 16 项的块直接求和。"
+
+#: manual/api/series.md:12
+msgid "Proportional to the logarithm of the number of terms."
+msgstr "与项数的对数成正比。"
+
+#: manual/api/series.md:13
+msgid "Kahan compensated summation."
+msgstr "Kahan 补偿求和。"
+
+#: manual/api/series.md:13
+msgid "Independent of the number of terms for well-scaled inputs."
+msgstr "对于量级适当的输入，与项数无关。"
+
+#: manual/api/series.md:14
+msgid "Neumaier's variant of compensated summation, which also handles a term larger than the running sum."
+msgstr "Neumaier 补偿求和的变体，也能处理大于当前部分和的项。"
+
+#: manual/api/series.md:14
+msgid "Independent of the number of terms."
+msgstr "与项数无关。"
+
+#: manual/api/series.md:16
+msgid "The sum of an empty array is `0`."
+msgstr "空数组的和为 `0`。"
+
+#: manual/api/series.md:27
+msgid "**Description:** Accelerates the convergence of the series whose `index`-th term (counting from `0`) is `term(index)`, with Wynn's epsilon algorithm applied to the partial sums."
+msgstr "**描述：** 对第 `index` 项（从 `0` 起计）为 `term(index)` 的级数，将 Wynn epsilon 算法作用于部分和，以加速其收敛。"
+
+#: manual/api/series.md:32
+msgid "`max_terms` — The number of terms summed. Defaults to `32`; it must be at least `3`."
+msgstr "`max_terms` — 求和的项数。默认为 `32`；至少为 `3`。"
+
+#: manual/api/series.md:33
+msgid "`tolerance` — Stop when two successive accelerated estimates differ by at most this. Defaults to `1.0e-12`; it must not be negative."
+msgstr "`tolerance` — 当相继两个加速估计之差不超过该值时停止。默认为 `1.0e-12`；不得为负。"
+
+#: manual/api/series.md:37
+msgid "An `Estimate[Double]` whose `estimated_error` is the difference of the last two accelerated estimates. This is a heuristic indicator, not a bound. `status` is `Converged` when the tolerance was met, `MaxIterations` otherwise, and `InvalidInput` for invalid arguments. `evaluations` is `max_terms`."
+msgstr "一个 `Estimate[Double]`，其 `estimated_error` 是最后两个加速估计之差，是启发式指标，而不是误差界。满足容差时 `status` 为 `Converged`，否则为 `MaxIterations`，参数无效时为 `InvalidInput`。`evaluations` 等于 `max_terms`。"
+
+#: manual/api/series.md:41
+msgid "The method suits alternating and slowly converging series, such as the alternating harmonic series (sum `ln 2`) or the Leibniz series for `pi/4`."
+msgstr "该方法适用于交错级数和收敛缓慢的级数，例如交错调和级数（和为 `ln 2`）或 `pi/4` 的 Leibniz 级数。"
+
+#: manual/api/series.md:42
+msgid "It does not detect divergent series, and it may return a misleading limit for them."
+msgstr "它不会检测发散级数，对发散级数可能返回具有误导性的极限。"
+
 #: manual/architecture_rfc.md:1
 msgid "RFC 0001: Luna-Flow numerical calculus foundation architecture"
 msgstr "RFC 0001：Luna-Flow 数值微积分基础架构"
@@ -879,10 +973,6 @@ msgstr "Chebyshev 展开文献"
 #: manual/architecture_rfc.md:37
 msgid "Reuses samples and extends naturally to high precision"
 msgstr "可复用采样并自然扩展高精度"
-
-#: manual/architecture_rfc.md:38
-msgid "Finite sums"
-msgstr "有限求和"
 
 #: manual/architecture_rfc.md:38
 msgid "pairwise, Kahan, Neumaier"
@@ -1459,12 +1549,12 @@ msgid "The library works on functions of type `(Double) -> Double`. The next-gen
 msgstr "本库处理类型为 `(Double) -> Double` 的函数。下一代包返回带有误差估计和状态的具名结果："
 
 #: manual/index.md:11
-#: manual/index.md:19
+#: manual/index.md:20
 msgid "Package"
 msgstr "包"
 
 #: manual/index.md:11
-#: manual/index.md:19
+#: manual/index.md:20
 msgid "Contents"
 msgstr "内容"
 
@@ -1480,91 +1570,95 @@ msgstr "Fornberg 有限差分权重和 Ridders 导数估计器。"
 msgid "The 21-point Gauss–Kronrod rule, adaptive Gauss–Kronrod integration and tanh–sinh integration."
 msgstr "21 点 Gauss–Kronrod 求积公式、自适应 Gauss–Kronrod 积分和 tanh–sinh 积分。"
 
-#: manual/index.md:17
+#: manual/index.md:16
+msgid "Finite sums (naive, pairwise, Kahan, Neumaier) and Wynn epsilon acceleration of infinite series."
+msgstr "有限和（朴素、成对、Kahan、Neumaier）以及无穷级数的 Wynn epsilon 加速。"
+
+#: manual/index.md:18
 msgid "The original API lives in five packages under `legacy/`:"
 msgstr "原有 API 位于 `legacy/` 下的五个包中："
 
-#: manual/index.md:21
+#: manual/index.md:22
 msgid "The function types `Func_Math` and `Quad_GK` and mathematical constants."
 msgstr "函数类型 `Func_Math` 与 `Quad_GK`，以及数学常量。"
 
-#: manual/index.md:22
+#: manual/index.md:23
 msgid "Derivatives by forward, backward and central differences from a given initial step size."
 msgstr "根据给定的初始步长，以前向、后向和中心差分计算导数。"
 
-#: manual/index.md:23
+#: manual/index.md:24
 msgid "Derivatives by forward, backward and central differences with a step size chosen automatically."
 msgstr "自动选择步长，以前向、后向和中心差分计算导数。"
 
-#: manual/index.md:24
+#: manual/index.md:25
 msgid "Gauss–Kronrod rules and adaptive and non-adaptive integrators."
 msgstr "Gauss–Kronrod 求积公式以及自适应与非自适应积分器。"
 
-#: manual/index.md:25
+#: manual/index.md:26
 msgid "Machine constants used by the other packages."
 msgstr "供其他包使用的机器常量。"
 
-#: manual/index.md:27
+#: manual/index.md:28
 msgid "Before this layout the same packages were published as `basic`, `deriv`, `diff`, `integration` and `internal`. Only the import path changed; the functions, types and their behaviour are the same. Import them with, for example, `\"Luna-Flow/calculus-numerical/legacy/deriv\"` instead of `\"Luna-Flow/calculus-numerical/deriv\"`. The top-level `integration` path now holds the next-generation integration package; the old integrators are `legacy/integration`."
 msgstr "在此布局之前，这些包以 `basic`、`deriv`、`diff`、`integration` 和 `internal` 之名发布。只有导入路径发生了变化，函数、类型及其行为保持不变。例如，请使用 `\"Luna-Flow/calculus-numerical/legacy/deriv\"` 代替 `\"Luna-Flow/calculus-numerical/deriv\"` 来导入。顶层的 `integration` 路径现在是下一代积分包；原有的积分器是 `legacy/integration`。"
 
-#: manual/index.md:29
+#: manual/index.md:30
 msgid "Guides"
 msgstr "指南"
 
-#: manual/index.md:31
+#: manual/index.md:32
 msgid "[Architecture RFC](architecture_rfc.md): the next-generation architecture under research, an independent, trait-compatible numerical foundation with explicit floating-point contexts and first-class Decimal support."
 msgstr "[架构 RFC](architecture_rfc.md)：正在研究的下一代架构，即一个独立的、与 trait 兼容的数值基础，具备显式浮点上下文和一等的 Decimal 支持。"
 
-#: manual/index.md:33
+#: manual/index.md:34
 msgid "Feature list"
 msgstr "功能列表"
 
-#: manual/index.md:35
+#: manual/index.md:36
 msgid "**[Latest]** 25.01.31: Non-adaptive integration implementation (using Gaussian quadrature and Kronrod extension)"
 msgstr "**[最新]** 25.01.31: 非自适应积分实现（使用高斯求积法及 Kronrod 扩展）"
 
-#: manual/index.md:37
+#: manual/index.md:38
 msgid "**25.01.13**: Adaptive integration implementation (using Gaussian quadrature and Kronrod extension)"
 msgstr "**25.01.13**: 自适应积分实现（使用高斯求积法及 Kronrod 扩展）"
 
-#: manual/index.md:38
+#: manual/index.md:39
 msgid "**25.01.02**: Quadrature methods implementation (using Gaussian quadrature and Kronrod extension)"
 msgstr "**25.01.02**: 求积法实现（使用高斯求积法及 Kronrod 扩展）"
 
-#: manual/index.md:39
+#: manual/index.md:40
 msgid "**24.12.30**: Derivatives and differential functionality implementation (using forward, backward, and central difference methods)"
 msgstr "**24.12.30**: 导数与微分功能实现（使用前向、后向及中心差分法）"
 
-#: manual/index.md:41
+#: manual/index.md:42
 msgid "How to contribute"
 msgstr "如何参与贡献"
 
-#: manual/index.md:43
+#: manual/index.md:44
 msgid "We welcome contributions from the community, external developers, and individual enthusiasts! Whether you want to fix a bug, add a new feature, or improve the documentation, your participation is highly encouraged. To help you contribute smoothly, here are some simple steps:"
 msgstr "我们非常欢迎社区、外部开发者以及个人爱好者的贡献！无论你是想解决某个 bug、增加新功能，还是改进文档，都非常欢迎你的参与。为了帮助你顺利贡献，以下是一些简单的步骤："
 
-#: manual/index.md:45
+#: manual/index.md:46
 msgid "Please choose a task from the [`TODO.md`](../../TODO.md) file or the current `issue` list that interests you. We recommend selecting something you are interested in or familiar with, as it will make it easier to get started and enjoy the process."
 msgstr "请从 [`TODO.md`](../../TODO.md) 文件或者当前的`issue`列表中挑选一个你感兴趣的任务。我们建议选择自己有兴趣或熟悉的内容，这样你会更容易上手，也能享受其中的过程。"
 
-#: manual/index.md:46
+#: manual/index.md:47
 msgid "Fork our project and create a new branch in your personal repository. This way, you can start working on your changes without affecting the main project."
 msgstr "Fork 我们的项目，并在你的个人仓库中创建一个新的分支。这样，你就可以在自己的分支上开始进行开发工作，而不会影响到主项目的进展。"
 
-#: manual/index.md:47
+#: manual/index.md:48
 msgid "During development, please adhere to the coding style and guidelines in the [contribution guidelines](contributing.md). If your changes involve new features or bug fixes, please make sure to perform thorough testing to ensure everything works as expected."
 msgstr "在编写代码过程中，请尽量遵循[贡献指南](contributing.md)中的代码风格和规范。如果你的修改涉及到新功能或修复 bug，请确保进行充分的测试，确保一切正常运行。"
 
-#: manual/index.md:48
+#: manual/index.md:49
 msgid "Once you're done, submit your PR and provide a clear description of your changes to help us understand the modifications you've made. This will help us review and merge your code more quickly."
 msgstr "完成后，请提交你的 PR，并在提交时提供一个清晰的描述，帮助我们了解你所做的更改。这样有助于更快地进行代码审查和合并。"
 
-#: manual/index.md:49
+#: manual/index.md:50
 msgid "We will review your PR and may suggest improvements to ensure code quality. After approval, your contributions will be merged into the main branch."
 msgstr "我们会对你的 PR 进行审查，并可能会提出一些改进意见，这只是为了确保代码质量。待审查通过后，我们会将你的贡献合并到主分支中。"
 
-#: manual/index.md:51
+#: manual/index.md:52
 msgid "Thank you again for your participation and contributions! Every effort helps make this project better. We look forward to seeing your great code!"
 msgstr "再次感谢你的参与和贡献！每一份努力都能让这个项目变得更好。我们期待看到你的精彩代码！"
 

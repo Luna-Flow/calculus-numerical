@@ -1,0 +1,25 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "Luna-Flow/calculus-numerical/series"
+
+import {
+  "Luna-Flow/calculus-numerical/core",
+}
+
+// Values
+pub fn kahan_sum(ReadOnlyArray[Double]) -> Double
+
+pub fn naive_sum(ReadOnlyArray[Double]) -> Double
+
+pub fn neumaier_sum(ReadOnlyArray[Double]) -> Double
+
+pub fn pairwise_sum(ReadOnlyArray[Double]) -> Double
+
+pub fn wynn_epsilon((Int) -> Double, max_terms? : Int, tolerance? : Double) -> @core.Estimate[Double]
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits
