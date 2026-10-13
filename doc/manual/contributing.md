@@ -69,8 +69,8 @@ Developers are encouraged to use MoonBit LSP’s AI-generated code comments to i
 
   Examples:
 
-  - For differentiation-related functionality: `legacy/diff`
-  - For derivative-related functionality: `legacy/deriv`
+  - For differentiation-related functionality: `differentiation`
+  - For integration-related functionality: `integration`
 
 ### 4.2 File organization
 

@@ -11,6 +11,221 @@ msgstr ""
 msgid "Numerical differentiation and Gauss–Kronrod integration of real functions for MoonBit, part of Luna-Flow."
 msgstr "MoonBit 向けの実関数の数値微分と Gauss–Kronrod 数値積分のライブラリ。Luna-Flow の一部です。"
 
+#: manual/api/core.md:1
+msgid "core API"
+msgstr "core API"
+
+#: manual/api/core.md:3
+msgid "The `core` package defines the result type shared by the next-generation numerical routines. A routine returns an `Estimate` instead of a tuple whose fields have no names."
+msgstr "`core` パッケージは、次世代の数値ルーチンが共用する結果型を定義します。ルーチンは、フィールドに名前のないタプルではなく `Estimate` を返します。"
+
+#: manual/api/core.md:7
+msgid "Describes how a routine stopped."
+msgstr "ルーチンがどのように終了したかを表します。"
+
+#: manual/api/core.md:9
+msgid "Variant"
+msgstr "バリアント"
+
+#: manual/api/core.md:9
+#: manual/api/core.md:18
+#: manual/api/legacy_integration.md:22
+#: manual/api/legacy_integration.md:99
+#: manual/api/legacy_internal.md:9
+msgid "Meaning"
+msgstr "意味"
+
+#: manual/api/core.md:11
+msgid "The stopping criterion of the routine was met."
+msgstr "ルーチンの停止条件が満たされました。"
+
+#: manual/api/core.md:12
+msgid "The iteration, interval or term limit was reached before the criterion was met. The value is the last estimate."
+msgstr "条件が満たされる前に、反復・区間・項の上限に達しました。値は最後の推定値です。"
+
+#: manual/api/core.md:13
+msgid "An argument was out of range (for example a non-positive step or a limit of zero). The value is `0` and no function evaluation was made."
+msgstr "引数が範囲外でした（たとえば刻み幅が正でない、上限が 0 など）。値は `0` で、関数評価は行われていません。"
+
+#: manual/api/core.md:14
+msgid "Reserved for routines that detect roundoff-limited progress. No routine returns it yet."
+msgstr "丸め誤差で進展が頭打ちになったことを検出するルーチンのために予約されています。現在これを返すルーチンはありません。"
+
+#: manual/api/core.md:18
+msgid "Field"
+msgstr "フィールド"
+
+#: manual/api/core.md:20
+msgid "The computed value."
+msgstr "計算された値。"
+
+#: manual/api/core.md:21
+msgid "An empirical error estimate. It is **not** a guaranteed bound."
+msgstr "経験的な誤差推定値。保証された上界では**ありません**。"
+
+#: manual/api/core.md:22
+msgid "The number of function evaluations."
+msgstr "関数評価の回数。"
+
+#: manual/api/core.md:23
+msgid "The number of iterations, subdivisions or terms used."
+msgstr "使用した反復・分割・項の数。"
+
+#: manual/api/core.md:24
+msgid "How the routine stopped."
+msgstr "ルーチンがどのように終了したか。"
+
+#: manual/api/core.md:25
+msgid "Arithmetic flags from `Luna-Flow/arithmetic`; empty for the `Double` routines."
+msgstr "`Luna-Flow/arithmetic` の算術フラグ。`Double` のルーチンでは空です。"
+
+#: manual/api/core.md:27
+msgid "`Estimate::new(value, estimated_error, evaluations, iterations, status, diagnostics?)` builds an estimate, with empty diagnostics by default. `Estimate` and `NumericalStatus` derive `Eq` and `Debug`."
+msgstr "`Estimate::new(value, estimated_error, evaluations, iterations, status, diagnostics?)` は推定値を構築します。診断情報の既定値は空です。`Estimate` と `NumericalStatus` は `Eq` と `Debug` を導出します。"
+
+#: manual/api/differentiation.md:1
+msgid "differentiation API"
+msgstr "differentiation API"
+
+#: manual/api/differentiation.md:3
+msgid "The `differentiation` package computes derivatives of functions `(Double) -> Double` from function values. It does not use the step-size heuristics of `legacy/deriv` and `legacy/diff`."
+msgstr "`differentiation` パッケージは、関数値から `(Double) -> Double` 型の関数の導関数を計算します。`legacy/deriv` や `legacy/diff` の刻み幅のヒューリスティクスは使いません。"
+
+#: manual/api/differentiation.md:7
+msgid "**Description:** Computes finite-difference weights for arbitrary nodes with the algorithm of Fornberg (1988), without solving a Vandermonde system."
+msgstr "**説明：** Fornberg（1988）のアルゴリズムにより、Vandermonde 系を解かずに任意の節点に対する有限差分の重みを計算します。"
+
+#: manual/api/differentiation.md:10
+#: manual/api/differentiation.md:42
+#: manual/api/integration.md:10
+#: manual/api/integration.md:24
+#: manual/api/integration.md:46
+#: manual/api/legacy_deriv.md:16
+#: manual/api/legacy_deriv.md:50
+#: manual/api/legacy_diff.md:16
+#: manual/api/legacy_diff.md:51
+#: manual/api/legacy_diff.md:73
+msgid "**Returns:**"
+msgstr "**戻り値：**"
+
+#: manual/api/differentiation.md:12
+msgid "`Some(weights)`, where `weights[i][k]` is the weight of `nodes[i]` in the approximation of the `k`-th derivative at `center`, for `k` from `0` to `derivative_order`. Returns `None` if `derivative_order` is negative, if there are not more than `derivative_order` nodes, or if two nodes coincide."
+msgstr "`Some(weights)`。`weights[i][k]` は `center` における `k` 階導関数の近似での `nodes[i]` の重みで、`k` は `0` から `derivative_order` までです。`derivative_order` が負の場合、節点が `derivative_order` 個より多くない場合、または 2 つの節点が一致する場合は `None` を返します。"
+
+#: manual/api/differentiation.md:14
+#: manual/api/legacy_deriv.md:33
+#: manual/api/legacy_deriv.md:67
+#: manual/api/legacy_deriv.md:101
+#: manual/api/legacy_diff.md:33
+#: manual/api/legacy_diff.md:58
+#: manual/api/legacy_diff.md:90
+msgid "**Notes:**"
+msgstr "**メモ：**"
+
+#: manual/api/differentiation.md:16
+msgid "The stencil is exact for polynomials of degree below the number of nodes."
+msgstr "このステンシルは、次数が節点数より小さい多項式に対して厳密です。"
+
+#: manual/api/differentiation.md:17
+msgid "Badly spread nodes make the weights ill-conditioned; the function does not detect this."
+msgstr "節点の配置が悪いと重みは悪条件になります。関数はこれを検出しません。"
+
+#: manual/api/differentiation.md:19
+#: manual/api/differentiation.md:46
+#: manual/api/integration.md:28
+#: manual/api/integration.md:50
+#: manual/api/legacy_deriv.md:23
+#: manual/api/legacy_deriv.md:57
+#: manual/api/legacy_deriv.md:91
+#: manual/api/legacy_diff.md:23
+#: manual/api/legacy_diff.md:80
+msgid "**Example Usage:**"
+msgstr "**例：**"
+
+#: manual/api/differentiation.md:29
+msgid "**Description:** Evaluates `function` at the nodes and returns the weighted sum. Returns `None` if `nodes` and `weights` differ in length."
+msgstr "**説明：** 各節点で `function` を評価し、重み付き和を返します。`nodes` と `weights` の長さが異なる場合は `None` を返します。"
+
+#: manual/api/differentiation.md:34
+msgid "**Description:** Estimates the first derivative at `point` by Ridders' method: central differences with the step divided by 1.4 at every level, extrapolated in a Richardson tableau."
+msgstr "**説明：** Ridders 法により `point` での 1 階導関数を推定します。各レベルで刻み幅を 1.4 で割って中心差分を求め、Richardson 表で外挿します。"
+
+#: manual/api/differentiation.md:37
+#: manual/api/integration.md:19
+#: manual/api/integration.md:40
+#: manual/api/legacy_deriv.md:10
+#: manual/api/legacy_deriv.md:44
+#: manual/api/legacy_deriv.md:79
+#: manual/api/legacy_diff.md:11
+#: manual/api/legacy_diff.md:46
+#: manual/api/legacy_diff.md:68
+msgid "**Parameters:**"
+msgstr "**パラメーター：**"
+
+#: manual/api/differentiation.md:39
+msgid "`initial_step` — The first step size. Defaults to `0.1`; it must be positive."
+msgstr "`initial_step` — 最初の刻み幅。既定値は `0.1` で、正である必要があります。"
+
+#: manual/api/differentiation.md:40
+msgid "`max_iterations` — The number of levels. Defaults to `10`; it must be positive."
+msgstr "`max_iterations` — レベル数。既定値は `10` で、正である必要があります。"
+
+#: manual/api/differentiation.md:44
+msgid "An `Estimate[Double]`. `estimated_error` is the largest disagreement between the best tableau entry and its two neighbours. It is a heuristic indicator, not a bound. `status` is `Converged` when the error stops improving and `MaxIterations` when all levels were used; with invalid arguments it is `InvalidInput`."
+msgstr "`Estimate[Double]`。`estimated_error` は、最良の表の要素とその 2 つの隣接要素との差の最大値です。ヒューリスティックな指標であり、上界ではありません。誤差が改善しなくなると `status` は `Converged`、すべてのレベルを使い切ると `MaxIterations`、引数が無効な場合は `InvalidInput` になります。"
+
+#: manual/api/integration.md:1
+msgid "integration API"
+msgstr "integration API"
+
+#: manual/api/integration.md:3
+msgid "The `integration` package integrates functions `(Double) -> Double` over a finite interval and returns an `Estimate[Double]`. The original integrators are in [`legacy/integration`](legacy_integration.md)."
+msgstr "`integration` パッケージは、有限区間上で `(Double) -> Double` 型の関数を積分し、`Estimate[Double]` を返します。従来の積分器は [`legacy/integration`](legacy_integration.md) にあります。"
+
+#: manual/api/integration.md:7
+msgid "**Description:** Applies the 21-point Gauss–Kronrod rule (with the embedded 10-point Gauss rule) once on `[lower, upper]`."
+msgstr "**説明：** `[lower, upper]` 上で 21 点ガウス・クロンロッド則（10 点ガウス則を内包）を 1 回適用します。"
+
+#: manual/api/integration.md:12
+msgid "A tuple `(value, error, evaluations)`: the Kronrod value, the absolute difference between the Kronrod and Gauss values (an empirical error estimate), and `21`."
+msgstr "タプル `(value, error, evaluations)`。クロンロッド値、クロンロッド値とガウス値の差の絶対値（経験的な誤差推定値）、および `21` です。"
+
+#: manual/api/integration.md:16
+msgid "**Description:** Integrates by repeatedly bisecting the subinterval with the largest error estimate and applying `gauss_kronrod_21`, until the total error estimate is at most `max(absolute_tolerance, relative_tolerance * |value|)`."
+msgstr "**説明：** 誤差推定値が最大の部分区間を繰り返し二分し、`gauss_kronrod_21` を適用して、全体の誤差推定値が `max(absolute_tolerance, relative_tolerance * |value|)` 以下になるまで続けます。"
+
+#: manual/api/integration.md:21
+msgid "`absolute_tolerance`, `relative_tolerance` — Both default to `1.0e-10` and must not be negative."
+msgstr "`absolute_tolerance`、`relative_tolerance` — 既定値はどちらも `1.0e-10` で、負であってはなりません。"
+
+#: manual/api/integration.md:22
+msgid "`max_intervals` — The maximum number of subintervals. Defaults to `256`; it must be positive."
+msgstr "`max_intervals` — 部分区間の最大数。既定値は `256` で、正である必要があります。"
+
+#: manual/api/integration.md:26
+msgid "`status` is `Converged` if the tolerance was met (also when it was met by the last permitted subdivision) and `MaxIterations` otherwise. `InvalidInput` is returned, with no evaluation, when `lower == upper`, a tolerance is negative, or `max_intervals` is not positive. Reversed bounds give the negated integral. `iterations` is the number of bisections."
+msgstr "許容誤差が満たされた場合（許される最後の分割で満たされた場合も含む）は `status` が `Converged`、そうでなければ `MaxIterations` です。`lower == upper`、許容誤差が負、または `max_intervals` が正でない場合は、評価を行わずに `InvalidInput` を返します。上端と下端を逆にすると積分の符号が反転します。`iterations` は二分の回数です。"
+
+#: manual/api/integration.md:37
+msgid "**Description:** Integrates with the tanh–sinh (double exponential) rule of Takahasi and Mori. The rule clusters nodes doubly exponentially towards the endpoints, so it handles integrable endpoint singularities such as `1/sqrt(x)` at `0`."
+msgstr "**説明：** Takahasi と Mori による tanh–sinh（二重指数）則で積分します。この則は節点を端点に向かって二重指数的に密集させるため、`0` における `1/sqrt(x)` のような可積分な端点特異性を扱えます。"
+
+#: manual/api/integration.md:42
+msgid "`step` — The spacing in the transformed variable. Defaults to `0.125`; it must be positive."
+msgstr "`step` — 変換後の変数での間隔。既定値は `0.125` で、正である必要があります。"
+
+#: manual/api/integration.md:43
+msgid "`tolerance` — Stop when the magnitude of the latest term, times `step`, is at most this. Defaults to `1.0e-12`; it must not be negative."
+msgstr "`tolerance` — 最新の項の絶対値に `step` を掛けた値がこれ以下になったら停止します。既定値は `1.0e-12` で、負であってはなりません。"
+
+#: manual/api/integration.md:44
+msgid "`max_terms` — The maximum number of terms on each side of the midpoint. Defaults to `64`; it must be positive."
+msgstr "`max_terms` — 中点の片側あたりの最大項数。既定値は `64` で、正である必要があります。"
+
+#: manual/api/integration.md:48
+msgid "`status` is `Converged` when the tolerance is met or when the nodes reach the endpoints in floating point, and `MaxIterations` when `max_terms` is exhausted. `estimated_error` is the magnitude of the last term, a heuristic indicator, not a bound. Nodes close to an endpoint are computed as `midpoint ± half_length * tanh(…)`, so their distance from the endpoint is limited by double precision."
+msgstr "許容誤差が満たされた場合、または浮動小数点で節点が端点に達した場合は `status` が `Converged`、`max_terms` を使い切った場合は `MaxIterations` です。`estimated_error` は最後の項の絶対値で、ヒューリスティックな指標であり、上界ではありません。端点に近い節点は `midpoint ± half_length * tanh(…)` で計算されるため、端点からの距離は倍精度で制限されます。"
+
 #: manual/api/legacy_basic.md:1
 msgid "legacy/basic API"
 msgstr "legacy/basic API"
@@ -65,15 +280,6 @@ msgstr "`legacy/deriv` パッケージは、呼び出し側が与える初期刻
 msgid "**Description:** Computes the derivative of the function `f` at point `x` using an **adaptive central difference method**, which balances truncation and round-off errors for improved accuracy."
 msgstr "関数`f`の点`x`における微分係数を、__適応的中心差分法__を使用して計算します。これは、切り捨て誤差と丸め誤差を調和させ、精度を向上させます。"
 
-#: manual/api/legacy_deriv.md:10
-#: manual/api/legacy_deriv.md:44
-#: manual/api/legacy_deriv.md:79
-#: manual/api/legacy_diff.md:11
-#: manual/api/legacy_diff.md:46
-#: manual/api/legacy_diff.md:68
-msgid "**Parameters:**"
-msgstr "**パラメーター：**"
-
 #: manual/api/legacy_deriv.md:12
 #: manual/api/legacy_deriv.md:46
 #: manual/api/legacy_deriv.md:81
@@ -91,14 +297,6 @@ msgstr "`x: Double` — 微分係数を評価する点。"
 #: manual/api/legacy_deriv.md:83
 msgid "`h: Double` — The initial step size for numerical differentiation, which will be adaptively adjusted if necessary."
 msgstr "`h: Double` — 数値微分の初期ステップサイズ。必要に応じて適応的に調整されます。"
-
-#: manual/api/legacy_deriv.md:16
-#: manual/api/legacy_deriv.md:50
-#: manual/api/legacy_diff.md:16
-#: manual/api/legacy_diff.md:51
-#: manual/api/legacy_diff.md:73
-msgid "**Returns:**"
-msgstr "**戻り値：**"
 
 #: manual/api/legacy_deriv.md:18
 #: manual/api/legacy_deriv.md:52
@@ -119,23 +317,6 @@ msgstr "第一値は`x`における推定微分係数。"
 #: manual/api/legacy_deriv.md:89
 msgid "The second value is the total estimated error, combining truncation and round-off errors."
 msgstr "第二値は、切り捨て誤差と丸め誤差を組み合わせた総推定誤差。"
-
-#: manual/api/legacy_deriv.md:23
-#: manual/api/legacy_deriv.md:57
-#: manual/api/legacy_deriv.md:91
-#: manual/api/legacy_diff.md:23
-#: manual/api/legacy_diff.md:80
-msgid "**Example Usage:**"
-msgstr "**例：**"
-
-#: manual/api/legacy_deriv.md:33
-#: manual/api/legacy_deriv.md:67
-#: manual/api/legacy_deriv.md:101
-#: manual/api/legacy_diff.md:33
-#: manual/api/legacy_diff.md:58
-#: manual/api/legacy_diff.md:90
-msgid "**Notes:**"
-msgstr "**メモ：**"
 
 #: manual/api/legacy_deriv.md:35
 msgid "The method **automatically adjusts the step size** to achieve the best accuracy."
@@ -288,12 +469,6 @@ msgstr "各関数は $[a, b]$ 上で `f` に Gauss–Kronrod 則を一つ適用�
 #: manual/api/legacy_integration.md:20
 msgid "The result is the tuple `(result, result_abs, result_asc, error)`:"
 msgstr "結果はタプル `(result, result_abs, result_asc, error)` です。"
-
-#: manual/api/legacy_integration.md:22
-#: manual/api/legacy_integration.md:99
-#: manual/api/legacy_internal.md:9
-msgid "Meaning"
-msgstr "意味"
 
 #: manual/api/legacy_integration.md:24
 msgid "The Kronrod approximation of the integral of `f`."
@@ -1168,12 +1343,12 @@ msgid "Examples:"
 msgstr "例："
 
 #: manual/contributing.md:72
-msgid "For differentiation-related functionality: `legacy/diff`"
-msgstr "微分に関する機能：`legacy/diff`"
+msgid "For differentiation-related functionality: `differentiation`"
+msgstr "微分に関する機能：`differentiation`"
 
 #: manual/contributing.md:73
-msgid "For derivative-related functionality: `legacy/deriv`"
-msgstr "導関数に関する機能：`legacy/deriv`"
+msgid "For integration-related functionality: `integration`"
+msgstr "積分に関する機能：`integration`"
 
 #: manual/contributing.md:75
 msgid "4.2 File organization"
@@ -1272,100 +1447,121 @@ msgid "This is a numerical calculus library written in [**MoonBit**](https://www
 msgstr "これは[**MoonBit**](https://www.moonbitlang.cn/)で開発された数値微積分ライブラリで、MoonBit エコシステムにおける科学計算のギャップを埋めることを目的としています。"
 
 #: manual/index.md:9
-msgid "The library works on functions of type `(Double) -> Double`. Its original API lives in five packages under `legacy/`:"
-msgstr "本ライブラリは型 `(Double) -> Double` の関数を扱います。従来の API は `legacy/` 以下の五つのパッケージにあります。"
+msgid "The library works on functions of type `(Double) -> Double`. The next-generation packages return named results with an error estimate and a status:"
+msgstr "本ライブラリは型 `(Double) -> Double` の関数を扱います。次世代のパッケージは、誤差推定値と状態を持つ名前付きの結果を返します。"
 
 #: manual/index.md:11
+#: manual/index.md:19
 msgid "Package"
 msgstr "パッケージ"
 
 #: manual/index.md:11
+#: manual/index.md:19
 msgid "Contents"
 msgstr "内容"
 
 #: manual/index.md:13
+msgid "The result type `Estimate` and the status `NumericalStatus`."
+msgstr "結果型 `Estimate` と状態 `NumericalStatus`。"
+
+#: manual/index.md:14
+msgid "Fornberg finite-difference weights and Ridders' derivative estimator."
+msgstr "Fornberg の有限差分の重みと、Ridders の導関数推定器。"
+
+#: manual/index.md:15
+msgid "The 21-point Gauss–Kronrod rule, adaptive Gauss–Kronrod integration and tanh–sinh integration."
+msgstr "21 点ガウス・クロンロッド則、適応型ガウス・クロンロッド積分、tanh–sinh 積分。"
+
+#: manual/index.md:17
+msgid "The original API lives in five packages under `legacy/`:"
+msgstr "従来の API は `legacy/` 以下の五つのパッケージにあります。"
+
+#: manual/index.md:21
 msgid "The function types `Func_Math` and `Quad_GK` and mathematical constants."
 msgstr "関数型 `Func_Math` と `Quad_GK`、および数学定数。"
 
-#: manual/index.md:14
+#: manual/index.md:22
 msgid "Derivatives by forward, backward and central differences from a given initial step size."
 msgstr "与えられた初期ステップサイズから、前進・後退・中心差分で微分係数を求めます。"
 
-#: manual/index.md:15
+#: manual/index.md:23
 msgid "Derivatives by forward, backward and central differences with a step size chosen automatically."
 msgstr "ステップサイズを自動的に選び、前進・後退・中心差分で微分係数を求めます。"
 
-#: manual/index.md:16
+#: manual/index.md:24
 msgid "Gauss–Kronrod rules and adaptive and non-adaptive integrators."
 msgstr "Gauss–Kronrod 則と、適応・非適応の積分器。"
 
-#: manual/index.md:17
+#: manual/index.md:25
 msgid "Machine constants used by the other packages."
 msgstr "他のパッケージが使う機械定数。"
 
-#: manual/index.md:19
-msgid "Before this layout the same packages were published as `basic`, `deriv`, `diff`, `integration` and `internal`. Only the import path changed; the functions, types and their behaviour are the same. Import them with, for example, `\"Luna-Flow/calculus-numerical/legacy/deriv\"` instead of `\"Luna-Flow/calculus-numerical/deriv\"`. The top-level paths are reserved for the next-generation packages described in the architecture RFC below."
-msgstr "このレイアウトの前は、同じパッケージが `basic`、`deriv`、`diff`、`integration`、`internal` として公開されていました。変わったのはインポートパスだけで、関数・型とその振る舞いは同じです。たとえば `\"Luna-Flow/calculus-numerical/deriv\"` の代わりに `\"Luna-Flow/calculus-numerical/legacy/deriv\"` をインポートしてください。最上位のパスは、後述のアーキテクチャ RFC で説明する次世代パッケージのために予約されています。"
+#: manual/index.md:27
+msgid "Before this layout the same packages were published as `basic`, `deriv`, `diff`, `integration` and `internal`. Only the import path changed; the functions, types and their behaviour are the same. Import them with, for example, `\"Luna-Flow/calculus-numerical/legacy/deriv\"` instead of `\"Luna-Flow/calculus-numerical/deriv\"`. The top-level `integration` path now holds the next-generation integration package; the old integrators are `legacy/integration`."
+msgstr "このレイアウトの前は、同じパッケージが `basic`、`deriv`、`diff`、`integration`、`internal` として公開されていました。変わったのはインポートパスだけで、関数・型とその振る舞いは同じです。たとえば `\"Luna-Flow/calculus-numerical/deriv\"` の代わりに `\"Luna-Flow/calculus-numerical/legacy/deriv\"` をインポートしてください。最上位の `integration` パスは次世代の積分パッケージになり、従来の積分器は `legacy/integration` です。"
 
-#: manual/index.md:21
+#: manual/index.md:29
 msgid "Guides"
 msgstr "ガイド"
 
-#: manual/index.md:23
+#: manual/index.md:31
 msgid "[Architecture RFC](architecture_rfc.md): the next-generation architecture under research, an independent, trait-compatible numerical foundation with explicit floating-point contexts and first-class Decimal support."
 msgstr "[アーキテクチャ RFC](architecture_rfc.md)：研究中の次世代アーキテクチャ。明示的な浮動小数点コンテキストと Decimal のファーストクラスのサポートを備えた、独立したトレイト互換の数値基盤である。"
 
-#: manual/index.md:25
+#: manual/index.md:33
 msgid "Feature list"
 msgstr "機能一覧"
 
-#: manual/index.md:27
+#: manual/index.md:35
 msgid "**[Latest]** 25.01.31: Non-adaptive integration implementation (using Gaussian quadrature and Kronrod extension)"
 msgstr "**[最新]** 25.01.31: 非適応積分の実装（Gauss 求積法および Kronrod 拡張を使用）"
 
-#: manual/index.md:29
+#: manual/index.md:37
 msgid "**25.01.13**: Adaptive integration implementation (using Gaussian quadrature and Kronrod extension)"
 msgstr "**25.01.13**: 適応積分の実装（Gauss 求積法および Kronrod 拡張を使用）"
 
-#: manual/index.md:30
+#: manual/index.md:38
 msgid "**25.01.02**: Quadrature methods implementation (using Gaussian quadrature and Kronrod extension)"
 msgstr "**25.01.02**: 求積法の実装（Gauss 求積法および Kronrod 拡張を使用）"
 
-#: manual/index.md:31
+#: manual/index.md:39
 msgid "**24.12.30**: Derivatives and differential functionality implementation (using forward, backward, and central difference methods)"
 msgstr "**24.12.30**: 微分と微分係数の差分機能の実装（前進差分法、後退差分法、中心差分法を使用）"
 
-#: manual/index.md:33
+#: manual/index.md:41
 msgid "How to contribute"
 msgstr "貢献方法"
 
-#: manual/index.md:35
+#: manual/index.md:43
 msgid "We welcome contributions from the community, external developers, and individual enthusiasts! Whether you want to fix a bug, add a new feature, or improve the documentation, your participation is highly encouraged. To help you contribute smoothly, here are some simple steps:"
 msgstr "コミュニティ、外部開発者、個人の愛好者からの貢献を歓迎します！バグ修正、新機能の追加、ドキュメントの改善など、どんな形でも貢献をお待ちしています。スムーズに貢献できるよう、以下の簡単な手順をお知らせします。"
 
-#: manual/index.md:37
+#: manual/index.md:45
 msgid "Please choose a task from the [`TODO.md`](../../TODO.md) file or the current `issue` list that interests you. We recommend selecting something you are interested in or familiar with, as it will make it easier to get started and enjoy the process."
 msgstr "まず、[`TODO.md`](../../TODO.md) ファイルまたは現在の`issue`リストから、興味のあるタスクを選んでください。自分の興味や得意分野に関連した内容を選ぶことをお勧めします。そうすることで、よりスムーズに作業を始められ、プロセスを楽しむことができます。"
 
-#: manual/index.md:38
+#: manual/index.md:46
 msgid "Fork our project and create a new branch in your personal repository. This way, you can start working on your changes without affecting the main project."
 msgstr "プロジェクトをフォークし、個人リポジトリ内で新しいブランチを作成します。これで、メインプロジェクトに影響を与えることなく、変更作業を進めることができます。"
 
-#: manual/index.md:39
+#: manual/index.md:47
 msgid "During development, please adhere to the coding style and guidelines in the [contribution guidelines](contributing.md). If your changes involve new features or bug fixes, please make sure to perform thorough testing to ensure everything works as expected."
 msgstr "開発中は、[貢献ガイドライン](contributing.md)に記載されているコードスタイルやガイドラインに従ってください。新しい機能追加やバグ修正が含まれている場合は、十分なテストを実施し、すべてが正常に動作することを確認してください。"
 
-#: manual/index.md:40
+#: manual/index.md:48
 msgid "Once you're done, submit your PR and provide a clear description of your changes to help us understand the modifications you've made. This will help us review and merge your code more quickly."
 msgstr "作業が完了したら、PR を提出し、行った変更の明確な説明を提供してください。これにより、コードレビューとマージがスムーズに進みます。"
 
-#: manual/index.md:41
+#: manual/index.md:49
 msgid "We will review your PR and may suggest improvements to ensure code quality. After approval, your contributions will be merged into the main branch."
 msgstr "PR をレビューし、コード品質を確保するために改善案を提案することがあります。レビューが完了次第、あなたの貢献をメインブランチにマージします。"
 
-#: manual/index.md:43
+#: manual/index.md:51
 msgid "Thank you again for your participation and contributions! Every effort helps make this project better. We look forward to seeing your great code!"
 msgstr "再度、貢献していただきありがとうございます！皆様の努力が、このプロジェクトをより良くしていきます。あなたの素晴らしいコードを楽しみにしています！"
+
+#~ msgid "For derivative-related functionality: `legacy/deriv`"
+#~ msgstr "導関数に関する機能：`legacy/deriv`"
 
 #~ msgid "Table of Contents"
 #~ msgstr "**貢献者の皆様へ**"
@@ -1518,9 +1714,6 @@ msgstr "再度、貢献していただきありがとうございます！皆様
 
 #~ msgid "Derivation"
 #~ msgstr "微分係数"
-
-#~ msgid "Differentiation"
-#~ msgstr "微分"
 
 #~ msgid "Documentation Standard"
 #~ msgstr "ドキュメント標準"

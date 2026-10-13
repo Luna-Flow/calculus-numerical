@@ -6,7 +6,15 @@
 
 This is a numerical calculus library written in [**MoonBit**](https://www.moonbitlang.cn/), designed to fill the gap in the MoonBit ecosystem for scientific computing.
 
-The library works on functions of type `(Double) -> Double`. Its original API lives in five packages under `legacy/`:
+The library works on functions of type `(Double) -> Double`. The next-generation packages return named results with an error estimate and a status:
+
+| Package | Contents |
+| --- | --- |
+| [`core`](api/core.md) | The result type `Estimate` and the status `NumericalStatus`. |
+| [`differentiation`](api/differentiation.md) | Fornberg finite-difference weights and Ridders' derivative estimator. |
+| [`integration`](api/integration.md) | The 21-point Gauss–Kronrod rule, adaptive Gauss–Kronrod integration and tanh–sinh integration. |
+
+The original API lives in five packages under `legacy/`:
 
 | Package | Contents |
 | --- | --- |
@@ -16,7 +24,7 @@ The library works on functions of type `(Double) -> Double`. Its original API li
 | [`legacy/integration`](api/legacy_integration.md) | Gauss–Kronrod rules and adaptive and non-adaptive integrators. |
 | [`legacy/internal`](api/legacy_internal.md) | Machine constants used by the other packages. |
 
-Before this layout the same packages were published as `basic`, `deriv`, `diff`, `integration` and `internal`. Only the import path changed; the functions, types and their behaviour are the same. Import them with, for example, `"Luna-Flow/calculus-numerical/legacy/deriv"` instead of `"Luna-Flow/calculus-numerical/deriv"`. The top-level paths are reserved for the next-generation packages described in the architecture RFC below.
+Before this layout the same packages were published as `basic`, `deriv`, `diff`, `integration` and `internal`. Only the import path changed; the functions, types and their behaviour are the same. Import them with, for example, `"Luna-Flow/calculus-numerical/legacy/deriv"` instead of `"Luna-Flow/calculus-numerical/deriv"`. The top-level `integration` path now holds the next-generation integration package; the old integrators are `legacy/integration`.
 
 ## Guides
 

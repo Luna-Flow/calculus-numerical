@@ -1,0 +1,21 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "Luna-Flow/calculus-numerical/differentiation"
+
+import {
+  "Luna-Flow/calculus-numerical/core",
+}
+
+// Values
+pub fn apply_stencil((Double) -> Double, ReadOnlyArray[Double], Array[Double]) -> Double?
+
+pub fn fornberg_weights(ReadOnlyArray[Double], Double, Int) -> Array[Array[Double]]?
+
+pub fn ridders((Double) -> Double, Double, initial_step? : Double, max_iterations? : Int) -> @core.Estimate[Double]
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits
