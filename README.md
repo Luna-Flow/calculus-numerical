@@ -16,6 +16,8 @@ This is a numerical calculus library written in [**MoonBit**](https://www.moonbi
 
 The project will provide basic methods for numerical calculus solutions. For the integration part, multiple numerical solving methods will be available. Additionally, we will also support complex calculations such as Fourier transforms.
 
+The next-generation packages `core`, `differentiation` and `integration` return an `Estimate` (value, empirical error estimate, evaluation count, status) and are documented in the [manual](doc/manual/index.md).
+
 The original API is published under the `legacy/` packages (`legacy/basic`, `legacy/deriv`, `legacy/diff`, `legacy/integration`, `legacy/internal`); see the [manual](doc/manual/index.md) for the package list and the migration notes. The library requires the latest MoonBit toolchain.
 
 The next-generation architecture is being researched as an independent, trait-compatible numerical foundation with explicit floating-point contexts and first-class Decimal support. See the [architecture RFC](doc/manual/architecture_rfc.md).

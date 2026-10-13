@@ -35,6 +35,16 @@ follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
+- Package `core`: `Estimate[T]` (value, empirical error estimate, evaluation and
+  iteration counts, status, arithmetic diagnostics) and `NumericalStatus`.
+- Package `differentiation`: `fornberg_weights` and `apply_stencil` (finite
+  difference weights for arbitrary nodes, Fornberg 1988) and `ridders`
+  (Richardson extrapolation of central differences).
+- Package `integration` (new API, replaces the old package of that name, which
+  is now `legacy/integration`): `gauss_kronrod_21`, `adaptive_gauss_kronrod`
+  and `tanh_sinh`. The error values are empirical estimates, not guaranteed
+  bounds.
+- Dependency `Luna-Flow/arithmetic@0.5.1` (for the diagnostics in `core`).
 - A CI workflow (`.github/workflows/ci.yml`) that installs the latest MoonBit
   toolchain and runs `moon check --target <backend> --deny-warn` and
   `moon test --target <backend>` on `wasm`, `wasm-gc`, `js` and `native`, plus

@@ -26,6 +26,29 @@ test "legacy integration error type remains available" {
 }
 
 ///|
+test "new Gauss-Kronrod 21 agrees with the legacy kronrod_r21 value" {
+  let functions : Array[(Double) -> Double] = [
+    fn(x) { x * x },
+    fn(x) { 1.0 / (1.0 + 25.0 * x * x) },
+    fn(x) { x.abs().sqrt() },
+    fn(x) { x * x * x * x * x - 3.0 * x + 1.0 },
+  ]
+  for function in functions {
+    let (legacy_value, _, _, _) = @legacy_integration.kronrod_r21(
+      function, -1.0, 2.0,
+    )
+    let (value, _, evaluations) = @integration.gauss_kronrod_21(
+      function, -1.0, 2.0,
+    )
+    inspect(
+      (value - legacy_value).abs() <= 1.0e-14 * (1.0 + value.abs()),
+      content="true",
+    )
+    inspect(evaluations, content="21")
+  }
+}
+
+///|
 test "every legacy Kronrod rule integrates exp on [0, 1] to machine precision" {
   let exact = 1.718281828459045 // e - 1
   let rules : Array[

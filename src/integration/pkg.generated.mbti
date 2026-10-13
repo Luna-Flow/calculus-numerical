@@ -1,0 +1,21 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "Luna-Flow/calculus-numerical/integration"
+
+import {
+  "Luna-Flow/calculus-numerical/core",
+}
+
+// Values
+pub fn adaptive_gauss_kronrod((Double) -> Double, Double, Double, absolute_tolerance? : Double, relative_tolerance? : Double, max_intervals? : Int) -> @core.Estimate[Double]
+
+pub fn gauss_kronrod_21((Double) -> Double, Double, Double) -> (Double, Double, Int)
+
+pub fn tanh_sinh((Double) -> Double, Double, Double, step? : Double, tolerance? : Double, max_terms? : Int) -> @core.Estimate[Double]
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits
