@@ -1,0 +1,6 @@
+import {
+  "Luna-Flow/calculus-numerical/legacy/deriv" @legacy_deriv,
+  "Luna-Flow/calculus-numerical/legacy/diff" @legacy_diff,
+  "Luna-Flow/calculus-numerical/legacy/integration" @legacy_integration,
+  "moonbitlang/core/math",
+} for "test"

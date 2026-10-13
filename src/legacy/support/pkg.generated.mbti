@@ -1,0 +1,15 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "Luna-Flow/calculus-numerical/legacy/support"
+
+// Values
+pub fn arr_sum(Array[Double]) -> Double
+
+pub fn zero_arr(Int) -> Array[Double]
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits

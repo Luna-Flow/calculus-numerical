@@ -1,0 +1,19 @@
+name = "Luna-Flow/calculus-numerical"
+
+version = "0.3.1"
+
+import {
+  "Kaida-Amethyst/math@0.1.21",
+}
+
+readme = "README.md"
+
+repository = "https://github.com/Luna-Flow/calculus-numerical"
+
+license = "Apache-2.0"
+
+keywords = [ "calculus", "numerical-methods", "math" ]
+
+description = "A numerical calculus library, a part of LunaFlow."
+
+source = "src"
