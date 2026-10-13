@@ -1,0 +1,8 @@
+import {
+  "Luna-Flow/arithmetic" @lf_arith,
+  "Luna-Flow/luna-generic" @lf_alg,
+}
+
+import {
+  "Luna-Flow/floating/decimal",
+} for "test"

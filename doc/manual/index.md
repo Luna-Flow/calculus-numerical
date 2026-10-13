@@ -14,6 +14,7 @@ The library works on functions of type `(Double) -> Double`. The next-generation
 | [`differentiation`](api/differentiation.md) | Fornberg finite-difference weights and Ridders' derivative estimator. |
 | [`integration`](api/integration.md) | The 21-point Gauss–Kronrod rule, adaptive Gauss–Kronrod integration and tanh–sinh integration. |
 | [`series`](api/series.md) | Finite sums (naive, pairwise, Kahan, Neumaier) and Wynn epsilon acceleration of infinite series. |
+| [`power_series`](api/power_series.md) | Truncated power series over generic coefficients: evaluation, derivative, antiderivative and Taylor coefficients from a derivative oracle. |
 
 The original API lives in five packages under `legacy/`:
 

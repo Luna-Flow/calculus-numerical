@@ -32,6 +32,7 @@ msgstr "バリアント"
 #: manual/api/legacy_integration.md:22
 #: manual/api/legacy_integration.md:99
 #: manual/api/legacy_internal.md:9
+#: manual/api/power_series.md:9
 msgid "Meaning"
 msgstr "意味"
 
@@ -120,6 +121,7 @@ msgstr "`Some(weights)`。`weights[i][k]` は `center` における `k` 階導�
 #: manual/api/legacy_diff.md:33
 #: manual/api/legacy_diff.md:58
 #: manual/api/legacy_diff.md:90
+#: manual/api/power_series.md:37
 #: manual/api/series.md:39
 msgid "**Notes:**"
 msgstr "**メモ：**"
@@ -141,6 +143,7 @@ msgstr "節点の配置が悪いと重みは悪条件になります。関数は
 #: manual/api/legacy_deriv.md:91
 #: manual/api/legacy_diff.md:23
 #: manual/api/legacy_diff.md:80
+#: manual/api/power_series.md:25
 #: manual/api/series.md:18
 #: manual/api/series.md:44
 msgid "**Example Usage:**"
@@ -689,6 +692,63 @@ msgstr "その自然対数"
 msgid "For example, `machine_sqrt_dbl_epsilon` is $\\sqrt{\\varepsilon} \\approx 1.49 \\cdot 10^{-8}$ and `machine_log_dbl_max` is $\\ln(\\text{dbl\\_max}) \\approx 709.78$. The rounded `eps` values are `machine_sqrt_eps` ($3.2 \\cdot 10^{-8}$), `machine_root_3_eps` ($10^{-5}$), `machine_root_4_eps` ($1.78 \\cdot 10^{-4}$), `machine_root_5_eps` ($10^{-3}$), `machine_root_6_eps` ($3.16 \\cdot 10^{-3}$) and `machine_log_eps` ($-34.54$)."
 msgstr "例えば `machine_sqrt_dbl_epsilon` は $\\sqrt{\\varepsilon} \\approx 1.49 \\cdot 10^{-8}$、`machine_log_dbl_max` は $\\ln(\\text{dbl\\_max}) \\approx 709.78$ です。丸められた `eps` の値は `machine_sqrt_eps`（$3.2 \\cdot 10^{-8}$）、`machine_root_3_eps`（$10^{-5}$）、`machine_root_4_eps`（$1.78 \\cdot 10^{-4}$）、`machine_root_5_eps`（$10^{-3}$）、`machine_root_6_eps`（$3.16 \\cdot 10^{-3}$）、`machine_log_eps`（$-34.54$）です。"
 
+#: manual/api/power_series.md:1
+msgid "power_series API"
+msgstr "power_series API"
+
+#: manual/api/power_series.md:3
+msgid "The `power_series` package represents truncated power series over any coefficient type `T` that provides the required algebraic traits of `Luna-Flow/luna-generic`. It has no dependency on `Double`, so the same code works for `Double`, `Decimal` and other numbers."
+msgstr "`power_series` パッケージは、`Luna-Flow/luna-generic` の必要な代数的 trait を備えた任意の係数型 `T` 上の打ち切りべき級数を表します。`Double` に依存しないため、同じコードが `Double`、`Decimal` などの数で動作します。"
+
+#: manual/api/power_series.md:7
+msgid "A series `c[0] + c[1] x + c[2] x^2 + …` stored as its coefficient array."
+msgstr "`c[0] + c[1] x + c[2] x^2 + …` という級数を、係数の配列として保持します。"
+
+#: manual/api/power_series.md:9
+#: manual/api/series.md:9
+msgid "Function"
+msgstr "関数"
+
+#: manual/api/power_series.md:11
+msgid "Wraps the coefficients `c[0], c[1], …`."
+msgstr "係数 `c[0], c[1], …` を包みます。"
+
+#: manual/api/power_series.md:12
+msgid "The degree of the truncation, `length - 1`."
+msgstr "打ち切りの次数、すなわち `length - 1`。"
+
+#: manual/api/power_series.md:13
+msgid "`Some(c[order])`, or `None` outside the stored range."
+msgstr "`Some(c[order])`。保持している範囲外では `None`。"
+
+#: manual/api/power_series.md:14
+msgid "Evaluates the series at `value` with Horner's scheme. Needs `AddMonoid` and `Mul`."
+msgstr "Horner 法で `value` における級数の値を求めます。`AddMonoid` と `Mul` が必要です。"
+
+#: manual/api/power_series.md:15
+msgid "The termwise derivative, of order one lower. A constant series gives the zero series. Needs `FromNat`, `Zero` and `Mul`."
+msgstr "項ごとの導関数。次数は 1 下がります。定数級数は零級数になります。`FromNat`、`Zero`、`Mul` が必要です。"
+
+#: manual/api/power_series.md:16
+msgid "The termwise antiderivative with zero constant term, of order one higher. Division by the term index is contextual, so it rounds as the arithmetic context says and can fail. Returns `Result[PowerSeries[T], ArithmeticError]`."
+msgstr "定数項を零とする項ごとの原始関数。次数は 1 上がります。項の添字による除算は文脈依存なので、算術コンテキストの定めるとおりに丸められ、失敗することがあります。`Result[PowerSeries[T], ArithmeticError]` を返します。"
+
+#: manual/api/power_series.md:20
+msgid "**Description:** Builds the Taylor polynomial about a point from an oracle for the derivatives at that point: the coefficient of `x^k` is `derivative(k) / k!`. Each division uses the supplied arithmetic context. Negative `order` is a domain error."
+msgstr "**説明：** ある点での導関数のオラクルから、その点のまわりのテイラー多項式を構成します。`x^k` の係数は `derivative(k) / k!` です。各除算は与えられた算術コンテキストを使います。`order` が負の場合は定義域エラーです。"
+
+#: manual/api/power_series.md:23
+msgid "`maclaurin_from_derivatives` is the same function; use it when the point is `0`."
+msgstr "`maclaurin_from_derivatives` は同じ関数です。展開点が `0` のときに使います。"
+
+#: manual/api/power_series.md:39
+msgid "With `Decimal` coefficients the division honours the Decimal precision of the context (for example `1/6 = 0.1666666666666667` at 16 digits)."
+msgstr "`Decimal` 係数では、除算はコンテキストの Decimal 精度に従います（たとえば 16 桁で `1/6 = 0.1666666666666667`）。"
+
+#: manual/api/power_series.md:40
+msgid "The package computes coefficients from a derivative oracle; it does not differentiate numerically."
+msgstr "このパッケージは導関数のオラクルから係数を計算するもので、数値微分は行いません。"
+
 #: manual/api/series.md:1
 msgid "series API"
 msgstr "series API"
@@ -705,10 +765,6 @@ msgstr "有限和"
 #: manual/api/series.md:7
 msgid "Each function takes a `ReadOnlyArray[Double]` and returns its sum. They differ in how rounding error accumulates:"
 msgstr "各関数は `ReadOnlyArray[Double]` を受け取り、その和を返します。違いは丸め誤差の蓄積の仕方です。"
-
-#: manual/api/series.md:9
-msgid "Function"
-msgstr "関数"
 
 #: manual/api/series.md:9
 msgid "Method"
@@ -1541,12 +1597,12 @@ msgid "The library works on functions of type `(Double) -> Double`. The next-gen
 msgstr "本ライブラリは型 `(Double) -> Double` の関数を扱います。次世代のパッケージは、誤差推定値と状態を持つ名前付きの結果を返します。"
 
 #: manual/index.md:11
-#: manual/index.md:20
+#: manual/index.md:21
 msgid "Package"
 msgstr "パッケージ"
 
 #: manual/index.md:11
-#: manual/index.md:20
+#: manual/index.md:21
 msgid "Contents"
 msgstr "内容"
 
@@ -1566,91 +1622,95 @@ msgstr "21 点ガウス・クロンロッド則、適応型ガウス・クロン
 msgid "Finite sums (naive, pairwise, Kahan, Neumaier) and Wynn epsilon acceleration of infinite series."
 msgstr "有限和（単純・ペアワイズ・Kahan・Neumaier）と、無限級数の Wynn イプシロン加速。"
 
-#: manual/index.md:18
+#: manual/index.md:17
+msgid "Truncated power series over generic coefficients: evaluation, derivative, antiderivative and Taylor coefficients from a derivative oracle."
+msgstr "汎用の係数上の打ち切りべき級数。評価、導関数、原始関数、および導関数オラクルからのテイラー係数。"
+
+#: manual/index.md:19
 msgid "The original API lives in five packages under `legacy/`:"
 msgstr "従来の API は `legacy/` 以下の五つのパッケージにあります。"
 
-#: manual/index.md:22
+#: manual/index.md:23
 msgid "The function types `Func_Math` and `Quad_GK` and mathematical constants."
 msgstr "関数型 `Func_Math` と `Quad_GK`、および数学定数。"
 
-#: manual/index.md:23
+#: manual/index.md:24
 msgid "Derivatives by forward, backward and central differences from a given initial step size."
 msgstr "与えられた初期ステップサイズから、前進・後退・中心差分で微分係数を求めます。"
 
-#: manual/index.md:24
+#: manual/index.md:25
 msgid "Derivatives by forward, backward and central differences with a step size chosen automatically."
 msgstr "ステップサイズを自動的に選び、前進・後退・中心差分で微分係数を求めます。"
 
-#: manual/index.md:25
+#: manual/index.md:26
 msgid "Gauss–Kronrod rules and adaptive and non-adaptive integrators."
 msgstr "Gauss–Kronrod 則と、適応・非適応の積分器。"
 
-#: manual/index.md:26
+#: manual/index.md:27
 msgid "Machine constants used by the other packages."
 msgstr "他のパッケージが使う機械定数。"
 
-#: manual/index.md:28
+#: manual/index.md:29
 msgid "Before this layout the same packages were published as `basic`, `deriv`, `diff`, `integration` and `internal`. Only the import path changed; the functions, types and their behaviour are the same. Import them with, for example, `\"Luna-Flow/calculus-numerical/legacy/deriv\"` instead of `\"Luna-Flow/calculus-numerical/deriv\"`. The top-level `integration` path now holds the next-generation integration package; the old integrators are `legacy/integration`."
 msgstr "このレイアウトの前は、同じパッケージが `basic`、`deriv`、`diff`、`integration`、`internal` として公開されていました。変わったのはインポートパスだけで、関数・型とその振る舞いは同じです。たとえば `\"Luna-Flow/calculus-numerical/deriv\"` の代わりに `\"Luna-Flow/calculus-numerical/legacy/deriv\"` をインポートしてください。最上位の `integration` パスは次世代の積分パッケージになり、従来の積分器は `legacy/integration` です。"
 
-#: manual/index.md:30
+#: manual/index.md:31
 msgid "Guides"
 msgstr "ガイド"
 
-#: manual/index.md:32
+#: manual/index.md:33
 msgid "[Architecture RFC](architecture_rfc.md): the next-generation architecture under research, an independent, trait-compatible numerical foundation with explicit floating-point contexts and first-class Decimal support."
 msgstr "[アーキテクチャ RFC](architecture_rfc.md)：研究中の次世代アーキテクチャ。明示的な浮動小数点コンテキストと Decimal のファーストクラスのサポートを備えた、独立したトレイト互換の数値基盤である。"
 
-#: manual/index.md:34
+#: manual/index.md:35
 msgid "Feature list"
 msgstr "機能一覧"
 
-#: manual/index.md:36
+#: manual/index.md:37
 msgid "**[Latest]** 25.01.31: Non-adaptive integration implementation (using Gaussian quadrature and Kronrod extension)"
 msgstr "**[最新]** 25.01.31: 非適応積分の実装（Gauss 求積法および Kronrod 拡張を使用）"
 
-#: manual/index.md:38
+#: manual/index.md:39
 msgid "**25.01.13**: Adaptive integration implementation (using Gaussian quadrature and Kronrod extension)"
 msgstr "**25.01.13**: 適応積分の実装（Gauss 求積法および Kronrod 拡張を使用）"
 
-#: manual/index.md:39
+#: manual/index.md:40
 msgid "**25.01.02**: Quadrature methods implementation (using Gaussian quadrature and Kronrod extension)"
 msgstr "**25.01.02**: 求積法の実装（Gauss 求積法および Kronrod 拡張を使用）"
 
-#: manual/index.md:40
+#: manual/index.md:41
 msgid "**24.12.30**: Derivatives and differential functionality implementation (using forward, backward, and central difference methods)"
 msgstr "**24.12.30**: 微分と微分係数の差分機能の実装（前進差分法、後退差分法、中心差分法を使用）"
 
-#: manual/index.md:42
+#: manual/index.md:43
 msgid "How to contribute"
 msgstr "貢献方法"
 
-#: manual/index.md:44
+#: manual/index.md:45
 msgid "We welcome contributions from the community, external developers, and individual enthusiasts! Whether you want to fix a bug, add a new feature, or improve the documentation, your participation is highly encouraged. To help you contribute smoothly, here are some simple steps:"
 msgstr "コミュニティ、外部開発者、個人の愛好者からの貢献を歓迎します！バグ修正、新機能の追加、ドキュメントの改善など、どんな形でも貢献をお待ちしています。スムーズに貢献できるよう、以下の簡単な手順をお知らせします。"
 
-#: manual/index.md:46
+#: manual/index.md:47
 msgid "Please choose a task from the [`TODO.md`](../../TODO.md) file or the current `issue` list that interests you. We recommend selecting something you are interested in or familiar with, as it will make it easier to get started and enjoy the process."
 msgstr "まず、[`TODO.md`](../../TODO.md) ファイルまたは現在の`issue`リストから、興味のあるタスクを選んでください。自分の興味や得意分野に関連した内容を選ぶことをお勧めします。そうすることで、よりスムーズに作業を始められ、プロセスを楽しむことができます。"
 
-#: manual/index.md:47
+#: manual/index.md:48
 msgid "Fork our project and create a new branch in your personal repository. This way, you can start working on your changes without affecting the main project."
 msgstr "プロジェクトをフォークし、個人リポジトリ内で新しいブランチを作成します。これで、メインプロジェクトに影響を与えることなく、変更作業を進めることができます。"
 
-#: manual/index.md:48
+#: manual/index.md:49
 msgid "During development, please adhere to the coding style and guidelines in the [contribution guidelines](contributing.md). If your changes involve new features or bug fixes, please make sure to perform thorough testing to ensure everything works as expected."
 msgstr "開発中は、[貢献ガイドライン](contributing.md)に記載されているコードスタイルやガイドラインに従ってください。新しい機能追加やバグ修正が含まれている場合は、十分なテストを実施し、すべてが正常に動作することを確認してください。"
 
-#: manual/index.md:49
+#: manual/index.md:50
 msgid "Once you're done, submit your PR and provide a clear description of your changes to help us understand the modifications you've made. This will help us review and merge your code more quickly."
 msgstr "作業が完了したら、PR を提出し、行った変更の明確な説明を提供してください。これにより、コードレビューとマージがスムーズに進みます。"
 
-#: manual/index.md:50
+#: manual/index.md:51
 msgid "We will review your PR and may suggest improvements to ensure code quality. After approval, your contributions will be merged into the main branch."
 msgstr "PR をレビューし、コード品質を確保するために改善案を提案することがあります。レビューが完了次第、あなたの貢献をメインブランチにマージします。"
 
-#: manual/index.md:52
+#: manual/index.md:53
 msgid "Thank you again for your participation and contributions! Every effort helps make this project better. We look forward to seeing your great code!"
 msgstr "再度、貢献していただきありがとうございます！皆様の努力が、このプロジェクトをより良くしていきます。あなたの素晴らしいコードを楽しみにしています！"
 
