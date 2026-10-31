@@ -2,7 +2,7 @@
 package "Luna-Flow/calculus-numerical/legacy/integration"
 
 // Values
-pub fn adap_quad_gk((Double) -> Double, ((Double) -> Double, Double, Double) -> (Double, Double, Double, Double), Double, Double, Double, Double, Int) -> Result[(Double, Double, ErrCode), ErrCode]
+pub fn adap_quad_gk((Double) -> Double, ((Double) -> Double, Double, Double) -> (Double, Double, Double, Double), Double, Double, Double, Double, Int32) -> Result[(Double, Double, ErrCode), ErrCode]
 
 pub fn kronrod_r15((Double) -> Double, Double, Double) -> (Double, Double, Double, Double)
 
@@ -24,7 +24,7 @@ pub let ng_87 : ReadOnlyArray[Double]
 
 pub let ng_c : ReadOnlyArray[Double]
 
-pub fn non_adap_quad_gk((Double) -> Double, Double, Double, Double, Double) -> Result[(Double, Double, Int), ErrCode]
+pub fn non_adap_quad_gk((Double) -> Double, Double, Double, Double, Double) -> Result[(Double, Double, Int32), ErrCode]
 
 pub fn rescale_error(Double, Double, Double) -> Double
 
