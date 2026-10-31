@@ -14,13 +14,13 @@ import {
 pub struct Estimate[T] {
   value : T
   estimated_error : T
-  evaluations : Int
-  iterations : Int
+  evaluations : Int32
+  iterations : Int32
   status : NumericalStatus
   diagnostics : @arithmetic.ArithmeticDiagnostics
 } derive(Eq, @debug.Debug)
 pub fn[T : Eq] Estimate::equal(Self[T], Self[T]) -> Bool
-pub fn[T] Estimate::new(T, T, Int, Int, NumericalStatus, diagnostics? : @arithmetic.ArithmeticDiagnostics) -> Self[T]
+pub fn[T] Estimate::new(T, T, Int32, Int32, NumericalStatus, diagnostics? : @arithmetic.ArithmeticDiagnostics) -> Self[T]
 pub fn[T : Eq] Estimate::not_equal(Self[T], Self[T]) -> Bool
 pub fn[T : @debug.Debug] Estimate::to_repr(Self[T]) -> @debug.Repr
 

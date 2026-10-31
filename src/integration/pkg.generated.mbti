@@ -6,11 +6,11 @@ import {
 }
 
 // Values
-pub fn adaptive_gauss_kronrod((Double) -> Double, Double, Double, absolute_tolerance? : Double, relative_tolerance? : Double, max_intervals? : Int) -> @core.Estimate[Double]
+pub fn adaptive_gauss_kronrod((Double) -> Double, Double, Double, absolute_tolerance? : Double, relative_tolerance? : Double, max_intervals? : Int32) -> @core.Estimate[Double]
 
-pub fn gauss_kronrod_21((Double) -> Double, Double, Double) -> (Double, Double, Int)
+pub fn gauss_kronrod_21((Double) -> Double, Double, Double) -> (Double, Double, Int32)
 
-pub fn tanh_sinh((Double) -> Double, Double, Double, step? : Double, tolerance? : Double, max_terms? : Int) -> @core.Estimate[Double]
+pub fn tanh_sinh((Double) -> Double, Double, Double, step? : Double, tolerance? : Double, max_terms? : Int32) -> @core.Estimate[Double]
 
 // Errors
 

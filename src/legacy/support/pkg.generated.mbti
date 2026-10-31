@@ -4,7 +4,7 @@ package "Luna-Flow/calculus-numerical/legacy/support"
 // Values
 pub fn arr_sum(Array[Double]) -> Double
 
-pub fn zero_arr(Int) -> Array[Double]
+pub fn zero_arr(Int32) -> Array[Double]
 
 // Errors
 

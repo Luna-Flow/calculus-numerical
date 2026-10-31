@@ -14,7 +14,7 @@ pub fn neumaier_sum(ReadOnlyArray[Double]) -> Double
 
 pub fn pairwise_sum(ReadOnlyArray[Double]) -> Double
 
-pub fn wynn_epsilon((Int) -> Double, max_terms? : Int, tolerance? : Double) -> @core.Estimate[Double]
+pub fn wynn_epsilon((Int32) -> Double, max_terms? : Int32, tolerance? : Double) -> @core.Estimate[Double]
 
 // Errors
 

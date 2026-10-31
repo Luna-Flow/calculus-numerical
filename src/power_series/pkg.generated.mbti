@@ -7,9 +7,9 @@ import {
 }
 
 // Values
-pub fn[T : @luna-generic.FromInteger + @luna-generic.One + Mul + @arithmetic.DivContextual] maclaurin_from_derivatives((Int) -> T, Int, @arithmetic.ArithmeticContext) -> Result[PowerSeries[T], @arithmetic.ArithmeticError]
+pub fn[T : @luna-generic.FromInteger + @luna-generic.One + Mul + @arithmetic.DivContextual] maclaurin_from_derivatives((Int32) -> T, Int32, @arithmetic.ArithmeticContext) -> Result[PowerSeries[T], @arithmetic.ArithmeticError]
 
-pub fn[T : @luna-generic.FromInteger + @luna-generic.One + Mul + @arithmetic.DivContextual] taylor_from_derivatives((Int) -> T, Int, @arithmetic.ArithmeticContext) -> Result[PowerSeries[T], @arithmetic.ArithmeticError]
+pub fn[T : @luna-generic.FromInteger + @luna-generic.One + Mul + @arithmetic.DivContextual] taylor_from_derivatives((Int32) -> T, Int32, @arithmetic.ArithmeticContext) -> Result[PowerSeries[T], @arithmetic.ArithmeticError]
 
 // Errors
 
@@ -18,11 +18,11 @@ pub struct PowerSeries[T] {
   coefficients : Array[T]
 }
 pub fn[T : @luna-generic.FromInteger + @luna-generic.Zero + @arithmetic.DivContextual] PowerSeries::antiderivative(Self[T], @arithmetic.ArithmeticContext) -> Result[Self[T], @arithmetic.ArithmeticError]
-pub fn[T] PowerSeries::coefficient(Self[T], Int) -> T?
+pub fn[T] PowerSeries::coefficient(Self[T], Int32) -> T?
 pub fn[T : @luna-generic.FromNat + @luna-generic.Zero + Mul] PowerSeries::derivative(Self[T]) -> Self[T]
 pub fn[T : @luna-generic.AddMonoid + Mul] PowerSeries::evaluate(Self[T], T) -> T
 pub fn[T] PowerSeries::from_coefficients(Array[T]) -> Self[T]
-pub fn[T] PowerSeries::order(Self[T]) -> Int
+pub fn[T] PowerSeries::order(Self[T]) -> Int32
 
 // Type aliases
 
