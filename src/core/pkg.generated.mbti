@@ -11,6 +11,7 @@ import {
 // Errors
 
 // Types and methods
+#derive(Eq, @debug.Debug)
 pub struct Estimate[T] {
   value : T
   estimated_error : T
@@ -18,18 +19,19 @@ pub struct Estimate[T] {
   iterations : Int32
   status : NumericalStatus
   diagnostics : @arithmetic.ArithmeticDiagnostics
-} derive(Eq, @debug.Debug)
+}
 pub fn[T : Eq] Estimate::equal(Self[T], Self[T]) -> Bool
 pub fn[T] Estimate::new(T, T, Int32, Int32, NumericalStatus, diagnostics? : @arithmetic.ArithmeticDiagnostics) -> Self[T]
 pub fn[T : Eq] Estimate::not_equal(Self[T], Self[T]) -> Bool
 pub fn[T : @debug.Debug] Estimate::to_repr(Self[T]) -> @debug.Repr
 
+#derive(Eq, @debug.Debug)
 pub(all) enum NumericalStatus {
   Converged
   MaxIterations
   InvalidInput
   RoundoffStagnation
-} derive(Eq, @debug.Debug)
+}
 pub fn NumericalStatus::equal(Self, Self) -> Bool
 pub fn NumericalStatus::not_equal(Self, Self) -> Bool
 pub fn NumericalStatus::to_repr(Self) -> @debug.Repr
