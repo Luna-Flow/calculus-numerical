@@ -18,7 +18,7 @@ The project will provide basic methods for numerical calculus solutions. For the
 
 The next-generation packages `core`, `differentiation`, `integration`, `series` and `power_series` are documented in the [manual](doc/manual/index.md). Their iterative routines return an `Estimate` (value, empirical error estimate, evaluation count, status).
 
-The original API is published under the `legacy/` packages (`legacy/basic`, `legacy/deriv`, `legacy/diff`, `legacy/integration`, `legacy/internal`); see the [manual](doc/manual/index.md) for the package list and the migration notes. The library requires the latest MoonBit toolchain.
+The original API is published under the `legacy/` packages (`legacy/basic`, `legacy/deriv`, `legacy/diff`, `legacy/integration`, `legacy/internal`); see the [manual](doc/manual/index.md) for the package list and the migration notes. The library requires MoonBit with `moonc` 0.10.20 or later (verified with `moon 0.1.20261104` and `moonc v0.10.20`; older 0.10 compilers ignore `#derive`).
 
 The next-generation architecture is being researched as an independent, trait-compatible numerical foundation with explicit floating-point contexts and first-class Decimal support. See the [architecture RFC](doc/manual/architecture_rfc.md).
 
