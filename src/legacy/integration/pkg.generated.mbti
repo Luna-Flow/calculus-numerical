@@ -81,6 +81,7 @@ pub let xgk_r61 : ReadOnlyArray[Double]
 // Errors
 
 // Types and methods
+#derive(Eq)
 pub(all) enum ErrCode {
   OK
   E_ROUND
@@ -88,7 +89,7 @@ pub(all) enum ErrCode {
   E_MAX_ITER
   E_FAILED
   E_BAD_TOL
-} derive(Eq)
+}
 pub fn ErrCode::equal(Self, Self) -> Bool
 pub fn ErrCode::not_equal(Self, Self) -> Bool
 pub fn ErrCode::output(Self, &Logger) -> Unit

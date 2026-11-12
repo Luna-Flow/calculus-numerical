@@ -25,6 +25,7 @@
 /// }
 /// ```
 ///
+#derive(Eq)
 pub(all) enum ErrCode {
   OK
   E_ROUND
@@ -32,7 +33,7 @@ pub(all) enum ErrCode {
   E_MAX_ITER
   E_FAILED
   E_BAD_TOL
-} derive(Eq)
+}
 
 ///|
 /// Converts an error code to its string representation.

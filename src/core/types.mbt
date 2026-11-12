@@ -1,12 +1,14 @@
 ///|
+#derive(Eq, Debug)
 pub(all) enum NumericalStatus {
   Converged
   MaxIterations
   InvalidInput
   RoundoffStagnation
-} derive(Eq, Debug)
+}
 
 ///|
+#derive(Eq, Debug)
 pub struct Estimate[T] {
   value : T
   estimated_error : T
@@ -14,7 +16,7 @@ pub struct Estimate[T] {
   iterations : Int32
   status : NumericalStatus
   diagnostics : @lf_arith.ArithmeticDiagnostics
-} derive(Eq, Debug)
+}
 
 ///|
 pub fn[T] Estimate::new(
