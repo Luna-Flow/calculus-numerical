@@ -4,8 +4,8 @@ version = "0.3.1"
 
 import {
   "Kaida-Amethyst/math@0.1.21",
-  "Luna-Flow/arithmetic@0.5.1",
-  "Luna-Flow/floating@0.10.1",
+  "Luna-Flow/arithmetic@0.5.2",
+  "Luna-Flow/floating@0.10.2",
   "Luna-Flow/luna-generic@0.4.0",
 }
 

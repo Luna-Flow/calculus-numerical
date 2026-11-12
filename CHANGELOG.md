@@ -7,6 +7,7 @@ follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Changed
 
+- Dependencies: `Luna-Flow/arithmetic` 0.5.2 (was 0.5.1), `Luna-Flow/floating` 0.10.2 (was 0.10.1).
 - Require MoonBit `moonc` 0.10.20 or later, verified with `moon 0.1.20261104` and `moonc v0.10.20`: `derive(...)` clauses are now `#derive(...)` attributes, which older 0.10 compilers ignore. No public API changed.
 - **Breaking:** the existing packages moved under `legacy/`. Only the import
   path changed; every function, type and constant keeps its name, signature
@@ -65,3 +66,4 @@ follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 - `moon check` and `moon test` no longer fail on the current toolchain
   ([#125](https://github.com/Luna-Flow/calculus-numerical/issues/125)).
+
